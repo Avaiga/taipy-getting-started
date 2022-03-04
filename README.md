@@ -17,7 +17,7 @@ Introduction to the on_change function with the choice of the week. The week dis
 
 ## Step 3
 
-Creation of the configuration of the backend for a baseline model. The predictions of this model is just the historical data with a shift in time.
+Creation of the backend configuration for a baseline model. The predictions of this model is just the historical data with a shift in time.
 
 ## Step 4
 ### Step 4 - backend
