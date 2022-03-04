@@ -35,7 +35,7 @@ Creation of a second pipeline (the machine learning pipeline : Auto-Regressive m
 
 ### Step 5 - gui
 
-Scenario is being runned and we can change the pipelines through a selector (first selector) and a button.
+Scenario is being runned and we can change the selected pipeline through a selector (first selector) and a button.
 
 ## Step 6
 
