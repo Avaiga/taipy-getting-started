@@ -1,7 +1,7 @@
 # taipy-getting-started
 The repo with the Getting Started scripts
 
-Make sure to have the good path for the csv. This patch could change depending on how you run the scripts.
+Make sure to have the good path for the csv. This path could change depending on how you run the scripts.
 
 ## Step 0
 
