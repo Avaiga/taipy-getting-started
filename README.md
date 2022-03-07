@@ -1,7 +1,7 @@
 # taipy-getting-started
 The repo with the Getting Started scripts
 
-Make sure to have the good path for the csv. This patch could change depending on how you run the scripts.
+Make sure to have the good path for the csv. This path could change depending on how you run the scripts.
 
 ## Step 0
 
@@ -17,7 +17,7 @@ Introduction to the on_change function with the choice of the week. The week dis
 
 ## Step 3
 
-Creation of the configuration of the backend for a baseline model. The predictions of this model is just the historical data with a shift in time.
+Creation of the backend configuration for a baseline model. The predictions of this model is just the historical data with a shift in time.
 
 ## Step 4
 ### Step 4 - backend
@@ -35,7 +35,7 @@ Creation of a second pipeline (the machine learning pipeline : Auto-Regressive m
 
 ### Step 5 - gui
 
-Scenario is being runned and we can change the pipelines through a selector (first selector) and a button.
+Scenario is being runned and we can change the selected pipeline through a selector (first selector) and a button.
 
 ## Step 6
 
