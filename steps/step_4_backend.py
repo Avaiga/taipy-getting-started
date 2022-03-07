@@ -1,5 +1,6 @@
 from step_3 import *
 
+# creation of the first scenario configuration
 pipeline_baseline_cfg = tp.configure_pipeline(name="pipeline_baseline",
                                               task_configs=[clean_data_cfg,
                                                             predict_baseline_cfg])

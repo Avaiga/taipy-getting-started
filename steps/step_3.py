@@ -1,3 +1,4 @@
+#import taipy as tp
 from taipy import Taipy as tp
 import datetime as dt
 import pandas as pd
@@ -16,8 +17,8 @@ nb_predictions_cfg = tp.configure_data_node(name="nb_predictions",
                                             scope=Scope.SCENARIO)
 
 group_by_cfg = tp.configure_data_node(name="group_by",
-                                            default_data="original",
-                                            scope=Scope.SCENARIO)
+                                      default_data="original",
+                                      scope=Scope.SCENARIO)
                                             
                                             
 day_cfg = tp.configure_data_node(name="day",
@@ -35,13 +36,16 @@ def clean_data(initial_dataset,day,group_by):
     # convert the date column to datetime
     initial_dataset['Date'] = pd.to_datetime(initial_dataset['Date'])
 
+    cleaned_dataset = change_data_with_group_by(initial_dataset,group_by)
+    return cleaned_dataset
     
+def change_data_with_group_by(dataset,group_by):
     if group_by != "original":
-        initial_dataset = initial_dataset.resample(group_by[0], on='Date').sum()\
-                                                                           .reset_index(inplace=False)
-        print(initial_dataset.head())
-    return initial_dataset
-    
+        dataset = dataset.resample(group_by[0], on='Date').sum()\
+                                                          .reset_index(inplace=False)
+    print(dataset.head())
+    return dataset
+
 def predict_baseline(cleaned_dataset, nb_predictions, day):
     # selecting the train data
     train_dataset = cleaned_dataset[cleaned_dataset['Date']<day]

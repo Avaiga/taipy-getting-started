@@ -17,10 +17,11 @@ Interact with this slider to change the week number:
 <|{dataset_week}|chart|x=Date|y=Value|height=100%|width=100%|type=bar|>
 """
 
+# the on_change is the function that will be called when any variable is changed
 def on_change(state,var_name,var_value):
     if var_name == 'nb_week':
         # we update the dataset when the slider is moved
-        state.dataset_week = dataset[dataset['Date'].dt.week == var_value]
+        state.dataset_week = dataset[dataset['Date'].dt.isocalendar().week == var_value]
 
 if __name__ == "__main__":
     Gui(page=md_step_2).run()

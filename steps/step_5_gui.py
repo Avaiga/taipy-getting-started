@@ -8,7 +8,7 @@ selected_pipeline = pipeline_selector[0]
 
 
 md_step_5 = md_step_2 + """
-Choose the pipeline you want to see then press the buttton <|Update chart|button|on_action=choose_pipeline|>
+Choose the pipeline you want to see then press the buttton <|Update chart|button|on_action={choose_pipeline}|>
 <|{selected_pipeline}|selector|lov={pipeline_selector}|>
 
 <|{predictions_dataset}|chart|x=Date|y[1]=Historical values|y[2]=Predicted values|height=80%|width=100%|type=bar|>
@@ -32,7 +32,9 @@ def submit_scenario(scenario):
 def choose_pipeline(state):
     print("'Update chart' button clicked")
     # we select the right pipeline
+    print(state.selected_pipeline)
     pipeline = scenario.pipelines[state.selected_pipeline]
+
     # we update the chart based on this pipeline
     create_predictions_dataset(state,pipeline)
     pass

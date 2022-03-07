@@ -1,0 +1,3 @@
+ Great! Now, we have a page with a text, a slider and a chart. The slider is interactive and is changing the value of our 'value' variable. Everything is done by Taipy. However, in some cases, we want to connect this value to other variables. For example, if we want to create a chart that will only display one week of data, we need a connection between this two variables.
+ 
+ We can do this by creating the 'on_change' function. The 'on_change' function is called whenever the value of a variable changes. It is called with the name of the control and the value of the control. In our example, it is called whenever the value of the slider changes. And each time it change, swe update the chart accordingly. Then, Taipy will update automatically the associated chart.

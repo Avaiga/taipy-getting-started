@@ -2,13 +2,16 @@ from taipy.gui import Gui
 import pandas as pd
 
 def get_data(path_to_csv):
+    # read_csv function returns a dataframe
     dataset = pd.read_csv(path_to_csv)
-    dataset['Date']=pd.to_datetime(dataset['Date'])
+    dataset['Date'] = pd.to_datetime(dataset['Date'])
     return dataset
 
-path_to_csv= "dataset.csv"
+# we get the dataframe
+path_to_csv = "dataset.csv"
 dataset = get_data(path_to_csv)
 
+# initial value of nb_week
 nb_week = 10
 
 # introduction of controls

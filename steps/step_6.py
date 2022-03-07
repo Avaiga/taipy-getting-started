@@ -38,6 +38,7 @@ def create_scenario(state):
     print("Execution of scenario...")
     # we create a scenario
     scenario = tp.create_scenario(scenario_cfg)
+    print("Creating scenario")
     # we put the new scenario as the current selected_scenario
     state.selected_scenario = scenario.id
     # change the scenario that is currently selected
@@ -55,13 +56,20 @@ def submit_scenario(state):
     scenario.day.write(day)
     scenario.nb_predictions.write(state.nb_predictions)
     scenario.group_by.write(state.selected_group_by)
+
     tp.set(scenario)
+    
+    print("Scenario submitted")
     
     # execute the pipelines/code
     tp.submit(scenario)
     
+    print("Scenario submitted")
+    
     # getting the resulting scenario
     scenario = tp.get(scenario.id)
+    
+    print("Scenario got")
     
     # we update the scenario selector and the scenario that is currently selected
     update_scenario_selector(state,scenario)
@@ -90,6 +98,8 @@ def update_scenario_selector(state,scenario):
 
 def choose_pipeline(state):
     print("'Update chart' button clicked")
+    print(state.selected_scenario)
+    print(state.selected_pipeline)
     scenario = tp.get(state.selected_scenario)
     pipeline = scenario.pipelines[state.selected_pipeline]
     create_predictions_dataset(state,pipeline)
@@ -98,7 +108,7 @@ def choose_pipeline(state):
 def on_change(state,var_name,var_value):
     if var_name == 'nb_week':
         # we update the dataset when the slider is moved
-        state.dataset_week = dataset[dataset['Date'].dt.week == var_value]
+        state.dataset_week = dataset[dataset['Date'].dt.isocalendar().week == var_value]
     if var_name == 'selected_pipeline' or var_name == 'selected_scenario':
         # we update the chart when the scenario or the pipeline is changed
         choose_pipeline(state)
