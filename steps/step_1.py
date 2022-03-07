@@ -2,19 +2,19 @@ from taipy.gui import Gui
 import pandas as pd
 
 def get_data(path_to_csv):
-    # read_csv function returns a dataframe
+    # "pd.read_csv()" function returns a dataframe
     dataset = pd.read_csv(path_to_csv)
     dataset['Date'] = pd.to_datetime(dataset['Date'])
     return dataset
 
-# we get the dataframe
+# We get the dataframe
 path_to_csv = "dataset.csv"
 dataset = get_data(path_to_csv)
 
-# initial value of nb_week
+# Initial value of nb_week
 nb_week = 10
 
-# introduction of controls
+# We put our text in a string
 md_step_1 = """
 # Getting started
 
@@ -25,7 +25,10 @@ Interact with this slider to change the week number:
 
 All the dataset:
 <|{dataset}|chart|x=Date|y=Value|height=100%|type=bar|>
+
+<|{dataset}|table|height=400px|width=95%|>
 """
 
 if __name__ == "__main__":
+    # We create a Gui object with our String
     Gui(page=md_step_1).run()
