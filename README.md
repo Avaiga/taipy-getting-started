@@ -20,27 +20,30 @@ Introduction to the on_change function with the choice of the week. The week dis
 Creation of the backend configuration for a baseline model. The predictions of this model is just the historical data with a shift in time.
 
 ## Step 4
-### Step 4 - backend
+
 
 Add to the previous config, a pipeline config. Then, creation and execution of the pipeline without the gui. 
 
-### Step 4 - gui
+## Step 5
 
 Add the execution of the pipeline thanks to a "Predict" button on the Gui (first button). The default parameters are used to run the pipeline. The results are shown in a chart.
 
-## Step 5
-### Step 5 - backend
+## Step 6
 
 Creation of a second pipeline (the machine learning pipeline : Auto-Regressive model). Creation and execution of the scenario with the default parameters wihout the gui.
 
-### Step 5 - gui
+### Step 7
 
 Scenario is being runned and we can change the selected pipeline through a selector (first selector) and a button.
 
-## Step 6
+## Step 8
 
-Now, we want to show how to create and change scenarios directly through the gui. We can change the default parameters with controls (date, number, selector); the default parameters are the date, the number of predictions and how to group-by the data. This part can be a huge step from step 5 gui.
+A first scenario is created. We can change the default parameters with controls (date, number, selector) of this scenario; the default parameters are the date, the number of predictions and how to group-by the data. A 'change_scenario' button is pressed to apply these changes and re-submit the scenario.
 
-## Step 7
+## Step 9
+
+Now, we want to show how to create scenarios directly through the gui and keep track of them.
+
+## Step 10
 
 Organize the page with a menu, layouts and parts that can be not rendered.
