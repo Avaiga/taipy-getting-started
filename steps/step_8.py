@@ -19,7 +19,7 @@ Choose the **group_by**:\n\n <|{selected_group_by}|selector|lov={group_by_select
 
 Choose the **number of predictions**:\n\n<|{nb_predictions}|number|>
 
-<|Change scenario|button|on_action=submit|>
+<|Save changes|button|on_action=submit|>
 
 
 Select the pipeline

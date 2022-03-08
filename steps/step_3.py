@@ -29,7 +29,8 @@ day_cfg = tp.configure_data_node(name="day",
 
 ## Rest of datanodes
 cleaned_dataset_cfg = tp.configure_data_node(name="cleaned_dataset",
-                                             scope=Scope.SCENARIO) # cacheable=True
+                                             scope=Scope.SCENARIO,
+                                             cacheable=True) # cacheable=True
 
 predictions_cfg = tp.configure_data_node(name="predictions")
 

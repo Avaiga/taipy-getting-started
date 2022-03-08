@@ -19,7 +19,7 @@ Choose the **number of predictions**:\n\n<|{nb_predictions}|number|>
 |>
 
 <|
-<br/>\n <|Create scenario|button|on_action=create_scenario|> <|Change scenario|button|on_action=submit_scenario|active={len(scenario_selector)>0}|>
+<br/>\n <|Save changes|button|on_action=submit_scenario|active={len(scenario_selector)>0}|> <|Create new scenario|button|on_action=create_scenario|>
 |>
 |>
 
@@ -50,11 +50,13 @@ main_md = """
 <|part|render={page=="Performance"}|""" + performance_md + """|>
 """
 
+
 # the initial page is the "Scenario Manager" page
 page = "Data Visualization"
 def menu_fct(state, var_name: str, var_value):
     # we change the value of the state.page variable in order to render the correct page
     state.page = var_value['args'][0]
+    print(tp.get_all_masters())
     pass
 
 if __name__ == "__main__":

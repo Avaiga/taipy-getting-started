@@ -14,7 +14,7 @@ Choose the **group_by**:\n\n <|{selected_group_by}|selector|lov={group_by_select
 
 Choose the **number of predictions**:\n\n<|{nb_predictions}|number|>
 
-<|Create scenario|button|on_action=create_scenario|> <|Change scenario|button|on_action=submit_scenario|active={len(scenario_selector)>0}|>
+<|Save changes|button|on_action=submit_scenario|active={len(scenario_selector)>0}|> <|Create new scenario|button|on_action=create_scenario|>
 
 ## Choose the scenario: <|{selected_scenario}|selector|lov={scenario_selector}|>
 
@@ -29,7 +29,7 @@ Choose the **number of predictions**:\n\n<|{nb_predictions}|number|>
 def create_scenario(state):
     print("Execution of scenario...")
     # We create a scenario
-    scenario = tp.create_scenario(scenario_cfg)
+    scenario = tp.create_scenario(scenario_cfg, creation_date=dt.datetime(state.day.year, state.day.month, state.day.day))
 
     # We put the new scenario as the current selected_scenario
     state.selected_scenario = scenario.id
@@ -45,10 +45,19 @@ def submit_scenario(state):
     day = dt.datetime(state.day.year, state.day.month, state.day.day) # conversion for our pb
     
     # We change the default parameters by writing in the datanodes
-    scenario.day.write(day)
-    scenario.nb_predictions.write(state.nb_predictions)
-    scenario.group_by.write(state.selected_group_by)
+    if state.day != scenario.day.read():
+        scenario.day.write(day)
+        
+    if state.nb_predictions != scenario.nb_predictions.read(): 
+        scenario.nb_predictions.write(state.nb_predictions)
+        
+    if state.selected_group_by != scenario.group_by.read():
+        scenario.group_by.write(state.selected_group_by)
+    if state.day != scenario.creation_date:
+        scenario.creation_date = state.day
+    
     tp.set(scenario)
+    
     
     # Execute the pipelines/code
     tp.submit(scenario)
@@ -80,7 +89,7 @@ def update_scenario_selector(state, scenario):
 
     # scenario.id is the unique id of the scenario and name is what will be display in the selector
     state.scenario_selector += [(scenario.id, name)]
-    pass
+    return name
 
 
 def update_chart(state):

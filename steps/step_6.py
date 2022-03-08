@@ -1,7 +1,5 @@
 from statsmodels.tsa.ar_model import AutoReg
 
-from taipy import Frequency
-
 from step_4 import *
 
 # This is the function that will be used by the task
@@ -43,9 +41,7 @@ pipeline_ml_cfg = tp.configure_pipeline(name="pipeline_ml",
 # Here, our scenario is influenced by the group_by, day and number of predictions.
 # We have two pipelines in our scenario (baseline and ml), they represent our different models
 scenario_cfg = tp.configure_scenario(name="scenario",
-                                     pipeline_configs=[pipeline_baseline_cfg, pipeline_ml_cfg],
-                                     frequency=Frequency.DAILY) # We want to create scenarios each day and compare them
-# Frequency will create a Cycle object, it will be used much later in the code to navigate through the scenarios
+                                     pipeline_configs=[pipeline_baseline_cfg, pipeline_ml_cfg]) 
 
 # The configuration is now complete, we will not come back to it later.
 
