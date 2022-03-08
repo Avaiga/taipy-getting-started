@@ -42,7 +42,7 @@ performance_md = """
 Done in the next step.
 """
 
-main_md = """
+main_md_step_10 = """
 <|menu|label=Menu|lov={["Data Visualization", "Scenario Manager", "Performance"]}|on_action=menu_fct|>
 
 <|part|render={page=="Data Visualization"}|""" + data_visualization_md + """|>
@@ -56,9 +56,8 @@ page = "Data Visualization"
 def menu_fct(state, var_name: str, var_value):
     # we change the value of the state.page variable in order to render the correct page
     state.page = var_value['args'][0]
-    print(tp.get_all_masters())
     pass
 
 if __name__ == "__main__":
-    Gui(page=main_md).run()
+    Gui(page=main_md_step_10).run()
     

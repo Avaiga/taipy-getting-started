@@ -47,17 +47,14 @@ def submit_scenario(state):
     # We change the default parameters by writing in the datanodes
     if state.day != scenario.day.read():
         scenario.day.write(day)
-        
     if state.nb_predictions != scenario.nb_predictions.read(): 
         scenario.nb_predictions.write(state.nb_predictions)
-        
     if state.selected_group_by != scenario.group_by.read():
         scenario.group_by.write(state.selected_group_by)
     if state.day != scenario.creation_date:
         scenario.creation_date = state.day
     
     tp.set(scenario)
-    
     
     # Execute the pipelines/code
     tp.submit(scenario)
