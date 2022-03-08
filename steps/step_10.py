@@ -39,7 +39,7 @@ Choose the **number of predictions**:\n\n<|{nb_predictions}|number|>
 """
 
 performance_md = """
-Work in progress
+Done in the next step.
 """
 
 main_md = """

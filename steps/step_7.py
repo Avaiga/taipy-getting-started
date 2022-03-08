@@ -33,6 +33,7 @@ def update_chart(state):
     pipeline = scenario.pipelines[state.selected_pipeline]
 
     # We update the chart based on this pipeline
+    # It is the same function as created before in step_5
     create_predictions_dataset(state, pipeline)
     pass
 

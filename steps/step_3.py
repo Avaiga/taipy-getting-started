@@ -29,14 +29,14 @@ day_cfg = tp.configure_data_node(name="day",
 
 ## Rest of datanodes
 cleaned_dataset_cfg = tp.configure_data_node(name="cleaned_dataset",
-                                             scope=Scope.SCENARIO)
+                                             scope=Scope.SCENARIO) # cacheable=True
 
 predictions_cfg = tp.configure_data_node(name="predictions")
 
 
 
 # Functions (3.2)
-def clean_data(initial_dataset: pd.DataFrame, day: dt.datetime, group_by: str):
+def clean_data(initial_dataset: pd.DataFrame, group_by: str):
     print("     Cleaning data")
     # Convert the date column to datetime
     initial_dataset['Date'] = pd.to_datetime(initial_dataset['Date'])
@@ -66,7 +66,7 @@ def predict_baseline(cleaned_dataset: pd.DataFrame, nb_predictions: int, day: dt
 
 # Tasks (3.3)
 clean_data_task_cfg = tp.configure_task(name="clean_data",
-                                        input=[initial_dataset_cfg, day_cfg, group_by_cfg],
+                                        input=[initial_dataset_cfg, group_by_cfg],
                                         function=clean_data,
                                         output=cleaned_dataset_cfg)
 

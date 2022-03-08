@@ -13,7 +13,7 @@ Week number to diplay: <|{nb_week}|>
 Interact with this slider to change the week number:
 <|{nb_week}|slider|min=1|max=52|>
 
-<|{dataset_week}|chart|x=Date|y=Value|height=100%|width=100%|type=bar|marker={marker_dict}|layout={layout_dict}|>
+<|{dataset_week}|chart|x=Date|y=Value|height=100%|width=100%|type=bar|>
 """
 
 # The on_change is the function that will be called when any variable is changed

@@ -1,0 +1,1 @@
+Let's manage multiple scenarios. To do that, we will have a scenario selector that is going to change in time. It will store the 'id' of the scenarios and the names of the scenarios. Only the names will be displayed. Also, we are going to change the 'on_change' function in order to automatically change the graph wjen another pipeline or scenario is selected.
