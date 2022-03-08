@@ -153,11 +153,17 @@ from taipy.gui import Gui
 selected_scenario_tree = None
 
 tree_md = """
+<|layout|columns=1 1
+<|
 # Choose your scenario
 <|{selected_scenario_tree}|tree|lov={tree_lov}|>
+|>
 
+<|
 ## Choose the pipeline
 <|{selected_pipeline}|selector|lov={pipeline_selector}|>
+|>
+|>
 
 <|{predictions_dataset}|chart|type=bar|x=Date|y[1]=Historical values|y[2]=Predicted values|height=80%|width=100%|>
 """
