@@ -99,7 +99,7 @@ Choose the **number of predictions**:\n\n<|{nb_predictions}|number|>
 
 
 main_md_step_11 = """
-<|menu|label=Menu|lov={["Data Visualization", "Scenario Manager", "Performance"]}|on_action=menu_fct|>
+<|menu|label=Menu|lov={["Data Visualization", "Scenario Manager"]}|on_action=menu_fct|>
 
 <|part|render={page=="Data Visualization"}|""" + data_visualization_md + """|>
 <|part|render={page=="Scenario Manager"}|""" + scenario_manager_md + """|>

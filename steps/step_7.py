@@ -22,9 +22,6 @@ def create_scenario():
 def submit(scenario):
     print("Submitting scenario...")
     tp.submit(scenario)
-    
-    # Getting the resulting scenario
-    scenario = tp.get(scenario.id) # delete
     return scenario
 
 def update_chart(state):

@@ -51,7 +51,6 @@ if __name__=='__main__':
     # We execute it
     tp.submit(scenario)
     # We get the resulting scenario
-    scenario = tp.get(scenario.id) # delete
     
     # We print the predictions of the two pipelines
     print("\nBaseline predictions\n", scenario.pipeline_baseline.predictions.read())

@@ -57,7 +57,6 @@ def submit_scenario(state):
     if state.day != scenario.creation_date:
         scenario.creation_date = state.day
         
-    tp.set(scenario)
 
     # Execute the pipelines/code
     tp.submit(scenario)
@@ -73,9 +72,11 @@ def submit_scenario(state):
     
     return scenario
 
-def delete_scenario_in_selector(state, scenario_id):
+def delete_scenario_in_selector(state):
     print("Deleting scenario in selector if it already exists...")
     # If scenario_id is already in scenario selector, we delete it
+    scenario_id = state.selected_scenario
+    
     scenario_ids = [s[0] for s in state.scenario_selector]
     if scenario_id in scenario_ids:
         index = scenario_ids.index(scenario_id)
@@ -92,7 +93,7 @@ def update_scenario_selector(state, scenario):
     if name in [s[1] for s in state.scenario_selector]:
         name+=f" ({len(state.scenario_selector)})"
         
-    delete_scenario_in_selector(state,scenario.id)
+    delete_scenario_in_selector(state)
 
     # scenario.id is the unique id of the scenario and name is what will be display in the selector
     state.scenario_selector += [(scenario.id, name)]

@@ -18,9 +18,6 @@ def create_and_submit_pipeline():
     pipeline = tp.create_pipeline(pipeline_baseline_cfg)
     # We execute the pipeline
     tp.submit(pipeline)
-    
-    # We get the resulting pipeline
-    pipeline = tp.get(pipeline.id) # delete
     return pipeline
 
 def create_predictions_dataset(state, pipeline):
@@ -46,6 +43,7 @@ def create_predictions_dataset(state, pipeline):
     
     # We update the predictions dataset
     state.predictions_dataset = pd.concat([temp_df['Date'], historical_values, predicted_values], axis=1)
+    
 
 def predict(state):
     print("'Predict' button clicked")

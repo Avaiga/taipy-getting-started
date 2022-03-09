@@ -9,8 +9,7 @@ if __name__ == "__main__":
     first_pipeline = tp.create_pipeline(pipeline_baseline_cfg)
     # Submitting it
     tp.submit(first_pipeline)
-    # Getting the resulting pipeline
-    first_pipeline = tp.get(first_pipeline.id) # delete
+    
     # Reading data from the pipeline
     baseline_predictions = first_pipeline.predictions.read()
     print("Predictions of baseline\n", baseline_predictions)

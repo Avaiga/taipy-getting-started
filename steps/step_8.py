@@ -29,22 +29,24 @@ Select the pipeline
 """
 
 def create_scenario():
-    
+    global selected_scenario
+
     print("Creating scenario...")
     scenario = tp.create_scenario(scenario_cfg)
   
-    scenario = submit(None,scenario.id)
+    selected_scenario = scenario.id
+  
+    scenario = submit(None)
     return scenario
 
-def submit(state,scenario_id=None):
-    global selected_scenario
+def submit(state):
     # the submit is called in two different ways:
     # 1. when we create our first scenario, here state is None
     # 2. when the user clicks on the submit button, here state is the state of the app
     
     print("Submitting scenario...")
     # we get the selected scenario, we have just one scenario created
-    scenario = tp.get(scenario_id)
+    scenario = tp.get(selected_scenario)
     
     # We will be able to write in the datanodes when the submit is called
     # so when the 'Change scenario' button is pressed
@@ -53,16 +55,13 @@ def submit(state,scenario_id=None):
         
         # We change the default parameters by writing in the datanodes
         scenario.day.write(day)
-        scenario.nb_predictions.write(state.nb_predictions)
+        scenario.nb_predictions.write(int(state.nb_predictions))
         scenario.group_by.write(state.selected_group_by)
-        tp.set(scenario)
+
     
     # Execute the pipelines/code
     tp.submit(scenario)
     
-    # Getting the resulting scenario
-    scenario = tp.get(scenario_id) # delete
-    selected_scenario = scenario_id
     
     # We update the chart when we change the scenario
     if state is not None :
