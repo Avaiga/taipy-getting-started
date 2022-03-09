@@ -2,36 +2,37 @@ import datetime as dt
 import pandas as pd
 
 #import taipy as tp
-from taipy import Taipy as tp
+import taipy as tp
 from taipy import Scope
 
 from step_1 import path_to_csv
 
 # Datanodes (3.1)
 ## Input datanodes
-initial_dataset_cfg = tp.configure_data_node(name="initial_dataset",
+initial_dataset_cfg = tp.configure_data_node(id="initial_dataset",
                                              storage_type="csv",
                                              path=path_to_csv,
                                              scope=Scope.SCENARIO)
 
-nb_predictions_cfg = tp.configure_data_node(name="nb_predictions",
+nb_predictions_cfg = tp.configure_data_node(id="nb_predictions",
                                             default_data=40,
                                             scope=Scope.SCENARIO)
 
-group_by_cfg = tp.configure_data_node(name="group_by",
+group_by_cfg = tp.configure_data_node(id="group_by",
                                       default_data="original",
                                       scope=Scope.SCENARIO)
                                             
                                             
-day_cfg = tp.configure_data_node(name="day",
+day_cfg = tp.configure_data_node(id="day",
                                  default_data=dt.datetime(2014, 6, 1),
                                  scope=Scope.SCENARIO)
 
 ## Rest of datanodes
-cleaned_dataset_cfg = tp.configure_data_node(name="cleaned_dataset",
+cleaned_dataset_cfg = tp.configure_data_node(id="cleaned_dataset",
                                              scope=Scope.SCENARIO) # cacheable=True
 
-predictions_cfg = tp.configure_data_node(name="predictions")
+predictions_cfg = tp.configure_data_node(id="predictions",
+                                         scope=Scope.PIPELINE)
 
 
 
@@ -65,12 +66,12 @@ def predict_baseline(cleaned_dataset: pd.DataFrame, nb_predictions: int, day: dt
 
 
 # Tasks (3.3)
-clean_data_task_cfg = tp.configure_task(name="clean_data",
+clean_data_task_cfg = tp.configure_task(id="clean_data",
                                         input=[initial_dataset_cfg, group_by_cfg],
                                         function=clean_data,
                                         output=cleaned_dataset_cfg)
 
-predict_baseline_task_cfg = tp.configure_task(name="predict_baseline",
+predict_baseline_task_cfg = tp.configure_task(id="predict_baseline",
                                               input=[cleaned_dataset_cfg, nb_predictions_cfg, day_cfg],
                                               function=predict_baseline,
                                               output=predictions_cfg)

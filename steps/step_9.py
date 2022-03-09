@@ -8,7 +8,7 @@ selected_scenario = None
 md_step_9 = md_step_2 + """
 # Create your scenario :
 
-Choose the **day**:\n\n <|{day}|date_selector|with_time=False|>
+Choose the **day**:\n\n <|{day}|date|with_time=False|>
 
 Choose the **group_by**:\n\n <|{selected_group_by}|selector|lov={group_by_selector}|dropdown=True|>
 
@@ -28,14 +28,17 @@ Choose the **number of predictions**:\n\n<|{nb_predictions}|number|>
 # and to be able to create multiple scenarios
 def create_scenario(state):
     print("Execution of scenario...")
+    
     # We create a scenario
     scenario = tp.create_scenario(scenario_cfg, creation_date=dt.datetime(state.day.year, state.day.month, state.day.day))
-
-    # We put the new scenario as the current selected_scenario
+    
     state.selected_scenario = scenario.id
+    
     # Change the scenario that is currently selected
     scenario = submit_scenario(state)
     return scenario    
+
+
 
 def submit_scenario(state):
     print("Submitting scenario...")
@@ -47,27 +50,38 @@ def submit_scenario(state):
     # We change the default parameters by writing in the datanodes
     if state.day != scenario.day.read():
         scenario.day.write(day)
-    if state.nb_predictions != scenario.nb_predictions.read(): 
-        scenario.nb_predictions.write(state.nb_predictions)
+    if int(state.nb_predictions) != scenario.nb_predictions.read(): 
+        scenario.nb_predictions.write(int(state.nb_predictions))
     if state.selected_group_by != scenario.group_by.read():
         scenario.group_by.write(state.selected_group_by)
     if state.day != scenario.creation_date:
         scenario.creation_date = state.day
-    
+        
     tp.set(scenario)
-    
+
     # Execute the pipelines/code
     tp.submit(scenario)
-    
+
     # Getting the resulting scenario
     scenario = tp.get(scenario.id) # delete
-        
+    
     # We update the scenario selector and the scenario that is currently selected
     update_scenario_selector(state, scenario)
     
     # Update the chart directly
     update_chart(state) 
+    
     return scenario
+
+def delete_scenario_in_selector(state, scenario_id):
+    print("Deleting scenario in selector if it already exists...")
+    # If scenario_id is already in scenario selector, we delete it
+    scenario_ids = [s[0] for s in state.scenario_selector]
+    if scenario_id in scenario_ids:
+        index = scenario_ids.index(scenario_id)
+        state.scenario_selector.pop(index)
+        print("------------------FOUND------------------")
+        
 
 def update_scenario_selector(state, scenario):
     print("Updating scenario selector...")
@@ -78,14 +92,12 @@ def update_scenario_selector(state, scenario):
     if name in [s[1] for s in state.scenario_selector]:
         name+=f" ({len(state.scenario_selector)})"
         
-    # If scenario_id is already in scenario selector, we delete it
-    scenario_ids = [s[0] for s in state.scenario_selector]
-    if state.selected_scenario in scenario_ids:
-        index = scenario_ids.index(state.selected_scenario)
-        state.scenario_selector.pop(index)
+    delete_scenario_in_selector(state,scenario.id)
 
     # scenario.id is the unique id of the scenario and name is what will be display in the selector
     state.scenario_selector += [(scenario.id, name)]
+    # We put the new scenario as the current selected_scenario
+    state.selected_scenario = scenario.id
     return name
 
 
@@ -103,7 +115,12 @@ def on_change(state, var_name: str, var_value):
         
     elif var_name == 'selected_pipeline' or var_name == 'selected_scenario':
         # We update the chart when the scenario or the pipeline is changed
-        update_chart(state)
+        print('Enter in on change')
+        if tp.get(state.selected_scenario).predictions.read() is not None:
+            update_chart(state)
+            
+        print('Leave on change')
+        
         
     # Put default values when group_by is changed
     elif var_name == 'selected_group_by':

@@ -33,7 +33,7 @@ def create_predictions_dataset(state, pipeline):
     
     # We will display 5*nb_predictions elements
     window = 5 * nb_predictions
-    
+
     # We create the historical dataset that will be displayed
     new_length = len(cleaned_data[cleaned_data['Date'] < day]) + nb_predictions
     temp_df = cleaned_data[:new_length]
@@ -46,8 +46,6 @@ def create_predictions_dataset(state, pipeline):
     
     # We update the predictions dataset
     state.predictions_dataset = pd.concat([temp_df['Date'], historical_values, predicted_values], axis=1)
-
-
 
 def predict(state):
     print("'Predict' button clicked")

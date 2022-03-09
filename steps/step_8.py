@@ -13,38 +13,38 @@ selected_group_by = group_by_selector[0]
 md_step_8 = md_step_2 + """
 # Change your scenario :
 
-Choose the **day**:\n\n <|{day}|date_selector|with_time=False|>
+Choose the **day**:\n\n <|{day}|date|with_time=False|>
 
 Choose the **group_by**:\n\n <|{selected_group_by}|selector|lov={group_by_selector}|dropdown=True|>
 
 Choose the **number of predictions**:\n\n<|{nb_predictions}|number|>
 
-<|Save changes|button|on_action=submit|>
+<|Save changes|button|on_action={submit}|>
 
 
 Select the pipeline
-<|{selected_pipeline}|selector|lov={pipeline_selector}|> <|Update chart|button|on_action=update_chart|>
+<|{selected_pipeline}|selector|lov={pipeline_selector}|> <|Update chart|button|on_action={update_chart}|>
 
 <|{predictions_dataset}|chart|x=Date|y[1]=Historical values|y[2]=Predicted values|height=80%|width=100%|type=bar|>
 """
 
 def create_scenario():
-    global selected_scenario
+    
     print("Creating scenario...")
     scenario = tp.create_scenario(scenario_cfg)
-    
-    selected_scenario = scenario.id
-    scenario = submit(None)
+  
+    scenario = submit(None,scenario.id)
     return scenario
 
-def submit(state):
+def submit(state,scenario_id=None):
+    global selected_scenario
     # the submit is called in two different ways:
     # 1. when we create our first scenario, here state is None
     # 2. when the user clicks on the submit button, here state is the state of the app
     
     print("Submitting scenario...")
     # we get the selected scenario, we have just one scenario created
-    scenario = tp.get(selected_scenario)
+    scenario = tp.get(scenario_id)
     
     # We will be able to write in the datanodes when the submit is called
     # so when the 'Change scenario' button is pressed
@@ -61,7 +61,8 @@ def submit(state):
     tp.submit(scenario)
     
     # Getting the resulting scenario
-    scenario = tp.get(selected_scenario) # delete
+    scenario = tp.get(scenario_id) # delete
+    selected_scenario = scenario_id
     
     # We update the chart when we change the scenario
     if state is not None :

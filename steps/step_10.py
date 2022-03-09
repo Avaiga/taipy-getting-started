@@ -7,7 +7,7 @@ scenario_manager_md = """
 
 <|layout|columns=1 1 1 1
 <|
-Choose the **day**:\n\n <|{day}|date_selector|with_time=False|>
+Choose the **day**:\n\n <|{day}|date|with_time=False|>
 |>
 
 <|
@@ -38,22 +38,18 @@ Choose the **number of predictions**:\n\n<|{nb_predictions}|number|>
 |>
 """
 
-performance_md = """
-Done in the next step.
-"""
 
 main_md_step_10 = """
 <|menu|label=Menu|lov={["Data Visualization", "Scenario Manager", "Performance"]}|on_action=menu_fct|>
 
 <|part|render={page=="Data Visualization"}|""" + data_visualization_md + """|>
 <|part|render={page=="Scenario Manager"}|""" + scenario_manager_md + """|>
-<|part|render={page=="Performance"}|""" + performance_md + """|>
 """
 
 
 # the initial page is the "Scenario Manager" page
 page = "Data Visualization"
-def menu_fct(state, var_name: str, var_value):
+def menu_fct(state, var_name: str, fct, var_value):
     # we change the value of the state.page variable in order to render the correct page
     state.page = var_value['args'][0]
     pass
