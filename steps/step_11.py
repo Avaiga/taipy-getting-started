@@ -2,6 +2,8 @@ from taipy import Frequency
 
 from step_10 import *
 
+import time
+
 scenario_dayly_cfg = tp.configure_scenario(id="scenario",
                                      pipeline_configs=[pipeline_baseline_cfg, pipeline_ml_cfg],
                                      frequency=Frequency.DAILY)# We want to create scenarios each day and compare them
@@ -29,13 +31,16 @@ def create_scenario(state):
     day = dt.datetime(state.day.year, state.day.month, state.day.day)
     
     if state.selected_group_by == "month":
+        start = time.time()
         scenario = tp.create_scenario(scenario_montly_cfg, creation_date=day)
     elif state.selected_group_by == "week":
+        start = time.time()
         scenario = tp.create_scenario(scenario_weekly_cfg, creation_date=day)
     else:
+        start = time.time()
         scenario = tp.create_scenario(scenario_dayly_cfg, creation_date=day)
 
-
+    print("Scenario created in: ", time.time() - start)
     state.selected_scenario = scenario.id
 
     # Change the scenario that is currently selected

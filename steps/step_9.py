@@ -1,5 +1,7 @@
 from step_8 import *
 
+import time
+
 # Initial variables
 ## Initial variable for the scenario selector
 scenario_selector = []
@@ -30,8 +32,9 @@ def create_scenario(state):
     print("Execution of scenario...")
     
     # We create a scenario
+    start = time.time()
     scenario = tp.create_scenario(scenario_cfg, creation_date=dt.datetime(state.day.year, state.day.month, state.day.day))
-    
+    print(f"Scenario created in {time.time()-start} seconds")
     state.selected_scenario = scenario.id
     
     # Change the scenario that is currently selected

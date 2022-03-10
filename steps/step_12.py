@@ -35,12 +35,17 @@ def create_scenario(state):
     day = dt.datetime(state.day.year, state.day.month, state.day.day)
     
     if state.selected_group_by == "month":
+        start = time.time()
         scenario = tp.create_scenario(scenario_montly_cfg, creation_date=day)
     elif state.selected_group_by == "week":
+        start = time.time()
         scenario = tp.create_scenario(scenario_weekly_cfg, creation_date=day)
     else:
+        start = time.time()
         scenario = tp.create_scenario(scenario_dayly_cfg, creation_date=day)
 
+    print("Scenario created in: ", time.time() - start)
+    
     state.selected_scenario = scenario.id
 
     # Change the scenario that is currently selected
@@ -48,7 +53,7 @@ def create_scenario(state):
     return scenario
 
 def submit_scenario(state):
-    print("Submitting scenario...")
+    print("Submitting scenario...STEP12")
     # We get the currently selected scenario or the scenario with the given id
         
     scenario = tp.get(state.selected_scenario)
@@ -129,7 +134,14 @@ def build_tree_lov():
         tree_lov.append(frequency_tuple)
     return tree_lov
 
-
+def delete_scenario(state):
+    scenario_id = state.selected_scenario
+    scenario = tp.get(scenario_id)
+    delete_scenario_in_selector(state)
+    delete_scenario_in_tree_dict(scenario)
+    state.tree_lov = build_tree_lov()
+    # tp.delete_scenario(scenario)
+    
 
 
 

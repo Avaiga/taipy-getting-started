@@ -6,6 +6,7 @@ comparison_scenario = pd.DataFrame({"Cycle Type":[], 'Scenario Name':[], 'Pipeli
 
 comparison_scenario_done = False
 
+
 def compare(state):
     print('Comparing...')
     cycle_types = []
