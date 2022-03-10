@@ -1,7 +1,6 @@
 import datetime as dt
 import pandas as pd
 
-#import taipy as tp
 import taipy as tp
 from taipy import Scope
 

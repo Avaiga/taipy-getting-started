@@ -119,12 +119,9 @@ def on_change(state, var_name: str, var_value):
         
     elif var_name == 'selected_pipeline' or var_name == 'selected_scenario':
         # We update the chart when the scenario or the pipeline is changed
-        print('Enter in on change')
         if tp.get(state.selected_scenario).predictions.read() is not None:
             update_chart(state)
-            
-        print('Leave on change')
-        
+                    
         
     # Put default values when group_by is changed
     elif var_name == 'selected_group_by':
