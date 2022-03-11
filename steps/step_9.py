@@ -1,7 +1,5 @@
 from step_8 import *
 
-import time
-
 # this function will get all the scenarios already created
 all_scenarios = tp.get_scenarios() 
 
@@ -39,9 +37,8 @@ def create_scenario(state):
     creation_date = dt.datetime(state.day.year, state.day.month, state.day.day)
     display_name = create_name_for_scenario(state)
     
-    start = time.time()
     scenario = tp.create_scenario(scenario_cfg, creation_date=creation_date, name=display_name)
-    print(f"Scenario created in {time.time()-start} seconds")
+
     state.selected_scenario = scenario.id
     
     # Change the scenario that is currently selected

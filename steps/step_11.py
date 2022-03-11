@@ -2,7 +2,7 @@ from taipy import Frequency
 
 from step_10 import *
 from step_6 import pipeline_ml_cfg
-import time
+
 
 scenario_dayly_cfg = tp.configure_scenario(id="scenario",
                                      pipeline_configs=[pipeline_baseline_cfg, pipeline_ml_cfg],
@@ -26,14 +26,12 @@ selected_scenario_is_master = None
 # We change the create_scenario function in order to change the default parameters
 # and to be able to create multiple scenarios
 def create_scenario(state):
-    print("Execution of scenario...STEP11")
-    # We create a scenario
-    
+    print("Execution of scenario...")
+    # Extra information for scenario
     creation_date = dt.datetime(state.day.year, state.day.month, state.day.day)
     display_name = create_name_for_scenario(state)
     
-    start = time.time()
-    
+    # We create a scenario
     if state.selected_group_by == "month":
         scenario = tp.create_scenario(scenario_montly_cfg, creation_date=creation_date, name=display_name)
     elif state.selected_group_by == "week":
@@ -41,7 +39,6 @@ def create_scenario(state):
     else:
         scenario = tp.create_scenario(scenario_dayly_cfg, creation_date=creation_date, name=display_name)
 
-    print("Scenario created in: ", time.time() - start)
     state.selected_scenario = scenario.id
 
     # Change the scenario that is currently selected
