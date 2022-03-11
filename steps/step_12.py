@@ -17,6 +17,7 @@ def delete_scenarios_in_tree_dict(tree_dict,scenarios):
         tree_dict[frequency].pop(period)
     return tree_dict
 
+
 def create_tree_dict(scenarios, tree_dict=None):
     print("Creating tree dict...")
     if tree_dict is None:
@@ -40,7 +41,6 @@ def create_tree_dict(scenarios, tree_dict=None):
         tree_dict[group_by][period] += [(scenario.id,scenario.properties['display_name'])]
     
     return tree_dict
-
 
 
 def build_tree_lov(tree_dict):
@@ -86,10 +86,11 @@ tree_lov = build_tree_lov(tree_dict)
 
 def create_scenario(state):
     print("Execution of scenario...")
-    # We create a scenario    
+    # Extra information for scenario   
     creation_date = dt.datetime(state.day.year, state.day.month, state.day.day)
     display_name = create_name_for_scenario(state)
     
+    # We create a scenario with the cycle from its group-by
     if state.selected_group_by == "month":
         scenario = tp.create_scenario(scenario_montly_cfg, creation_date=creation_date, name=display_name)
     elif state.selected_group_by == "week":
@@ -104,10 +105,11 @@ def create_scenario(state):
     scenario = submit_scenario(state)
     return scenario
 
+
 def submit_scenario(state):
     global tree_dict
     print("Submitting scenario...")
-    # We get the currently selected scenario or the scenario with the given id
+    # We get the currently selected scenario
     scenario = tp.get(state.selected_scenario)
     
     day = dt.datetime(state.day.year, state.day.month, state.day.day) # conversion for our pb
@@ -138,15 +140,16 @@ def submit_scenario(state):
     return scenario
 
 
-
-
 def delete_scenario(state):
     global tree_dict
     scenario_id = state.selected_scenario
     scenario = tp.get(scenario_id)
+    # We delete the scenario and the related objects (datanodes, tasks, jobs,...)
     os.remove('.data/scenarios/' + scenario.id + '.json')
     # tp.delete_scenario(scenario)
+    # We update the scenario selector accordingly
     delete_scenarios_in_selector(state, [scenario])
+    # We update the tree dict and lov accordingly
     tree_dict = delete_scenarios_in_tree_dict(tree_dict,[scenario])
     state.tree_lov = build_tree_lov(tree_dict)
     state.selected_scenario = None
@@ -176,7 +179,7 @@ tree_md = """
 <|{predictions_dataset}|chart|type=bar|x=Date|y[1]=Historical values|y[2]=Predicted values|height=80%|width=100%|>
 """
 
-
+ # We add the tree_md ('Cycle Manager') to the menu   
 main_md_step_11 = """
 <|menu|label=Menu|lov={["Data Visualization", "Scenario Manager", "Cycle Manager"]}|on_action=menu_fct|>
 

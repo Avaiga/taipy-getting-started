@@ -38,7 +38,7 @@ Choose the **number of predictions**:\n\n<|{nb_predictions}|number|>
 |>
 """
 
-
+# We create a menu
 main_md_step_10 = """
 <|menu|label=Menu|lov={["Data Visualization", "Scenario Manager", "Performance"]}|on_action=menu_fct|>
 

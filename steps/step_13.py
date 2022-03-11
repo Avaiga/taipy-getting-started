@@ -26,21 +26,27 @@ def caculate_metrics(historical_data, predicted_data):
 
 def compare(state):
     print('Comparing...')
+    # Initial lists for comparison
     cycle_types = []
     scenario_names = []
     rmses_baseline = []
     maes_baseline = []
     rmses_ml = []
     maes_ml = []
+    
+    # We go through all the master scenarios
     for scenario in tp.get_all_masters():
         print("Scenario")
+        # We go through all the pipelines
         for pipeline in scenario.pipelines.values():
             print("     Pipeline")
+            # We get the predictions dataset with the historical data
             only_prediction_dataset = create_predictions_dataset(pipeline)[-nb_predictions:]
             
             historical_values = only_prediction_dataset['Historical values']
             predicted_value = only_prediction_dataset['Predicted value']
             
+            # We calculate the metrics for this pipeline and master scenario
             rmse, mae = caculate_metrics(historical_values, predicted_value)
                         
             if 'baseline' in pipeline.config_id:
@@ -53,6 +59,7 @@ def compare(state):
         cycle_types.append(scenario.group_by.read())
         scenario_names.append(scenario.properties['display_name'])
         
+    # We finally update comparison_scenario
     state.comparison_scenario = pd.DataFrame({"Cycle Type":cycle_types,
                                               'Scenario Name':scenario_names,
                                               'RMSE baseline':rmses_baseline,
@@ -66,6 +73,7 @@ def compare(state):
 
 
 def create_performance_md():
+    # This is a function that will create the markdown file for the performance
     md = """
 <|Compare masters|button|on_action=compare|>
 
@@ -74,16 +82,22 @@ def create_performance_md():
 <|{selected_metric}|selector|lov={metric_selector}|>
 |>
 """
+    # We go through all the different types of cycle (month, week, day, original)
     for cycle_type in cycle_selector:
+        # We create the part that will be rendered if we selected this cycle
         md += "\n<|part|render={selected_cycle=='" + cycle_type + "'}|"
+        # We go through all the different metrics (RMSE, MAE)
         for metric in metric_selector:
+            # We create the part that will be rendered if we selected this metric
             md += "\n<|part|render={selected_metric=='" + metric + "'}|"
+            # We create the graph for this cycle and metric
             md += "\n<|{comparison_scenario[comparison_scenario['Cycle Type']=='" + cycle_type + "']}|chart|type=bar|x=Scenario Name|y[1]=" + metric + " baseline|y[2]=" + metric + " ML|>"
             md += "\n|>"
         md += "\n|>"
     md += '\n'
     return md
 
+# We create the markdown file thanks to the function above
 performance_md = create_performance_md()
     
 main_md_step_13 = """

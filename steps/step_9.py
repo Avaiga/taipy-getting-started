@@ -32,16 +32,16 @@ Choose the **number of predictions**:\n\n<|{nb_predictions}|number|>
 # and to be able to create multiple scenarios
 def create_scenario(state):
     print("Execution of scenario...")
-    
-    # We create a scenario
+    # Extra information for the scenario
     creation_date = dt.datetime(state.day.year, state.day.month, state.day.day)
     display_name = create_name_for_scenario(state)
     
+    # We create a scenario
     scenario = tp.create_scenario(scenario_cfg, creation_date=creation_date, name=display_name)
 
     state.selected_scenario = scenario.id
     
-    # Change the scenario that is currently selected
+    # Submit the scenario that is currently selected
     scenario = submit_scenario(state)
     return scenario    
 
@@ -79,7 +79,7 @@ def create_name_for_scenario(state):
     name = f"Scenario ({state.day.strftime('%A, %d %b %Y')}, {state.nb_predictions} pred, {state.selected_group_by[0]})"
     # If the name is already a name of a scenario, we change it
     if name in [s[1] for s in state.scenario_selector]:
-        name+=f" ({len(state.scenario_selector)})"
+        name += f" ({len(state.scenario_selector)})"
     return name
 
 
@@ -89,9 +89,10 @@ def delete_scenarios_in_selector(state, scenarios):
 
 def update_scenario_selector(state, scenarios):
     print("Updating scenario selector...")
-    # we update the scenario selector
+    # We delete the scenario if it is already in the selector
     delete_scenarios_in_selector(state, scenarios)
     
+    # We update the scenario selector
     for scenario in scenarios:
         state.scenario_selector += [(scenario.id, scenario.properties['display_name'])]
     
@@ -111,6 +112,7 @@ def on_change(state, var_name: str, var_value):
         
     elif var_name == 'selected_pipeline' or var_name == 'selected_scenario':
         # We update the chart when the scenario or the pipeline is changed
+        # if the prediction dataset is not empty
         if tp.get(state.selected_scenario).predictions.read() is not None:
             update_chart(state)        
         
