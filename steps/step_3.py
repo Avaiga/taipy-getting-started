@@ -28,7 +28,9 @@ day_cfg = tp.configure_data_node(id="day",
 
 ## Rest of datanodes
 cleaned_dataset_cfg = tp.configure_data_node(id="cleaned_dataset",
-                                             scope=Scope.SCENARIO) # cacheable=True
+                                             scope=Scope.SCENARIO) # ,
+                                                                   # cacheable=True,
+                                                                   # validity_period=dt.timedelta(days=1)
 
 predictions_cfg = tp.configure_data_node(id="predictions",
                                          scope=Scope.PIPELINE)

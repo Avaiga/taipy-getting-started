@@ -1,6 +1,7 @@
 from statsmodels.tsa.ar_model import AutoReg
 
 from step_4 import *
+from step_3 import cleaned_dataset_cfg, nb_predictions_cfg, day_cfg, group_by_cfg, predictions_cfg, pd
 
 # This is the function that will be used by the task
 def predict_ml(cleaned_dataset: pd.DataFrame, nb_predictions: int, day: dt.datetime, group_by: str):
@@ -33,15 +34,13 @@ predict_ml_task_cfg = tp.configure_task(id="predict_ml",
                                   output=predictions_cfg)
 
 # We create a ml pipeline that will clean and predict with the ml model
-pipeline_ml_cfg = tp.configure_pipeline(id="pipeline_ml",
-                                        task_configs=[clean_data_task_cfg, predict_ml_task_cfg])
+pipeline_ml_cfg = tp.configure_pipeline(id="pipeline_ml", task_configs=[clean_data_task_cfg, predict_ml_task_cfg])
 
 
 # We configure our scenario which is our business problem. Different scenarios would represent different solution to our business problem.
 # Here, our scenario is influenced by the group_by, day and number of predictions.
 # We have two pipelines in our scenario (baseline and ml), they represent our different models
-scenario_cfg = tp.configure_scenario(id="scenario",
-                                     pipeline_configs=[pipeline_baseline_cfg, pipeline_ml_cfg]) 
+scenario_cfg = tp.configure_scenario(id="scenario", pipeline_configs=[pipeline_baseline_cfg, pipeline_ml_cfg]) 
 
 # The configuration is now complete, we will not come back to it later.
 
@@ -54,5 +53,4 @@ if __name__=='__main__':
     
     # We print the predictions of the two pipelines
     print("\nBaseline predictions\n", scenario.pipeline_baseline.predictions.read())
-    print("\nModel predictions\n", scenario.pipeline_ml.predictions.read())
-        
+    print("\nModel predictions\n", scenario.pipeline_ml.predictions.read())        

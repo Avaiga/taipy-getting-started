@@ -1,5 +1,5 @@
 from step_5 import *
-from step_6 import *
+from step_6 import scenario_cfg
 
 # The list of pipelines names, it will be used in a selector of pipelines
 pipeline_selector = ['pipeline_baseline', 'pipeline_ml']
@@ -31,7 +31,7 @@ def update_chart(state):
 
     # We update the chart based on this pipeline
     # It is the same function as created before in step_5
-    create_predictions_dataset(state, pipeline)
+    update_predictions_dataset(state, pipeline)
     pass
 
 if __name__ == "__main__":

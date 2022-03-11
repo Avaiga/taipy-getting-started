@@ -2,9 +2,13 @@ from step_8 import *
 
 import time
 
+# this function will get all the scenarios already created
+all_scenarios = tp.get_scenarios() 
+
 # Initial variables
 ## Initial variable for the scenario selector
-scenario_selector = []
+# The value of my selector will be the ids and what is display will be the display_name of my scenario
+scenario_selector = [(scenario.id, scenario.properties['display_name']) for scenario in all_scenarios]
 selected_scenario = None
 
 md_step_9 = md_step_2 + """
@@ -32,8 +36,11 @@ def create_scenario(state):
     print("Execution of scenario...")
     
     # We create a scenario
+    creation_date = dt.datetime(state.day.year, state.day.month, state.day.day)
+    display_name = create_name_for_scenario(state)
+    
     start = time.time()
-    scenario = tp.create_scenario(scenario_cfg, creation_date=dt.datetime(state.day.year, state.day.month, state.day.day))
+    scenario = tp.create_scenario(scenario_cfg, creation_date=creation_date, name=display_name)
     print(f"Scenario created in {time.time()-start} seconds")
     state.selected_scenario = scenario.id
     
@@ -42,77 +49,65 @@ def create_scenario(state):
     return scenario    
 
 
-
 def submit_scenario(state):
     print("Submitting scenario...")
     # We get the currently selected scenario
     scenario = tp.get(state.selected_scenario)
     
-    day = dt.datetime(state.day.year, state.day.month, state.day.day) # conversion for our pb
-    
+    day = dt.datetime(state.day.year, state.day.month, state.day.day) # conversion for our pb | change ?
+
     # We change the default parameters by writing in the datanodes
-    if state.day != scenario.day.read():
-        scenario.day.write(day)
-    if int(state.nb_predictions) != scenario.nb_predictions.read(): 
-        scenario.nb_predictions.write(int(state.nb_predictions))
-    if state.selected_group_by != scenario.group_by.read():
-        scenario.group_by.write(state.selected_group_by)
-    if state.day != scenario.creation_date:
-        scenario.creation_date = state.day
+    #if state.day != scenario.day.read():
+    scenario.day.write(day)
+    #if int(state.nb_predictions) != scenario.nb_predictions.read(): 
+    scenario.nb_predictions.write(int(state.nb_predictions))
+    #if state.selected_group_by != scenario.group_by.read():
+    scenario.group_by.write(state.selected_group_by)
+    #if state.day != scenario.creation_date:
+    scenario.creation_date = state.day
         
 
     # Execute the pipelines/code
     tp.submit(scenario)
-
-    # Getting the resulting scenario
-    scenario = tp.get(scenario.id) # delete
     
     # We update the scenario selector and the scenario that is currently selected
-    update_scenario_selector(state, scenario)
+    update_scenario_selector(state, [scenario]) # change list to scenario
     
     # Update the chart directly
     update_chart(state) 
-    
     return scenario
 
-def delete_scenario_in_selector(state):
-    print("Deleting scenario in selector if it already exists...")
-    # If scenario_id is already in scenario selector, we delete it
-    scenario_id = state.selected_scenario
-    
-    scenario_ids = [s[0] for s in state.scenario_selector]
-    if scenario_id in scenario_ids:
-        index = scenario_ids.index(scenario_id)
-        state.scenario_selector.pop(index)
-        print("------------------FOUND------------------")
-        
 
-def update_scenario_selector(state, scenario):
-    print("Updating scenario selector...")
-    # We create the name we want to see in the selector 
+def create_name_for_scenario(state):
     name = f"Scenario ({state.day.strftime('%A, %d %b %Y')}, {state.nb_predictions} pred, {state.selected_group_by[0]})"
-    
     # If the name is already a name of a scenario, we change it
     if name in [s[1] for s in state.scenario_selector]:
         name+=f" ({len(state.scenario_selector)})"
-        
-    delete_scenario_in_selector(state)
-
-    # scenario.id is the unique id of the scenario and name is what will be display in the selector
-    state.scenario_selector += [(scenario.id, name)]
-    # We put the new scenario as the current selected_scenario
-    state.selected_scenario = scenario.id
     return name
 
+
+def delete_scenarios_in_selector(state, scenarios):
+    for scenario in scenarios:
+        state.scenario_selector = [(s[0], s[1]) for s in state.scenario_selector if s[0] != scenario.id]
+
+def update_scenario_selector(state, scenarios):
+    print("Updating scenario selector...")
+    # we update the scenario selector
+    delete_scenarios_in_selector(state, scenarios)
+    
+    for scenario in scenarios:
+        state.scenario_selector += [(scenario.id, scenario.properties['display_name'])]
+    
 
 def update_chart(state):
     scenario = tp.get(state.selected_scenario)
     pipeline = scenario.pipelines[state.selected_pipeline]
-    create_predictions_dataset(state, pipeline)
+    update_predictions_dataset(state, pipeline)
     pass
 
 
 def on_change(state, var_name: str, var_value):
+    print('onchange',var_name,'on_change')
     if var_name == 'nb_week':
         # We update the dataset when the slider is moved
         state.dataset_week = dataset[dataset['Date'].dt.isocalendar().week == var_value]
@@ -120,8 +115,7 @@ def on_change(state, var_name: str, var_value):
     elif var_name == 'selected_pipeline' or var_name == 'selected_scenario':
         # We update the chart when the scenario or the pipeline is changed
         if tp.get(state.selected_scenario).predictions.read() is not None:
-            update_chart(state)
-                    
+            update_chart(state)        
         
     # Put default values when group_by is changed
     elif var_name == 'selected_group_by':

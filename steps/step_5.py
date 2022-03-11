@@ -1,7 +1,9 @@
 import numpy as np
+import time
 
-from step_4 import *
+from step_4 import dt, tp, pipeline_baseline_cfg
 from step_2 import *
+
 
 # Initialize the predictions dataset
 predictions_dataset = pd.DataFrame({"Date":[dt.datetime(2014, 6, 1)], "Historical values":[np.NaN], "Predicted values":[np.NaN]})
@@ -20,13 +22,16 @@ def create_and_submit_pipeline():
     tp.submit(pipeline)
     return pipeline
 
-def create_predictions_dataset(state, pipeline):
-    print("Updating predictions dataset...")
+
+def create_predictions_dataset(pipeline):
+    print("Creating predictions dataset...")
     # Reading data from the pipeline
+    start = time.time()
     predictions = pipeline.predictions.read()
     day = pipeline.day.read()
     nb_predictions = pipeline.nb_predictions.read()
     cleaned_data = pipeline.cleaned_dataset.read()
+    print("Time to read data: " + str(time.time() - start))
     
     # We will display 5*nb_predictions elements
     window = 5 * nb_predictions
@@ -42,13 +47,20 @@ def create_predictions_dataset(state, pipeline):
     predicted_values[-len(predictions):] = predictions
     
     # We update the predictions dataset
-    state.predictions_dataset = pd.concat([temp_df['Date'], historical_values, predicted_values], axis=1)
+    return pd.concat([temp_df['Date'], historical_values, predicted_values], axis=1)
     
 
+def update_predictions_dataset(state, pipeline):
+    print("Updating predictions dataset...")
+    # We update the predictions dataset
+    start = time.time()
+    state.predictions_dataset = create_predictions_dataset(pipeline)
+    print("Time to update predictions dataset: " + str(time.time() - start))
+    
 def predict(state):
     print("'Predict' button clicked")
     pipeline = create_and_submit_pipeline()
-    create_predictions_dataset(state, pipeline)
+    update_predictions_dataset(state, pipeline)
     pass
 
 if __name__ == "__main__":

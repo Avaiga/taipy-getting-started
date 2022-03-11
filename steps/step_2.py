@@ -1,6 +1,4 @@
-from taipy.gui import Gui
-
-from step_1 import *
+from step_1 import dataset, nb_week, Gui, pd
 
 # We display the week given by the slider
 dataset_week = dataset[dataset['Date'].dt.isocalendar().week == nb_week]

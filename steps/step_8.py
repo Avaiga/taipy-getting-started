@@ -2,7 +2,7 @@ from step_7 import *
 
 
 # Initial variables
-## Initial variables for the scenario
+## Initial variables for the scenario   
 day = dt.datetime(2014, 6, 1)
 nb_predictions = 40
 
@@ -75,7 +75,7 @@ def update_chart(state):
     scenario = tp.get(selected_scenario)
     pipeline = scenario.pipelines[state.selected_pipeline]
     # We update the chart based on this pipeline
-    create_predictions_dataset(state, pipeline)
+    update_predictions_dataset(state, pipeline)
     pass
 
 if __name__ == "__main__":

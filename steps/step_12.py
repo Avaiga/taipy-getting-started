@@ -1,112 +1,73 @@
 from step_11 import *
-selected_scenario_tree = None
-
-tree_lov = []
-frequency_counter  = 0
-period_counter = 0
-scenario_counter = 0
 
 
-tree_dict = {
-  "month": {
-  },
-  "week": {
-  },
-  "day": {
-  },
-  "original": {
-  },
-}
 
+def delete_scenarios_in_tree_dict(tree_dict,scenarios):
+    period_keys_to_pop = []
+    for scenario in scenarios:
+        for frequency, periods in tree_dict.items():
+            for period, scenarios_ in periods.items():
+                for scenario_id, scenario_name in scenarios_:
+                    if scenario_id == scenario.id:
+                        tree_dict[frequency][period].remove((scenario_id, scenario_name))
+                        if len(tree_dict[frequency][period]) == 0:
+                            period_keys_to_pop += [(frequency,period)]
+                        print("-------------found-------------")
+                        break
+                    
+    for frequency,period in period_keys_to_pop:
+        tree_dict[frequency].pop(period)
+    return tree_dict
 
-def delete_scenario_in_tree_dict(scenario):
-    print("Deleting scenario from tree if it already exists...")
-    for key in tree_dict:
-        for period in tree_dict[key]:
-            for item in tree_dict[key][period]:
-                if item[0] == scenario.id:
-                    tree_dict[key][period].remove(item)
-                    print("------------------FOUND------------------")
-                    return tree_dict
-
-def create_scenario(state):
-    print("Execution of scenario...STEP12")
-    # We create a scenario    
-    day = dt.datetime(state.day.year, state.day.month, state.day.day)
+def create_tree_dict(scenarios, tree_dict=None):
+    print("Creating tree dict...")
+    if tree_dict is None:
+        tree_dict = {"month": {},"week": {},"day": {},"original": {}}
+    else :
+        tree_dict = delete_scenarios_in_tree_dict(tree_dict, scenarios)
     
-    if state.selected_group_by == "month":
+    sum_reading = 0
+    sum_period = 0
+    sum_creating = 0
+    for scenario in scenarios:
         start = time.time()
-        scenario = tp.create_scenario(scenario_montly_cfg, creation_date=day)
-    elif state.selected_group_by == "week":
+        group_by = scenario.group_by.read()
+        day = scenario.day.read()
+        sum_reading += time.time() - start
+        
         start = time.time()
-        scenario = tp.create_scenario(scenario_weekly_cfg, creation_date=day)
-    else:
+        if group_by == "month":
+            period = f"Month {day.month}"
+        elif group_by == "week":
+            period = f"Week {day.isocalendar()[1]}"
+        else:
+            period = f"Day {day.strftime('%A, %d %b %Y')}"
+        sum_period += time.time() - start
+            
         start = time.time()
-        scenario = tp.create_scenario(scenario_dayly_cfg, creation_date=day)
+        if period not in tree_dict[group_by]:
+            tree_dict[group_by][period] = []
+        tree_dict[group_by][period] += [(scenario.id,scenario.properties['display_name'])]
+        sum_creating += time.time() - start
 
-    print("Scenario created in: ", time.time() - start)
-    
-    state.selected_scenario = scenario.id
-
-    # Change the scenario that is currently selected
-    scenario = submit_scenario(state)
-    return scenario
-
-def submit_scenario(state):
-    print("Submitting scenario...STEP12")
-    # We get the currently selected scenario or the scenario with the given id
-        
-    scenario = tp.get(state.selected_scenario)
-    
-    day = dt.datetime(state.day.year, state.day.month, state.day.day) # conversion for our pb
-    
-    # We change the default parameters by writing in the datanodes
-    if state.day != scenario.day.read():
-        scenario.day.write(day)
-    if int(state.nb_predictions) != scenario.nb_predictions.read(): 
-        scenario.nb_predictions.write(int(state.nb_predictions))
-    if state.selected_group_by != scenario.group_by.read():
-        scenario.group_by.write(state.selected_group_by)
-    if state.day != scenario.creation_date:
-        scenario.creation_date = state.day
-        
-    # Execute the pipelines/code
-    tp.submit(scenario)
-    
-    # Getting the resulting scenario
-    scenario = tp.get(scenario.id) # delete
-        
-    # We update the scenario selector and the scenario that is currently selected
-    name = update_scenario_selector(state, scenario)
-    delete_scenario_in_tree_dict(scenario)
-    update_tree_dict(state,scenario,name)
-    state.tree_lov = build_tree_lov()
-
-    # Update the chart directly
-    update_chart(state) 
-    return scenario
-
-
-
-
-
-def update_tree_dict(state,scenario,name):
-    if state.selected_group_by == "month":
-        period = f"Month {state.day.month}"
-    elif state.selected_group_by == "week":
-        period = f"Week {state.day.isocalendar()[1]}"
-    else:
-        period = f"Day {state.day.strftime('%A, %d %b %Y')}"
-        
-    try:
-        tree_dict[state.selected_group_by][period] += [(scenario.id,name)]
-    except:
-        tree_dict[state.selected_group_by][period] = [(scenario.id,name)]
+    print("\n__________\n")
+    print("Reading: ", sum_reading)
+    print("Period: ", sum_period)
+    print("Creating: ", sum_creating)
+    print("\n__________\n")
+            
     return tree_dict
 
 
-def build_tree_lov():
+
+def build_tree_lov(tree_dict):
+    global frequency_counter, period_counter, scenario_counter
+    
     frequency_counter  = 0
+    frequency_counter  = 0
+    period_counter = 0
+    scenario_counter = 0
+    
     tree_lov = []
         
     for frequency, periods in tree_dict.items():
@@ -134,13 +95,96 @@ def build_tree_lov():
         tree_lov.append(frequency_tuple)
     return tree_lov
 
+
+selected_scenario_tree = None
+tree_dict = create_tree_dict(all_scenarios)
+tree_lov = build_tree_lov(tree_dict)
+
+
+def create_scenario(state):
+    print("Execution of scenario...STEP12")
+    # We create a scenario    
+    creation_date = dt.datetime(state.day.year, state.day.month, state.day.day)
+    display_name = create_name_for_scenario(state)
+    
+    start = time.time()
+    if state.selected_group_by == "month":
+        scenario = tp.create_scenario(scenario_montly_cfg, creation_date=creation_date, name=display_name)
+    elif state.selected_group_by == "week":
+        scenario = tp.create_scenario(scenario_weekly_cfg, creation_date=creation_date, name=display_name)
+    else:
+        scenario = tp.create_scenario(scenario_dayly_cfg, creation_date=creation_date, name=display_name)
+
+    print("Scenario created in: ", time.time() - start)
+    
+    state.selected_scenario = scenario.id
+
+    # Change the scenario that is currently selected
+    scenario = submit_scenario(state)
+    return scenario
+
+def submit_scenario(state):
+    global tree_dict
+    print("Submitting scenario...STEP12")
+    # We get the currently selected scenario or the scenario with the given id
+    start = time.time()
+    scenario = tp.get(state.selected_scenario)
+    
+    day = dt.datetime(state.day.year, state.day.month, state.day.day) # conversion for our pb
+    
+    start_2 = time.time()
+    # We change the default parameters by writing in the datanodes
+    #if state.day != scenario.day.read():
+    scenario.day.write(day)
+    #if int(state.nb_predictions) != scenario.nb_predictions.read(): 
+    scenario.nb_predictions.write(int(state.nb_predictions))
+    #if state.selected_group_by != scenario.group_by.read():
+    scenario.group_by.write(state.selected_group_by)
+    #if state.day != scenario.creation_date:
+    scenario.creation_date = state.day
+    print("Scenario parameters changed in: ", time.time() - start_2)
+    
+    start_2 = time.time()
+    # Execute the pipelines/code
+    tp.submit(scenario)
+    print("Scenario submitted in: ", time.time() - start_2)
+    
+    
+    start_2 = time.time()
+    # We update the scenario selector and the scenario that is currently selected
+    start_3 = time.time()
+    update_scenario_selector(state, [scenario])
+    print("Scenario selector updated in: ", time.time() - start_3)
+    
+    start_3 = time.time()
+    tree_dict = create_tree_dict([scenario], tree_dict=tree_dict)
+    print("Tree dict created in: ", time.time() - start_3)
+    
+    start_3 = time.time()
+    state.tree_lov = build_tree_lov(tree_dict)
+    print("Tree lov created in: ", time.time() - start_3)
+    
+    # Update the chart directly
+    update_chart(state)
+    print("Var updated in: ", time.time() - start_2)
+    
+    print("ALL FCT Scenario submitted in: ", time.time() - start)
+    return scenario
+
+
+import os
+
 def delete_scenario(state):
+    global tree_dict
     scenario_id = state.selected_scenario
     scenario = tp.get(scenario_id)
-    delete_scenario_in_selector(state)
-    delete_scenario_in_tree_dict(scenario)
-    state.tree_lov = build_tree_lov()
+    os.remove('.data/scenarios/' + scenario.id + '.json')
     # tp.delete_scenario(scenario)
+    delete_scenarios_in_selector(state, [scenario])
+    tree_dict = delete_scenarios_in_tree_dict(tree_dict,[scenario])
+    state.tree_lov = build_tree_lov(tree_dict)
+    state.selected_scenario = None
+    
     
 
 

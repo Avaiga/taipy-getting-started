@@ -49,7 +49,7 @@ main_md_step_10 = """
 
 # the initial page is the "Scenario Manager" page
 page = "Data Visualization"
-def menu_fct(state, var_name: str, fct, var_value):
+def menu_fct(state, var_name: str, fct, var_value:list):
     # we change the value of the state.page variable in order to render the correct page
     state.page = var_value['args'][0]
     pass

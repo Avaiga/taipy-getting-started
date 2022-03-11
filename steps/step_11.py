@@ -1,7 +1,7 @@
 from taipy import Frequency
 
 from step_10 import *
-
+from step_6 import pipeline_ml_cfg
 import time
 
 scenario_dayly_cfg = tp.configure_scenario(id="scenario",
@@ -27,18 +27,19 @@ selected_scenario_is_master = None
 # and to be able to create multiple scenarios
 def create_scenario(state):
     print("Execution of scenario...STEP11")
-    # We create a scenario    
-    day = dt.datetime(state.day.year, state.day.month, state.day.day)
+    # We create a scenario
+    
+    creation_date = dt.datetime(state.day.year, state.day.month, state.day.day)
+    display_name = create_name_for_scenario(state)
+    
+    start = time.time()
     
     if state.selected_group_by == "month":
-        start = time.time()
-        scenario = tp.create_scenario(scenario_montly_cfg, creation_date=day)
+        scenario = tp.create_scenario(scenario_montly_cfg, creation_date=creation_date, name=display_name)
     elif state.selected_group_by == "week":
-        start = time.time()
-        scenario = tp.create_scenario(scenario_weekly_cfg, creation_date=day)
+        scenario = tp.create_scenario(scenario_weekly_cfg, creation_date=creation_date, name=display_name)
     else:
-        start = time.time()
-        scenario = tp.create_scenario(scenario_dayly_cfg, creation_date=day)
+        scenario = tp.create_scenario(scenario_dayly_cfg, creation_date=creation_date, name=display_name)
 
     print("Scenario created in: ", time.time() - start)
     state.selected_scenario = scenario.id
@@ -48,13 +49,15 @@ def create_scenario(state):
     return scenario  
 
 
-
+import os
 
 def delete_scenario(state):
     scenario_id = state.selected_scenario
     scenario = tp.get(scenario_id)
+    os.remove('.data/scenarios/' + scenario.id + '.json')
     # tp.delete_scenario(scenario)
-    delete_scenario_in_selector(state)
+    delete_scenarios_in_selector(state,[scenario])
+    state.selected_scenario = None
     
     
 def make_master(state):
