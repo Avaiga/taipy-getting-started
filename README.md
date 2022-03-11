@@ -32,7 +32,7 @@ Add the execution of the pipeline thanks to a "Predict" button on the Gui (first
 
 Creation of a second pipeline (the machine learning pipeline : Auto-Regressive model). Creation and execution of the scenario with the default parameters wihout the gui.
 
-### Step 7
+## Step 7
 
 Scenario is being runned and we can change the selected pipeline through a selector (first selector) and a button.
 
