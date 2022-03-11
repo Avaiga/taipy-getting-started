@@ -50,7 +50,7 @@ Organize the page with a menu, layouts and parts that can be not rendered.
 
 ## Step 11
 
-Introduce the concepts of Cycle and masters. We can delete a scenario and we can make a scenario master.
+Introduce the concepts of Cycles and masters (offical scenarios). We can delete a scenario and we can make a scenario master.
 
 ## Step 12
 
