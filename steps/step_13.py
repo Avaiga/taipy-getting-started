@@ -99,7 +99,8 @@ def create_performance_md():
 
 # We create the markdown file thanks to the function above
 performance_md = create_performance_md()
-    
+ 
+ # We add the performance_md to the menu   
 main_md_step_13 = """
 <|menu|label=Menu|lov={["Data Visualization", "Scenario Manager", "Cycle Manager", "Performance"]}|on_action=menu_fct|>
 
