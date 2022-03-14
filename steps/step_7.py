@@ -2,11 +2,11 @@ from step_5 import *
 from step_6 import scenario_cfg
 
 # The list of pipelines names, it will be used in a selector of pipelines
-pipeline_selector = ['pipeline_baseline', 'pipeline_ml']
+pipeline_selector = ['baseline', 'ml']
 selected_pipeline = pipeline_selector[0]
 
 
-md_step_7 = md_step_2 + """
+page_scenario = page + """
 Select the pipeline
 <|{selected_pipeline}|selector|lov={pipeline_selector}|> <|Update chart|button|on_action=update_chart|>
 
@@ -37,5 +37,5 @@ def update_chart(state):
 if __name__ == "__main__":
     # Creation of our first scenario
     scenario = create_scenario()
-    Gui(page=md_step_7).run()
+    Gui(page=page_scenario).run()
     

@@ -1,29 +1,29 @@
 from step_11 import *
 
-def delete_scenarios_in_tree_dict(tree_dict,scenarios):
+def delete_scenarios_in_tree_dict(scenario, tree_dict: dict):
     period_keys_to_pop = []
-    for scenario in scenarios:
-        for frequency, periods in tree_dict.items():
-            for period, scenarios_ in periods.items():
-                for scenario_id, scenario_name in scenarios_:
-                    if scenario_id == scenario.id:
-                        tree_dict[frequency][period].remove((scenario_id, scenario_name))
-                        if len(tree_dict[frequency][period]) == 0:
-                            period_keys_to_pop += [(frequency,period)]
-                        print("-------------found-------------")
-                        break
+    
+    for frequency, periods in tree_dict.items():
+        for period, scenarios_ in periods.items():
+            for scenario_id, scenario_name in scenarios_:
+                if scenario_id == scenario.id:
+                    tree_dict[frequency][period].remove((scenario_id, scenario_name))
+                    if len(tree_dict[frequency][period]) == 0:
+                        period_keys_to_pop += [(frequency,period)]
+                    print("-------------found-------------")
+                    break
                     
     for frequency,period in period_keys_to_pop:
         tree_dict[frequency].pop(period)
     return tree_dict
 
 
-def create_tree_dict(scenarios, tree_dict=None):
+def create_tree_dict(scenarios, tree_dict: dict=None):
     print("Creating tree dict...")
     if tree_dict is None:
         tree_dict = {"month": {},"week": {},"day": {},"original": {}}
     else :
-        tree_dict = delete_scenarios_in_tree_dict(tree_dict, scenarios)
+        tree_dict = delete_scenarios_in_tree_dict(scenarios[0], tree_dict)
     
     for scenario in scenarios:
         group_by = scenario.group_by.read()
@@ -43,7 +43,7 @@ def create_tree_dict(scenarios, tree_dict=None):
     return tree_dict
 
 
-def build_tree_lov(tree_dict):
+def build_tree_lov(tree_dict: dict):
     global frequency_counter, period_counter, scenario_counter
     
     frequency_counter  = 0
@@ -97,6 +97,9 @@ def create_scenario(state):
         scenario = tp.create_scenario(scenario_weekly_cfg, creation_date=creation_date, name=display_name)
     else:
         scenario = tp.create_scenario(scenario_dayly_cfg, creation_date=creation_date, name=display_name)
+    #else:
+    #    # No frequency selected for group_by = original ?????????? !!!!!!!!!!!! ??????????
+    #    scenario = tp.create_scenario(scenario_cfg, creation_date=creation_date, name=display_name)
 
     
     state.selected_scenario = scenario.id
@@ -127,12 +130,11 @@ def submit_scenario(state):
     # Execute the pipelines/code
     tp.submit(scenario)
     
-    
     # We update the scenario selector and the scenario that is currently selected
-    update_scenario_selector(state, [scenario])
+    update_scenario_selector(state, scenario)
     
+    # We update the tree dict and the tree lov
     tree_dict = create_tree_dict([scenario], tree_dict=tree_dict)
-    
     state.tree_lov = build_tree_lov(tree_dict)
     
     # Update the chart directly
@@ -147,27 +149,24 @@ def delete_scenario(state):
     # We delete the scenario and the related objects (datanodes, tasks, jobs,...)
     os.remove('.data/scenarios/' + scenario.id + '.json')
     # tp.delete_scenario(scenario)
+    
     # We update the scenario selector accordingly
-    delete_scenarios_in_selector(state, [scenario])
+    delete_scenarios_in_selector(state, scenario)
     # We update the tree dict and lov accordingly
-    tree_dict = delete_scenarios_in_tree_dict(tree_dict,[scenario])
+    tree_dict = delete_scenarios_in_tree_dict(scenario, tree_dict)
     state.tree_lov = build_tree_lov(tree_dict)
     state.selected_scenario = None
     
-    
-
-
-
-
-tree_md = """
+# We create another page to display the tree
+page_cycle_manager = """
 <|layout|columns=1 1 1
 <|
-# Choose your scenario
+## Choose your scenario
 <|{selected_scenario_tree}|tree|lov={tree_lov}|>
 |>
 
 <|
-# Choose the pipeline
+## Choose the pipeline
 <|{selected_pipeline}|selector|lov={pipeline_selector}|>
 |>
 
@@ -183,9 +182,9 @@ tree_md = """
 main_md_step_11 = """
 <|menu|label=Menu|lov={["Data Visualization", "Scenario Manager", "Cycle Manager"]}|on_action=menu_fct|>
 
-<|part|render={page=="Data Visualization"}|""" + data_visualization_md + """|>
-<|part|render={page=="Scenario Manager"}|""" + scenario_manager_md + """|>
-<|part|render={page=="Cycle Manager"}|""" + tree_md + """|>
+<|part|render={page=="Data Visualization"}|""" + page_data_visualization + """|>
+<|part|render={page=="Scenario Manager"}|""" + page_scenario_manager + """|>
+<|part|render={page=="Cycle Manager"}|""" + page_cycle_manager + """|>
 """
 
 
@@ -200,10 +199,12 @@ def on_change(state, var_name: str, var_value):
         
         if tp.get(state.selected_scenario).predictions.read() is not None:
             update_chart(state)
-        
+            
+    # If the scenario_selected_tree  is changed and is the id of a scenario,
+    # we change the selected_scenario
     elif var_name == "selected_scenario_tree":
-        if 'scenario' in var_value[0]: ## ADDED
-            state.selected_scenario = var_value[0]                               ## ADDED         
+        if 'scenario' in var_value[0]:
+            state.selected_scenario = var_value[0]
         
     # Put default values when group_by is changed
     elif var_name == 'selected_group_by':

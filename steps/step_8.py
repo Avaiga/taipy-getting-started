@@ -10,7 +10,7 @@ nb_predictions = 40
 group_by_selector = ['original', 'day', 'week', 'month']
 selected_group_by = group_by_selector[0]
 
-md_step_8 = md_step_2 + """
+page_scenario_manager = page + """
 # Change your scenario :
 
 Choose the **day**:\n\n <|{day}|date|with_time=False|>
@@ -58,10 +58,8 @@ def submit(state):
         scenario.nb_predictions.write(int(state.nb_predictions))
         scenario.group_by.write(state.selected_group_by)
 
-    
     # Execute the pipelines/code
     tp.submit(scenario)
-    
     
     # We update the chart when we change the scenario
     if state is not None :
@@ -83,5 +81,5 @@ if __name__ == "__main__":
     # Creation of our first scenario
     scenario = create_scenario()
     
-    Gui(page=md_step_8).run()
+    Gui(page=page_scenario_manager).run()
     

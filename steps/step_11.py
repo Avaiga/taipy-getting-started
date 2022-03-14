@@ -2,19 +2,19 @@ from taipy import Frequency
 import os
 
 from step_10 import *
-from step_6 import pipeline_ml_cfg
+from step_6 import ml_pipeline_cfg
 
 # Frequency will create a Cycle object, it will be used in the code to navigate through the scenarios and have a master scenario for each cycle
 scenario_dayly_cfg = tp.configure_scenario(id="scenario",
-                                     pipeline_configs=[pipeline_baseline_cfg, pipeline_ml_cfg],
+                                     pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg],
                                      frequency=Frequency.DAILY) # We want to create scenarios each day and compare them
 
 scenario_weekly_cfg = tp.configure_scenario(id="scenario",
-                                     pipeline_configs=[pipeline_baseline_cfg, pipeline_ml_cfg],
+                                     pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg],
                                      frequency=Frequency.WEEKLY)# We want to create scenarios each week and compare them
 
 scenario_montly_cfg = tp.configure_scenario(id="scenario",
-                                     pipeline_configs=[pipeline_baseline_cfg, pipeline_ml_cfg],
+                                     pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg],
                                      frequency=Frequency.MONTHLY)# We want to create scenarios each month and compare them
 
 
@@ -34,6 +34,9 @@ def create_scenario(state):
         scenario = tp.create_scenario(scenario_weekly_cfg, creation_date=creation_date, name=display_name)
     else:
         scenario = tp.create_scenario(scenario_dayly_cfg, creation_date=creation_date, name=display_name)
+    #else:
+    #    # No frequency selected for group_by = original ?????????? !!!!!!!!!!!! ??????????
+    #    scenario = tp.create_scenario(scenario_cfg, creation_date=creation_date, name=display_name)
 
     state.selected_scenario = scenario.id
 
@@ -50,7 +53,7 @@ def delete_scenario(state):
     os.remove('.data/scenarios/' + scenario.id + '.json')
     # tp.delete_scenario(scenario)
     # We update the scenario selector accordingly
-    delete_scenarios_in_selector(state,[scenario])
+    delete_scenarios_in_selector(state,scenario)
     state.selected_scenario = None
     
     
@@ -62,7 +65,7 @@ def make_master(state):
     state.selected_scenario_is_master = True
 
 # We change the scenario_manager_md to add a delete scenario button and a make master button
-scenario_manager_md = """
+page_scenario_manager = """
 # Create your scenario :
 
 <|layout|columns=1 1 1 1
@@ -101,11 +104,11 @@ Choose the **number of predictions**:\n\n<|{nb_predictions}|number|>
 """
 
 
-main_md_step_11 = """
+multi_pages = """
 <|menu|label=Menu|lov={["Data Visualization", "Scenario Manager"]}|on_action=menu_fct|>
 
-<|part|render={page=="Data Visualization"}|""" + data_visualization_md + """|>
-<|part|render={page=="Scenario Manager"}|""" + scenario_manager_md + """|>
+<|part|render={page=="Data Visualization"}|""" + page_data_visualization + """|>
+<|part|render={page=="Scenario Manager"}|""" + page_scenario_manager + """|>
 """
 
 
@@ -141,4 +144,4 @@ def on_change(state, var_name: str, var_value):
 
 
 if __name__ == '__main__':
-    Gui(page=main_md_step_11).run()
+    Gui(page=multi_pages).run()

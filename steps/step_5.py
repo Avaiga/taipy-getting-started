@@ -1,6 +1,6 @@
 import numpy as np
 
-from step_4 import dt, tp, pipeline_baseline_cfg
+from step_4 import dt, tp, baseline_pipeline_cfg
 from step_2 import *
 
 
@@ -8,7 +8,7 @@ from step_2 import *
 predictions_dataset = pd.DataFrame({"Date":[dt.datetime(2014, 6, 1)], "Historical values":[np.NaN], "Predicted values":[np.NaN]})
 
 # This is our new string with a button and a chart for our predictions
-md_step_5 = md_step_2 + """
+page_pipeline = page + """
 Press <|predict|button|on_action=predict|> to predict with default parameters (30 predictions) and June 1st as day. 
 <|{predictions_dataset}|chart|x=Date|y[1]=Historical values|y[2]=Predicted values|height=80%|width=100%|type=bar|>
 """
@@ -16,7 +16,7 @@ Press <|predict|button|on_action=predict|> to predict with default parameters (3
 def create_and_submit_pipeline():
     print("Execution of pipeline...")
     # We create the pipeline from the pipeline config
-    pipeline = tp.create_pipeline(pipeline_baseline_cfg)
+    pipeline = tp.create_pipeline(baseline_pipeline_cfg)
     # We execute the pipeline
     tp.submit(pipeline)
     return pipeline
@@ -59,5 +59,5 @@ def predict(state):
     pass
 
 if __name__ == "__main__":
-    Gui(page=md_step_5).run()
+    Gui(page=page_pipeline).run()
     

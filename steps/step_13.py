@@ -36,19 +36,20 @@ def compare(state):
     
     # We go through all the master scenarios
     for scenario in tp.get_all_masters():
-        print("Scenario")
+        print("Scenario...", scenario.properties['display_name'])
         # We go through all the pipelines
         for pipeline in scenario.pipelines.values():
-            print("     Pipeline")
+            print("     Pipeline...", pipeline.config_id)
             # We get the predictions dataset with the historical data
-            only_prediction_dataset = create_predictions_dataset(pipeline)[-nb_predictions:]
+            only_prediction_dataset = create_predictions_dataset(pipeline)[-pipeline.nb_predictions.read():]
             
             historical_values = only_prediction_dataset['Historical values']
-            predicted_value = only_prediction_dataset['Predicted value']
+            predicted_values = only_prediction_dataset['Predicted values']
             
             # We calculate the metrics for this pipeline and master scenario
-            rmse, mae = caculate_metrics(historical_values, predicted_value)
-                        
+            rmse, mae = caculate_metrics(historical_values, predicted_values)
+            
+            # We add to the correct lists, the correct values    
             if 'baseline' in pipeline.config_id:
                 rmses_baseline.append(rmse)
                 maes_baseline.append(mae)
@@ -66,21 +67,29 @@ def compare(state):
                                               'MAE baseline':maes_baseline,
                                               'RMSE ML':rmses_ml,
                                               'MAE ML':maes_ml})
+    
+    # When comparison_scenario will be set to True,
+    # the part with the graphs will be finally rendered
     state.comparison_scenario_done = True
     pass
-
 
 
 
 def create_performance_md():
     # This is a function that will create the markdown file for the performance
     md = """
-<|Compare masters|button|on_action=compare|>
+<|part|render={comparison_scenario_done}|
 
-<|layout|columns=1 1
-<|{selected_cycle}|selector|lov={cycle_selector}|>
-<|{selected_metric}|selector|lov={metric_selector}|>
+<|Table|expanded=False|expandable|
+<|{comparison_scenario}|table|width=100%|>
 |>
+
+<|layout|columns=1 1|
+<|{selected_cycle}|selector|lov={cycle_selector}|dropdown=True|>
+
+<|{selected_metric}|selector|lov={metric_selector}|dropdown=True|>
+|>
+
 """
     # We go through all the different types of cycle (month, week, day, original)
     for cycle_type in cycle_selector:
@@ -90,25 +99,34 @@ def create_performance_md():
         for metric in metric_selector:
             # We create the part that will be rendered if we selected this metric
             md += "\n<|part|render={selected_metric=='" + metric + "'}|"
+            
             # We create the graph for this cycle and metric
-            md += "\n<|{comparison_scenario[comparison_scenario['Cycle Type']=='" + cycle_type + "']}|chart|type=bar|x=Scenario Name|y[1]=" + metric + " baseline|y[2]=" + metric + " ML|>"
+            data = "comparison_scenario[comparison_scenario['Cycle Type']=='" + cycle_type + "']"
+            
+            md += "\n<|{" + data + "}|chart|type=bar|x=Scenario Name|y[1]=" + metric + " baseline|y[2]=" + metric + " ML|height=80%|width=100%|>"
+            
             md += "\n|>"
         md += "\n|>"
-    md += '\n'
+    md += '\n|>\n'
+    md += """
+<center>    
+<|Compare masters|button|on_action=compare|>
+</center>
+"""
     return md
 
 # We create the markdown file thanks to the function above
-performance_md = create_performance_md()
+page_performance = create_performance_md()
  
  # We add the performance_md to the menu   
-main_md_step_13 = """
+multi_pages = """
 <|menu|label=Menu|lov={["Data Visualization", "Scenario Manager", "Cycle Manager", "Performance"]}|on_action=menu_fct|>
 
-<|part|render={page=="Data Visualization"}|""" + data_visualization_md + """|>
-<|part|render={page=="Scenario Manager"}|""" + scenario_manager_md + """|>
-<|part|render={page=="Cycle Manager"}|""" + tree_md + """|>
-<|part|render={page=="Performance"}|""" + performance_md + """|>
+<|part|render={page=="Data Visualization"}|""" + page_data_visualization + """|>
+<|part|render={page=="Scenario Manager"}|""" + page_scenario_manager + """|>
+<|part|render={page=="Cycle Manager"}|""" + page_cycle_manager + """|>
+<|part|render={page=="Performance"}|""" + page_performance + """|>
 """
 
 if __name__ == '__main__':
-    Gui(page=main_md_step_13).run()
+    Gui(page=multi_pages).run()

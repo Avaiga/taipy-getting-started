@@ -17,7 +17,7 @@ def predict_ml(cleaned_dataset: pd.DataFrame, nb_predictions: int, day: dt.datet
     elif group_by == "week":
         lags = 4
     elif group_by == "month":
-        lags = 2
+        lags = 1
     
     # Fitting the AutoRegressive model
     model = AutoReg(train_dataset['Value'], lags=lags).fit()
@@ -29,18 +29,18 @@ def predict_ml(cleaned_dataset: pd.DataFrame, nb_predictions: int, day: dt.datet
 # This is the task configuration if the predict_ml function.
 # We use the same input and ouput as the previous predict_baseline task but we change the funtion
 predict_ml_task_cfg = tp.configure_task(id="predict_ml",
-                                  input=[cleaned_dataset_cfg, nb_predictions_cfg, day_cfg, group_by_cfg],
-                                  function=predict_ml,
-                                  output=predictions_cfg)
+                                        function=predict_ml,
+                                        input=[cleaned_dataset_cfg, nb_predictions_cfg, day_cfg, group_by_cfg],
+                                        output=predictions_cfg)
 
 # We create a ml pipeline that will clean and predict with the ml model
-pipeline_ml_cfg = tp.configure_pipeline(id="pipeline_ml", task_configs=[clean_data_task_cfg, predict_ml_task_cfg])
+ml_pipeline_cfg = tp.configure_pipeline(id="ml", task_configs=[clean_data_task_cfg, predict_ml_task_cfg])
 
 
 # We configure our scenario which is our business problem. Different scenarios would represent different solution to our business problem.
 # Here, our scenario is influenced by the group_by, day and number of predictions.
 # We have two pipelines in our scenario (baseline and ml), they represent our different models
-scenario_cfg = tp.configure_scenario(id="scenario", pipeline_configs=[pipeline_baseline_cfg, pipeline_ml_cfg]) 
+scenario_cfg = tp.configure_scenario(id="scenario", pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg]) 
 
 # The configuration is now complete, we will not come back to it later.
 
@@ -52,5 +52,5 @@ if __name__=='__main__':
     # We get the resulting scenario
     
     # We print the predictions of the two pipelines
-    print("\nBaseline predictions\n", scenario.pipeline_baseline.predictions.read())
-    print("\nModel predictions\n", scenario.pipeline_ml.predictions.read())        
+    print("\nBaseline predictions\n", scenario.baseline.predictions.read())
+    print("\nModel predictions\n", scenario.ml.predictions.read())        

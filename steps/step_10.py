@@ -1,8 +1,8 @@
 from step_9 import *
 
-data_visualization_md = md_step_2
+page_data_visualization = page
 
-scenario_manager_md = """
+page_scenario_manager = """
 # Create your scenario :
 
 <|layout|columns=1 1 1 1
@@ -39,21 +39,21 @@ Choose the **number of predictions**:\n\n<|{nb_predictions}|number|>
 """
 
 # We create a menu
-main_md_step_10 = """
-<|menu|label=Menu|lov={["Data Visualization", "Scenario Manager", "Performance"]}|on_action=menu_fct|>
+multi_pages = """
+<|menu|label=Menu|lov={["Data Visualization", "Scenario Manager"]}|on_action=menu_fct|>
 
-<|part|render={page=="Data Visualization"}|""" + data_visualization_md + """|>
-<|part|render={page=="Scenario Manager"}|""" + scenario_manager_md + """|>
+<|part|render={page=="Data Visualization"}|""" + page_data_visualization + """|>
+<|part|render={page=="Scenario Manager"}|""" + page_scenario_manager + """|>
 """
 
 
 # the initial page is the "Scenario Manager" page
 page = "Data Visualization"
-def menu_fct(state, var_name: str, fct, var_value:list):
+def menu_fct(state, var_name: str, fct: str, var_value: list):
     # we change the value of the state.page variable in order to render the correct page
     state.page = var_value['args'][0]
     pass
 
 if __name__ == "__main__":
-    Gui(page=main_md_step_10).run()
+    Gui(page=multi_pages).run()
     

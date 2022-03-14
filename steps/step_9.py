@@ -9,7 +9,7 @@ all_scenarios = tp.get_scenarios()
 scenario_selector = [(scenario.id, scenario.properties['display_name']) for scenario in all_scenarios]
 selected_scenario = None
 
-md_step_9 = md_step_2 + """
+page_scenario_manager = page + """
 # Create your scenario :
 
 Choose the **day**:\n\n <|{day}|date|with_time=False|>
@@ -68,7 +68,7 @@ def submit_scenario(state):
     tp.submit(scenario)
     
     # We update the scenario selector and the scenario that is currently selected
-    update_scenario_selector(state, [scenario]) # change list to scenario
+    update_scenario_selector(state, scenario) # change list to scenario
     
     # Update the chart directly
     update_chart(state) 
@@ -83,18 +83,17 @@ def create_name_for_scenario(state):
     return name
 
 
-def delete_scenarios_in_selector(state, scenarios):
-    for scenario in scenarios:
-        state.scenario_selector = [(s[0], s[1]) for s in state.scenario_selector if s[0] != scenario.id]
+def delete_scenarios_in_selector(state, scenario: list):
+    # We take all the scenarios in the selector that doesn't have the scenario.id
+    state.scenario_selector = [(s[0], s[1]) for s in state.scenario_selector if s[0] != scenario.id]
 
-def update_scenario_selector(state, scenarios):
+def update_scenario_selector(state, scenario):
     print("Updating scenario selector...")
     # We delete the scenario if it is already in the selector
-    delete_scenarios_in_selector(state, scenarios)
+    delete_scenarios_in_selector(state, scenario)
     
     # We update the scenario selector
-    for scenario in scenarios:
-        state.scenario_selector += [(scenario.id, scenario.properties['display_name'])]
+    state.scenario_selector += [(scenario.id, scenario.properties['display_name'])]
     
 
 def update_chart(state):
@@ -105,7 +104,6 @@ def update_chart(state):
 
 
 def on_change(state, var_name: str, var_value):
-    print('onchange',var_name,'on_change')
     if var_name == 'nb_week':
         # We update the dataset when the slider is moved
         state.dataset_week = dataset[dataset['Date'].dt.isocalendar().week == var_value]
@@ -128,5 +126,5 @@ def on_change(state, var_name: str, var_value):
             state.nb_predictions = 2
 
 if __name__ == "__main__":
-    Gui(page=md_step_9).run()
+    Gui(page=page_scenario_manager).run()
     
