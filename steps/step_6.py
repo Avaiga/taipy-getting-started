@@ -53,4 +53,4 @@ if __name__=='__main__':
     
     # We print the predictions of the two pipelines
     print("\nBaseline predictions\n", scenario.baseline.predictions.read())
-    print("\nModel predictions\n", scenario.ml.predictions.read())        
+    print("\Machine Learning predictions\n", scenario.ml.predictions.read())        

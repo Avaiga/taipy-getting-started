@@ -83,6 +83,7 @@ Choose the **number of predictions**:\n\n<|{nb_predictions}|number|>
 
 <|
 <br/>\n <|Save changes|button|on_action=submit_scenario|active={len(scenario_selector)>0}|> <|Create new scenario|button|on_action=create_scenario|>
+
 <|Delete scenario|button|on_action=delete_scenario|active={len(scenario_selector)>0}|> <|Make master|button|on_action=make_master|active={not(selected_scenario_is_master) and len(scenario_selector)>0}|>
 
 |>

@@ -1,6 +1,6 @@
 from step_11 import *
 
-def delete_scenarios_in_tree_dict(scenario, tree_dict: dict):
+def delete_scenario_in_tree_dict(scenario, tree_dict: dict):
     period_keys_to_pop = []
     
     for frequency, periods in tree_dict.items():
@@ -23,7 +23,7 @@ def create_tree_dict(scenarios, tree_dict: dict=None):
     if tree_dict is None:
         tree_dict = {"month": {},"week": {},"day": {},"original": {}}
     else :
-        tree_dict = delete_scenarios_in_tree_dict(scenarios[0], tree_dict)
+        tree_dict = delete_scenario_in_tree_dict(scenarios[0], tree_dict)
     
     for scenario in scenarios:
         group_by = scenario.group_by.read()
@@ -111,6 +111,7 @@ def create_scenario(state):
 
 def submit_scenario(state):
     global tree_dict
+    
     print("Submitting scenario...")
     # We get the currently selected scenario
     scenario = tp.get(state.selected_scenario)
@@ -153,7 +154,7 @@ def delete_scenario(state):
     # We update the scenario selector accordingly
     delete_scenarios_in_selector(state, scenario)
     # We update the tree dict and lov accordingly
-    tree_dict = delete_scenarios_in_tree_dict(scenario, tree_dict)
+    tree_dict = delete_scenario_in_tree_dict(scenario, tree_dict)
     state.tree_lov = build_tree_lov(tree_dict)
     state.selected_scenario = None
     
@@ -179,7 +180,7 @@ page_cycle_manager = """
 """
 
  # We add the tree_md ('Cycle Manager') to the menu   
-main_md_step_11 = """
+multi_pages = """
 <|menu|label=Menu|lov={["Data Visualization", "Scenario Manager", "Cycle Manager"]}|on_action=menu_fct|>
 
 <|part|render={page=="Data Visualization"}|""" + page_data_visualization + """|>
@@ -220,4 +221,4 @@ def on_change(state, var_name: str, var_value):
 
 
 if __name__ == '__main__':
-    Gui(page=main_md_step_11).run()
+    Gui(page=multi_pages).run()

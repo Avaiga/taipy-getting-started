@@ -36,7 +36,7 @@ def create_scenario():
   
     selected_scenario = scenario.id
   
-    scenario = submit(None)
+    tp.submit(scenario)
     return scenario
 
 def submit(state):
@@ -50,22 +50,19 @@ def submit(state):
     
     # We will be able to write in the datanodes when the submit is called
     # so when the 'Change scenario' button is pressed
-    if state is not None :
-        day = dt.datetime(state.day.year, state.day.month, state.day.day) # conversion for our pb
-        
-        # We change the default parameters by writing in the datanodes
-        scenario.day.write(day)
-        scenario.nb_predictions.write(int(state.nb_predictions))
-        scenario.group_by.write(state.selected_group_by)
+   
+    day = dt.datetime(state.day.year, state.day.month, state.day.day) # conversion for our pb
+
+    # We change the default parameters by writing in the datanodes
+    scenario.day.write(day)
+    scenario.nb_predictions.write(int(state.nb_predictions))
+    scenario.group_by.write(state.selected_group_by)
 
     # Execute the pipelines/code
     tp.submit(scenario)
     
     # We update the chart when we change the scenario
-    if state is not None :
-        # We update the scenario selector and the scenario that is currently selected
-        update_chart(state)
-    
+    update_chart(state)
     return scenario
 
 def update_chart(state):
