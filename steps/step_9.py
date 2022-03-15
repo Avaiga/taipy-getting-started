@@ -28,7 +28,7 @@ Choose the **number of predictions**:\n\n<|{nb_predictions}|number|>
 <|{predictions_dataset}|chart|type=bar|x=Date|y[1]=Historical values|y[2]=Predicted values|height=80%|width=100%|>
 """
 
-# We change the create_scenario function in order to change the default parameters
+# Change the create_scenario function in order to change the default parameters
 # and to be able to create multiple scenarios
 def create_scenario(state):
     print("Execution of scenario...")
@@ -36,7 +36,7 @@ def create_scenario(state):
     creation_date = dt.datetime(state.day.year, state.day.month, state.day.day)
     display_name = create_name_for_scenario(state)
     
-    # We create a scenario
+    # Create a scenario
     scenario = tp.create_scenario(scenario_cfg, creation_date=creation_date, name=display_name)
 
     state.selected_scenario = scenario.id
@@ -48,12 +48,12 @@ def create_scenario(state):
 
 def submit_scenario(state):
     print("Submitting scenario...")
-    # We get the currently selected scenario
+    # Get the currently selected scenario
     scenario = tp.get(state.selected_scenario)
     
     day = dt.datetime(state.day.year, state.day.month, state.day.day) # conversion for our pb | change ?
 
-    # We change the default parameters by writing in the datanodes
+    # Change the default parameters by writing in the datanodes
     #if state.day != scenario.day.read():
     scenario.day.write(day)
     #if int(state.nb_predictions) != scenario.nb_predictions.read(): 
@@ -67,7 +67,7 @@ def submit_scenario(state):
     # Execute the pipelines/code
     tp.submit(scenario)
     
-    # We update the scenario selector and the scenario that is currently selected
+    # Update the scenario selector and the scenario that is currently selected
     update_scenario_selector(state, scenario) # change list to scenario
     
     # Update the chart directly
@@ -84,15 +84,15 @@ def create_name_for_scenario(state):
 
 
 def delete_scenarios_in_selector(state, scenario: list):
-    # We take all the scenarios in the selector that doesn't have the scenario.id
+    # Take all the scenarios in the selector that doesn't have the scenario.id
     state.scenario_selector = [(s[0], s[1]) for s in state.scenario_selector if s[0] != scenario.id]
 
 def update_scenario_selector(state, scenario):
     print("Updating scenario selector...")
-    # We delete the scenario if it is already in the selector
+    # Delete the scenario if it is already in the selector
     delete_scenarios_in_selector(state, scenario)
     
-    # We update the scenario selector
+    # Update the scenario selector
     state.scenario_selector += [(scenario.id, scenario.properties['display_name'])]
     
 
@@ -105,11 +105,11 @@ def update_chart(state):
 
 def on_change(state, var_name: str, var_value):
     if var_name == 'nb_week':
-        # We update the dataset when the slider is moved
+        # Update the dataset when the slider is moved
         state.dataset_week = dataset[dataset['Date'].dt.isocalendar().week == var_value]
         
     elif var_name == 'selected_pipeline' or var_name == 'selected_scenario':
-        # We update the chart when the scenario or the pipeline is changed
+        # Update the chart when the scenario or the pipeline is changed
         # if the prediction dataset is not empty
         if tp.get(state.selected_scenario).predictions.read() is not None:
             update_chart(state)        

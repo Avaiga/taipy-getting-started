@@ -90,7 +90,7 @@ def create_scenario(state):
     creation_date = dt.datetime(state.day.year, state.day.month, state.day.day)
     display_name = create_name_for_scenario(state)
     
-    # We create a scenario with the cycle from its group-by
+    # Create a scenario with the cycle from its group-by
     if state.selected_group_by == "month":
         scenario = tp.create_scenario(scenario_montly_cfg, creation_date=creation_date, name=display_name)
     elif state.selected_group_by == "week":
@@ -113,12 +113,12 @@ def submit_scenario(state):
     global tree_dict
     
     print("Submitting scenario...")
-    # We get the currently selected scenario
+    # Get the currently selected scenario
     scenario = tp.get(state.selected_scenario)
     
     day = dt.datetime(state.day.year, state.day.month, state.day.day) # conversion for our pb
     
-    # We change the default parameters by writing in the datanodes
+    # Change the default parameters by writing in the datanodes
     #if state.day != scenario.day.read():
     scenario.day.write(day)
     #if int(state.nb_predictions) != scenario.nb_predictions.read(): 
@@ -131,10 +131,10 @@ def submit_scenario(state):
     # Execute the pipelines/code
     tp.submit(scenario)
     
-    # We update the scenario selector and the scenario that is currently selected
+    # Update the scenario selector and the scenario that is currently selected
     update_scenario_selector(state, scenario)
     
-    # We update the tree dict and the tree lov
+    # Update the tree dict and the tree lov
     tree_dict = create_tree_dict([scenario], tree_dict=tree_dict)
     state.tree_lov = build_tree_lov(tree_dict)
     
@@ -147,18 +147,18 @@ def delete_scenario(state):
     global tree_dict
     scenario_id = state.selected_scenario
     scenario = tp.get(scenario_id)
-    # We delete the scenario and the related objects (datanodes, tasks, jobs,...)
+    # Delete the scenario and the related objects (datanodes, tasks, jobs,...)
     os.remove('.data/scenarios/' + scenario.id + '.json')
     # tp.delete_scenario(scenario)
     
-    # We update the scenario selector accordingly
+    # Update the scenario selector accordingly
     delete_scenarios_in_selector(state, scenario)
-    # We update the tree dict and lov accordingly
+    # Update the tree dict and lov accordingly
     tree_dict = delete_scenario_in_tree_dict(scenario, tree_dict)
     state.tree_lov = build_tree_lov(tree_dict)
     state.selected_scenario = None
     
-# We create another page to display the tree
+# Create another page to display the tree
 page_cycle_manager = """
 <|layout|columns=1 1 1
 <|
@@ -179,7 +179,7 @@ page_cycle_manager = """
 <|{predictions_dataset}|chart|type=bar|x=Date|y[1]=Historical values|y[2]=Predicted values|height=80%|width=100%|>
 """
 
- # We add the tree_md ('Cycle Manager') to the menu   
+ # Add the tree_md ('Cycle Manager') to the menu   
 multi_pages = """
 <|menu|label=Menu|lov={["Data Visualization", "Scenario Manager", "Cycle Manager"]}|on_action=menu_fct|>
 
@@ -191,17 +191,17 @@ multi_pages = """
 
 def on_change(state, var_name: str, var_value):
     if var_name == 'nb_week':
-        # We update the dataset when the slider is moved
+        # Update the dataset when the slider is moved
         state.dataset_week = dataset[dataset['Date'].dt.isocalendar().week == var_value]
         
     elif var_name == 'selected_pipeline' or var_name == 'selected_scenario':
-        # We update the chart when the scenario or the pipeline is changed
+        # Update the chart when the scenario or the pipeline is changed
         state.selected_scenario_is_master = tp.get(state.selected_scenario).is_master
         
         if tp.get(state.selected_scenario).predictions.read() is not None:
             update_chart(state)
             
-    # If the scenario_selected_tree  is changed and is the id of a scenario,
+    # If the scenario_selected_tree is changed and is the id of a scenario,
     # we change the selected_scenario
     elif var_name == "selected_scenario_tree":
         if 'scenario' in var_value[0]:

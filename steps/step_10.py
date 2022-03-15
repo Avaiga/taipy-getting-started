@@ -38,7 +38,7 @@ Choose the **number of predictions**:\n\n<|{nb_predictions}|number|>
 |>
 """
 
-# We create a menu
+# Create a menu with our pages
 multi_pages = """
 <|menu|label=Menu|lov={["Data Visualization", "Scenario Manager"]}|on_action=menu_fct|>
 
@@ -47,10 +47,10 @@ multi_pages = """
 """
 
 
-# the initial page is the "Scenario Manager" page
+# The initial page is the "Scenario Manager" page
 page = "Data Visualization"
 def menu_fct(state, var_name: str, fct: str, var_value: list):
-    # we change the value of the state.page variable in order to render the correct page
+    # Change the value of the state.page variable in order to render the correct page
     state.page = var_value['args'][0]
     pass
 

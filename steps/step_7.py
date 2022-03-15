@@ -1,12 +1,18 @@
 from step_5 import *
 from step_6 import scenario_cfg
 
-# The list of pipelines names, it will be used in a selector of pipelines
+# delete all entities
+#
+#
+####
+
+# Set the list of pipelines names
+# It will be used in a selector of pipelines
 pipeline_selector = ['baseline', 'ml']
 selected_pipeline = pipeline_selector[0]
 
 
-page_scenario = page + """
+scenario_page = page + """
 Select the pipeline
 <|{selected_pipeline}|selector|lov={pipeline_selector}|> <|Update chart|button|on_action=update_chart|>
 
@@ -26,10 +32,10 @@ def submit(scenario):
 
 def update_chart(state):
     print("'Update chart' button clicked")
-    # We select the right pipeline
+    # Select the right pipeline
     pipeline = scenario.pipelines[state.selected_pipeline]
 
-    # We update the chart based on this pipeline
+    # Update the chart based on this pipeline
     # It is the same function as created before in step_5
     update_predictions_dataset(state, pipeline)
     pass
@@ -37,5 +43,5 @@ def update_chart(state):
 if __name__ == "__main__":
     # Creation of our first scenario
     scenario = create_scenario()
-    Gui(page=page_scenario).run()
+    Gui(page=scenario_page).run()
     

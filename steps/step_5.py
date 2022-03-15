@@ -1,6 +1,7 @@
 import numpy as np
+import pandas as pd
 
-from step_4 import dt, tp, baseline_pipeline_cfg
+from step_4 import tp, baseline_pipeline_cfg, dt
 from step_2 import *
 
 
@@ -8,56 +9,56 @@ from step_2 import *
 predictions_dataset = pd.DataFrame({"Date":[dt.datetime(2014, 6, 1)], "Historical values":[np.NaN], "Predicted values":[np.NaN]})
 
 # This is our new string with a button and a chart for our predictions
-page_pipeline = page + """
+pipeline_page = page + """
 Press <|predict|button|on_action=predict|> to predict with default parameters (30 predictions) and June 1st as day. 
 <|{predictions_dataset}|chart|x=Date|y[1]=Historical values|y[2]=Predicted values|height=80%|width=100%|type=bar|>
 """
 
 def create_and_submit_pipeline():
     print("Execution of pipeline...")
-    # We create the pipeline from the pipeline config
+    # Create the pipeline from the pipeline config
     pipeline = tp.create_pipeline(baseline_pipeline_cfg)
-    # We execute the pipeline
+    # Execute the pipeline
     tp.submit(pipeline)
     return pipeline
 
 
 def create_predictions_dataset(pipeline):
     print("Creating predictions dataset...")
-    # Reading data from the pipeline
+    # Read data from the pipeline
     predictions = pipeline.predictions.read()
     day = pipeline.day.read()
     nb_predictions = pipeline.nb_predictions.read()
     cleaned_data = pipeline.cleaned_dataset.read()
     
-    # We will display 5*nb_predictions elements
+    # Set the time window for the chart (5 days, 5 weeks, 5 months,...)
     window = 5 * nb_predictions
 
-    # We create the historical dataset that will be displayed
+    # Create the historical dataset that will be displayed
     new_length = len(cleaned_data[cleaned_data['Date'] < day]) + nb_predictions
     temp_df = cleaned_data[:new_length]
     temp_df = temp_df[-window:].reset_index(drop=True)
     
-    # We create the series that will be used in the concat
+    # Create the series that will be used in the concat
     historical_values = pd.Series(temp_df['Value'], name="Historical values")
-    predicted_values = pd.Series([np.NaN]*len(temp_df), name="Predicted values") # change ?
+    predicted_values = pd.Series([np.NaN]*len(temp_df), name="Predicted values") # change ? Fred
     predicted_values[-len(predictions):] = predictions
     
-    # We update the predictions dataset
+    # Create the predictions dataset
+    # Columns : [Date, Historical values, Predicted values]
     return pd.concat([temp_df['Date'], historical_values, predicted_values], axis=1)
     
 
 def update_predictions_dataset(state, pipeline):
     print("Updating predictions dataset...")
-    # We update the predictions dataset
+    # Update the predictions dataset
     state.predictions_dataset = create_predictions_dataset(pipeline)
     
 def predict(state):
     print("'Predict' button clicked")
     pipeline = create_and_submit_pipeline()
     update_predictions_dataset(state, pipeline)
-    pass
 
 if __name__ == "__main__":
-    Gui(page=page_pipeline).run()
+    Gui(page=pipeline_page).run()
     

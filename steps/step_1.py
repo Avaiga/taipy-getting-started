@@ -7,7 +7,7 @@ def get_data(path_to_csv: str):
     dataset['Date'] = pd.to_datetime(dataset['Date'])
     return dataset
 
-# We get the dataframe
+# Get the dataframe
 path_to_csv = "dataset.csv"
 dataset = get_data(path_to_csv)
 
@@ -31,5 +31,5 @@ Interact with this slider to change the week number:
 """
 
 if __name__ == "__main__":
-    # We create a Gui object with our String
+    # Create a Gui object with our String
     Gui(page=page).run()

@@ -4,30 +4,33 @@ import os
 from step_10 import *
 from step_6 import ml_pipeline_cfg
 
-# Frequency will create a Cycle object, it will be used in the code to navigate through the scenarios and have a master scenario for each cycle
+## Frequency will create a Cycle object, it will be used in the code to navigate through the scenarios and have a master scenario for each cycle
+# Create scenarios each day and compare them
 scenario_dayly_cfg = tp.configure_scenario(id="scenario",
                                      pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg],
-                                     frequency=Frequency.DAILY) # We want to create scenarios each day and compare them
+                                     frequency=Frequency.DAILY) 
 
+# Create scenarios each week and compare them
 scenario_weekly_cfg = tp.configure_scenario(id="scenario",
                                      pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg],
-                                     frequency=Frequency.WEEKLY)# We want to create scenarios each week and compare them
+                                     frequency=Frequency.WEEKLY)
 
+# Create scenarios each month and compare them
 scenario_montly_cfg = tp.configure_scenario(id="scenario",
                                      pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg],
-                                     frequency=Frequency.MONTHLY)# We want to create scenarios each month and compare them
+                                     frequency=Frequency.MONTHLY)
 
 
 selected_scenario_is_master = None
 
-# We change the create_scenario function to create a scenario with the selected frequency
+# Change the create_scenario function to create a scenario with the selected frequency
 def create_scenario(state):
     print("Execution of scenario...")
     # Extra information for scenario
     creation_date = dt.datetime(state.day.year, state.day.month, state.day.day)
     display_name = create_name_for_scenario(state)
     
-    # We create a scenario with the cycle from its group-by
+    # Create a scenario with the cycle from its group-by
     if state.selected_group_by == "month":
         scenario = tp.create_scenario(scenario_montly_cfg, creation_date=creation_date, name=display_name)
     elif state.selected_group_by == "week":
@@ -49,10 +52,10 @@ def create_scenario(state):
 def delete_scenario(state):
     scenario_id = state.selected_scenario
     scenario = tp.get(scenario_id)
-    # We delete the scenario and the related objects (datanodes, tasks, jobs,...)
+    # Delete the scenario and the related objects (datanodes, tasks, jobs,...)
     os.remove('.data/scenarios/' + scenario.id + '.json')
     # tp.delete_scenario(scenario)
-    # We update the scenario selector accordingly
+    # Update the scenario selector accordingly
     delete_scenarios_in_selector(state,scenario)
     state.selected_scenario = None
     
@@ -60,11 +63,11 @@ def delete_scenario(state):
 def make_master(state):
     print('Making the current scenario master...')
     scenario = tp.get(state.selected_scenario)
-    # We make the current scenario master
+    # Take the current scenario master
     tp.set_master(scenario)
     state.selected_scenario_is_master = True
 
-# We change the scenario_manager_md to add a delete scenario button and a make master button
+# Change the scenario_manager_md to add a delete scenario button and a make master button
 page_scenario_manager = """
 # Create your scenario :
 
@@ -115,11 +118,11 @@ multi_pages = """
 
 def on_change(state, var_name: str, var_value):
     if var_name == 'nb_week':
-        # We update the dataset when the slider is moved
+        # Update the dataset when the slider is moved
         state.dataset_week = dataset[dataset['Date'].dt.isocalendar().week == var_value]
         
     elif var_name == 'selected_pipeline' or var_name == 'selected_scenario':
-        # We update the chart when the scenario or the pipeline is changed
+        # Update the chart when the scenario or the pipeline is changed
         state.selected_scenario_is_master = tp.get(state.selected_scenario).is_master
         print("Selected scenario is master: ", state.selected_scenario_is_master)
 

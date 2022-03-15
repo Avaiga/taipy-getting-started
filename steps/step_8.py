@@ -1,9 +1,10 @@
-from step_7 import *
+import datetime as dt
 
+from step_7 import *
 
 # Initial variables
 ## Initial variables for the scenario   
-day = dt.datetime(2014, 6, 1)
+day = dt.datetime(2014, 7, 26)
 nb_predictions = 40
 
 ## Initial variables for the group by selector
@@ -40,20 +41,20 @@ def create_scenario():
     return scenario
 
 def submit(state):
-    # the submit is called in two different ways:
-    # 1. when we create our first scenario, here state is None
-    # 2. when the user clicks on the submit button, here state is the state of the app
-    
     print("Submitting scenario...")
-    # we get the selected scenario, we have just one scenario created
+    ## The submit is called in two different ways:
+    ## 1. when we create our first scenario, here state is None
+    ## 2. when the user clicks on the submit button, here state is the state of the app
+    
+    
+    # Get the selected scenario, we have just one scenario created
     scenario = tp.get(selected_scenario)
     
-    # We will be able to write in the datanodes when the submit is called
-    # so when the 'Change scenario' button is pressed
-   
+    
     day = dt.datetime(state.day.year, state.day.month, state.day.day) # conversion for our pb
 
-    # We change the default parameters by writing in the datanodes
+
+    # Change the default parameters by writing in the datanodes
     scenario.day.write(day)
     scenario.nb_predictions.write(int(state.nb_predictions))
     scenario.group_by.write(state.selected_group_by)
@@ -61,15 +62,15 @@ def submit(state):
     # Execute the pipelines/code
     tp.submit(scenario)
     
-    # We update the chart when we change the scenario
+    # Update the chart when we change the scenario
     update_chart(state)
     return scenario
 
 def update_chart(state):
-    # We select the right scenario and pipeline
+    # Select the right scenario and pipeline
     scenario = tp.get(selected_scenario)
     pipeline = scenario.pipelines[state.selected_pipeline]
-    # We update the chart based on this pipeline
+    # Update the chart based on this pipeline
     update_predictions_dataset(state, pipeline)
     pass
 

@@ -7,14 +7,14 @@ comparison_scenario = pd.DataFrame({"Cycle Type":[], 'Scenario Name':[],
                                     'RMSE baseline':[], 'MAE baseline':[],
                                     'RMSE ML':[], 'MAE ML':[]})
 
-# boolean to check if the comparison is done
+# Boolean to check if the comparison is done
 comparison_scenario_done = False
 
-# selector for cycle
+# Selector for cycle
 cycle_selector = ['original', 'day', 'week', 'month']
 selected_cycle = cycle_selector[0]
 
-# selector for metric
+# Selector for metric
 metric_selector = ['RMSE', 'MAE']
 selected_metric = metric_selector[0]
 
@@ -34,22 +34,22 @@ def compare(state):
     rmses_ml = []
     maes_ml = []
     
-    # We go through all the master scenarios
+    # Go through all the master scenarios
     for scenario in tp.get_all_masters():
         print("Scenario...", scenario.properties['display_name'])
-        # We go through all the pipelines
+        # Go through all the pipelines
         for pipeline in scenario.pipelines.values():
             print("     Pipeline...", pipeline.config_id)
-            # We get the predictions dataset with the historical data
+            # Get the predictions dataset with the historical data
             only_prediction_dataset = create_predictions_dataset(pipeline)[-pipeline.nb_predictions.read():]
             
             historical_values = only_prediction_dataset['Historical values']
             predicted_values = only_prediction_dataset['Predicted values']
             
-            # We calculate the metrics for this pipeline and master scenario
+            # Calculate the metrics for this pipeline and master scenario
             rmse, mae = caculate_metrics(historical_values, predicted_values)
             
-            # We add to the correct lists, the correct values    
+            # Add to the correct lists, the correct values    
             if 'baseline' in pipeline.config_id:
                 rmses_baseline.append(rmse)
                 maes_baseline.append(mae)
@@ -60,7 +60,7 @@ def compare(state):
         cycle_types.append(scenario.group_by.read())
         scenario_names.append(scenario.properties['display_name'])
         
-    # We finally update comparison_scenario
+    # Update comparison_scenario
     state.comparison_scenario = pd.DataFrame({"Cycle Type":cycle_types,
                                               'Scenario Name':scenario_names,
                                               'RMSE baseline':rmses_baseline,
@@ -91,16 +91,16 @@ def create_performance_md():
 |>
 
 """
-    # We go through all the different types of cycle (month, week, day, original)
+    # Go through all the different types of cycle (month, week, day, original)
     for cycle_type in cycle_selector:
-        # We create the part that will be rendered if we selected this cycle
+        # Create the part that will be rendered if we selected this cycle
         md += "\n<|part|render={selected_cycle=='" + cycle_type + "'}|"
-        # We go through all the different metrics (RMSE, MAE)
+        # Go through all the different metrics (RMSE, MAE)
         for metric in metric_selector:
-            # We create the part that will be rendered if we selected this metric
+            # Create the part that will be rendered if we selected this metric
             md += "\n<|part|render={selected_metric=='" + metric + "'}|"
             
-            # We create the graph for this cycle and metric
+            # Create the graph for this cycle and metric
             data = "comparison_scenario[comparison_scenario['Cycle Type']=='" + cycle_type + "']"
             
             md += "\n<|{" + data + "}|chart|type=bar|x=Scenario Name|y[1]=" + metric + " baseline|y[2]=" + metric + " ML|height=80%|width=100%|>"
@@ -115,10 +115,10 @@ def create_performance_md():
 """
     return md
 
-# We create the markdown file thanks to the function above
+# Create the markdown file thanks to the function above
 page_performance = create_performance_md()
  
- # We add the performance_md to the menu   
+ # Add the performance_md to the menu   
 multi_pages = """
 <|menu|label=Menu|lov={["Data Visualization", "Scenario Manager", "Cycle Manager", "Performance"]}|on_action=menu_fct|>
 

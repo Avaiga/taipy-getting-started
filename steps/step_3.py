@@ -16,7 +16,7 @@ nb_predictions_cfg = tp.configure_data_node(id="nb_predictions", default_data=40
 
 group_by_cfg = tp.configure_data_node(id="group_by", default_data="original")
                                             
-day_cfg = tp.configure_data_node(id="day", default_data=dt.datetime(2014, 6, 1))
+day_cfg = tp.configure_data_node(id="day", default_data=dt.datetime(2014, 7, 26)) # take a normal day / with a normal week
 
 ## Remaining datanodes
 cleaned_dataset_cfg = tp.configure_data_node(id="cleaned_dataset") # ,

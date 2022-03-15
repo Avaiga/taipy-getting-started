@@ -1,6 +1,6 @@
-from step_1 import dataset, nb_week, Gui, pd
+from step_1 import dataset, nb_week, Gui
 
-# We display the week given by the slider
+# Display the week given by the slider
 dataset_week = dataset[dataset['Date'].dt.isocalendar().week == nb_week]
 
 page = """
@@ -16,7 +16,7 @@ Select week: *<|{nb_week}|>*
 # The on_change is the function that is called when any variable is changed
 def on_change(state, var_name: str, var_value):
     if var_name == 'nb_week':
-        # We update the dataset when the slider is moved
+        # Update the dataset when the slider is moved
         state.dataset_week = dataset[dataset['Date'].dt.isocalendar().week == var_value]
 
 if __name__ == "__main__":
