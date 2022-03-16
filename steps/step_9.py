@@ -9,24 +9,32 @@ all_scenarios = tp.get_scenarios()
 scenario_selector = [(scenario.id, scenario.properties['display_name']) for scenario in all_scenarios]
 selected_scenario = None
 
-page_scenario_manager = page + """
-# Create your scenario :
+scenario_manager_page = page + """
+# Create your scenario
 
-Choose the **day**:\n\n <|{day}|date|with_time=False|>
+**Prediction date**\n\n <|{day}|date|with_time=False|>
 
-Choose the **offset**:\n\n <|{offset}|number|>
+**Max capacity**\n\n <|{max_capacity}|number|>
 
-Choose the **number of predictions**:\n\n<|{nb_predictions}|number|>
+**Number of predictions**\n\n<|{nb_predictions}|number|>
 
-<|Save changes|button|on_action=submit_scenario|active={len(scenario_selector)>0}|> <|Create new scenario|button|on_action=create_scenario|>
+<|Create new scenario|button|on_action=create_scenario|>
 
-## Choose the scenario: <|{selected_scenario}|selector|lov={scenario_selector}|>
+## Scenario <|{selected_scenario}|selector|lov={scenario_selector}|dropdown=True|>
 
-## Choose the pipeline
+## Display the pipeline
 <|{selected_pipeline}|selector|lov={pipeline_selector}|>
 
 <|{predictions_dataset}|chart|type=bar|x=Date|y[1]=Historical values|y[2]=Predicted values|height=80%|width=100%|>
 """
+
+def create_name_for_scenario(state):
+    name = f"Scenario ({state.day.strftime('%A, %d %b %Y')}, {state.nb_predictions} pred, {state.max_capacity})"
+    
+    # If the name is already a name of a scenario, we change it
+    if name in [s[1] for s in state.scenario_selector]:
+        name += f" ({len(state.scenario_selector)})"
+    return name
 
 # Change the create_scenario function in order to change the default parameters
 # and to be able to create multiple scenarios
@@ -58,8 +66,8 @@ def submit_scenario(state):
     scenario.day.write(day)
     #if int(state.nb_predictions) != scenario.nb_predictions.read(): 
     scenario.nb_predictions.write(int(state.nb_predictions))
-    #if state.offset != scenario.offset.read():
-    scenario.offset.write(int(state.offset))
+    #if state.max_capacity != scenario.max_capacity.read():
+    scenario.max_capacity.write(int(state.max_capacity))
     #if state.day != scenario.creation_date:
     scenario.creation_date = state.day
         
@@ -75,23 +83,13 @@ def submit_scenario(state):
     return scenario
 
 
-def create_name_for_scenario(state):
-    name = f"Scenario ({state.day.strftime('%A, %d %b %Y')}, {state.nb_predictions} pred, {state.offset})"
-    # If the name is already a name of a scenario, we change it
-    if name in [s[1] for s in state.scenario_selector]:
-        name += f" ({len(state.scenario_selector)})"
-    return name
 
-
-def delete_scenarios_in_selector(state, scenario: list):
-    # Take all the scenarios in the selector that doesn't have the scenario.id
-    state.scenario_selector = [(s[0], s[1]) for s in state.scenario_selector if s[0] != scenario.id]
+#def remove_scenario_from_selector(state, scenario: list):
+#    # Take all the scenarios in the selector that doesn't have the scenario.id
+#    state.scenario_selector = [(s[0], s[1]) for s in state.scenario_selector if s[0] != scenario.id]
 
 def update_scenario_selector(state, scenario):
     print("Updating scenario selector...")
-    # Delete the scenario if it is already in the selector
-    delete_scenarios_in_selector(state, scenario)
-    
     # Update the scenario selector
     state.scenario_selector += [(scenario.id, scenario.properties['display_name'])]
     
@@ -116,5 +114,5 @@ def on_change(state, var_name: str, var_value):
 
 
 if __name__ == "__main__":
-    Gui(page=page_scenario_manager).run()
+    Gui(page=scenario_manager_page).run()
     

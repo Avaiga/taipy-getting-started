@@ -31,7 +31,7 @@ Let me introduce some concept for datanodes :
 
 - *nb_predictions* is the number of predictions we want to make while predicting. The default value is 40. We want to have a *prediction* datanode for each algorithm. This is why we specify **Scope.PIPELINE**. 
 
-- *offset* is a percentage to offset the predictions; it will be multiplied to the predictions. The default value is 100.
+- *max_capacity* is the maximum value that can take a prediction; this is a constraint on our problem. The default value is 00.
 
 [CODE]
 

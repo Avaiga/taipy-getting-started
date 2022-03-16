@@ -7,20 +7,19 @@ from step_7 import *
 day = dt.datetime(2021, 7, 26)
 nb_predictions = 40
 
-## Initial variables for the offset
-offset = 100
+## Initial variables for the max_capacity
+max_capacity = 200
 
 page_scenario_manager = page + """
-# Change your scenario :
+# Change your scenario
 
-Choose the **day**:\n\n <|{day}|date|with_time=False|>
+**Prediction date**\n\n <|{day}|date|with_time=False|>
 
-Choose the **offset**:\n\n <|{offset}|number|>
+**Max capacity**\n\n <|{max_capacity}|number|>
 
-Choose the **number of predictions**:\n\n<|{nb_predictions}|number|>
+**Number of predictions**\n\n<|{nb_predictions}|number|>
 
 <|Save changes|button|on_action={submit}|>
-
 
 Select the pipeline
 <|{selected_pipeline}|selector|lov={pipeline_selector}|> <|Update chart|button|on_action={update_chart}|>
@@ -56,7 +55,7 @@ def submit(state):
     # Change the default parameters by writing in the datanodes
     scenario.day.write(day)
     scenario.nb_predictions.write(int(state.nb_predictions))
-    scenario.offset.write(int(state.offset))
+    scenario.max_capacity.write(int(state.max_capacity))
 
     # Execute the pipelines/code
     tp.submit(scenario)

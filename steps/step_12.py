@@ -15,7 +15,7 @@ metric_selector = ['RMSE', 'MAE']
 selected_metric = metric_selector[0]
 
 
-def caculate_metrics(historical_data, predicted_data):
+def compute_metrics(historical_data, predicted_data):
     rmse = mean_squared_error(historical_data, predicted_data)
     mae = mean_absolute_error(historical_data, predicted_data)
     return rmse, mae
@@ -30,7 +30,7 @@ def compare(state):
     maes_ml = []
     
     # Go through all the master scenarios
-    for scenario in tp.get_all_masters():
+    for scenario in tp.get_all_masters(): # order
         print("Scenario...", scenario.properties['display_name'])
         # Go through all the pipelines
         for pipeline in scenario.pipelines.values():
@@ -42,7 +42,7 @@ def compare(state):
             predicted_values = only_prediction_dataset['Predicted values']
             
             # Calculate the metrics for this pipeline and master scenario
-            rmse, mae = caculate_metrics(historical_values, predicted_values)
+            rmse, mae = compute_metrics(historical_values, predicted_values)
             
             # Add to the correct lists, the correct values    
             if 'baseline' in pipeline.config_id:
@@ -61,16 +61,13 @@ def compare(state):
                                               'RMSE ML':rmses_ml,
                                               'MAE ML':maes_ml})
     
-    # When comparison_scenario will be set to True,
+    # When comparison_scenario_done will be set to True,
     # the part with the graphs will be finally rendered
     state.comparison_scenario_done = True
-    pass
+    
 
-
-
-def create_performance_md():
-    # This is a function that will create the markdown file for the performance
-    md = """
+# Create the performance page
+page_performance = """
 <|part|render={comparison_scenario_done}|
 
 <|Table|expanded=False|expandable|
@@ -78,31 +75,24 @@ def create_performance_md():
 |>
 
 <|{selected_metric}|selector|lov={metric_selector}|dropdown=True|>
-"""
-    
-    # Go through all the different metrics (RMSE, MAE)
-    for metric in metric_selector:
-        # Create the part that will be rendered if we selected this metric
-        md += "\n<|part|render={selected_metric=='" + metric + "'}|"
-        
-        # Create the graph for this cycle and metric        
-        md += "\n<|{comparison_scenario}|chart|type=bar|x=Scenario Name|y[1]=" + metric + " baseline|y[2]=" + metric + " ML|height=80%|width=100%|>"
-        
-        md += '\n|>\n'
 
-    md += """
+<|part|render={selected_metric=='RMSE'}|
+<|{comparison_scenario}|chart|type=bar|x=Scenario Name|y[1]=RMSE baseline|y[2]=RMSE ML|height=80%|width=100%|>
 |>
 
-<center>    
+<|part|render={selected_metric=='MAE'}|
+<|{comparison_scenario}|chart|type=bar|x=Scenario Name|y[1]=MAE baseline|y[2]=MAE ML|height=80%|width=100%|>
+|>
+
+|>
+
+<center>
 <|Compare masters|button|on_action=compare|>
 </center>
 """
-    return md
 
-# Create the markdown file thanks to the function above
-page_performance = create_performance_md()
  
- # Add the performance_md to the menu   
+ # Add the page_performance to the menu   
 multi_pages = """
 <|menu|label=Menu|lov={["Data Visualization", "Scenario Manager", "Performance"]}|on_action=menu_fct|>
 

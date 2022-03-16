@@ -8,7 +8,7 @@ baseline_pipeline_cfg = tp.configure_pipeline(id="baseline",
 if __name__ == "__main__":
     # Creation of baseline pipeline
     baseline_pipeline = tp.create_pipeline(baseline_pipeline_cfg)
-    # Submitting it
+    # Submit the pipeline (Execution)
     tp.submit(baseline_pipeline)
     
     # Reading data from the pipeline

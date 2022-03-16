@@ -1,10 +1,10 @@
 from step_5 import *
 from step_6 import scenario_cfg
 
-# delete all entities
+# Delete all entities?
 #
 #
-####
+#
 
 # Set the list of pipelines names
 # It will be used in a selector of pipelines

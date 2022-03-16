@@ -30,6 +30,9 @@ def create_scenario(state):
     return scenario  
 
 
+def remove_scenario_from_selector(state, scenario: list):
+    # Take all the scenarios in the selector that doesn't have the scenario.id
+    state.scenario_selector = [(s[0], s[1]) for s in state.scenario_selector if s[0] != scenario.id]
 
 def delete_scenario(state):
     scenario_id = state.selected_scenario
@@ -38,48 +41,55 @@ def delete_scenario(state):
     os.remove('.data/scenarios/' + scenario.id + '.json')
     # tp.delete_scenario(scenario)
     # Update the scenario selector accordingly
-    delete_scenarios_in_selector(state,scenario)
+    remove_scenario_from_selector(state,scenario)
     state.selected_scenario = None
     
-    
+
 def make_master(state):
     print('Making the current scenario master...')
     scenario = tp.get(state.selected_scenario)
     # Take the current scenario master
     tp.set_master(scenario)
+    
+    #scenario.properties['display_name'] = 'Master' + scenario.properties['display_name']
+    #update_scenario_selector()
     state.selected_scenario_is_master = True
 
-# Change the scenario_manager_md to add a delete scenario button and a make master button
+# Change the page_scenario_manager to add a delete scenario button and a make master button
 page_scenario_manager = """
 # Create your scenario :
 
-<|layout|columns=1 1 1 1
+<|layout|columns=1 1 1 1|
 <|
-Choose the **day**:\n\n <|{day}|date|with_time=False|>
+**Prediction date**\n\n <|{day}|date|with_time=False|>
 |>
 
 <|
-Choose the **offset**:\n\n <|{offset}|number|>
+**Max capacity**\n\n <|{max_capacity}|number|>
 |>
 
 <|
-Choose the **number of predictions**:\n\n<|{nb_predictions}|number|>
+**Number of predictions**\n\n<|{nb_predictions}|number|>
 |>
 
 <|
-<br/>\n <|Save changes|button|on_action=submit_scenario|active={len(scenario_selector)>0}|> <|Create new scenario|button|on_action=create_scenario|>
-
-<|Delete scenario|button|on_action=delete_scenario|active={len(scenario_selector)>0}|> <|Make master|button|on_action=make_master|active={not(selected_scenario_is_master) and len(scenario_selector)>0}|>
-
+<br/>
+<br/>
+<|Create new scenario|button|on_action=create_scenario|>
 |>
 |>
 
 <|part|render={len(scenario_selector) > 0}|
 <|layout|columns=1 1|
 
+
 <|layout|columns=1 1|
 <|
-## Choose the scenario: <|{selected_scenario}|selector|lov={scenario_selector}|dropdown=True|> 
+## Scenario <|{selected_scenario}|selector|lov={scenario_selector}|dropdown=True|>
+<center>
+<|Delete scenario|button|on_action=delete_scenario|active={len(scenario_selector)>0}|>
+<|Make master|button|on_action=make_master|active={not(selected_scenario_is_master) and len(scenario_selector)>0}|>
+</center>
 |>
 
 <|part|render={selected_scenario_is_master}|
@@ -91,8 +101,9 @@ Choose the **number of predictions**:\n\n<|{nb_predictions}|number|>
 
 |>
 
+
 <|
-## Choose the pipeline  <|{selected_pipeline}|selector|lov={pipeline_selector}|dropdown=True|>
+## Display the pipeline  <|{selected_pipeline}|selector|lov={pipeline_selector}|dropdown=True|>
 |>
 |>
 
@@ -100,7 +111,7 @@ Choose the **number of predictions**:\n\n<|{nb_predictions}|number|>
 |>
 """
 
-
+# Redefine the multi_pages
 multi_pages = """
 <|menu|label=Menu|lov={["Data Visualization", "Scenario Manager"]}|on_action=menu_fct|>
 

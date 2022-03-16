@@ -3,3 +3,7 @@ Now that we have seen how to create and run a single pipeline, we are going to c
 A scenario is our business problem. Different scenarios would represent different solutions to our business problem. Here, our scenario is influenced by the group_by, day and number of predictions. With just a couple more lines you could add more pipelines/algorithms.
 
 When creating your scenario, it will create your pipelines and when you execute it, it will execute your pipelines through smart scheduling. Taipy knows which tasks to do before which one and will be able to cancel Jobs if a task is repetitive. If you remember, it is the use of the 'cacheable' parameter.
+
+## Different scenarios would represent different solution to our business problem.
+## Here, our scenario is influenced by the group_by, day and number of predictions.
+## We have two pipelines in our scenario (baseline and ml), they represent our different models

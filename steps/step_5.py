@@ -18,7 +18,7 @@ def create_and_submit_pipeline():
     print("Execution of pipeline...")
     # Create the pipeline from the pipeline config
     pipeline = tp.create_pipeline(baseline_pipeline_cfg)
-    # Execute the pipeline
+    # Submit the pipeline (Execution)
     tp.submit(pipeline)
     return pipeline
 

@@ -3,34 +3,34 @@ from step_9 import *
 page_data_visualization = page
 
 page_scenario_manager = """
-# Create your scenario :
+# Create your scenario
 
-<|layout|columns=1 1 1 1
+<|layout|columns=1 1 1 1|
 <|
-Choose the **day**:\n\n <|{day}|date|with_time=False|>
+**Prediction date**\n\n <|{day}|date|with_time=False|>
 |>
 
 <|
-Choose the **offset**:\n\n <|{offset}|number|>
+**Max capacity**\n\n <|{max_capacity}|number|>
 |>
 
 <|
-Choose the **number of predictions**:\n\n<|{nb_predictions}|number|>
+**Number of predictions**\n\n<|{nb_predictions}|number|>
 |>
 
 <|
-<br/>\n <|Save changes|button|on_action=submit_scenario|active={len(scenario_selector)>0}|> <|Create new scenario|button|on_action=create_scenario|>
+<br/>\n <|Create new scenario|button|on_action=create_scenario|>
 |>
 |>
 
 <|part|render={len(scenario_selector) > 0}|
-<|layout|columns=1 1 
+<|layout|columns=1 1|
 <|
-## Choose the scenario: <|{selected_scenario}|selector|lov={scenario_selector}|dropdown=True|>
+## Scenario <|{selected_scenario}|selector|lov={scenario_selector}|dropdown=True|>
 |>
 
 <|
-## Choose the pipeline you want to see then press the buttton <|{selected_pipeline}|selector|lov={pipeline_selector}|dropdown=True|>
+## Display the pipeline <|{selected_pipeline}|selector|lov={pipeline_selector}|dropdown=True|>
 |>
 |>
 

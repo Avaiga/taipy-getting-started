@@ -14,7 +14,7 @@ initial_dataset_cfg = tp.configure_data_node(id="initial_dataset",
 
 nb_predictions_cfg = tp.configure_data_node(id="nb_predictions", default_data=40)
 
-offset_cfg = tp.configure_data_node(id="offset", default_data="original")
+max_capacity_cfg = tp.configure_data_node(id="max_capacity", default_data=200)
 
 day_cfg = tp.configure_data_node(id="day", default_data=dt.datetime(2021, 7, 26))
 
@@ -34,19 +34,16 @@ def clean_data(initial_dataset: pd.DataFrame):
     initial_dataset['Date'] = pd.to_datetime(initial_dataset['Date'])
     cleaned_dataset = initial_dataset.copy()
     return cleaned_dataset
-    
 
 
-
-def predict_baseline(cleaned_dataset: pd.DataFrame, nb_predictions: int, day: dt.datetime, offset: int):
+def predict_baseline(cleaned_dataset: pd.DataFrame, nb_predictions: int, day: dt.datetime, max_capacity: int):
     print("     Predicting baseline")
-    # Selecting the train data
+    # Select the train data
     train_dataset = cleaned_dataset[cleaned_dataset['Date'] < day]
     
-    predictions = train_dataset['Value'][-nb_predictions:].reset_index(drop=True) * offset/100
+    predictions = train_dataset['Value'][-nb_predictions:].reset_index(drop=True)
+    predictions = predictions.apply(lambda x: min(x, max_capacity))
     return predictions
-
-
 
 
 # Tasks (3.3)
@@ -57,5 +54,5 @@ clean_data_task_cfg = tp.configure_task(id="clean_data",
 
 predict_baseline_task_cfg = tp.configure_task(id="predict_baseline",
                                               function=predict_baseline,
-                                              input=[cleaned_dataset_cfg, nb_predictions_cfg, day_cfg, offset_cfg],
+                                              input=[cleaned_dataset_cfg, nb_predictions_cfg, day_cfg, max_capacity_cfg],
                                               output=predictions_cfg)

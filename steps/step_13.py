@@ -1,9 +1,6 @@
-
-    
-    
 from step_12 import *
 
-def delete_scenario_in_tree_dict(scenario, tree_dict: dict):
+def remove_scenario_from_tree(scenario, tree_dict: dict):
     period_keys_to_pop = []
     
     for period, scenarios_ in tree_dict.items():
@@ -23,9 +20,10 @@ def delete_scenario_in_tree_dict(scenario, tree_dict: dict):
 def create_tree_dict(scenarios, tree_dict: dict=None):
     print("Creating tree dict...")
     if tree_dict is None:
+        # Initialize the tree dict
         tree_dict = {}
     else :
-        tree_dict = delete_scenario_in_tree_dict(scenarios[0], tree_dict)
+        tree_dict = remove_scenario_from_tree(scenarios[0], tree_dict)
     
     for scenario in scenarios:
         day = scenario.day.read()
@@ -71,7 +69,6 @@ def build_tree_lov(tree_dict: dict):
 
 selected_scenario_tree = None
 tree_dict = create_tree_dict(all_scenarios)
-
 tree_lov = build_tree_lov(tree_dict)
 
 
@@ -105,8 +102,8 @@ def submit_scenario(state):
     scenario.day.write(day)
     #if int(state.nb_predictions) != scenario.nb_predictions.read(): 
     scenario.nb_predictions.write(int(state.nb_predictions))
-    #if int(state.offset) != scenario.offset.read():
-    scenario.offset.write(int(state.offset))
+    #if int(state.max_capacity) != scenario.max_capacity.read():
+    scenario.max_capacity.write(int(state.max_capacity))
     #if state.day != scenario.creation_date:
     scenario.creation_date = state.day
     
@@ -134,28 +131,29 @@ def delete_scenario(state):
     # tp.delete_scenario(scenario)
     
     # Update the scenario selector accordingly
-    delete_scenarios_in_selector(state, scenario)
+    remove_scenario_from_selector(state, scenario)
     # Update the tree dict and lov accordingly
-    tree_dict = delete_scenario_in_tree_dict(scenario, tree_dict)
+    tree_dict = remove_scenario_from_tree(scenario, tree_dict)
     state.tree_lov = build_tree_lov(tree_dict)
     state.selected_scenario = None
     
 # Create another page to display the tree
 page_cycle_manager = """
-<|layout|columns=1 1 1
+<|layout|columns=1 1 1|
 <|
-## Choose your scenario
+## Scenario
 <|{selected_scenario_tree}|tree|lov={tree_lov}|>
 |>
 
 <|
-## Choose the pipeline
+## Display the pipeline
 <|{selected_pipeline}|selector|lov={pipeline_selector}|>
 |>
 
 <|
 <|Delete scenario|button|on_action=delete_scenario|> <|Make master|button|on_action=make_master|active={not(selected_scenario_is_master)}|>
 |>
+
 |>
 
 <|{predictions_dataset}|chart|type=bar|x=Date|y[1]=Historical values|y[2]=Predicted values|height=80%|width=100%|>
@@ -181,7 +179,7 @@ def on_change(state, var_name: str, var_value):
         # Update the chart when the scenario or the pipeline is changed
         state.selected_scenario_is_master = tp.get(state.selected_scenario).is_master
         
-        if tp.get(state.selected_scenario).predictions.read() is not None:
+        if tp.get(state.selected_scenario).predictions.is_ready_for_reading:
             update_chart(state)
             
     # If the scenario_selected_tree is changed and is the id of a scenario,
