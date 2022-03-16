@@ -75,9 +75,20 @@ Choose the **number of predictions**:\n\n<|{nb_predictions}|number|>
 |>
 
 <|part|render={len(scenario_selector) > 0}|
-<|layout|columns=1 1 
+<|layout|columns=1 1|
+
+<|layout|columns=1 1|
 <|
-## Choose the scenario: <|{selected_scenario}|selector|lov={scenario_selector}|dropdown=True|>
+## Choose the scenario: <|{selected_scenario}|selector|lov={scenario_selector}|dropdown=True|> 
+|>
+
+<|part|render={selected_scenario_is_master}|
+<br/>
+<br/>
+<br/>
+<|{"main_scenario.png"}|image|width=40px|height=40px|>
+|>
+
 |>
 
 <|
