@@ -1,36 +1,26 @@
 from statsmodels.tsa.ar_model import AutoReg
 
 from step_4 import *
-from step_3 import cleaned_dataset_cfg, nb_predictions_cfg, day_cfg, group_by_cfg, predictions_cfg, pd, dt
+from step_3 import cleaned_dataset_cfg, nb_predictions_cfg, day_cfg, offset_cfg, predictions_cfg, pd, dt
 
 # This is the function that will be used by the task
-def predict_ml(cleaned_dataset: pd.DataFrame, nb_predictions: int, day: dt.datetime, group_by: str):
+def predict_ml(cleaned_dataset: pd.DataFrame, nb_predictions: int, day: dt.datetime, offset: int):
     print("     Predicting with ML")
     # Select the train data
     train_dataset = cleaned_dataset[cleaned_dataset['Date'] < day]
     
-    # Choose the lags based on the 'group_by'
-    if group_by == "original": # switch
-        lags = 40
-    elif group_by == "day":
-        lags = 7
-    elif group_by == "week":
-        lags = 4
-    elif group_by == "month":
-        lags = 1
-    
     # Fit the AutoRegressive model
-    model = AutoReg(train_dataset['Value'], lags=lags).fit()
+    model = AutoReg(train_dataset['Value'], lags=7).fit()
     
     # Get the nb_predictions forecasts
-    predictions = model.forecast(nb_predictions).reset_index(drop=True)
+    predictions = model.forecast(nb_predictions).reset_index(drop=True) * offset/100
     return predictions
 
 # Create the task configuration of the predict_ml function.
 ## We use the same input and ouput as the previous predict_baseline task but we change the funtion
 predict_ml_task_cfg = tp.configure_task(id="predict_ml",
                                         function=predict_ml,
-                                        input=[cleaned_dataset_cfg, nb_predictions_cfg, day_cfg, group_by_cfg],
+                                        input=[cleaned_dataset_cfg, nb_predictions_cfg, day_cfg, offset_cfg],
                                         output=predictions_cfg)
 
 # Create a ml pipeline that will clean and predict with the ml model

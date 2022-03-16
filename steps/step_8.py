@@ -7,16 +7,15 @@ from step_7 import *
 day = dt.datetime(2014, 7, 26)
 nb_predictions = 40
 
-## Initial variables for the group by selector
-group_by_selector = ['original', 'day', 'week', 'month']
-selected_group_by = group_by_selector[0]
+## Initial variables for the offset
+offset = 100
 
 page_scenario_manager = page + """
 # Change your scenario :
 
 Choose the **day**:\n\n <|{day}|date|with_time=False|>
 
-Choose the **group_by**:\n\n <|{selected_group_by}|selector|lov={group_by_selector}|dropdown=True|>
+Choose the **offset**:\n\n <|{offset}|number|>
 
 Choose the **number of predictions**:\n\n<|{nb_predictions}|number|>
 
@@ -57,7 +56,7 @@ def submit(state):
     # Change the default parameters by writing in the datanodes
     scenario.day.write(day)
     scenario.nb_predictions.write(int(state.nb_predictions))
-    scenario.group_by.write(state.selected_group_by)
+    scenario.offset.write(int(state.offset))
 
     # Execute the pipelines/code
     tp.submit(scenario)

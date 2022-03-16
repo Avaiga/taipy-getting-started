@@ -14,7 +14,7 @@ page_scenario_manager = page + """
 
 Choose the **day**:\n\n <|{day}|date|with_time=False|>
 
-Choose the **group_by**:\n\n <|{selected_group_by}|selector|lov={group_by_selector}|dropdown=True|>
+Choose the **offset**:\n\n <|{offset}|number|>
 
 Choose the **number of predictions**:\n\n<|{nb_predictions}|number|>
 
@@ -58,8 +58,8 @@ def submit_scenario(state):
     scenario.day.write(day)
     #if int(state.nb_predictions) != scenario.nb_predictions.read(): 
     scenario.nb_predictions.write(int(state.nb_predictions))
-    #if state.selected_group_by != scenario.group_by.read():
-    scenario.group_by.write(state.selected_group_by)
+    #if state.offset != scenario.offset.read():
+    scenario.offset.write(int(state.offset))
     #if state.day != scenario.creation_date:
     scenario.creation_date = state.day
         
@@ -76,7 +76,7 @@ def submit_scenario(state):
 
 
 def create_name_for_scenario(state):
-    name = f"Scenario ({state.day.strftime('%A, %d %b %Y')}, {state.nb_predictions} pred, {state.selected_group_by[0]})"
+    name = f"Scenario ({state.day.strftime('%A, %d %b %Y')}, {state.nb_predictions} pred, {state.offset})"
     # If the name is already a name of a scenario, we change it
     if name in [s[1] for s in state.scenario_selector]:
         name += f" ({len(state.scenario_selector)})"
@@ -112,18 +112,8 @@ def on_change(state, var_name: str, var_value):
         # Update the chart when the scenario or the pipeline is changed
         # if the prediction dataset is not empty
         if tp.get(state.selected_scenario).predictions.read() is not None:
-            update_chart(state)        
-        
-    # Put default values when group_by is changed
-    elif var_name == 'selected_group_by':
-        if var_value == "original":
-            state.nb_predictions = 40
-        elif var_value == "day":
-            state.nb_predictions = 7
-        elif var_value == "week":
-            state.nb_predictions = 4
-        elif var_value == "month":
-            state.nb_predictions = 2
+            update_chart(state)
+
 
 if __name__ == "__main__":
     Gui(page=page_scenario_manager).run()

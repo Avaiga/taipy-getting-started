@@ -5,20 +5,10 @@ from step_10 import *
 from step_6 import ml_pipeline_cfg
 
 ## Frequency will create a Cycle object, it will be used in the code to navigate through the scenarios and have a master scenario for each cycle
-# Create scenarios each day and compare them
-scenario_dayly_cfg = tp.configure_scenario(id="scenario",
-                                     pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg],
-                                     frequency=Frequency.DAILY) 
-
 # Create scenarios each week and compare them
 scenario_weekly_cfg = tp.configure_scenario(id="scenario",
                                      pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg],
                                      frequency=Frequency.WEEKLY)
-
-# Create scenarios each month and compare them
-scenario_montly_cfg = tp.configure_scenario(id="scenario",
-                                     pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg],
-                                     frequency=Frequency.MONTHLY)
 
 
 selected_scenario_is_master = None
@@ -30,16 +20,8 @@ def create_scenario(state):
     creation_date = dt.datetime(state.day.year, state.day.month, state.day.day)
     display_name = create_name_for_scenario(state)
     
-    # Create a scenario with the cycle from its group-by
-    if state.selected_group_by == "month":
-        scenario = tp.create_scenario(scenario_montly_cfg, creation_date=creation_date, name=display_name)
-    elif state.selected_group_by == "week":
-        scenario = tp.create_scenario(scenario_weekly_cfg, creation_date=creation_date, name=display_name)
-    else:
-        scenario = tp.create_scenario(scenario_dayly_cfg, creation_date=creation_date, name=display_name)
-    #else:
-    #    # No frequency selected for group_by = original ?????????? !!!!!!!!!!!! ??????????
-    #    scenario = tp.create_scenario(scenario_cfg, creation_date=creation_date, name=display_name)
+    # Create a scenario with the week cycle
+    scenario = tp.create_scenario(scenario_weekly_cfg, creation_date=creation_date, name=display_name)
 
     state.selected_scenario = scenario.id
 
@@ -77,7 +59,7 @@ Choose the **day**:\n\n <|{day}|date|with_time=False|>
 |>
 
 <|
-Choose the **group_by**:\n\n <|{selected_group_by}|selector|lov={group_by_selector}|dropdown=True|>
+Choose the **offset**:\n\n <|{offset}|number|>
 |>
 
 <|
@@ -134,16 +116,6 @@ def on_change(state, var_name: str, var_value):
         if 'scenario' in var_value[0]:
             state.selected_scenario = var_value[0]      
         
-    # Put default values when group_by is changed
-    elif var_name == 'selected_group_by':
-        if var_value == "original":
-            state.nb_predictions = 40
-        elif var_value == "day":
-            state.nb_predictions = 7
-        elif var_value == "week":
-            state.nb_predictions = 4
-        elif var_value == "month":
-            state.nb_predictions = 2
 
 
 

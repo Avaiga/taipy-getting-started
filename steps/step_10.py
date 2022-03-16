@@ -11,7 +11,7 @@ Choose the **day**:\n\n <|{day}|date|with_time=False|>
 |>
 
 <|
-Choose the **group_by**:\n\n <|{selected_group_by}|selector|lov={group_by_selector}|dropdown=True|>
+Choose the **offset**:\n\n <|{offset}|number|>
 |>
 
 <|

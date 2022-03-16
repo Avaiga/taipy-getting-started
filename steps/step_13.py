@@ -1,132 +1,197 @@
+
+    
+    
 from step_12 import *
 
-from sklearn.metrics import mean_absolute_error, mean_squared_error
-
-# Initial dataset for comparison
-comparison_scenario = pd.DataFrame({"Cycle Type":[], 'Scenario Name':[],
-                                    'RMSE baseline':[], 'MAE baseline':[],
-                                    'RMSE ML':[], 'MAE ML':[]})
-
-# Boolean to check if the comparison is done
-comparison_scenario_done = False
-
-# Selector for cycle
-cycle_selector = ['original', 'day', 'week', 'month']
-selected_cycle = cycle_selector[0]
-
-# Selector for metric
-metric_selector = ['RMSE', 'MAE']
-selected_metric = metric_selector[0]
-
-
-def caculate_metrics(historical_data, predicted_data):
-    rmse = mean_squared_error(historical_data, predicted_data)
-    mae = mean_absolute_error(historical_data, predicted_data)
-    return rmse, mae
-
-def compare(state):
-    print('Comparing...')
-    # Initial lists for comparison
-    cycle_types = []
-    scenario_names = []
-    rmses_baseline = []
-    maes_baseline = []
-    rmses_ml = []
-    maes_ml = []
+def delete_scenario_in_tree_dict(scenario, tree_dict: dict):
+    period_keys_to_pop = []
     
-    # Go through all the master scenarios
-    for scenario in tp.get_all_masters():
-        print("Scenario...", scenario.properties['display_name'])
-        # Go through all the pipelines
-        for pipeline in scenario.pipelines.values():
-            print("     Pipeline...", pipeline.config_id)
-            # Get the predictions dataset with the historical data
-            only_prediction_dataset = create_predictions_dataset(pipeline)[-pipeline.nb_predictions.read():]
-            
-            historical_values = only_prediction_dataset['Historical values']
-            predicted_values = only_prediction_dataset['Predicted values']
-            
-            # Calculate the metrics for this pipeline and master scenario
-            rmse, mae = caculate_metrics(historical_values, predicted_values)
-            
-            # Add to the correct lists, the correct values    
-            if 'baseline' in pipeline.config_id:
-                rmses_baseline.append(rmse)
-                maes_baseline.append(mae)
-            elif 'ml' in pipeline.config_id:
-                rmses_ml.append(rmse)
-                maes_ml.append(mae)
+    for period, scenarios_ in tree_dict.items():
+        for scenario_id, scenario_name in scenarios_:
+            if scenario_id == scenario.id:
+                tree_dict[period].remove((scenario_id, scenario_name))
+                if len(tree_dict[period]) == 0:
+                    period_keys_to_pop += [period]
+                print("-------------found-------------")
+                break
+                    
+    for period in period_keys_to_pop:
+        tree_dict.pop(period)
+    return tree_dict
 
-        cycle_types.append(scenario.group_by.read())
-        scenario_names.append(scenario.properties['display_name'])
+
+def create_tree_dict(scenarios, tree_dict: dict=None):
+    print("Creating tree dict...")
+    if tree_dict is None:
+        tree_dict = {}
+    else :
+        tree_dict = delete_scenario_in_tree_dict(scenarios[0], tree_dict)
+    
+    for scenario in scenarios:
+        day = scenario.day.read()
         
-    # Update comparison_scenario
-    state.comparison_scenario = pd.DataFrame({"Cycle Type":cycle_types,
-                                              'Scenario Name':scenario_names,
-                                              'RMSE baseline':rmses_baseline,
-                                              'MAE baseline':maes_baseline,
-                                              'RMSE ML':rmses_ml,
-                                              'MAE ML':maes_ml})
+        period = f"Week {day.isocalendar()[1]}"
+       
+        if period not in tree_dict:
+            tree_dict[period] = []
+        tree_dict[period] += [(scenario.id,scenario.properties['display_name'])]
     
-    # When comparison_scenario will be set to True,
-    # the part with the graphs will be finally rendered
-    state.comparison_scenario_done = True
-    pass
+    return tree_dict
 
 
+def build_childs(childs_):
+    childs_array = []
+    
+    for mother, childs in childs_.items():
+        if isinstance(mother, tuple):
+            childs_tupple = (f"{mother[0]}", mother[1], build_childs(childs))
+        elif isinstance(childs, dict) :
+            childs_tupple = (f"{mother}", mother, build_childs(childs))
+        else:
+            childs_tupple = (f"{mother}", mother, childs)
+            
+        childs_array.append(childs_tupple)
+    return childs_array
 
-def create_performance_md():
-    # This is a function that will create the markdown file for the performance
-    md = """
-<|part|render={comparison_scenario_done}|
 
-<|Table|expanded=False|expandable|
-<|{comparison_scenario}|table|width=100%|>
+def build_tree_lov(tree_dict: dict):
+    tree_lov = []
+        
+    for mother, childs in tree_dict.items():
+        if isinstance(mother, tuple):
+            mother_tuple = (f"{mother[0]}", mother[1], build_childs(childs))
+        elif isinstance(childs, dict) :
+            mother_tuple = (f"{mother}", mother, build_childs(childs))
+        else:
+            mother_tuple = (f"{mother}", mother, childs)
+            
+        tree_lov.append(mother_tuple)
+    return tree_lov
+
+
+selected_scenario_tree = None
+tree_dict = create_tree_dict(all_scenarios)
+
+tree_lov = build_tree_lov(tree_dict)
+
+
+def create_scenario(state):
+    print("Execution of scenario...")
+    # Extra information for scenario   
+    creation_date = dt.datetime(state.day.year, state.day.month, state.day.day)
+    display_name = create_name_for_scenario(state)
+    
+    # Create a scenario with the week cycle 
+    scenario = tp.create_scenario(scenario_weekly_cfg, creation_date=creation_date, name=display_name)
+    
+    state.selected_scenario = scenario.id
+
+    # Change the scenario that is currently selected
+    scenario = submit_scenario(state)
+    return scenario
+
+
+def submit_scenario(state):
+    global tree_dict
+    
+    print("Submitting scenario...")
+    # Get the currently selected scenario
+    scenario = tp.get(state.selected_scenario)
+    
+    day = dt.datetime(state.day.year, state.day.month, state.day.day) # conversion for our pb
+    
+    # Change the default parameters by writing in the datanodes
+    #if state.day != scenario.day.read():
+    scenario.day.write(day)
+    #if int(state.nb_predictions) != scenario.nb_predictions.read(): 
+    scenario.nb_predictions.write(int(state.nb_predictions))
+    #if int(state.offset) != scenario.offset.read():
+    scenario.offset.write(int(state.offset))
+    #if state.day != scenario.creation_date:
+    scenario.creation_date = state.day
+    
+    # Execute the pipelines/code
+    tp.submit(scenario)
+    
+    # Update the scenario selector and the scenario that is currently selected
+    update_scenario_selector(state, scenario)
+    
+    # Update the tree dict and the tree lov
+    tree_dict = create_tree_dict([scenario], tree_dict=tree_dict)
+    state.tree_lov = build_tree_lov(tree_dict)
+    
+    # Update the chart directly
+    update_chart(state)
+    return scenario
+
+
+def delete_scenario(state):
+    global tree_dict
+    scenario_id = state.selected_scenario
+    scenario = tp.get(scenario_id)
+    # Delete the scenario and the related objects (datanodes, tasks, jobs,...)
+    os.remove('.data/scenarios/' + scenario.id + '.json')
+    # tp.delete_scenario(scenario)
+    
+    # Update the scenario selector accordingly
+    delete_scenarios_in_selector(state, scenario)
+    # Update the tree dict and lov accordingly
+    tree_dict = delete_scenario_in_tree_dict(scenario, tree_dict)
+    state.tree_lov = build_tree_lov(tree_dict)
+    state.selected_scenario = None
+    
+# Create another page to display the tree
+page_cycle_manager = """
+<|layout|columns=1 1 1
+<|
+## Choose your scenario
+<|{selected_scenario_tree}|tree|lov={tree_lov}|>
 |>
 
-<|layout|columns=1 1|
-<|{selected_cycle}|selector|lov={cycle_selector}|dropdown=True|>
-
-<|{selected_metric}|selector|lov={metric_selector}|dropdown=True|>
+<|
+## Choose the pipeline
+<|{selected_pipeline}|selector|lov={pipeline_selector}|>
 |>
 
-"""
-    # Go through all the different types of cycle (month, week, day, original)
-    for cycle_type in cycle_selector:
-        # Create the part that will be rendered if we selected this cycle
-        md += "\n<|part|render={selected_cycle=='" + cycle_type + "'}|"
-        # Go through all the different metrics (RMSE, MAE)
-        for metric in metric_selector:
-            # Create the part that will be rendered if we selected this metric
-            md += "\n<|part|render={selected_metric=='" + metric + "'}|"
-            
-            # Create the graph for this cycle and metric
-            data = "comparison_scenario[comparison_scenario['Cycle Type']=='" + cycle_type + "']"
-            
-            md += "\n<|{" + data + "}|chart|type=bar|x=Scenario Name|y[1]=" + metric + " baseline|y[2]=" + metric + " ML|height=80%|width=100%|>"
-            
-            md += "\n|>"
-        md += "\n|>"
-    md += '\n|>\n'
-    md += """
-<center>    
-<|Compare masters|button|on_action=compare|>
-</center>
-"""
-    return md
+<|
+<|Delete scenario|button|on_action=delete_scenario|> <|Make master|button|on_action=make_master|active={not(selected_scenario_is_master)}|>
+|>
+|>
 
-# Create the markdown file thanks to the function above
-page_performance = create_performance_md()
- 
- # Add the performance_md to the menu   
+<|{predictions_dataset}|chart|type=bar|x=Date|y[1]=Historical values|y[2]=Predicted values|height=80%|width=100%|>
+"""
+
+ # Add the tree_md ('Cycle Manager') to the menu   
 multi_pages = """
-<|menu|label=Menu|lov={["Data Visualization", "Scenario Manager", "Cycle Manager", "Performance"]}|on_action=menu_fct|>
+<|menu|label=Menu|lov={["Data Visualization", "Scenario Manager", "Performance", "Cycle Manager"]}|on_action=menu_fct|>
 
 <|part|render={page=="Data Visualization"}|""" + page_data_visualization + """|>
 <|part|render={page=="Scenario Manager"}|""" + page_scenario_manager + """|>
 <|part|render={page=="Cycle Manager"}|""" + page_cycle_manager + """|>
 <|part|render={page=="Performance"}|""" + page_performance + """|>
 """
+
+
+def on_change(state, var_name: str, var_value):
+    if var_name == 'nb_week':
+        # Update the dataset when the slider is moved
+        state.dataset_week = dataset[dataset['Date'].dt.isocalendar().week == var_value]
+        
+    elif var_name == 'selected_pipeline' or var_name == 'selected_scenario':
+        # Update the chart when the scenario or the pipeline is changed
+        state.selected_scenario_is_master = tp.get(state.selected_scenario).is_master
+        
+        if tp.get(state.selected_scenario).predictions.read() is not None:
+            update_chart(state)
+            
+    # If the scenario_selected_tree is changed and is the id of a scenario,
+    # we change the selected_scenario
+    elif var_name == "selected_scenario_tree":
+        if 'scenario' in var_value[0]:
+            state.selected_scenario = var_value[0]
+        
+
+
 
 if __name__ == '__main__':
     Gui(page=multi_pages).run()
