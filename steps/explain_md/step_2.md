@@ -1,5 +1,7 @@
- Great! Now, we have a page with a text, a slider and a chart. The slider is interactive and is changing the value of our 'value' variable. Everything is managed by Taipy. However, in some cases, we want to connect this value to other variables. For example, if we want to create a chart that will only display one week of data, we need a connection between these two variables.
- 
- We can do this by creating the 'on_change' function. The 'on_change' function is called whenever the value of a variable changes. It is called with its name and its new value. In our example, it is called whenever the value of the slider changes. And each time it changes, we update the chart accordingly. Then, Taipy will update automatically the associated chart.
+Great! Now, we have a page with a text, a slider and a chart. The slider is interactive and is changing the value of our 'value' variable. Everything is managed by Taipy. However, in some cases, we want to connect this value to other variables. For example, if we want to create a chart that will only display one week of data, we need a connection between these two variables.
 
- # Missing data
+# How to connect two variables - the *on_change* function
+
+We can do this by creating the 'on_change' function. The 'on_change' function is called whenever the value of a variable changes. It is called with its name and its new value. In our example, it is called whenever the value of the slider changes. And each time it changes, we update the chart accordingly. Then, Taipy will update automatically the associated chart.
+
+[CODE]
