@@ -6,7 +6,7 @@ from step_2 import *
 
 
 # Initialize the predictions dataset
-predictions_dataset = pd.DataFrame({"Date":[dt.datetime(2014, 6, 1)], "Historical values":[np.NaN], "Predicted values":[np.NaN]})
+predictions_dataset = pd.DataFrame({"Date":[dt.datetime(2021, 6, 1)], "Historical values":[np.NaN], "Predicted values":[np.NaN]})
 
 # This is our new string with a button and a chart for our predictions
 pipeline_page = page + """

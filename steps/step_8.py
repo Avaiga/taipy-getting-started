@@ -4,7 +4,7 @@ from step_7 import *
 
 # Initial variables
 ## Initial variables for the scenario   
-day = dt.datetime(2014, 7, 26)
+day = dt.datetime(2021, 7, 26)
 nb_predictions = 40
 
 ## Initial variables for the offset
