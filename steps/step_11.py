@@ -4,6 +4,8 @@ import os
 from step_10 import *
 from step_6 import ml_pipeline_cfg
 
+from taipy.gui import notify
+
 # Create scenarios each week and compare them
 scenario_weekly_cfg = tp.configure_scenario(id="scenario",
                                      pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg],
@@ -50,13 +52,17 @@ def remove_scenario_from_selector(state, scenario: list):
 def delete_scenario(state):
     scenario_id = state.selected_scenario
     scenario = tp.get(scenario_id)
-    # Delete the scenario and the related objects (datanodes, tasks, jobs,...)
-    os.remove('.data/scenarios/' + scenario.id + '.json')
-    # tp.delete_scenario(scenario)
     
-    # Update the scenario selector accordingly
-    state.scenario_selector = [(scenario.id, ("*" if scenario.is_master else "") + scenario.display_name) for scenario in tp.get_scenarios()]
-    state.selected_scenario = None
+    if scenario.is_master:
+        notify(state,'Cannot delete the master scenario')
+    else:
+        # Delete the scenario and the related objects (datanodes, tasks, jobs,...)
+        os.remove('.data/scenarios/' + scenario.id + '.json')
+        # tp.delete_scenario(scenario)
+        
+        # Update the scenario selector accordingly
+        remove_scenario_from_selector(state,scenario)
+        state.selected_scenario = None
     
 
 def make_master(state):

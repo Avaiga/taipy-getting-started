@@ -150,16 +150,20 @@ def delete_scenario(state):
     global tree_dict
     scenario_id = state.selected_scenario
     scenario = tp.get(scenario_id)
-    # Delete the scenario and the related objects (datanodes, tasks, jobs,...)
-    os.remove('.data/scenarios/' + scenario.id + '.json')
-    # tp.delete_scenario(scenario)
     
-    # Update the scenario selector accordingly
-    remove_scenario_from_selector(state, scenario)
-    # Update the tree dict and lov accordingly
-    tree_dict = remove_scenario_from_tree(scenario, tree_dict)
-    state.tree_lov = build_tree_lov(tree_dict)
-    state.selected_scenario = None
+    if scenario.is_master:
+        notify(state,'Cannot delete the master scenario')
+    else:
+        # Delete the scenario and the related objects (datanodes, tasks, jobs,...)
+        os.remove('.data/scenarios/' + scenario.id + '.json')
+        # tp.delete_scenario(scenario)
+        
+        # Update the scenario selector accordingly
+        remove_scenario_from_selector(state, scenario)
+        # Update the tree dict and lov accordingly
+        tree_dict = remove_scenario_from_tree(scenario, tree_dict)
+        state.tree_lov = build_tree_lov(tree_dict)
+        state.selected_scenario = None
     
 # Create another page to display the tree
 page_cycle_manager = """
