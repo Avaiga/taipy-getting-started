@@ -1,7 +1,10 @@
 from step_9 import *
 
+# Our first page will be page
+# so the page with the slider and the chart that display a week of the historical data
 page_data_visualization = page
 
+# Second page: page to create scenarios and display its results
 page_scenario_manager = """
 # Create your scenario
 
@@ -52,7 +55,6 @@ page = "Data Visualization"
 def menu_fct(state, var_name: str, fct: str, var_value: list):
     # Change the value of the state.page variable in order to render the correct page
     state.page = var_value['args'][0]
-    pass
 
 if __name__ == "__main__":
     Gui(page=multi_pages).run()

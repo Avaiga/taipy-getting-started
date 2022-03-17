@@ -40,17 +40,11 @@ def create_scenario():
 
 def submit(state):
     print("Submitting scenario...")
-    ## The submit is called in two different ways:
-    ## 1. when we create our first scenario, here state is None
-    ## 2. when the user clicks on the submit button, here state is the state of the app
-    
-    
     # Get the selected scenario, we have just one scenario created
     scenario = tp.get(selected_scenario)
     
-    
-    day = dt.datetime(state.day.year, state.day.month, state.day.day) # conversion for our pb
-
+    # Conversion to the right format (change?)
+    day = dt.datetime(state.day.year, state.day.month, state.day.day)
 
     # Change the default parameters by writing in the datanodes
     scenario.day.write(day)
@@ -70,7 +64,6 @@ def update_chart(state):
     pipeline = scenario.pipelines[state.selected_pipeline]
     # Update the chart based on this pipeline
     update_predictions_dataset(state, pipeline)
-    pass
 
 if __name__ == "__main__":
     global selected_scenario

@@ -30,18 +30,21 @@ def compare(state):
     maes_ml = []
     
     # Go through all the master scenarios
-    for scenario in tp.get_all_masters(): # order
-        print("Scenario...", scenario.properties['display_name'])
+    all_scenarios = tp.get_all_masters()
+    all_scenarios_ordered = sorted(all_scenarios, key=lambda x: x.creation_date.timestamp()) # delete?
+    for scenario in all_scenarios_ordered:
+        print("Scenario...", scenario.display_name)
         # Go through all the pipelines
         for pipeline in scenario.pipelines.values():
             print("     Pipeline...", pipeline.config_id)
             # Get the predictions dataset with the historical data
             only_prediction_dataset = create_predictions_dataset(pipeline)[-pipeline.nb_predictions.read():]
             
+            # Series to compute the metrics (true values and predicted values)
             historical_values = only_prediction_dataset['Historical values']
             predicted_values = only_prediction_dataset['Predicted values']
             
-            # Calculate the metrics for this pipeline and master scenario
+            # Compute the metrics for this pipeline and master scenario
             rmse, mae = compute_metrics(historical_values, predicted_values)
             
             # Add to the correct lists, the correct values    
@@ -52,7 +55,7 @@ def compare(state):
                 rmses_ml.append(rmse)
                 maes_ml.append(mae)
 
-        scenario_names.append(scenario.properties['display_name'])
+        scenario_names.append(scenario.display_name)
         
     # Update comparison_scenario
     state.comparison_scenario = pd.DataFrame({'Scenario Name':scenario_names,

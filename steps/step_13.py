@@ -1,53 +1,69 @@
 from step_12 import *
 
 def remove_scenario_from_tree(scenario, tree_dict: dict):
-    period_keys_to_pop = []
+    # This will be the cycle keys that will be dropped if they contain no scenario
+    cycle_keys_to_pop = []
     
-    for period, scenarios_ in tree_dict.items():
+    # We explore our 2-level tree
+    for cycle, scenarios_ in tree_dict.items():
         for scenario_id, scenario_name in scenarios_:
             if scenario_id == scenario.id:
-                tree_dict[period].remove((scenario_id, scenario_name))
-                if len(tree_dict[period]) == 0:
-                    period_keys_to_pop += [period]
-                print("-------------found-------------")
+                # Remove the scenario that has the same id from the tree
+                tree_dict[cycle].remove((scenario_id, scenario_name))
+                
+                # Add the cycle to the cycles to drop if it is empty
+                if len(tree_dict[cycle]) == 0:
+                    cycle_keys_to_pop += [cycle]
+                print("------------- Scenario found and deleted -------------")
                 break
-                    
-    for period in period_keys_to_pop:
-        tree_dict.pop(period)
+    
+    # Remove the empty cycles
+    for cycle in cycle_keys_to_pop:
+        tree_dict.pop(cycle)
     return tree_dict
 
 
 def create_tree_dict(scenarios, tree_dict: dict=None):
     print("Creating tree dict...")
     if tree_dict is None:
-        # Initialize the tree dict
+        # Initialize the tree dict if it is not already initialized
         tree_dict = {}
-    else :
-        tree_dict = remove_scenario_from_tree(scenarios[0], tree_dict)
     
+    # Add all the scenarios that are in the list
     for scenario in scenarios:
+        # Creates the name for the cycle
         day = scenario.day.read()
-        
         period = f"Week {day.isocalendar()[1]}"
        
+        # Add the cycle if it was not already added
         if period not in tree_dict:
             tree_dict[period] = []
-            
-        str_is_master = "*" if scenario.is_master else ""
-        tree_dict[period] += [(scenario.id, str_is_master+scenario.properties['display_name'])]
+        
+        # Append this dictionary with the scenario id and the scenario name
+        scenario_name = ("*" if scenario.is_master else "") + scenario.display_name
+        tree_dict[period] += [(scenario.id, scenario_name)]
     
     return tree_dict
 
 
+# General code to create a lov for the tree control from a dictionary
 def build_childs(childs_):
     childs_array = []
     
+    # Explore the childs of childs
     for mother, childs in childs_.items():
+        # Build recursively the tree
+        # tuple for the tree lov are composed this way:
+        # (real_value, displayed_value, childs)
         if isinstance(mother, tuple):
+            # Here real_value is different from displayed_value
             childs_tupple = (f"{mother[0]}", mother[1], build_childs(childs))
         elif isinstance(childs, dict) :
+            # Here real_value is the same as displayed_value
             childs_tupple = (f"{mother}", mother, build_childs(childs))
         else:
+            # Here, we are at the end of the tree
+            # Childs are the leafs
             childs_tupple = (f"{mother}", mother, childs)
             
         childs_array.append(childs_tupple)
@@ -56,19 +72,25 @@ def build_childs(childs_):
 
 def build_tree_lov(tree_dict: dict):
     tree_lov = []
-        
+    # Explore the first level of the tree and their childs
     for mother, childs in tree_dict.items():
+        # tuple for the tree lov are composed this way:
+        # (real_value, displayed_value, childs)
         if isinstance(mother, tuple):
+            # Here real_value is different from displayed_value
             mother_tuple = (f"{mother[0]}", mother[1], build_childs(childs))
         elif isinstance(childs, dict) :
+            # Here real_value is the same as displayed_value
             mother_tuple = (f"{mother}", mother, build_childs(childs))
         else:
+            # Here, we are at the end of the tree
+            # Childs are the leafs
             mother_tuple = (f"{mother}", mother, childs)
             
         tree_lov.append(mother_tuple)
     return tree_lov
 
-
+# Initialize parameters for the tree control
 selected_scenario_tree = None
 tree_dict = create_tree_dict(all_scenarios)
 tree_lov = build_tree_lov(tree_dict)
@@ -159,7 +181,7 @@ page_cycle_manager = """
 <|{predictions_dataset}|chart|type=bar|x=Date|y[1]=Historical values|y[2]=Predicted values|height=80%|width=100%|>
 """
 
- # Add the tree_md ('Cycle Manager') to the menu   
+ # Add the page_cycle_manager ('Cycle Manager') to the menu   
 multi_pages = """
 <|menu|label=Menu|lov={["Data Visualization", "Scenario Manager", "Performance", "Cycle Manager"]}|on_action=menu_fct|>
 
@@ -179,6 +201,7 @@ def on_change(state, var_name: str, var_value):
         # Update the chart when the scenario or the pipeline is changed
         state.selected_scenario_is_master = tp.get(state.selected_scenario).is_master
         
+        # Check if we can read the data node to update the chart
         if tp.get(state.selected_scenario).predictions.is_ready_for_reading:
             update_chart(state)
             

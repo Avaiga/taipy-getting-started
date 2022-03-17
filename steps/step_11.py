@@ -4,24 +4,23 @@ import os
 from step_10 import *
 from step_6 import ml_pipeline_cfg
 
-## Frequency will create a Cycle object, it will be used in the code to navigate through the scenarios and have a master scenario for each cycle
 # Create scenarios each week and compare them
 scenario_weekly_cfg = tp.configure_scenario(id="scenario",
                                      pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg],
                                      frequency=Frequency.WEEKLY)
 
 # Change the inital scenario selector to see which scenario are masters
-scenario_selector = [(scenario.id, scenario.properties['display_name']) if scenario.is_master
-                     else (scenario.id, '*'+scenario.properties['display_name']) for scenario in all_scenarios]
+scenario_selector = [(scenario.id, ("*" if scenario.is_master else "") + scenario.display_name) for scenario in all_scenarios]
 
 # Redefine update_scenario_selector to add '*' in the display name when the scnario is master
 def update_scenario_selector(state, scenario):
     print("Updating scenario selector...")
-    # In this step, there are no master scenario
-    str_is_master = "*" if scenario.is_master else ""
+    # Create the scenario name for the scenario selector
+    # This name changes dependind whether the scenario is master or not
+    scenario_name = ("*" if scenario.is_master else "") + scenario.display_name
     
     # Update the scenario selector
-    state.scenario_selector += [(scenario.id, str_is_master+scenario.properties['display_name'])]
+    state.scenario_selector += [(scenario.id, scenario_name)]
 
 
 selected_scenario_is_master = None
@@ -54,6 +53,7 @@ def delete_scenario(state):
     # Delete the scenario and the related objects (datanodes, tasks, jobs,...)
     os.remove('.data/scenarios/' + scenario.id + '.json')
     # tp.delete_scenario(scenario)
+    
     # Update the scenario selector accordingly
     remove_scenario_from_selector(state,scenario)
     state.selected_scenario = None
@@ -138,10 +138,10 @@ def on_change(state, var_name: str, var_value):
         state.dataset_week = dataset[dataset['Date'].dt.isocalendar().week == var_value]
         
     elif var_name == 'selected_pipeline' or var_name == 'selected_scenario':
-        # Update the chart when the scenario or the pipeline is changed
+        # Update selected_scenario_is_master to know if the current scenario is master or not
         state.selected_scenario_is_master = tp.get(state.selected_scenario).is_master
-        print("Selected scenario is master: ", state.selected_scenario_is_master)
 
+        # Check if we can read the data node to update the chart
         if tp.get(state.selected_scenario).predictions.read() is not None:
             update_chart(state)
         

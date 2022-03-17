@@ -38,7 +38,6 @@ def update_chart(state):
     # Update the chart based on this pipeline
     # It is the same function as created before in step_5
     update_predictions_dataset(state, pipeline)
-    pass
 
 if __name__ == "__main__":
     # Creation of our first scenario

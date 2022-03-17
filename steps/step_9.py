@@ -6,7 +6,7 @@ all_scenarios = tp.get_scenarios()
 # Initial variables
 ## Initial variable for the scenario selector
 # The value of my selector will be the ids and what is display will be the display_name of my scenario
-scenario_selector = [(scenario.id, scenario.properties['display_name']) for scenario in all_scenarios]
+scenario_selector = [(scenario.id, scenario.display_name) for scenario in all_scenarios]
 selected_scenario = None
 
 scenario_manager_page = page + """
@@ -59,7 +59,8 @@ def submit_scenario(state):
     # Get the currently selected scenario
     scenario = tp.get(state.selected_scenario)
     
-    day = dt.datetime(state.day.year, state.day.month, state.day.day) # conversion for our pb | change ?
+    # Conversion to the right format (change?)
+    day = dt.datetime(state.day.year, state.day.month, state.day.day) 
 
     # Change the default parameters by writing in the datanodes
     #if state.day != scenario.day.read():
@@ -91,14 +92,13 @@ def submit_scenario(state):
 def update_scenario_selector(state, scenario):
     print("Updating scenario selector...")
     # Update the scenario selector
-    state.scenario_selector += [(scenario.id, scenario.properties['display_name'])]
+    state.scenario_selector += [(scenario.id, scenario.display_name)]
     
 
 def update_chart(state):
     scenario = tp.get(state.selected_scenario)
     pipeline = scenario.pipelines[state.selected_pipeline]
     update_predictions_dataset(state, pipeline)
-    pass
 
 
 def on_change(state, var_name: str, var_value):
@@ -108,7 +108,7 @@ def on_change(state, var_name: str, var_value):
         
     elif var_name == 'selected_pipeline' or var_name == 'selected_scenario':
         # Update the chart when the scenario or the pipeline is changed
-        # if the prediction dataset is not empty
+        # Check if we can read the data node to update the chart
         if tp.get(state.selected_scenario).predictions.read() is not None:
             update_chart(state)
 
