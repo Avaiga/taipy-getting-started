@@ -47,7 +47,7 @@ def create_scenario(state):
     # Create a scenario
     scenario = tp.create_scenario(scenario_cfg, creation_date=creation_date, name=display_name)
 
-    state.selected_scenario = scenario.id
+    state.selected_scenario = (scenario.id,display_name)
     
     # Submit the scenario that is currently selected
     scenario = submit_scenario(state)
@@ -57,7 +57,7 @@ def create_scenario(state):
 def submit_scenario(state):
     print("Submitting scenario...")
     # Get the currently selected scenario
-    scenario = tp.get(state.selected_scenario)
+    scenario = tp.get(state.selected_scenario[0])
     
     # Conversion to the right format (change?)
     day = dt.datetime(state.day.year, state.day.month, state.day.day) 
@@ -96,7 +96,7 @@ def update_scenario_selector(state, scenario):
     
 
 def update_chart(state):
-    scenario = tp.get(state.selected_scenario)
+    scenario = tp.get(state.selected_scenario[0])
     pipeline = scenario.pipelines[state.selected_pipeline]
     update_predictions_dataset(state, pipeline)
 
@@ -109,7 +109,7 @@ def on_change(state, var_name: str, var_value):
     elif var_name == 'selected_pipeline' or var_name == 'selected_scenario':
         # Update the chart when the scenario or the pipeline is changed
         # Check if we can read the data node to update the chart
-        if tp.get(state.selected_scenario).predictions.read() is not None:
+        if tp.get(state.selected_scenario[0]).predictions.read() is not None:
             update_chart(state)
 
 

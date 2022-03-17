@@ -11,21 +11,21 @@ scenario_weekly_cfg = tp.configure_scenario(id="scenario",
                                      pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg],
                                      frequency=Frequency.WEEKLY)
 
-# Change the inital scenario selector to see which scenario are masters
-scenario_selector = [(scenario.id, ("*" if scenario.is_master else "") + scenario.display_name) for scenario in all_scenarios]
+# Change the inital scenario selector to see which scenario are officials
+scenario_selector = [(scenario.id, ("*" if scenario.is_official else "") + scenario.display_name) for scenario in all_scenarios]
 
-# Redefine update_scenario_selector to add '*' in the display name when the scnario is master
+# Redefine update_scenario_selector to add '*' in the display name when the scnario is official
 def update_scenario_selector(state, scenario):
     print("Updating scenario selector...")
     # Create the scenario name for the scenario selector
-    # This name changes dependind whether the scenario is master or not
-    scenario_name = ("*" if scenario.is_master else "") + scenario.display_name
+    # This name changes dependind whether the scenario is official or not
+    scenario_name = ("*" if scenario.is_official else "") + scenario.display_name
     
     # Update the scenario selector
     state.scenario_selector += [(scenario.id, scenario_name)]
 
 
-selected_scenario_is_master = None
+selected_scenario_is_official = None
 
 
 # Change the create_scenario function to create a scenario with the selected frequency
@@ -38,7 +38,7 @@ def create_scenario(state):
     # Create a scenario with the week cycle
     scenario = tp.create_scenario(scenario_weekly_cfg, creation_date=creation_date, name=display_name)
 
-    state.selected_scenario = scenario.id
+    state.selected_scenario = (scenario.id, display_name)
 
     # Change the scenario that is currently selected
     scenario = submit_scenario(state)
@@ -50,12 +50,11 @@ def remove_scenario_from_selector(state, scenario: list):
     state.scenario_selector = [(s[0], s[1]) for s in state.scenario_selector if s[0] != scenario.id]
 
 def delete_scenario(state):
-    scenario_id = state.selected_scenario
-    scenario = tp.get(scenario_id)
+    scenario = tp.get(state.selected_scenario[0])
     
-    if scenario.is_master:
-        # Notify the user that master scenarios can't be deleted
-        notify(state,'Cannot delete the master scenario')
+    if scenario.is_official:
+        # Notify the user that official scenarios can't be deleted
+        notify(state,'info', 'Cannot delete the official scenario')
     else:
         # Delete the scenario and the related objects (datanodes, tasks, jobs,...)
         os.remove('.data/scenarios/' + scenario.id + '.json')
@@ -66,17 +65,17 @@ def delete_scenario(state):
         state.selected_scenario = None
     
 
-def make_master(state):
-    print('Making the current scenario master...')
-    scenario = tp.get(state.selected_scenario)
-    # Take the current scenario master
-    tp.set_master(scenario)
+def make_official(state):
+    print('Making the current scenario official...')
+    scenario = tp.get(state.selected_scenario[0])
+    # Take the current scenario official
+    tp.set_official(scenario)
     
     # Update the scenario selector accordingly
-    state.scenario_selector = [(scenario.id, ("*" if scenario.is_master else "") + scenario.display_name) for scenario in tp.get_scenarios()]
-    state.selected_scenario_is_master = True
+    state.scenario_selector = [(scenario.id, ("*" if scenario.is_official else "") + scenario.display_name) for scenario in tp.get_scenarios()]
+    state.selected_scenario_is_official = True
 
-# Change the page_scenario_manager to add a delete scenario button and a make master button
+# Change the page_scenario_manager to add a delete scenario button and a make official button
 page_scenario_manager = """
 # Create your scenario :
 
@@ -109,11 +108,11 @@ page_scenario_manager = """
 ## Scenario <|{selected_scenario}|selector|lov={scenario_selector}|dropdown=True|>
 <center>
 <|Delete scenario|button|on_action=delete_scenario|active={len(scenario_selector)>0}|>
-<|Make master|button|on_action=make_master|active={not(selected_scenario_is_master) and len(scenario_selector)>0}|>
+<|Make official|button|on_action=make_official|active={not(selected_scenario_is_official) and len(scenario_selector)>0}|>
 </center>
 |>
 
-<|part|render={selected_scenario_is_master}|
+<|part|render={selected_scenario_is_official}|
 <br/>
 <br/>
 <br/>
@@ -147,17 +146,13 @@ def on_change(state, var_name: str, var_value):
         state.dataset_week = dataset[dataset['Date'].dt.isocalendar().week == var_value]
         
     elif var_name == 'selected_pipeline' or var_name == 'selected_scenario':
-        # Update selected_scenario_is_master to know if the current scenario is master or not
-        state.selected_scenario_is_master = tp.get(state.selected_scenario).is_master
+        # Update selected_scenario_is_official to know if the current scenario is official or not
+        state.selected_scenario_is_official = tp.get(state.selected_scenario[0]).is_official
 
         # Check if we can read the data node to update the chart
-        if tp.get(state.selected_scenario).predictions.read() is not None:
+        if tp.get(state.selected_scenario[0]).predictions.read() is not None:
             update_chart(state)
-        
-    elif var_name == "selected_scenario_tree":
-        # If the selected element in the tree is a scenario, we make it the selected scenario
-        if 'scenario' in var_value[0]:
-            state.selected_scenario = var_value[0]      
+             
         
 
 

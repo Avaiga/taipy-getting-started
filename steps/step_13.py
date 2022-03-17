@@ -40,7 +40,7 @@ def create_tree_dict(scenarios, tree_dict: dict=None):
             tree_dict[period] = []
         
         # Append this dictionary with the scenario id and the scenario name
-        scenario_name = ("*" if scenario.is_master else "") + scenario.display_name
+        scenario_name = ("*" if scenario.is_official else "") + scenario.display_name
         tree_dict[period] += [(scenario.id, scenario_name)]
     
     return tree_dict
@@ -105,7 +105,7 @@ def create_scenario(state):
     # Create a scenario with the week cycle 
     scenario = tp.create_scenario(scenario_weekly_cfg, creation_date=creation_date, name=display_name)
     
-    state.selected_scenario = scenario.id
+    state.selected_scenario = (scenario.id, display_name)
 
     # Change the scenario that is currently selected
     scenario = submit_scenario(state)
@@ -117,7 +117,7 @@ def submit_scenario(state):
     
     print("Submitting scenario...")
     # Get the currently selected scenario
-    scenario = tp.get(state.selected_scenario)
+    scenario = tp.get(state.selected_scenario[0])
     
     day = dt.datetime(state.day.year, state.day.month, state.day.day) # conversion for our pb
     
@@ -146,14 +146,28 @@ def submit_scenario(state):
     return scenario
 
 
+def make_official(state):
+    print('Making the current scenario official...')
+    scenario = tp.get(state.selected_scenario[0])
+    # Take the current scenario official
+    tp.set_official(scenario)
+    
+    # Update the scenario selector accordingly
+    state.scenario_selector = [(scenario.id, ("*" if scenario.is_official else "") + scenario.display_name) for scenario in tp.get_scenarios()]
+    state.selected_scenario_is_official = True
+    
+    # Update the tree dict and the tree lov
+    tree_dict = create_tree_dict(tp.get_scenarios())
+    state.tree_lov = build_tree_lov(tree_dict)
+    
+
 def delete_scenario(state):
     global tree_dict
-    scenario_id = state.selected_scenario
-    scenario = tp.get(scenario_id)
+    scenario = tp.get(state.selected_scenario[0])
     
-    if scenario.is_master:
-        # Notify the user that master scenarios can't be deleted
-        notify(state,'Cannot delete the master scenario')
+    if scenario.is_official:
+        # Notify the user that official scenarios can't be deleted
+        notify(state,'info', 'Cannot delete the official scenario')
     else:
         # Delete the scenario and the related objects (datanodes, tasks, jobs,...)
         os.remove('.data/scenarios/' + scenario.id + '.json')
@@ -164,7 +178,7 @@ def delete_scenario(state):
         # Update the tree dict and lov accordingly
         tree_dict = remove_scenario_from_tree(scenario, tree_dict)
         state.tree_lov = build_tree_lov(tree_dict)
-        state.selected_scenario = None
+        state.selected_scenario[0] = None
     
 # Create another page to display the tree
 page_cycle_manager = """
@@ -173,7 +187,7 @@ page_cycle_manager = """
 ## Scenario
 <|{selected_scenario_tree}|tree|lov={tree_lov}|>
 <center>
-<|Delete scenario|button|on_action=delete_scenario|> <|Make master|button|on_action=make_master|active={not(selected_scenario_is_master)}|>
+<|Delete scenario|button|on_action=delete_scenario|> <|Make official|button|on_action=make_official|active={not(selected_scenario_is_official)}|>
 </center>
 |>
 
@@ -203,17 +217,18 @@ def on_change(state, var_name: str, var_value):
         state.dataset_week = dataset[dataset['Date'].dt.isocalendar().week == var_value]
         
     elif var_name == 'selected_pipeline' or var_name == 'selected_scenario':
+        print(state.selected_scenario[0])
         # Update the chart when the scenario or the pipeline is changed
-        state.selected_scenario_is_master = tp.get(state.selected_scenario).is_master
+        state.selected_scenario_is_official = tp.get(state.selected_scenario[0]).is_official
         
         # Check if we can read the data node to update the chart
-        if tp.get(state.selected_scenario).predictions.is_ready_for_reading:
+        if tp.get(state.selected_scenario[0]).predictions.is_ready_for_reading:
             update_chart(state)
             
     # If the scenario_selected_tree is changed and is the id of a scenario,
     # we change the selected_scenario
     elif var_name == "selected_scenario_tree":
-        if 'scenario' in var_value[0]:
+        if 'scenario' in var_value[0][0]:
             state.selected_scenario = var_value[0]
         
 

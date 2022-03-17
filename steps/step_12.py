@@ -29,9 +29,10 @@ def compare(state):
     rmses_ml = []
     maes_ml = []
     
-    # Go through all the master scenarios
-    all_scenarios = tp.get_all_masters()
+    # Go through all the official scenarios
+    all_scenarios = tp.get_official_scenarios()
     all_scenarios_ordered = sorted(all_scenarios, key=lambda x: x.creation_date.timestamp()) # delete?
+    
     for scenario in all_scenarios_ordered:
         print("Scenario...", scenario.display_name)
         # Go through all the pipelines
@@ -44,7 +45,7 @@ def compare(state):
             historical_values = only_prediction_dataset['Historical values']
             predicted_values = only_prediction_dataset['Predicted values']
             
-            # Compute the metrics for this pipeline and master scenario
+            # Compute the metrics for this pipeline and official scenario
             rmse, mae = compute_metrics(historical_values, predicted_values)
             
             # Add to the correct lists, the correct values    
@@ -90,7 +91,7 @@ page_performance = """
 |>
 
 <center>
-<|Compare masters|button|on_action=compare|>
+<|Compare officials|button|on_action=compare|>
 </center>
 """
 
