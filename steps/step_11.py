@@ -55,7 +55,7 @@ def delete_scenario(state):
     # tp.delete_scenario(scenario)
     
     # Update the scenario selector accordingly
-    remove_scenario_from_selector(state,scenario)
+    state.scenario_selector = [(scenario.id, ("*" if scenario.is_master else "") + scenario.display_name) for scenario in tp.get_scenarios()]
     state.selected_scenario = None
     
 
@@ -65,6 +65,8 @@ def make_master(state):
     # Take the current scenario master
     tp.set_master(scenario)
     
+    # Update the scenario selector accordingly
+    state.scenario_selector = [(scenario.id, ("*" if scenario.is_master else "") + scenario.display_name) for scenario in tp.get_scenarios()]
     state.selected_scenario_is_master = True
 
 # Change the page_scenario_manager to add a delete scenario button and a make master button
