@@ -152,6 +152,7 @@ def delete_scenario(state):
     scenario = tp.get(scenario_id)
     
     if scenario.is_master:
+        # Notify the user that master scenarios can't be deleted
         notify(state,'Cannot delete the master scenario')
     else:
         # Delete the scenario and the related objects (datanodes, tasks, jobs,...)
