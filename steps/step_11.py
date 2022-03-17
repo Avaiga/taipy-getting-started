@@ -10,8 +10,22 @@ scenario_weekly_cfg = tp.configure_scenario(id="scenario",
                                      pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg],
                                      frequency=Frequency.WEEKLY)
 
+# Change the inital scenario selector to see which scenario are masters
+scenario_selector = [(scenario.id, scenario.properties['display_name']) if scenario.is_master
+                     else (scenario.id, '*'+scenario.properties['display_name']) for scenario in all_scenarios]
+
+# Redefine update_scenario_selector to add '*' in the display name when the scnario is master
+def update_scenario_selector(state, scenario):
+    print("Updating scenario selector...")
+    # In this step, there are no master scenario
+    str_is_master = "*" if scenario.is_master else ""
+    
+    # Update the scenario selector
+    state.scenario_selector += [(scenario.id, str_is_master+scenario.properties['display_name'])]
+
 
 selected_scenario_is_master = None
+
 
 # Change the create_scenario function to create a scenario with the selected frequency
 def create_scenario(state):
@@ -51,8 +65,6 @@ def make_master(state):
     # Take the current scenario master
     tp.set_master(scenario)
     
-    #scenario.properties['display_name'] = 'Master' + scenario.properties['display_name']
-    #update_scenario_selector()
     state.selected_scenario_is_master = True
 
 # Change the page_scenario_manager to add a delete scenario button and a make master button

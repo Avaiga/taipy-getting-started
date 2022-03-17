@@ -32,7 +32,9 @@ def create_tree_dict(scenarios, tree_dict: dict=None):
        
         if period not in tree_dict:
             tree_dict[period] = []
-        tree_dict[period] += [(scenario.id,scenario.properties['display_name'])]
+            
+        str_is_master = "*" if scenario.is_master else ""
+        tree_dict[period] += [(scenario.id, str_is_master+scenario.properties['display_name'])]
     
     return tree_dict
 
@@ -139,21 +141,19 @@ def delete_scenario(state):
     
 # Create another page to display the tree
 page_cycle_manager = """
-<|layout|columns=1 1 1|
+<|layout|columns=1 1|
 <|
 ## Scenario
 <|{selected_scenario_tree}|tree|lov={tree_lov}|>
+<center>
+<|Delete scenario|button|on_action=delete_scenario|> <|Make master|button|on_action=make_master|active={not(selected_scenario_is_master)}|>
+</center>
 |>
 
 <|
 ## Display the pipeline
-<|{selected_pipeline}|selector|lov={pipeline_selector}|>
+<|{selected_pipeline}|selector|lov={pipeline_selector}|dropdown=True|>
 |>
-
-<|
-<|Delete scenario|button|on_action=delete_scenario|> <|Make master|button|on_action=make_master|active={not(selected_scenario_is_master)}|>
-|>
-
 |>
 
 <|{predictions_dataset}|chart|type=bar|x=Date|y[1]=Historical values|y[2]=Predicted values|height=80%|width=100%|>
