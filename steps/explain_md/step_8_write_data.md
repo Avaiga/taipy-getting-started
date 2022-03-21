@@ -5,8 +5,6 @@ We have created your GUI to show a scenario. However, you had some input variabl
 ```python
 import datetime as dt
 
-from step_7_GUI_scenario_selectors import *
-
 # Initial variables
 ## Initial variables for the scenario   
 day = dt.datetime(2021, 7, 26)
@@ -26,10 +24,7 @@ page_scenario_manager = page + """
 
 <|Save changes|button|on_action={submit}|>
 
-Select the pipeline
-<|{selected_pipeline}|selector|lov={pipeline_selector}|> <|Update chart|button|on_action={update_chart}|>
-
-<|{predictions_dataset}|chart|x=Date|y[1]=Historical values|y[2]=Predicted values|height=80%|width=100%|type=bar|>
+...
 """
 
 def create_scenario():

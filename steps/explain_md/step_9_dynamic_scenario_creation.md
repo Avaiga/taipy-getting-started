@@ -4,7 +4,7 @@
 
 Let's manage multiple scenarios. To do that, you will have a dynamic scenario selector. This selector will be updated whenever a new scenario is created. It will store the 'id' of the scenarios and the names of the scenarios. Only the names will be displayed.
 
-[Code]
+Initialize the scenario selector with all the already created scenarios.
 ```python
 # this function will get all the scenarios already created
 all_scenarios = tp.get_scenarios() 
@@ -14,16 +14,16 @@ all_scenarios = tp.get_scenarios()
 # The value of my selector will be the ids and what is display will be the display_name of my scenario
 scenario_selector = [(scenario.id, scenario.display_name) for scenario in all_scenarios]
 selected_scenario = None
+```
 
+```python
 scenario_manager_page = ...
+```
 
+```python
 def create_name_for_scenario(state):
-    name = f"Scenario ({state.day.strftime('%A, %d %b %Y')}; {state.max_capacity}; {state.nb_predictions})"
-    
-    # If the name is already a name of a scenario, you change it
-    if name in [s[1] for s in state.scenario_selector]:
-        name += f" ({len(state.scenario_selector)})"
-    return name
+    ...
+    return name # name is just a string for the scenario
 
 # Change the create_scenario function in order to change the default parameters
 # and to be able to create multiple scenarios
@@ -45,7 +45,7 @@ def create_scenario(state):
 
 def submit_scenario(state):
     ...
-
+    
     scenario.creation_date = state.day 
 
     # Execute the pipelines/code
@@ -74,13 +74,17 @@ Also, you are going to change the 'on_change' function in order to automatically
 [Code]
 ```python
 def on_change(state, var_name: str, var_value):
-    if var_name == 'nb_week':
-        # Update the dataset when the slider is moved
-        state.dataset_week = dataset[dataset['Date'].dt.isocalendar().week == var_value]
-        
+    ...
+
     elif var_name == 'selected_pipeline' or var_name == 'selected_scenario':
         # Update the chart when the scenario or the pipeline is changed
         # Check if you can read the data node to update the chart
         if tp.get(state.selected_scenario[0]).predictions.read() is not None:
             update_chart(state)
+```
+
+Run the Gui.
+
+```python
+Gui(page=scenario_manager_page).run()
 ```
