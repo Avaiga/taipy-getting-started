@@ -1,6 +1,6 @@
 # Building the GUI and buttons
 
-Let's update our GUI to display the results of our pipeline. We create a "Predict" button that will create and run it. the function in the *on_action* parameter will be called whenever the button is pressed.
+Let's update your GUI to display the results of your pipeline. You create a "Predict" button that will create and run it. the function in the *on_action* parameter will be called whenever the button is pressed.
 
 <|Text displayed on button|button|on_action=fct_name_called_when_pressed|>
 

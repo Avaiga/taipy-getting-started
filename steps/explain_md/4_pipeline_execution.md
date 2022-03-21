@@ -1,8 +1,8 @@
-What we have done so far is describing our graph, this graph represents our process. 
+What you have done so far is describing your graph, this graph represents your process. 
 
 # Pipeline configuration
 
-We can configure our first pipeline that we will be able to run. We configure it; you just need to list all the tasks you want to be done by the pipeline. Here we want this pipeline to execute the cleaning (*clean_data_task*) and the predicting (*predict_baseline*). Note that the **task_configs** is a list so you don't have to worry about the order of the tasks. Taipy will do that for you and optimize its execution.
+you can configure your first pipeline that you will be able to run. you configure it; you just need to list all the tasks you want to be done by the pipeline. Here you want this pipeline to execute the cleaning (*clean_data_task*) and the predicting (*predict_baseline*). Note that the **task_configs** is a list so you don't have to worry about the order of the tasks. Taipy will do that for you and optimize its execution.
 
 [CODE]
 ```python
@@ -13,7 +13,7 @@ baseline_pipeline_cfg = tp.configure_pipeline(id="baseline",
 
 # Pipeline creation and execution
 
-Then, we create our pipeline from its configuration, we submit it (execution) and we print the results of the "predictions" datanode.
+Then, you create your pipeline from its configuration, you submit it (execution) and you print the results of the "predictions" datanode.
 
 [CODE]
 ```python

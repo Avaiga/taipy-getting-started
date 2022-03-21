@@ -2,7 +2,7 @@
 
 ## Dynamic selectors
 
-Let's manage multiple scenarios. To do that, we will have a dynamic scenario selector. This selector will be updated whenever a new scenario is created. It will store the 'id' of the scenarios and the names of the scenarios. Only the names will be displayed.
+Let's manage multiple scenarios. To do that, you will have a dynamic scenario selector. This selector will be updated whenever a new scenario is created. It will store the 'id' of the scenarios and the names of the scenarios. Only the names will be displayed.
 
 [Code]
 ```python
@@ -20,7 +20,7 @@ scenario_manager_page = ...
 def create_name_for_scenario(state):
     name = f"Scenario ({state.day.strftime('%A, %d %b %Y')}; {state.max_capacity}; {state.nb_predictions})"
     
-    # If the name is already a name of a scenario, we change it
+    # If the name is already a name of a scenario, you change it
     if name in [s[1] for s in state.scenario_selector]:
         name += f" ({len(state.scenario_selector)})"
     return name
@@ -69,7 +69,7 @@ def update_scenario_selector(state, scenario):
 
 ## Automatize the graph update - *on_change* function
 
-Also, we are going to change the 'on_change' function in order to automatically change the graph wjen another pipeline or scenario is selected.
+Also, you are going to change the 'on_change' function in order to automatically change the graph wjen another pipeline or scenario is selected.
 
 [Code]
 ```python
@@ -80,7 +80,7 @@ def on_change(state, var_name: str, var_value):
         
     elif var_name == 'selected_pipeline' or var_name == 'selected_scenario':
         # Update the chart when the scenario or the pipeline is changed
-        # Check if we can read the data node to update the chart
+        # Check if you can read the data node to update the chart
         if tp.get(state.selected_scenario[0]).predictions.read() is not None:
             update_chart(state)
 ```
