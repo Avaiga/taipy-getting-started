@@ -85,10 +85,6 @@ def submit_scenario(state):
 
 
 
-#def remove_scenario_from_selector(state, scenario: list):
-#    # Take all the scenarios in the selector that doesn't have the scenario.id
-#    state.scenario_selector = [(s[0], s[1]) for s in state.scenario_selector if s[0] != scenario.id]
-
 def update_scenario_selector(state, scenario):
     print("Updating scenario selector...")
     # Update the scenario selector

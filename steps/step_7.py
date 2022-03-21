@@ -1,7 +1,7 @@
 from step_5 import *
 from step_6 import scenario_cfg
 
-# Delete all entities?
+# Delete all entities? / delete .data file
 #
 #
 #

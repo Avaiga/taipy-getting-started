@@ -6,10 +6,12 @@ from step_6 import ml_pipeline_cfg
 
 from taipy.gui import notify
 
+
+
 # Create scenarios each week and compare them
 scenario_weekly_cfg = tp.configure_scenario(id="scenario",
                                      pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg],
-                                     frequency=Frequency.WEEKLY)
+                                     frequency=Frequency.DAILY)
 
 # Change the inital scenario selector to see which scenario are officials
 scenario_selector = [(scenario.id, ("*" if scenario.is_official else "") + scenario.display_name) for scenario in all_scenarios]

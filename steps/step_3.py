@@ -49,7 +49,7 @@ def predict_baseline(cleaned_dataset: pd.DataFrame, nb_predictions: int, day: dt
 # Tasks (3.3)
 clean_data_task_cfg = tp.configure_task(id="clean_data",
                                         function=clean_data,
-                                        input=[initial_dataset_cfg],
+                                        input=initial_dataset_cfg,
                                         output=cleaned_dataset_cfg)
 
 predict_baseline_task_cfg = tp.configure_task(id="predict_baseline",

@@ -33,7 +33,7 @@ def create_tree_dict(scenarios, tree_dict: dict=None):
     for scenario in scenarios:
         # Creates the name for the cycle
         day = scenario.day.read()
-        period = f"Week {day.isocalendar()[1]}"
+        period = f"{day.strftime('%A, %d %b %Y')} Cycle"
        
         # Add the cycle if it was not already added
         if period not in tree_dict:
