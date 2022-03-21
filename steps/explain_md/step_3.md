@@ -13,7 +13,7 @@ To understand the Scenario Management aspect of Taipy, there are just 4 concepts
 
 Firstly, the goal is to create a Directed Acyclic Graph (DAG) that represents a scenario so our problem. Here, we will just create a single pipeline that will take the initial dataset, clean it and give predictions.
 
-<img src="/steps/images/baseline_pipeline.png" style="height: 100px; width:100px;"/>
+<img src="/steps/images/baseline_pipeline.svg"/>
 
 We are going to describe this graph by configuring datanodes (variables) and tasks (functions). Nothing will be executed, it is just a setup to create the DAG.
 
@@ -99,8 +99,7 @@ Tasks are the translation of functions in Taipy. This is through these tasks tha
 
 The first task that we want to create is our *clean_data* task. It will take our initial dataset and clean it. 
 
-[IMAGE GRAPH]
-<img src="/steps/images/clean_data.png" style="height: 100px; width:100px;"/>
+<img src="/steps/images/clean_data.svg"/>
 
 
 [CODE]
@@ -115,8 +114,7 @@ clean_data_task_cfg = tp.configure_task(id="clean_data",
 
 This task will take our cleaned dataset and predict according our parameters.
 
-[IMAGE GRAPH]
-<img src="/steps/images/predict_baseline.png" style="height: 100px; width:100px;"/>
+<img src="/steps/images/predict_baseline.svg"/>
 
 [CODE]
 ```python
