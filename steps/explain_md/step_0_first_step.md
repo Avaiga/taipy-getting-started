@@ -4,4 +4,8 @@ With two lines of code, you will create your first Taipy web page. To do so, jus
 
 Note that the text can be styled. Taipy uses the Markdown syntax to style your text and more. Therefore, # creates a title, ## creates a subtitle. Put your text in $'**'$ to have it in italics or in $'*'$ to have it in bold (**italics**, *bold*).
 
-[CODE]
+```python
+from taipy.gui import Gui
+
+Gui(page="# Getting started with *Taipy*").run()
+```
