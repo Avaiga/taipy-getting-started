@@ -1,4 +1,4 @@
-from step_3 import tp, clean_data_task_cfg, predict_baseline_task_cfg, dt
+from step_3_core_config import tp, clean_data_task_cfg, predict_baseline_task_cfg, dt
 
 # Creation of the first scenario configuration
 baseline_pipeline_cfg = tp.configure_pipeline(id="baseline",

@@ -1,5 +1,5 @@
-from step_5 import *
-from step_6 import scenario_cfg
+from step_5_GUI_pipeline import *
+from step_6_scenario_execution import scenario_cfg
 
 # Delete all entities? / delete .data file
 #

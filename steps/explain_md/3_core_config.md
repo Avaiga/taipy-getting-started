@@ -1,6 +1,6 @@
-You already know the basics of the Taipy Graphical User Interface. Let's go to the Scenario Management aspect of Taipy.
+With this step, you already know the basics of the Taipy Graphical User Interface. Let's go for a moment to the Scenario Management aspect of Taipy.
 
-You want to use Taipy to efficiently and easily manage your data wether it is datasets, objects or KPIs. It helps you tracking your KPIs over time....
+Taipy Core can be used for a lot of different reasons. With it, you can manage efficiently the execution of your functions, keep track of data and/or KPI. It is extremely useful in the context of Machine Learning or Mathematical optimization for example where you can have a lot of different models with a lot of initial parameters. Taipy will allow to manage all of them in a very simple way.
 
 To understand the Scenario Management aspect of Taipy, there are just 4 concepts to understand.
 
@@ -11,17 +11,18 @@ To understand the Scenario Management aspect of Taipy, there are just 4 concepts
 - **Scenarios**: are your business problem with some parameters. They usually consist of one or multiple pipelines.
 
 
-Firstly, the goal is to create a Directed Acyclic Graph (DAG) that represents a scenario so our problem. Here, we will just create a single pipeline that will take the initial dataset, clean it and give predictions.
+Let's a Machine Learning example. In a Machine Learning, we normally have a training and a testing pipeline. In a lot of situations, we have a lot of testing pipelines with different models.
+To simplify this problem for the Getting Started, just a baseline pipeline will be configured in this step. Therefore, the goal is to create a Directed Acyclic Graph (DAG) that represents this pipeline so our problem for the moment. This single pipeline will take the initial dataset, clean it and give predictions for the the *day* without knowing the days after *day*.
 
-<img src="/steps/images/baseline_pipeline.svg"/>
+<img src="/steps/images/baseline_pipeline.svg" height=700 width=700px />
 
-We are going to describe this graph by configuring datanodes (variables) and tasks (functions). Nothing will be executed, it is just a setup to create the DAG.
+The creation of this graph is done by configuring datanodes (variables) and tasks (functions). Nothing will be executed, it is just a setup to create the DAG.
 
-# Datanodes
+# Datanodes configuration
 
 Anykind of serializable object can be used as a datanode: int, string, dict, list, np.array, pd.DataFrame, models etc...
 
-Let me introduce some concepts for datanodes :
+Let me introduce some parameters for datanodes :
 - **Storage_type**: There are multiple storage types. You can read csv file, SQL database, pickle file, etc.
             Here, we are going to create a csv datanode to read/store the initial dataset. Taipy will know how to access it thanks to the path.
 
@@ -33,6 +34,7 @@ Let me introduce some concepts for datanodes :
 
 
 ## Input datanodes
+These are my input datanodes. The one that I will change to create different scenarios.
 
 - *initial_dataset* is simply the initial csv file. We put some parameters to be able to read this data like *path* and *header*. 
 
@@ -42,7 +44,6 @@ Let me introduce some concepts for datanodes :
 
 - *max_capacity* is the maximum value that can take a prediction; it is the seiling of predictions problem. The default value is 200.
 
-[CODE]
 ```python
 ## Input datanodes
 initial_dataset_cfg = tp.configure_data_node(id="initial_dataset",
@@ -63,7 +64,6 @@ day_cfg = tp.configure_data_node(id="day", default_data=dt.datetime(2021, 7, 26)
 
 - *predictions* is the predictions of the model. Here, it is the return of my *predict_baseline* function.
 
-[CODE]
 ```python
 ## Remaining datanodes
 cleaned_dataset_cfg = tp.configure_data_node(id="cleaned_dataset") # ,
@@ -78,7 +78,6 @@ predictions_cfg = tp.configure_data_node(id="predictions", scope=Scope.PIPELINE)
 
 Let's declare my functions: *clean_data* and *predict_baseline*. Their goal is respectively to clean the data and to predict the data.
 
-[CODE]
 ```python
 def clean_data(initial_dataset: pd.DataFrame):
     ...
@@ -99,10 +98,9 @@ Tasks are the translation of functions in Taipy. This is through these tasks tha
 
 The first task that we want to create is our *clean_data* task. It will take our initial dataset and clean it. 
 
-<img src="/steps/images/clean_data.svg"/>
+<img src="/steps/images/clean_data.svg" height=300px width=500px />
 
 
-[CODE]
 ```python
 clean_data_task_cfg = tp.configure_task(id="clean_data",
                                         function=clean_data,
@@ -114,9 +112,8 @@ clean_data_task_cfg = tp.configure_task(id="clean_data",
 
 This task will take our cleaned dataset and predict according our parameters.
 
-<img src="/steps/images/predict_baseline.svg"/>
+<img src="/steps/images/predict_baseline.svg" height=500px width=500px/>
 
-[CODE]
 ```python
 predict_baseline_task_cfg = tp.configure_task(id="predict_baseline",
                                               function=predict_baseline,

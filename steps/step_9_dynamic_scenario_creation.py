@@ -1,4 +1,4 @@
-from step_8 import *
+from step_8_write_data import *
 
 # this function will get all the scenarios already created
 all_scenarios = tp.get_scenarios() 

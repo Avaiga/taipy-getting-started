@@ -1,6 +1,6 @@
 import datetime as dt
 
-from step_7 import *
+from step_7_GUI_scenario_selectors import *
 
 # Initial variables
 ## Initial variables for the scenario   

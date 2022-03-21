@@ -1,8 +1,8 @@
 import numpy as np
 import pandas as pd
 
-from step_4 import tp, baseline_pipeline_cfg, dt
-from step_2 import *
+from step_4_pipeline_execution import tp, baseline_pipeline_cfg, dt
+from step_2_on_change import *
 
 
 # Initialize the predictions dataset

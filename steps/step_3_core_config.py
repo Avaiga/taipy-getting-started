@@ -4,7 +4,7 @@ import pandas as pd
 import taipy as tp
 from taipy import Scope
 
-from step_1 import path_to_csv
+from step_1_visual_elements import path_to_csv
 
 # Datanodes (3.1)
 ## Input datanodes

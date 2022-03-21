@@ -1,4 +1,4 @@
-from step_1 import dataset, nb_week, Gui
+from step_1_visual_elements import dataset, nb_week, Gui
 
 # Display the week given by the slider
 dataset_week = dataset[dataset['Date'].dt.isocalendar().week == nb_week]

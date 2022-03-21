@@ -1,7 +1,7 @@
 from statsmodels.tsa.ar_model import AutoReg
 
-from step_4 import *
-from step_3 import cleaned_dataset_cfg, nb_predictions_cfg, day_cfg, max_capacity_cfg, predictions_cfg, pd, dt
+from step_4_pipeline_execution import *
+from step_3_core_config import cleaned_dataset_cfg, nb_predictions_cfg, day_cfg, max_capacity_cfg, predictions_cfg, pd, dt
 
 # This is the function that will be used by the task
 def predict_ml(cleaned_dataset: pd.DataFrame, nb_predictions: int, day: dt.datetime, max_capacity: int):

@@ -1,4 +1,4 @@
-from step_12 import *
+from step_12_compare import *
 
 def remove_scenario_from_tree(scenario, tree_dict: dict):
     # This will be the cycle keys that will be dropped if they contain no scenario

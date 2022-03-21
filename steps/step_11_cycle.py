@@ -1,8 +1,8 @@
 from taipy import Frequency
 import os
 
-from step_10 import *
-from step_6 import ml_pipeline_cfg
+from step_10_GUI_layout import *
+from step_6_scenario_execution import ml_pipeline_cfg
 
 from taipy.gui import notify
 
