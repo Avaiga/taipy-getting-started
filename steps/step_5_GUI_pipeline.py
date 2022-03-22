@@ -15,6 +15,11 @@ Press <|predict|button|on_action=predict|> to predict with default parameters (3
 <|{predictions_dataset}|chart|x=Date|y[1]=Historical values|y[2]=Predicted values|height=80%|width=100%|type=bar|>
 """
 
+def predict(state):
+    print("'Predict' button clicked")
+    pipeline = create_and_submit_pipeline()
+    update_predictions_dataset(state, pipeline)
+
 def create_and_submit_pipeline():
     print("Execution of pipeline...")
     # Create the pipeline from the pipeline config
@@ -55,10 +60,6 @@ def update_predictions_dataset(state, pipeline):
     # Update the predictions dataset
     state.predictions_dataset = create_predictions_dataset(pipeline)
     
-def predict(state):
-    print("'Predict' button clicked")
-    pipeline = create_and_submit_pipeline()
-    update_predictions_dataset(state, pipeline)
 
 if __name__ == "__main__":
     Gui(page=pipeline_page).run()

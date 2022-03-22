@@ -4,9 +4,7 @@ Let's update the GUI to display the results of the pipeline. You can find a "Pre
 
 `<|Text displayed on button|button|on_action=fct_name_called_when_pressed|>`
 
-The results is then displayed in the chart by updating it. A good option would have been to directly create the results in the pipeline before. It is typically the good practice to put all complexicity of a pipeline in it.
-
-
+To see if the predictions seem correct, a chart control has been added to the markdown. On the chart, two traces are drawn: the historical values and the predicted values. 
 ```python
 import numpy as np
 import pandas as pd
@@ -20,6 +18,15 @@ Press <|predict|button|on_action=predict|> to predict with default parameters (3
 
 <|{predictions_dataset}|chart|x=Date|y[1]=Historical values|y[2]=Predicted values|height=80%|width=100%|type=bar|>
 """
+```
+
+`create_and_submit_pipeline` creates and executes the pipeline after being called by `predict`. After the first submit of the pipeline, datanodes from the pipelines can be read (predictions, cleaned_data,...).
+
+```python
+def predict(state):
+    print("'Predict' button clicked")
+    pipeline = create_and_submit_pipeline()
+    update_predictions_dataset(state, pipeline
 
 def create_and_submit_pipeline():
     "Function called by the predict function"
@@ -29,8 +36,11 @@ def create_and_submit_pipeline():
     # Submit the pipeline (Execution)
     tp.submit(pipeline)
     return pipeline
+```
 
+The `read` function is used to get the data pointed by the datanodes. The function below read the datanodes to create a prediction dataset with these columns: Date, Historical values, Predicted values. The goal of `create_predictions_dataset` is to create the prediction dataset and display it in a chart. A good option would have been to directly create the results in the pipeline before. It is typically the good practice to put all complexicity of a pipeline in it.
 
+```python
 def create_predictions_dataset(pipeline):
     "Function called by the update_predictions_dataset function"
     print("Creating predictions dataset...")
@@ -56,19 +66,21 @@ def create_predictions_dataset(pipeline):
     # Create the predictions dataset
     # Columns : [Date, Historical values, Predicted values]
     return pd.concat([temp_df['Date'], historical_values, predicted_values], axis=1)
-    
+```
+
+The last function is the one calling `create_predictions_dataset` when the button is pressed.
+
+```python
 
 def update_predictions_dataset(state, pipeline):
     print("Updating predictions dataset...")
     # Update the predictions dataset
     state.predictions_dataset = create_predictions_dataset(pipeline)
-    
-def predict(state):
-    print("'Predict' button clicked")
-    pipeline = create_and_submit_pipeline()
-    update_predictions_dataset(state, pipeline)
-
 
 Gui(page=pipeline_page).run()
 ```
+
+<img src="/steps/images/step_5_result.png" />
+
+
     

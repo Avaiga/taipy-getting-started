@@ -28,7 +28,7 @@ scenario_manager_page = page + """
 <|{predictions_dataset}|chart|type=bar|x=Date|y[1]=Historical values|y[2]=Predicted values|height=80%|width=100%|>
 """
 
-def create_name_for_scenario(state):
+def create_name_for_scenario(state)->str:
     name = f"Scenario ({state.day.strftime('%A, %d %b %Y')}; {state.max_capacity}; {state.number_predictions})"
     
     # If the name is already a name of a scenario, we change it

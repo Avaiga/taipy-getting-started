@@ -36,9 +36,9 @@ scenario_manager_page = page + """
 The main code to manage the scenario is here. As you can see, the architrecture doesn't really change from the previous code. Two functions have been changed with some addition: `create_scenario` and `submit_scenario`. 
 
 ```python
-def create_name_for_scenario(state):
+def create_name_for_scenario(state)->str:
     ...
-    return name # name is just a string for the scenario
+    return name:str
 
 # Change the create_scenario function in order to change the default parameters
 # and to be able to create multiple scenarios
@@ -70,7 +70,7 @@ def submit_scenario(state):
     tp.submit(scenario)
     
     # Update the scenario selector and the scenario that is currently selected
-    update_scenario_selector(state, scenario) # change list to scenario
+    update_scenario_selector(state, scenario)
     
     # Update the chart directly
     update_chart(state) 
@@ -88,9 +88,8 @@ def update_scenario_selector(state, scenario):
 
 ## Automatize the graph update - *on_change* function
 
-Also, you are going to change the 'on_change' function in order to automatically change the graph wjen another pipeline or scenario is selected.
+Also, you are going to change the 'on_change' function in order to automatically change the graph when another pipeline or scenario is selected.
 
-[Code]
 ```python
 def on_change(state, var_name: str, var_value):
     ...
