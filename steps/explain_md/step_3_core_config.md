@@ -28,9 +28,9 @@ Let me introduce some parameters for datanodes :
 
 - **Scope**: You can find in the code below two types of Scope: the Pipeline and Scenario scope (by default). 
             Basically, with Scenario scope, datanodes are shared between all the pipelines of the scenario.
-            With Pipeline scope, datanodes are not shared between pipelines and don't have access to other datanodes from other pipelines. For example, here, a 'predictions' datanode is created for each pipeline. So, if I add pipelines/algorithms, predictions will be all stored in different "predictions" datanodes.
+            With Pipeline scope, datanodes are not shared between pipelines and don't have access to other datanodes from other pipelines. For example, here, a 'predictions' datanode is created for each pipeline. So, adding pipelines/algorithms will create predictions stored in different "predictions" datanodes.
 
-- **Cacheable**: It is a parameter used for more performance. If the datanode has already been created and the inputs didn't    change. It is not necessary to run it again.
+"""- **Cacheable**: It is a parameter used for more performance. If the datanode has already been created and the inputs didn't    change. It is not necessary to run it again."""
 
 
 ## Input datanodes
