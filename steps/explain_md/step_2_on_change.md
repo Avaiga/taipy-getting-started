@@ -6,7 +6,7 @@ What is the state of the application? The state of the application is the curren
 
 # How to connect two variables - the *on_change* function
 
-In *Taipy*, the `on_change` function is a "special" function. **Taipy** will look if you created a function with this name in your code and will use it. This is a *callback* function called whenever the state of a variable changes. Its parameters are state (the state of the variables), the variable name that has been changed and its value. Here, `on_change` will be called whenever the value of the slider changes. Each time it changes, `state.data` will be updated according to the week. Then, Taipy will propagate this change automatically to the associated chart.
+In *Taipy*, the `on_change` function is a "special" function. **Taipy** will look if you created a function with this name in your code and will use it. This is a *callback* function called whenever the state of a variable changes. It has three parameters: state (the state of the variables), the variable name that has been changed and its value. Here, `on_change` will be called whenever the value of the slider changes. Each time it changes, `state.data` will be updated according to the week. Then, Taipy will propagate automatically this change to the associated chart.
 
 ```python
 ... # code from earlier steps
