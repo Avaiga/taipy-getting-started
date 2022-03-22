@@ -68,7 +68,7 @@ def create_predictions_dataset(pipeline):
     return pd.concat([temp_df['Date'], historical_values, predicted_values], axis=1)
 ```
 
-The last function is the one calling `create_predictions_dataset` when the button is pressed.
+The last function is the one calling `create_predictions_dataset` when the button is pressed and updating the state of `predictions_dataset` to display the proper chart.
 
 ```python
 
