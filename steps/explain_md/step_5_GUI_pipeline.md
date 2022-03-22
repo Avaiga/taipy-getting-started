@@ -20,7 +20,7 @@ Press <|predict|button|on_action=predict|> to predict with default parameters (3
 """
 ```
 
-`create_and_submit_pipeline` creates and executes the pipeline after being called by `predict`. After the first submit of the pipeline, datanodes from the pipelines can be read (predictions, cleaned_data,...).
+`create_and_submit_pipeline` creates and executes the pipeline after being called by `predict`. 
 
 ```python
 def predict(state):
@@ -38,7 +38,7 @@ def create_and_submit_pipeline():
     return pipeline
 ```
 
-The `read` function is used to get the data pointed by the datanodes. The function below read the datanodes to create a prediction dataset with these columns: Date, Historical values, Predicted values. The goal of `create_predictions_dataset` is to create the prediction dataset and display it in a chart. A good option would have been to directly create the results in the pipeline before. It is typically the good practice to put all complexicity of a pipeline in it.
+After the first submit of the pipeline, datanodes from the pipelines can be read (predictions, cleaned_data,...). The `read` function is used to get the data pointed by the datanodes. `create_predictions_dataset` reads the datanodes to create a prediction dataset with these columns: Date, Historical values, Predicted values. Its goal is to create the prediction dataset and display it in a chart. A good option would have been to directly create the results in the pipeline before. It is typically the good practice to put all complexicity of a pipeline in it.
 
 ```python
 def create_predictions_dataset(pipeline):
