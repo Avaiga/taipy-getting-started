@@ -1,4 +1,4 @@
-Great! Now, the page has a lot of visual elements. The slider is interactive and is changing the `value`. Everything is managed by Taipy. However, in some cases, connecting a variable to other variables can be interesting. For example, to create a chart that will only display one week of data, a connection has to be created between the value of the slider and the data.
+Great! Now, the page has a lot of visual elements. The slider is interactive and is changing `value`. Everything is managed by Taipy. However, in some cases, connecting a variable to other variables can be interesting. For example, to create a chart that will only display one week of data, a connection has to be created between the value of the slider and the data.
 
 # state
 
