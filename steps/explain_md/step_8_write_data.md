@@ -1,6 +1,6 @@
 # How to write data and change your default parameters?
 
-We have created your GUI to show a scenario. However, you had some input variables that you didn't change so far: the *number of predictions*, the *max capacity* and the *day*. It will be great if you could interact in real time with these parameters, change them and rerun your scenario. It is something that can easily be done with the 'write' function of datanodes. you are going to create control to change these values and you will run your scenario by clicking on a 'Change scenario' button.
+Now that the Gui has been created to handle a scenario, it would be interesting to change the initial variables to see their impact on the predictions.These are the input variables that wasn't change so far: the *number of predictions*, the *max capacity* and the *day*. How can we interact with them in real time? It is something that can easily be done with the 'write' function of datanodes. A 'Save button' is created to run the 'submit' funcion when pressed.
 
 ```python
 import datetime as dt
@@ -8,7 +8,7 @@ import datetime as dt
 # Initial variables
 ## Initial variables for the scenario   
 day = dt.datetime(2021, 7, 26)
-nb_predictions = 40
+number_predictions = 40
 
 ## Initial variables for the max_capacity
 max_capacity = 200
@@ -20,7 +20,7 @@ page_scenario_manager = page + """
 
 **Max capacity**\n\n <|{max_capacity}|number|>
 
-**Number of predictions**\n\n<|{nb_predictions}|number|>
+**Number of predictions**\n\n<|{number_predictions}|number|>
 
 <|Save changes|button|on_action={submit}|>
 
@@ -48,7 +48,7 @@ def submit(state):
 
     # Change the default parameters by writing in the datanodes
     scenario.day.write(day)
-    scenario.nb_predictions.write(int(state.nb_predictions))
+    scenario.number_predictions.write(int(state.number_predictions))
     scenario.max_capacity.write(int(state.max_capacity))
 
     # Execute the pipelines/code

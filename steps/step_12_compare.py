@@ -39,7 +39,7 @@ def compare(state):
         for pipeline in scenario.pipelines.values():
             print("     Pipeline...", pipeline.config_id)
             # Get the predictions dataset with the historical data
-            only_prediction_dataset = create_predictions_dataset(pipeline)[-pipeline.nb_predictions.read():]
+            only_prediction_dataset = create_predictions_dataset(pipeline)[-pipeline.number_predictions.read():]
             
             # Series to compute the metrics (true values and predicted values)
             historical_values = only_prediction_dataset['Historical values']

@@ -16,7 +16,7 @@ scenario_manager_page = page + """
 
 **Max capacity**\n\n <|{max_capacity}|number|>
 
-**Number of predictions**\n\n<|{nb_predictions}|number|>
+**Number of predictions**\n\n<|{number_predictions}|number|>
 
 <|Create new scenario|button|on_action=create_scenario|>
 
@@ -29,7 +29,7 @@ scenario_manager_page = page + """
 """
 
 def create_name_for_scenario(state):
-    name = f"Scenario ({state.day.strftime('%A, %d %b %Y')}; {state.max_capacity}; {state.nb_predictions})"
+    name = f"Scenario ({state.day.strftime('%A, %d %b %Y')}; {state.max_capacity}; {state.number_predictions})"
     
     # If the name is already a name of a scenario, we change it
     if name in [s[1] for s in state.scenario_selector]:
@@ -65,8 +65,8 @@ def submit_scenario(state):
     # Change the default parameters by writing in the datanodes
     #if state.day != scenario.day.read():
     scenario.day.write(day)
-    #if int(state.nb_predictions) != scenario.nb_predictions.read(): 
-    scenario.nb_predictions.write(int(state.nb_predictions))
+    #if int(state.number_predictions) != scenario.number_predictions.read(): 
+    scenario.number_predictions.write(int(state.number_predictions))
     #if state.max_capacity != scenario.max_capacity.read():
     scenario.max_capacity.write(int(state.max_capacity))
     #if state.day != scenario.creation_date:
@@ -98,7 +98,7 @@ def update_chart(state):
 
 
 def on_change(state, var_name: str, var_value):
-    if var_name == 'nb_week':
+    if var_name == 'number_week':
         # Update the dataset when the slider is moved
         state.dataset_week = dataset[dataset['Date'].dt.isocalendar().week == var_value]
         

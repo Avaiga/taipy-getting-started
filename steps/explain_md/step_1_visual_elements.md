@@ -1,6 +1,6 @@
 # Data
 
-The data that will be used in the next codes will be retrieved by this little code. The dataset is a real time serie. It means that for certain days we will not have any information. It is composed of these Index,Date,Value. The Index is a unique identifier for each data point. The Date is the date of the data point. The Value is the value of the data point.
+The data that will be used in the next codes will be retrieved by this little code.
 
 ```python
 import pandas as pd
@@ -18,6 +18,9 @@ dataset = get_data(path_to_csv)
 ...
 ```
 
+The `dataset` is a `pd.DataFrame`, a basic python object representing here a real time serie. Like for many real dataset, it means that for certain days there will be no information. The columns are Index, Date and Value. The Index is a unique identifier for each data point. The Date is the date of the data point. The Value is the value of the data point.
+
+
 After creating your first web client with just one line of code and reading your data with this code, let's create a more complicated page.
 
 
@@ -30,8 +33,8 @@ For example, a [slider](https://didactic-broccoli-7da2dfd5.pages.github.io/manua
 
 The first part of the page will show the value of a Python variable and a slider with this syntax.
 ```
-*<|{nb_week}|>*
-<|{nb_week}|slider|min=1|max=52|>
+*<|{number_week}|>*
+<|{number_week}|slider|min=1|max=52|>
 ```
 The second half will create a chart and a table.
 ```
@@ -48,17 +51,17 @@ from taipy.gui import Gui
 
 dataset = get_data(path_to_csv)
 
-# Initial value of nb_week
-nb_week = 10
+# Initial value of number_week
+number_week = 10
 
 # Definition of the page
 page = """
 # Getting started with Taipy
 
-Week number: *<|{nb_week}|>*
+Week number: *<|{number_week}|>*
 
 Interact with this slider to change the week number:
-<|{nb_week}|slider|min=1|max=52|>
+<|{number_week}|slider|min=1|max=52|>
 
 ## Full dataset:
 

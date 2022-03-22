@@ -91,7 +91,7 @@ page_scenario_manager = """
 |>
 
 <|
-**Number of predictions**\n\n<|{nb_predictions}|number|>
+**Number of predictions**\n\n<|{number_predictions}|number|>
 |>
 
 <|
@@ -143,7 +143,7 @@ multi_pages = """
 
 
 def on_change(state, var_name: str, var_value):
-    if var_name == 'nb_week':
+    if var_name == 'number_week':
         # Update the dataset when the slider is moved
         state.dataset_week = dataset[dataset['Date'].dt.isocalendar().week == var_value]
         

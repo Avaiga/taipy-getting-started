@@ -124,8 +124,8 @@ def submit_scenario(state):
     # Change the default parameters by writing in the datanodes
     #if state.day != scenario.day.read():
     scenario.day.write(day)
-    #if int(state.nb_predictions) != scenario.nb_predictions.read(): 
-    scenario.nb_predictions.write(int(state.nb_predictions))
+    #if int(state.number_predictions) != scenario.number_predictions.read(): 
+    scenario.number_predictions.write(int(state.number_predictions))
     #if int(state.max_capacity) != scenario.max_capacity.read():
     scenario.max_capacity.write(int(state.max_capacity))
     #if state.day != scenario.creation_date:
@@ -212,7 +212,7 @@ multi_pages = """
 
 
 def on_change(state, var_name: str, var_value):
-    if var_name == 'nb_week':
+    if var_name == 'number_week':
         # Update the dataset when the slider is moved
         state.dataset_week = dataset[dataset['Date'].dt.isocalendar().week == var_value]
         

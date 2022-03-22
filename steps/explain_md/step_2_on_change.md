@@ -6,27 +6,27 @@ What is the state of the application? The state of the application is the curren
 
 # How to connect two variables - the *on_change* function
 
-The 'on_change' function is called whenever the value of a variable changes in the GUI. Taipy will look if you created a function with this name in your code and use it. It is a *callback* function and its parameter are state (the state of the variables), the variable name that has been changed and its value. In your example, it is called whenever the value of the slider changes with the state, 'value' and the current value of the slider. Each time it changes, data will be updated accordingly. Then, Taipy will update automatically the associated chart.
+The 'on_change' function is a "special" function in **Taipy**. **Taipy** will look if you created a function with this name in your code and use it. This is a *callback* function called whenever the state of a variable changes. Its parameters are state (the state of the variables), the variable name that has been changed and its value. Here, on_change' will be called whenever the value of the slider changes. Each time it changes, state.data will be updated according to the week. Then, Taipy will propagate this change automatically to the associated chart.
 
 ```python
-from step_1_visual_elements import dataset, nb_week, Gui
+... # code from earlier steps
 
 # Display the week given by the slider
-dataset_week = dataset[dataset['Date'].dt.isocalendar().week == nb_week]
+dataset_week = dataset[dataset['Date'].dt.isocalendar().week == number_week]
 
 page = """
 # Getting started with Taipy
 
-Select week: *<|{nb_week}|>*
+Select week: *<|{number_week}|>*
 
-<|{nb_week}|slider|min=1|max=52|>
+<|{number_week}|slider|min=1|max=52|>
 
 <|{dataset_week}|chart|x=Date|y=Value|height=100%|width=100%|type=bar|>
 """
 
 # The on_change is the function that is called when any variable is changed
 def on_change(state, var_name: str, var_value):
-    if var_name == 'nb_week':
+    if var_name == 'number_week':
         # Update the dataset when the slider is moved
         state.dataset_week = dataset[dataset['Date'].dt.isocalendar().week == var_value]
 

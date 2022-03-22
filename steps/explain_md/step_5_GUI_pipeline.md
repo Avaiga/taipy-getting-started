@@ -1,8 +1,8 @@
 # Building the GUI and buttons
 
-Let's update your GUI to display the results of your pipeline. You create a "Predict" button that will create and run it. the function in the *on_action* parameter will be called whenever the button is pressed.
+Let's update the GUI to display the results of the pipeline. You can find a "Predict" [button](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/button/) on the page that will create and run it. The function in the *on_action* parameter will be called whenever the button is pressed.
 
-<|Text displayed on button|button|on_action=fct_name_called_when_pressed|>
+`<|Text displayed on button|button|on_action=fct_name_called_when_pressed|>`
 
 The results is then displayed in the chart by updating it. A good option would have been to directly create the results in the piepline before. It is typically the good practice to put all complexicity of a pipeline in it.
 
@@ -21,6 +21,7 @@ Press <|predict|button|on_action=predict|> to predict with default parameters (3
 """
 
 def create_and_submit_pipeline():
+    "Function called by the predict function"
     print("Execution of pipeline...")
     # Create the pipeline from the pipeline config
     pipeline = tp.create_pipeline(baseline_pipeline_cfg)
@@ -30,18 +31,19 @@ def create_and_submit_pipeline():
 
 
 def create_predictions_dataset(pipeline):
+    "Function called by the update_predictions_dataset function"
     print("Creating predictions dataset...")
     # Read data from the pipeline
     predictions = pipeline.predictions.read()
     day = pipeline.day.read()
-    nb_predictions = pipeline.nb_predictions.read()
+    number_predictions = pipeline.number_predictions.read()
     cleaned_data = pipeline.cleaned_dataset.read()
     
     # Set the time window for the chart (5 days, 5 weeks, 5 months,...)
-    window = 5 * nb_predictions
+    window = 5 * number_predictions
 
     # Create the historical dataset that will be displayed
-    new_length = len(cleaned_data[cleaned_data['Date'] < day]) + nb_predictions
+    new_length = len(cleaned_data[cleaned_data['Date'] < day]) + number_predictions
     temp_df = cleaned_data[:new_length]
     temp_df = temp_df[-window:].reset_index(drop=True)
     

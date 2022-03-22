@@ -2,7 +2,7 @@ What you have done so far is describing your graph, this graph represents your p
 
 # Pipeline configuration
 
-you can configure your first pipeline that you will be able to run. you configure it; you just need to list all the tasks you want to be done by the pipeline. Here you want this pipeline to execute the cleaning (*clean_data_task*) and the predicting (*predict_baseline*). Note that the **task_configs** is a list so you don't have to worry about the order of the tasks. Taipy will do that for you and optimize its execution.
+To configure your first pipeline you just need to list all the tasks you want to be done by the pipeline. Here this pipeline executes the cleaning (*clean_data_task*) and the predicting (*predict_baseline*). Note that the **task_configs** is a list so you don't have to worry about the order of the tasks. Taipy does that for you and optimize its execution.
 
 ```python
 # Creation of the first scenario configuration
