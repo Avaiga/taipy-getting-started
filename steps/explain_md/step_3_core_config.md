@@ -40,7 +40,7 @@ These are my input datanodes. These datanodes will create different scenarios de
 
 - *day* is the beginning of the predictions. The default value is 26th of July. It means my training data will end before 26th of July and my predictions will begin on this day.
 
-- *number_predictions* is the number of predictions you want to make while predicting. The default value is 40. you want to have a *prediction* datanode for each algorithm. This is why you specify **Scope.PIPELINE**. 
+- *number_predictions* is the number of predictions you want to make while predicting. The default value is 40. For each algorithm,a *prediction* datanode will be created hence `scope=Scope.PIPELINE`. 
 
 - *max_capacity* is the maximum value that can take a prediction; it is the seiling of predictions problem. The default value is 200.
 
