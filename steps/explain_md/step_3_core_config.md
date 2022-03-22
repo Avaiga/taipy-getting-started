@@ -33,8 +33,8 @@ Let me introduce some parameters for datanodes :
 """- **Cacheable**: It is a parameter used for more performance. If the datanode has already been created and the inputs didn't    change. It is not necessary to run it again."""
 
 
-## Input datanodes
-These are my input datanodes. These datanodes will create different scenarios depending on their value.
+## Input datanodes configuration
+These are my input datanodes. These datanodes represents my variables in Taipy when a pipeline is executed but first, we have to configure them to create the DAG.
 
 - *initial_dataset* is simply the initial csv file. Taipy needs some parameters to be able to read this data like *path* and *header*. 
 
