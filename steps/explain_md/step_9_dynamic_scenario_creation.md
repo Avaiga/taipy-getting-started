@@ -16,6 +16,8 @@ scenario_selector = [(scenario.id, scenario.display_name) for scenario in all_sc
 selected_scenario = None
 ```
 
+A new selector for the scenario is added in the Markdown with a 'Create new scenario' button. This button is calling the `create_scenario` function.
+
 ```python
 scenario_manager_page = page + """
 ...
@@ -29,7 +31,11 @@ scenario_manager_page = page + """
 
 <|{predictions_dataset}|chart|type=bar|x=Date|y[1]=Historical values|y[2]=Predicted values|height=80%|width=100%|>
 """
+```
 
+The main code to manage the scenario is here. As you can see, the architrecture doesn't really change from the previous code. Two functions have been changed with some addition: `create_scenario` and `submit_scenario`. 
+
+```python
 def create_name_for_scenario(state):
     ...
     return name # name is just a string for the scenario
@@ -45,16 +51,19 @@ def create_scenario(state):
     # Create a scenario
     scenario = tp.create_scenario(scenario_cfg, creation_date=creation_date, name=display_name)
 
-    state.selected_scenario = (scenario.id,display_name)
+    state.selected_scenario = (scenario.id, display_name)
     
     # Submit the scenario that is currently selected
-    scenario = submit_scenario(state)
-    return scenario    
+    submit_scenario(state)
 
 
 def submit_scenario(state):
-    ...
+    print("Submitting scenario...")
+    # Get the currently selected scenario
+    scenario = tp.get(state.selected_scenario[0])
     
+    ...
+
     scenario.creation_date = state.day 
 
     # Execute the pipelines/code
@@ -65,10 +74,11 @@ def submit_scenario(state):
     
     # Update the chart directly
     update_chart(state) 
-    return scenario
+```
 
+This is the funciton that will update the scenario selector whenever the user creates a new scenario. It is called in the `submit_scenario` function.
 
-
+```python
 def update_scenario_selector(state, scenario):
     print("Updating scenario selector...")
     # Update the scenario selector

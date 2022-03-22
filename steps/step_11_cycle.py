@@ -43,8 +43,7 @@ def create_scenario(state):
     state.selected_scenario = (scenario.id, display_name)
 
     # Change the scenario that is currently selected
-    scenario = submit_scenario(state)
-    return scenario  
+    submit_scenario(state)
 
 
 def remove_scenario_from_selector(state, scenario: list):

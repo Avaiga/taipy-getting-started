@@ -6,8 +6,6 @@ from step_7_GUI_first_scenario import *
 ## Initial variables for the scenario   
 day = dt.datetime(2021, 7, 26)
 number_predictions = 40
-
-## Initial variables for the max_capacity
 max_capacity = 200
 
 page_scenario_manager = page + """
@@ -36,7 +34,6 @@ def create_scenario():
     selected_scenario = scenario.id
   
     tp.submit(scenario)
-    return scenario
 
 def submit(state):
     print("Submitting scenario...")
@@ -56,7 +53,6 @@ def submit(state):
     
     # Update the chart when we change the scenario
     update_chart(state)
-    return scenario
 
 def update_chart(state):
     # Select the right scenario and pipeline
@@ -68,7 +64,6 @@ def update_chart(state):
 if __name__ == "__main__":
     global selected_scenario
     # Creation of our first scenario
-    scenario = create_scenario()
-    
+    create_scenario()
     Gui(page=page_scenario_manager).run()
     

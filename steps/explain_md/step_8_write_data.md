@@ -2,6 +2,7 @@
 
 Now that the Gui has been created to handle a scenario, it would be interesting to change the initial variables to see their impact on the predictions.These are the input variables that wasn't change so far: the *number of predictions*, the *max capacity* and the *day*. How can we interact with them in real time? It is something that can easily be done with the 'write' function of datanodes. A 'Save button' is created to run the 'submit' funcion when pressed.
 
+First of all, to add variables to a visual element, they have to be initialized. 
 ```python
 import datetime as dt
 
@@ -9,10 +10,13 @@ import datetime as dt
 ## Initial variables for the scenario   
 day = dt.datetime(2021, 7, 26)
 number_predictions = 40
-
-## Initial variables for the max_capacity
 max_capacity = 200
 
+```
+
+Some additions have been made to the Markdown before the chart. Three visual elements are created and will be used to change the scenario with at the end a 'Save changes' button to call the `submit` function. See the documentation for these visual elements here: [date](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/date/) and [number](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/number/).
+
+```python
 page_scenario_manager = page + """
 # Change your scenario
 
@@ -27,6 +31,12 @@ page_scenario_manager = page + """
 ...
 """
 
+```
+
+Here are the main functions that will manage the scenario. `create_scenario` function is almost the same as before whereas there have been some addition made to the `submit` function.
+
+```python
+
 def create_scenario():
     global selected_scenario
 
@@ -36,7 +46,7 @@ def create_scenario():
     selected_scenario = scenario.id
   
     tp.submit(scenario)
-    return scenario
+
 
 def submit(state):
     print("Submitting scenario...")
@@ -56,7 +66,6 @@ def submit(state):
     
     # Update the chart when we change the scenario
     update_chart(state)
-    return scenario
 
 def update_chart(state):
     # Select the right scenario and pipeline
@@ -68,8 +77,7 @@ def update_chart(state):
 
 global selected_scenario
 # Creation of our first scenario
-scenario = create_scenario()
-    
+create_scenario()
 Gui(page=page_scenario_manager).run()
 ```
 

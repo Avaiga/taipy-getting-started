@@ -47,11 +47,10 @@ def create_scenario(state):
     # Create a scenario
     scenario = tp.create_scenario(scenario_cfg, creation_date=creation_date, name=display_name)
 
-    state.selected_scenario = (scenario.id,display_name)
+    state.selected_scenario = (scenario.id, display_name)
     
     # Submit the scenario that is currently selected
-    scenario = submit_scenario(state)
-    return scenario    
+    submit_scenario(state)
 
 
 def submit_scenario(state):
@@ -81,7 +80,6 @@ def submit_scenario(state):
     
     # Update the chart directly
     update_chart(state) 
-    return scenario
 
 
 
