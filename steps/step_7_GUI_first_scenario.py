@@ -22,11 +22,13 @@ Select the pipeline
 def create_scenario():
     print("Creating scenario...")
     scenario = tp.create_scenario(scenario_cfg)
-    submit(scenario)
+    scenario = submit(scenario)
+    return scenario
 
 def submit(scenario):
     print("Submitting scenario...")
     tp.submit(scenario)
+    return scenario
 
 def update_chart(state):
     print("'Update chart' button clicked")
@@ -39,6 +41,6 @@ def update_chart(state):
 
 if __name__ == "__main__":
     # Creation of our first scenario
-    create_scenario()
+    scenario = create_scenario()
     Gui(page=scenario_page).run()
     

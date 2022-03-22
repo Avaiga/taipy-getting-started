@@ -31,10 +31,12 @@ def create_scenario():
     print("Creating scenario...")
     scenario = tp.create_scenario(scenario_cfg)
     scenario = submit(scenario)
+    return scenario
 
 def submit(scenario):
     print("Submitting scenario...")
     tp.submit(scenario)
+    return scenario
 
 def update_chart(state):
     print("'Update chart' button clicked")
@@ -47,6 +49,6 @@ def update_chart(state):
 
 
  # Creation of our first scenario
- create_scenario()
+ scenario = create_scenario()
  Gui(page=scenario_page).run()  
 ```
