@@ -1,6 +1,6 @@
 # Data
 
-The data that will be used in the next codes will be retrieved by this way.
+The data that will be used in the next codes will be retrieved this way.
 
 ```python
 import pandas as pd
