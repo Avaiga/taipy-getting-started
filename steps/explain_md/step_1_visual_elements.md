@@ -1,6 +1,6 @@
 # Data
 
-The data that will be used in the next codes will be retrieved this way.
+The data used in the following codes will be retrieved this way.
 
 ```python
 import pandas as pd
@@ -18,17 +18,18 @@ dataset = get_data(path_to_csv)
 ...
 ```
 
-`dataset` is a `pd.DataFrame`, a basic *Python* object representing here a real time serie. Like many real datasets, it means that for certain days there will be no information. The columns are Index, Date and Value. The Index is a unique identifier for each data point. The Date is the date of the data point. The Value is the value of the data point.
-
-
-After creating your first web client with just one line of code and reading your data with this code, let's create a more complicated page.
+`dataset` is a `pd.DataFrame`, a basic *Python* object representing a real time series. Because of that, there will be no information for specific days. The columns are Index, Date, and Value.
+- Index is a unique identifier for each data point.
+- Date is the date of the data point.
+- Value is its value.
+After creating your first web client with just one line of code and reading your data with this code, let's create a more detailed page.
 
 
 # Visual elements
 
-First, I have to introduce you the concept of '[Visual elements](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/)'. A visual element is a Taipy graphical object that will be displayed on the client. A visual element can be a [slider](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/slider/), a [chart](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/chart/), a [table](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/table/), an [input](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/input/), a [menu](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/menu/) and so on. Check the list [here](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/controls/).
+First, I have to introduce you to the concept of '[Visual elements](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/)'.  A visual element is a Taipy graphical object displayed on the client. A visual element can be a [slider](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/slider/), a [chart](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/chart/), a [table](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/table/), an [input](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/input/), a [menu](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/menu/), etc. Check the list [here](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/controls/).
 
-Every visual element has a similar syntax.`<|{desired_variable}|visual_elements_name|param_1=param_1|param_2=param_2| ... |>` To add it on a page, just write this syntax wherever you want in your string representing your page.
+Every visual element has a similar syntax.`<|{desired_variable}|visual_elements_name|param_1=param_1|param_2=param_2| ... |>` To add it on a page, write this syntax wherever you want in your string representing your page.
 For example, a [slider](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/slider/) is written this way :`<|{variable}|slider|min=min_value|max=mx_value|>`(min and max are optional).
 
 The first part of the page will show the value of a Python variable and a slider with this syntax.

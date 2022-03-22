@@ -95,4 +95,3 @@ def menu_fct(state, var_name: str, fct: str, var_value: list):
 
 Gui(page=multi_pages).run()
 ```
-    

@@ -1,22 +1,26 @@
 With this last code, you should understand the basics of Taipy GUI. Let's go for a moment to the Scenario Management aspect of Taipy.
 
-Taipy Core can be used for a lot of different reasons. With it, you can manage efficiently the execution of your functions, keep track of data and/or KPI. It is extremely useful in the context of Machine Learning or Mathematical optimization for example where you can have a lot of different models with a lot of initial parameters. Taipy allows you to manage them in a very simple way.
+There are a lot of reasons to use Taipy Core.
+- With it, you can efficiently manage the execution of your functions
+- Keep track of data and KPIs.
+- It is handy to manage multiple pipelines in the context of Machine Learning or Mathematical optimization.
+- Taipy allows you to manage them effortlessly.
 
-To apprehend the Scenario Management aspect of Taipy, there are just 4 concepts to understand.
+To apprehend the Scenario Management aspect of Taipy, you need to understand four essential concepts.
 
 ## Four basic [concepts](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/) in Taipy Core:
-- [**Datanodes**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/data-node/): are the translation of variables in Taipy. They are objects that points to your data whatever it is (pickle, csv, json, etc.). Thery are able to read and write data.
-- [**Tasks**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/task/): are translation of functions in Taipy.
-- [**Pipelines**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/pipeline/): are a list of tasks that is executed with a smart scheduling created automatically by Taipy. They usually represent series of tasks for different algorithms like a baseline or Machine-Learning algorithm.
+- [**Datanodes**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/data-node/): are the translation of variables in Taipy. They are objects that point to your data (pickle, CSV, JSON, etc.). They know how to read and write data.
+- [**Tasks**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/task/): are the translation of functions in Taipy.
+- [**Pipelines**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/pipeline/): are a list of tasks executed with intelligent scheduling created automatically by Taipy. They usually represent a series of tasks for different algorithms like a baseline or Machine-Learning algorithm.
 - [**Scenarios**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/scenario/): are your business problem with some parameters. They usually consist of one or multiple pipelines.
 
 
-Let's create a Machine Learning example. In a Machine Learning problem, it is usual to have multiple training and testing pipelines for different algorithms.
-To simplify this problem for the **Getting Started**, one baseline pipeline will be configured in this step. Therefore, the goal is to create a Directed Acyclic Graph (DAG) that represents this pipeline. This single pipeline takes the initial dataset, clean it and give predictions for the the *day* without knowing the days after *day*.
+Let's create a Machine Learning example. In a Machine Learning problem, it is usual to have numerous training and testing pipelines for different algorithms.
+For simplification, one baseline pipeline will be configured in this step. Therefore, the goal is to create a Directed Acyclic Graph (DAG) that represents this pipeline. This single pipeline takes the initial dataset, cleans it, and gives predictions for the *day* without knowing the days after *day*.
 
 <img src="/steps/images/baseline_pipeline.svg" height=700 width=700px alt="centered image"/>
 
-The creation of this graph is done by configuring datanodes (variables) and tasks (functions). Nothing is executed, it is just a setup to create the DAG.
+The creation of this graph is done by configuring data nodes (variables) and tasks (functions). This configuration doesn't execute anything; it is just a setup to create the DAG.
 
 # Datanodes configuration
 
@@ -33,16 +37,16 @@ Let me introduce some parameters for datanodes :
 """- **Cacheable**: It is a parameter used for more performance. If the datanode has already been created and the inputs didn't    change. It is not necessary to run it again."""
 
 
-## Input datanodes configuration
-These are my input datanodes. These datanodes represents my variables in Taipy when a pipeline is executed but first, we have to configure them to create the DAG.
+## Input data nodes configuration
+These are my input data nodes. These data nodes represent my variables in Taipy when a pipeline is executed. Still, first, we have to configure them to create the DAG.
 
-- *initial_dataset* is simply the initial csv file. Taipy needs some parameters to be able to read this data like *path* and *header*. 
+- *initial_dataset* is simply the initial CSV file. Taipy needs some parameters to read this data like *path* and *header*. 
 
-- *day* is the beginning of the predictions. The default value is 26th of July. It means my training data will end before 26th of July and my predictions will begin on this day.
+- *day* is the beginning of the predictions. The default value is the 26th of July. It means my training data will end before the 26th of July, and my predictions will begin on this day.
 
-- *number_predictions* is the number of predictions you want to make while predicting. The default value is 40. For each algorithm,a *prediction* datanode will be created hence `scope=Scope.PIPELINE`. 
+- *number_predictions* is the number of predictions you want to make while predicting. The default value is 40. Each algorithm creates its own *prediction* data node hence `scope=Scope.PIPELINE`. 
 
-- *max_capacity* is the maximum value that can take a prediction; it is the seiling of predictions problem. The default value is 200.
+- *max_capacity* is the maximum value that can take a prediction; it is the ceiling of the projections. The default value is 200.
 
 ```python
 ## Input datanodes
@@ -57,8 +61,7 @@ max_capacity_cfg = tp.configure_data_node(id="max_capacity", default_data=200)
 day_cfg = tp.configure_data_node(id="day", default_data=dt.datetime(2021, 7, 26))
 ```
 
-
-## Remaining datanodes
+ ## Remaining data nodes
 
 - *cleaned_dataset* is the dataset after cleaning (after the *clean_data* function).
 
@@ -91,12 +94,15 @@ def predict_baseline(cleaned_dataset: pd.DataFrame, number_predictions: int, day
 
 # Tasks
 
-Tasks are the translation of functions in Taipy. This is through these tasks that you will create your graph. Creating a task is simple: you need an id, a function, inputs and outputs.
-
+Tasks are the translation of functions in Taipy. These tasks combined with data nodes create your graph. Creating a task is simple; you need:
+- An id
+- A function
+- Inputs
+- Outputs
 
 ## clean_data_task
 
-The first task that you want to create is your *clean_data* task. It will take your initial dataset and clean it. 
+The first task that you want to create is your *clean_data* task. It will take your initial dataset and clean it.
 
 <img src="/steps/images/clean_data.svg" height=300px width=500px alt="centered image"/>
 
@@ -109,7 +115,7 @@ clean_data_task_cfg = tp.configure_task(id="clean_data",
 
 ## predict_baseline_task
 
-This task will take your cleaned dataset and predict according your parameters.
+This task will take your cleaned dataset and predict it according to your parameters.
 
 <img src="/steps/images/predict_baseline.svg" height=500px width=500px alt="centered image"/>
 

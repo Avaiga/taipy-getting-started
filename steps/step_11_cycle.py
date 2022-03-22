@@ -38,8 +38,10 @@ def create_scenario(state):
     display_name = create_name_for_scenario(state)
     
     # Create a scenario with the week cycle
+    start = time.time()
     scenario = tp.create_scenario(scenario_weekly_cfg, creation_date=creation_date, name=display_name)
-
+    print("Scenario created in {} seconds".format(time.time() - start))
+    
     state.selected_scenario = (scenario.id, display_name)
 
     # Change the scenario that is currently selected

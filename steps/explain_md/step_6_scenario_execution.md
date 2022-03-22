@@ -1,6 +1,6 @@
 # Creation and execution of Scenarios
 
-Now that you have seen how to create and run a single pipeline, let's configure a scenario that will run two pipelines: the first pipeline (*baseline*) and another one (*ml*) that will predict through a different function.
+Now that you have seen how to create and run a single pipeline let's configure a scenario. This scenario will run two pipelines: the first pipeline (*baseline*) and another one (*ml*) that will predict through a different function.
 
 ```python      
 from statsmodels.tsa.ar_model import AutoReg
@@ -20,7 +20,7 @@ def predict_ml(cleaned_dataset: pd.DataFrame, number_predictions: int, day: dt.d
     return predictions
 ```
 
-The predict_ml task configuration has to be created on the same format as before with a function, input and output.
+The *predict_ml* task configuration must be created in the same format as before with a function, inputs, and outputs.
 
 <img src="/steps/images/predict_ml.svg" height=500px width=500px alt="centered image"/>
 
@@ -40,7 +40,7 @@ With this new task, the Machine Learning pipeline can finally be configured.
 ml_pipeline_cfg = tp.configure_pipeline(id="ml", task_configs=[clean_data_task_cfg, predict_ml_task_cfg])
 ```
 
-A scenario is your business problem. Different scenarios would represent different solutions to your business problem. Here, the scenario is influenced by the *max_capacity*, *day* and *number of predictions*. With just a couple more lines you could add more pipelines/algorithms. Different scenarios would represent different solution to your business problem.
+Remember, a scenario is usually your business problem. Different scenarios would represent different solutions to your problem. Here, the scenario is influenced by the *max_capacity*, *day* and *number of predictions*. With just a couple more lines you could add more pipelines/algorithms.
 
 When creating your scenario, it will create your pipelines and when you execute it, it will execute them through smart scheduling. Taipy knows which tasks to do before which one and will be able to cancel Jobs if a task is repetitive.
 
@@ -50,9 +50,7 @@ To configure a scenario, you need to use `tp.configure_scenario` and the list of
 scenario_cfg = tp.configure_scenario(id="scenario", pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg]) 
 ```
 
-
 The configuration is now complete. Now, you can create your scenario and execute it.
-
 
 ```python
 # Create the scenario

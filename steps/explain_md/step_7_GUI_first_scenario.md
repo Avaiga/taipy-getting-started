@@ -48,6 +48,5 @@ def update_chart(state):
 
  # Creation of our first scenario
  create_scenario()
- Gui(page=scenario_page).run()
-    
+ Gui(page=scenario_page).run()  
 ```

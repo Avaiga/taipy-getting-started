@@ -33,7 +33,7 @@ page_scenario_manager = page + """
 
 ```
 
-Here are the main functions that will manage the scenario. `create_scenario` function is almost the same as before whereas there have been some addition made to the `submit` function.
+`create_scenario` function is almost the same as before whereas there have been some addition made to the `submit` function.
 
 ```python
 
@@ -46,8 +46,13 @@ def create_scenario():
     selected_scenario = scenario.id
   
     tp.submit(scenario)
+```
 
+In the `submit` function, two essential Taipy functions are introduced
+- `tp.get(scenario_id)`: Taipy function used to get the scenario from its id.
+- `.write(new_value)`: is the function of a data node that allows you to change the value stored in the data node. For example, `scenario.max_capacity` is a data node whose value can be changed to 100 like this `scenario.max_capacity.write(100)`.
 
+```python
 def submit(state):
     print("Submitting scenario...")
     # Get the selected scenario, we have just one scenario created
@@ -66,7 +71,11 @@ def submit(state):
     
     # Update the chart when we change the scenario
     update_chart(state)
+```
 
+`update_chart` uses a previous function (`update_predictions_dataset`) to update the predictions_dataset with the correct pipeline.
+
+```python
 def update_chart(state):
     # Select the right scenario and pipeline
     scenario = tp.get(selected_scenario)

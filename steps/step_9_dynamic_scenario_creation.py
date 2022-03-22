@@ -36,6 +36,8 @@ def create_name_for_scenario(state)->str:
         name += f" ({len(state.scenario_selector)})"
     return name
 
+import time
+
 # Change the create_scenario function in order to change the default parameters
 # and to be able to create multiple scenarios
 def create_scenario(state):
@@ -45,8 +47,10 @@ def create_scenario(state):
     display_name = create_name_for_scenario(state)
     
     # Create a scenario
+    start = time.time()
     scenario = tp.create_scenario(scenario_cfg, creation_date=creation_date, name=display_name)
-
+    print(f"Scenario created in {time.time() - start} seconds")
+    
     state.selected_scenario = (scenario.id, display_name)
     
     # Submit the scenario that is currently selected

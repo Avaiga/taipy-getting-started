@@ -1,12 +1,16 @@
-Great! Now, the page has a lot of visual elements. The slider is interactive and is changing `value`. Everything is managed by Taipy. However, in some cases, connecting a variable to other variables can be interesting. For example, to create a chart that will only display one week of data, a connection has to be created between the value of the slider and the data.
+Great! Now, the page has a lot of visual elements. The slider is interactive and is changing `value`. Taipy manages everything. However, connecting a variable to other variables can be attractive. For example, to create a chart that will only display one week of data, a connection has to be made between the slider's value and the data.
 
 # state
 
-What is the state of the application? The state of the application is the current state of the variables so the values of all the variables. In the beginning, state.value = 10 and state.data is the dataset for the 10th week. To manipulate variables in the GUI, we pass through the state.
+What is the state of the application? The application's state is the current state of the variables, so the values of all the variables. In the beginning, `state.value = 10` and `state.data` is the dataset for the 10th week. To manipulate variables in the GUI, we pass through the state.
 
-# How to connect two variables - the *on_change* function
+# How to connect two variables - the *[on_change](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/callbacks/)* function
 
-In *Taipy*, the `on_change` function is a "special" function. **Taipy** will look if you created a function with this name in your code and will use it. This is a *callback* function called whenever the state of a variable changes. It has three parameters: state (the state of the variables), the variable name that has been changed and its value. Here, `on_change` will be called whenever the value of the slider changes. Each time it changes, `state.data` will be updated according to the week. Then, Taipy will propagate automatically this change to the associated chart.
+In *Taipy*, the `on_change` function is a "special" function. **Taipy** will look if you created a function with this name in your code and will use it. Whenever the state of a variable changes, Taipy calls this *callback* function with three parameters:
+- state (the state of the variables)
+- The changed variable name
+- And its value.
+Here, `on_change` will be called whenever the slider's value changes. Each time it changes, `state.data` will be updated according to the week. Then, Taipy will propagate this change automatically to the associated chart
 
 ```python
 ... # code from earlier steps

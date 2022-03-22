@@ -1,10 +1,11 @@
 # Building the GUI and buttons
 
-Let's update the GUI to display the results of the pipeline. You can find a "Predict" [button](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/button/) on the page that will create and run it. The function in the *on_action* parameter will be called whenever the button is pressed.
+Let's update the GUI to display the results of the pipeline. You can find a "Predict" [button](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/button/) on the page to create the pipeline and run it. When you press the button, Taipy calls the function in the *on_action* parameter.
 
 `<|Text displayed on button|button|on_action=fct_name_called_when_pressed|>`
 
-To see if the predictions seem correct, a chart control has been added to the markdown. On the chart, two traces are drawn: the historical values and the predicted values. 
+A chart control has been added to the markdown to see if the predictions seem correct. On the chart, the chart creates two traces: the historical values and the predicted values.
+
 ```python
 import numpy as np
 import pandas as pd
@@ -38,7 +39,8 @@ def create_and_submit_pipeline():
     return pipeline
 ```
 
-After the first submit of the pipeline, datanodes from the pipelines can be read (predictions, cleaned_data,...). The `read` function is used to get the data pointed by the datanodes. `create_predictions_dataset` reads the datanodes to create a prediction dataset with these columns: Date, Historical values, Predicted values. Its goal is to create the prediction dataset and display it in a chart. A good option would have been to directly create the results in the pipeline before. It is typically the good practice to put all complexicity of a pipeline in it.
+After the first submission of the pipeline, the data stored in the data nodes are accessible (predictions, cleaned_data, etc.). It is the use of the `.read()` function.
+`create_predictions_dataset` reads the data nodes to create a prediction dataset with these columns: Date, Historical values, Predicted values. The goal is to make the prediction dataset and display it in a chart. However, a good option would have been to create this dataset directly in the pipeline. It is typically good to put all complexity in it.
 
 ```python
 def create_predictions_dataset(pipeline):
@@ -68,7 +70,11 @@ def create_predictions_dataset(pipeline):
     return pd.concat([temp_df['Date'], historical_values, predicted_values], axis=1)
 ```
 
+<<<<<<< Updated upstream
 The last function is the one calling `create_predictions_dataset` when the button is pressed and updating the state of `predictions_dataset` to display the proper chart.
+=======
+When you press the 'Predict' button, Taipy calls this last function. It will update the predictions dataset, and this change will propagate to the chart.
+>>>>>>> Stashed changes
 
 ```python
 
@@ -81,6 +87,3 @@ Gui(page=pipeline_page).run()
 ```
 
 <img src="/steps/images/step_5_result.png" />
-
-
-    
