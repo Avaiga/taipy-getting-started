@@ -11,7 +11,7 @@ To apprehend the Scenario Management aspect of Taipy, there are just 4 concepts 
 - [**Scenarios**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/scenario/): are your business problem with some parameters. They usually consist of one or multiple pipelines.
 
 
-Let's create a Machine Learning example. In a Machine Learning, you normally have a training and a testing pipeline. In a lot of situations, you also have a lot of testing pipelines with different models.
+Let's create a Machine Learning example. In a Machine Learning problem, it is usual to have multiple training and testing pipelines for different algorithms.
 To simplify this problem for the **Getting Started**, one baseline pipeline will be configured in this step. Therefore, the goal is to create a Directed Acyclic Graph (DAG) that represents this pipeline. This single pipeline takes the initial dataset, clean it and give predictions for the the *day* without knowing the days after *day*.
 
 <img src="/steps/images/baseline_pipeline.svg" height=700 width=700px alt="centered image"/>
