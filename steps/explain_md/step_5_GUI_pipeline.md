@@ -4,7 +4,7 @@ Let's update the GUI to display the results of the pipeline. You can find a "Pre
 
 `<|Text displayed on button|button|on_action=fct_name_called_when_pressed|>`
 
-The results is then displayed in the chart by updating it. A good option would have been to directly create the results in the piepline before. It is typically the good practice to put all complexicity of a pipeline in it.
+The results is then displayed in the chart by updating it. A good option would have been to directly create the results in the pipeline before. It is typically the good practice to put all complexicity of a pipeline in it.
 
 
 ```python
