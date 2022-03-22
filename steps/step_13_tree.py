@@ -108,8 +108,7 @@ def create_scenario(state):
     state.selected_scenario = (scenario.id, display_name)
 
     # Change the scenario that is currently selected
-    scenario = submit_scenario(state)
-    return scenario
+    submit_scenario(state)
 
 
 def submit_scenario(state):
@@ -143,7 +142,6 @@ def submit_scenario(state):
     
     # Update the chart directly
     update_chart(state)
-    return scenario
 
 
 def make_official(state):
