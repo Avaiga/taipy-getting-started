@@ -18,7 +18,7 @@ dataset = get_data(path_to_csv)
 ...
 ```
 
-The `dataset` is a `pd.DataFrame`, a basic *Python* object representing here a real time serie. Like for many real dataset, it means that for certain days there will be no information. The columns are Index, Date and Value. The Index is a unique identifier for each data point. The Date is the date of the data point. The Value is the value of the data point.
+The `dataset` is a `pd.DataFrame`, a basic *Python* object representing here a real time serie. Like many real dataset, it means that for certain days there will be no information. The columns are Index, Date and Value. The Index is a unique identifier for each data point. The Date is the date of the data point. The Value is the value of the data point.
 
 
 After creating your first web client with just one line of code and reading your data with this code, let's create a more complicated page.
