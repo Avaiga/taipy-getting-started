@@ -14,7 +14,7 @@ To apprehend the Scenario Management aspect of Taipy, there are just 4 concepts 
 Let's create a Machine Learning example. In a Machine Learning, you normally have a training and a testing pipeline. In a lot of situations, you also have a lot of testing pipelines with different models.
 To simplify this problem for the **Getting Started**, one baseline pipeline will be configured in this step. Therefore, the goal is to create a Directed Acyclic Graph (DAG) that represents this pipeline. This single pipeline takes the initial dataset, clean it and give predictions for the the *day* without knowing the days after *day*.
 
-<img src="/steps/images/baseline_pipeline.svg" height=700 width=700px />
+<img src="/steps/images/baseline_pipeline.svg" height=700 width=700px alt="centered image"/>
 
 The creation of this graph is done by configuring datanodes (variables) and tasks (functions). Nothing is executed, it is just a setup to create the DAG.
 
@@ -98,7 +98,7 @@ Tasks are the translation of functions in Taipy. This is through these tasks tha
 
 The first task that you want to create is your *clean_data* task. It will take your initial dataset and clean it. 
 
-<img src="/steps/images/clean_data.svg" height=300px width=500px />
+<img src="/steps/images/clean_data.svg" height=300px width=500px alt="centered image"/>
 
 ```python
 clean_data_task_cfg = tp.configure_task(id="clean_data",
@@ -111,7 +111,7 @@ clean_data_task_cfg = tp.configure_task(id="clean_data",
 
 This task will take your cleaned dataset and predict according your parameters.
 
-<img src="/steps/images/predict_baseline.svg" height=500px width=500px/>
+<img src="/steps/images/predict_baseline.svg" height=500px width=500px alt="centered image"/>
 
 ```python
 predict_baseline_task_cfg = tp.configure_task(id="predict_baseline",
