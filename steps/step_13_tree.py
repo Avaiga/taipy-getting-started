@@ -99,7 +99,7 @@ tree_lov = build_tree_lov(tree_dict)
 def create_scenario(state):
     print("Execution of scenario...")
     # Extra information for scenario   
-    creation_date = dt.datetime(state.day.year, state.day.month, state.day.day)
+    creation_date = state.day
     display_name = create_name_for_scenario(state)
     
     # Create a scenario with the week cycle 
