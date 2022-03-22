@@ -11,3 +11,5 @@ from taipy.gui import Gui
 
 Gui(page="# Getting started with *Taipy*").run()
 ```
+
+<img src="/steps/images/step_0_result.png" height=700 width=700px alt="centered image"/>

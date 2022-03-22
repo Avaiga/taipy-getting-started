@@ -17,10 +17,19 @@ selected_scenario = None
 ```
 
 ```python
-scenario_manager_page = ...
-```
+scenario_manager_page = page + """
+...
 
-```python
+<|Create new scenario|button|on_action=create_scenario|>
+
+## Scenario <|{selected_scenario}|selector|lov={scenario_selector}|dropdown=True|>
+
+## Display the pipeline
+<|{selected_pipeline}|selector|lov={pipeline_selector}|>
+
+<|{predictions_dataset}|chart|type=bar|x=Date|y[1]=Historical values|y[2]=Predicted values|height=80%|width=100%|>
+"""
+
 def create_name_for_scenario(state):
     ...
     return name # name is just a string for the scenario
