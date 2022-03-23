@@ -10,7 +10,7 @@ from taipy.gui import Gui
 Gui("<|menu|label=Menu|lov={['Data Visualization', 'Scenario Manager']}|>").run()
 ```
 <p align="center">
-    <img src="/steps/images/menu.png" width=100>
+    <img src="/steps/images/menu.png" width=50>
 </p>
 
 
