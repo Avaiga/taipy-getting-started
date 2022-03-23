@@ -22,10 +22,10 @@ dataset = get_data(path_to_csv)
 - Index is a unique identifier for each data point.
 - Date is the date of the data point.
 - Value is its value.
-After creating your first web client with just one line of code and reading your data with this code, let's create a more detailed page.
 
 <center><img src="/steps/images/table.png" ></center>
 
+After creating your first web client with just one line of code and reading your data with this code, let's create a more detailed page.
 
 # Visual elements
 
