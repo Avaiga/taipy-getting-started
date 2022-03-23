@@ -1,6 +1,8 @@
 **Taipy** is composed of two concepts: the **Graphical User Interface** and the **Scenario Management**. These two components are independent. You can use the GUI component without the Scenario Management and vice-versa. However, as you will see, they are incredibly efficient when combined.
 
-<center><img src="/steps/images/taipy-gui-core-illustration.svg" height=500px width=500px></center>
+<p align="center">
+  <img src="/steps/images/taipy-gui-core-illustration.svg" height=500px width=500px>
+</p>
 
 To create your first Taipy web page, you only need one line of code. Create a Gui object with a String and run it. Then, the client link will be displayed in the console. Enter the URL in a web browser to open your first Taipy web client!
 
