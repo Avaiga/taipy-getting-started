@@ -78,6 +78,5 @@ Interact with this slider to change the week number:
 # Create a Gui object with our String
 Gui(page=page).run()
 ```
-![Alt Text](/steps/images/step_1_result.png)
 
 ![Alt Text](/steps/images/step_1_result.gif)
