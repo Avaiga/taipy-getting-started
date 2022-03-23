@@ -12,11 +12,11 @@ initial_dataset_cfg = tp.configure_data_node(id="initial_dataset",
                                              storage_type="csv",
                                              path=path_to_csv)
 
+day_cfg = tp.configure_data_node(id="day", default_data=dt.datetime(2021, 7, 26))
+
 n_predictions_cfg = tp.configure_data_node(id="n_predictions", default_data=40)
 
 max_capacity_cfg = tp.configure_data_node(id="max_capacity", default_data=200)
-
-day_cfg = tp.configure_data_node(id="day", default_data=dt.datetime(2021, 7, 26))
 
 ## Remaining datanodes
 cleaned_dataset_cfg = tp.configure_data_node(id="cleaned_dataset") # ,

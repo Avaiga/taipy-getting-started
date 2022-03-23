@@ -2,7 +2,7 @@
 
 Let's update the GUI to display the results of the pipeline. You can find a "Predict" [button](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/button/) on the page to create the pipeline and run it. When you press the button, Taipy calls the function in the *on_action* parameter.
 
-`<|Text displayed on button|button|on_action=fct_name_called_when_pressed|>`
+<center>`<|Text displayed on button|button|on_action=fct_name_called_when_pressed|>`</center>
 
 A chart control has been added to the markdown to see if the predictions seem correct. On the chart, the chart creates two traces: the historical values and the predicted values.
 
@@ -82,4 +82,4 @@ def update_predictions_dataset(state, pipeline):
 Gui(page=pipeline_page).run()
 ```
 
-<img src="/steps/images/step_5_result.png" />
+<center><img src="/steps/images/step_5_result.png" /></center>
