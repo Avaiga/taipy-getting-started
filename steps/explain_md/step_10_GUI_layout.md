@@ -3,7 +3,15 @@ To get a more aesthetically pleasing page, three useful controls to use are:
 - [menu](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/menu/): creates a menu on the left to navigate through the pages.
 `<|menu|label=Menu|lov={lov_pages}|on_action=menu_fct_called|>`
 
->> show the effect on empty
+For example, this code creates a menu with two pages:
+```
+from taipy.gui import Gui
+
+Gui("<|menu|label=Menu|lov={['Data Visualization', 'Scenario Manager']}|>").run()
+```
+
+<center><img src="/steps/images/menu.png" ></center>
+
 
 - [part](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/part/): is used to create a group of text/visual elements. A useful parameter of 'part' is render. Set to False, it will not display the part.
 ```
