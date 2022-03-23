@@ -60,5 +60,5 @@ def update_chart(state):
 ```
 
 <p align="center">
-    <img src="/steps/images/step_7_result.gif" width=500>
+    <img src="/steps/images/step_7_result.gif" width=700>
 </p>
