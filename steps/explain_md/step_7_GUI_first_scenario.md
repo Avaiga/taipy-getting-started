@@ -2,7 +2,9 @@
 
 Just as before, you are going to create a GUI around this new configuration. The scenario will be created and executed at the beginning then, a selector will be used to select a pipeline among the `baseline` and `ml` pipeline.
 
-![Alt Text](/steps/images/selector.gif)
+<p align="center">
+    ![Alt Text](/steps/images/selector.gif)
+</p>
 
 A [selector](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/selector/) only need two parameters: a value that will change through the selector and the list of values possible (lov). Here is the syntax for selector: `<|{selected_value}|selector|lov={lov_selector}|>`. The Update chart button will update the chart according to the selected pipeline.
 
