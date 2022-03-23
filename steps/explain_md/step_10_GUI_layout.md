@@ -9,8 +9,9 @@ from taipy.gui import Gui
 
 Gui("<|menu|label=Menu|lov={['Data Visualization', 'Scenario Manager']}|>").run()
 ```
-
-<center><img src="/steps/images/menu.png" ></center>
+<p align="center">
+    <img src="/steps/images/menu.png" width=100>
+</p>
 
 
 - [part](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/part/): is used to create a group of text/visual elements. A useful parameter of 'part' is render. Set to False, it will not display the part.
