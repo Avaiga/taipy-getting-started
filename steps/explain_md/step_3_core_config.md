@@ -8,7 +8,7 @@ There are a lot of reasons to use Taipy Core.
 Taipy allows you to manage them effortlessly. To apprehend the Scenario Management aspect of Taipy, you need to understand four essential concepts.
 
 ## Four basic [concepts](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/) in Taipy Core:
-- [**Datanodes**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/data-node/): are the translation of variables in Taipy. They are objects that point to your data (pickle, CSV, JSON, etc.). They know how to read and write data.
+- [**Datanodes**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/data-node/): are the translation of variables in Taipy. They are objects that point to your data (pickle, CSV, JSON, etc.). They know how to read and write data. The default storage type of data nodes (pickle) ...
 - [**Tasks**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/task/): are the translation of functions in Taipy.
 - [**Pipelines**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/pipeline/): are a list of tasks executed with intelligent scheduling created automatically by Taipy. They usually represent a series of tasks for different algorithms like a baseline or Machine-Learning algorithm.
 - [**Scenarios**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/scenario/): are your business problem with some parameters. They usually consist of one or multiple pipelines.
@@ -23,7 +23,7 @@ The creation of this graph is done by configuring data nodes (variables) and tas
 
 # Datanodes configuration
 
-Anykind of serializable object can be used as a datanode: int, string, dict, list, np.array, pd.DataFrame, models etc...
+Data nodes can point to anykind of *Python* variables by default: int, string, dict, list, np.array, pd.DataFrame, models, etc. Taipy has the ability to read and write a CSV, or pickle file.
 
 Let me introduce some parameters for datanodes :
 - **Storage_type**: There are multiple storage types. You can read csv file, SQL database, pickle file, etc.
