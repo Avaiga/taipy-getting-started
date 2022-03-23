@@ -4,7 +4,7 @@ To get a more aesthetically pleasing page, three useful controls to use are:
 `<|menu|label=Menu|lov={lov_pages}|on_action=menu_fct_called|>`
 
 For example, this code creates a menu with two pages:
-```
+```python
 from taipy.gui import Gui
 
 Gui("<|menu|label=Menu|lov={['Data Visualization', 'Scenario Manager']}|>").run()
