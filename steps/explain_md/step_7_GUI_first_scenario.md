@@ -52,3 +52,4 @@ def update_chart(state):
  scenario = create_scenario()
  Gui(page=scenario_page).run()  
 ```
+![Alt Text](/steps/images/step_7_result.gif)

@@ -37,3 +37,4 @@ def on_change(state, var_name: str, var_value):
 Gui(page=page).run()
 ```
 <center><img src="/steps/images/step_2_result.png"></center>
+![Alt Text](/steps/images/step_2_result.gif)

@@ -89,4 +89,4 @@ global selected_scenario
 create_scenario()
 Gui(page=page_scenario_manager).run()
 ```
-
+![Alt Text](/steps/images/step_8_result.gif)
