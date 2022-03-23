@@ -8,7 +8,7 @@ There are a lot of reasons to use Taipy Core.
 Taipy allows you to manage them effortlessly. To apprehend the Scenario Management aspect of Taipy, you need to understand four essential concepts.
 
 ## Four basic [concepts](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/) in Taipy Core:
-- [**Datanodes**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/data-node/): are the translation of variables in Taipy. They are objects that point to your data (pickle, CSV, JSON, etc.). They know how to read and write data. The default storage type of data nodes (pickle) ...
+- [**Datanodes**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/data-node/): are the translation of variables in Taipy. They don't contain the data itself but knows how to retrieve it. It can refer to any type of data: any *Python* object (string, int, list, dict, model, dataframe, etc), Pickle, CSV file or even SQL database. They know how to read and write data. You can even write your own custom data node if needed to access a particular data.
 - [**Tasks**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/task/): are the translation of functions in Taipy.
 - [**Pipelines**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/pipeline/): are a list of tasks executed with intelligent scheduling created automatically by Taipy. They usually represent a series of tasks for different algorithms like a baseline or Machine-Learning algorithm.
 - [**Scenarios**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/scenario/): are your business problem with some parameters. They usually consist of one or multiple pipelines.
