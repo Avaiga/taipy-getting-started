@@ -18,7 +18,7 @@ dataset = get_data(path_to_csv)
 ...
 ```
 
-`dataset` is a `pd.DataFrame`, a basic *Python* object representing a real time series. Because of that, there will be no information for specific days. The columns are Index, Date, and Value.
+`dataset` is a `pd.DataFrame`, a basic *Python* object representing in this case a real time series. Because of that, there will be no information for specific days. The columns are Index, Date, and Value.
 - Index is a unique identifier for each data point.
 - Date is the date of the data point.
 - Value is its value.
