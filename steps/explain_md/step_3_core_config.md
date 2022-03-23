@@ -18,7 +18,7 @@ Let's create a Machine Learning example to make it clearer. In a Machine Learnin
 For simplification, one baseline pipeline will be configured in this step. Therefore, the goal is to create a Directed Acyclic Graph (DAG) that represents this pipeline. This single pipeline takes the initial dataset, cleans it, and gives predictions for the *day* without knowing the days after *day*.
 
 <p align="center">
-            <img src="/steps/images/baseline_pipeline.svg" height=700 width=700px>
+            <img src="/steps/images/baseline_pipeline.svg" width=500>
 </p>
 
 
@@ -108,7 +108,7 @@ Tasks are the translation of functions in Taipy. These tasks combined with data 
 The first task that you want to create is your *clean_data* task. It will take your initial dataset and clean it.
 
 <p align="center">
-            <img src="/steps/images/clean_data.svg" height=300px width=500px>
+            <img src="/steps/images/clean_data.svg" width=300>
 </p>
 
 ```python
@@ -123,7 +123,7 @@ clean_data_task_cfg = tp.configure_task(id="clean_data",
 This task will take your cleaned dataset and predict it according to your parameters.
 
 <p align="center">
-            <img src="/steps/images/predict_baseline.svg" height=500px width=500px>
+            <img src="/steps/images/predict_baseline.svg" width=300>
 </p>
 
 ```python
