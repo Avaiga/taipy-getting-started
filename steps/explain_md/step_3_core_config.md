@@ -1,21 +1,20 @@
 With this last code, you should understand the basics of Taipy GUI. Let's go for a moment to the Scenario Management aspect of Taipy.
 
 There are a lot of reasons to use Taipy Core.
-- With it, you can efficiently manage the execution of your functions
+- Efficiently manage the execution of your functions
 - Keep track of data and KPIs.
-- It is handy to manage multiple pipelines in the context of Machine Learning or Mathematical optimization.
-- Taipy allows you to manage them effortlessly.
+- Handy to manage multiple pipelines in the context of Machine Learning or Mathematical optimization.
 
-To apprehend the Scenario Management aspect of Taipy, you need to understand four essential concepts.
+Taipy allows you to manage them effortlessly. To apprehend the Scenario Management aspect of Taipy, you need to understand four essential concepts.
 
 ## Four basic [concepts](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/) in Taipy Core:
-- [**Datanodes**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/data-node/): are the translation of variables in Taipy. They are objects that point to your data (pickle, CSV, JSON, etc.). They know how to read and write data.
+- [**Datanodes**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/data-node/): are the translation of variables in Taipy. They don't contain the data itself but knows how to retrieve it. It can refer to any type of data: any *Python* object (string, int, list, dict, model, dataframe, etc), Pickle, CSV file or even SQL database. They know how to read and write data. You can even write your own custom data node if needed to access a particular data.
 - [**Tasks**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/task/): are the translation of functions in Taipy.
 - [**Pipelines**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/pipeline/): are a list of tasks executed with intelligent scheduling created automatically by Taipy. They usually represent a series of tasks for different algorithms like a baseline or Machine-Learning algorithm.
 - [**Scenarios**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/scenario/): are your business problem with some parameters. They usually consist of one or multiple pipelines.
 
 
-Let's create a Machine Learning example. In a Machine Learning problem, it is usual to have numerous training and testing pipelines for different algorithms.
+Let's create a Machine Learning example to make it clearer. In a Machine Learning problem, it is usual to have numerous training and testing pipelines for different algorithms.
 For simplification, one baseline pipeline will be configured in this step. Therefore, the goal is to create a Directed Acyclic Graph (DAG) that represents this pipeline. This single pipeline takes the initial dataset, cleans it, and gives predictions for the *day* without knowing the days after *day*.
 
 <center><img src="/steps/images/baseline_pipeline.svg" height=700 width=700px></center>
@@ -24,9 +23,9 @@ The creation of this graph is done by configuring data nodes (variables) and tas
 
 # Datanodes configuration
 
-Anykind of serializable object can be used as a datanode: int, string, dict, list, np.array, pd.DataFrame, models etc...
+Data nodes can point to anykind of *Python* variables by default: int, string, dict, list, np.array, pd.DataFrame, models, etc. Taipy has the ability to read and write a CSV, Pickle file or SQL database through a data node.
 
-Let me introduce some parameters for datanodes :
+Let me introduce some parameters for data nodes :
 - **Storage_type**: There are multiple storage types. You can read csv file, SQL database, pickle file, etc.
             Here, you are going to create a csv datanode to read/store the initial dataset. Taipy knows how to access it thanks to the path.
 

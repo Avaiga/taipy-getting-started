@@ -6,7 +6,7 @@ The data used in the following codes will be retrieved this way.
 import pandas as pd
 
 def get_data(path_to_csv: str):
-    # "pd.read_csv()" function returns a dataframe
+    # "pd.read_csv()" function returns a pd.DataFrame
     dataset = pd.read_csv(path_to_csv)
     dataset['Date'] = pd.to_datetime(dataset['Date'])
     return dataset
@@ -18,7 +18,7 @@ dataset = get_data(path_to_csv)
 ...
 ```
 
-`dataset` is a `pd.DataFrame`, a basic *Python* object representing a real time series. Because of that, there will be no information for specific days. The columns are Index, Date, and Value.
+`dataset` is a `pd.DataFrame`, a basic *Python* object representing in this case a real time series. Because of that, there will be no information for specific days. The columns are Index, Date, and Value.
 - Index is a unique identifier for each data point.
 - Date is the date of the data point.
 - Value is its value.
@@ -34,7 +34,7 @@ Taipy GUI can be considered as an **augmented** Markdown; it adds on top of all 
 Every visual element has a similar syntax.`<|{desired_variable}|visual_elements_name|param_1=param_1|param_2=param_2| ... |>`. For example, a [slider](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/slider/) is written this way :`<|{variable}|slider|min=min_value|max=mx_value|>`(min and max are optional).
 To add it on a page, write this syntax wherever you want in your string representing your page.
 
-The first part of the page will show the value of a *Python* variable and a slider with this syntax.
+The first part of the new page will show the value of a *Python* variable and a slider with this syntax.
 ```
 *<|{n_week}|>*
 <|{n_week}|slider|min=1|max=52|>
