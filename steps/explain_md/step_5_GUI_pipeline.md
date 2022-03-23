@@ -82,4 +82,7 @@ def update_predictions_dataset(state, pipeline):
 Gui(page=pipeline_page).run()
 ```
 
-<center><img src="/steps/images/step_5_result.png"></center>
+<p align="center">
+    <img src="/steps/images/step_5_result.gif" width=700>
+</p>
+                                                              
