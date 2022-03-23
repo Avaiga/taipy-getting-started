@@ -18,7 +18,7 @@ page_scenario_manager = """
 |>
 
 <|
-**Number of predictions**\n\n<|{number_predictions}|number|>
+**Number of predictions**\n\n<|{n_predictions}|number|>
 |>
 
 <|

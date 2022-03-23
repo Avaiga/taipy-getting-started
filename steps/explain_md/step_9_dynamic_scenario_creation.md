@@ -11,8 +11,8 @@ all_scenarios = tp.get_scenarios()
 
 # Initial variables
 ## Initial variable for the scenario selector
-# The value of my selector will be the ids and what is display will be the display_name of my scenario
-scenario_selector = [(scenario.id, scenario.display_name) for scenario in all_scenarios]
+# The value of my selector will be the ids and what is display will be the name of my scenario
+scenario_selector = [(scenario.id, scenario.name) for scenario in all_scenarios]
 selected_scenario = None
 ```
 
@@ -46,12 +46,12 @@ def create_scenario(state):
     print("Execution of scenario...")
     # Extra information for the scenario
     creation_date = state.day
-    display_name = create_name_for_scenario(state)
+    name = create_name_for_scenario(state)
     
     # Create a scenario
-    scenario = tp.create_scenario(scenario_cfg, creation_date=creation_date, name=display_name)
+    scenario = tp.create_scenario(scenario_cfg, creation_date=creation_date, name=name)
 
-    state.selected_scenario = (scenario.id, display_name)
+    state.selected_scenario = (scenario.id, name)
     
     # Submit the scenario that is currently selected
     submit_scenario(state)
@@ -82,7 +82,7 @@ This is the funciton that will update the scenario selector whenever the user cr
 def update_scenario_selector(state, scenario):
     print("Updating scenario selector...")
     # Update the scenario selector
-    state.scenario_selector += [(scenario.id, scenario.display_name)]
+    state.scenario_selector += [(scenario.id, scenario.name)]
 
 ```
 

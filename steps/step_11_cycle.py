@@ -14,14 +14,14 @@ scenario_weekly_cfg = tp.configure_scenario(id="scenario",
                                      frequency=Frequency.DAILY)
 
 # Change the inital scenario selector to see which scenario are officials
-scenario_selector = [(scenario.id, ("*" if scenario.is_official else "") + scenario.display_name) for scenario in all_scenarios]
+scenario_selector = [(scenario.id, ("*" if scenario.is_official else "") + scenario.name) for scenario in all_scenarios]
 
 # Redefine update_scenario_selector to add '*' in the display name when the scnario is official
 def update_scenario_selector(state, scenario):
     print("Updating scenario selector...")
     # Create the scenario name for the scenario selector
     # This name changes dependind whether the scenario is official or not
-    scenario_name = ("*" if scenario.is_official else "") + scenario.display_name
+    scenario_name = ("*" if scenario.is_official else "") + scenario.name
     
     # Update the scenario selector
     state.scenario_selector += [(scenario.id, scenario_name)]
@@ -29,23 +29,26 @@ def update_scenario_selector(state, scenario):
 
 selected_scenario_is_official = None
 
+list_time = []
 
 # Change the create_scenario function to create a scenario with the selected frequency
 def create_scenario(state):
-    print("Execution of scenario...")
-    # Extra information for scenario
-    creation_date = state.day
-    display_name = create_name_for_scenario(state)
-    
-    # Create a scenario with the week cycle
-    start = time.time()
-    scenario = tp.create_scenario(scenario_weekly_cfg, creation_date=creation_date, name=display_name)
-    print("Scenario created in {} seconds".format(time.time() - start))
-    
-    state.selected_scenario = (scenario.id, display_name)
+        #for i in range(100):
+        print("Execution of scenario...")
+        # Extra information for scenario
+        creation_date = state.day
+        name = create_name_for_scenario(state)
 
-    # Change the scenario that is currently selected
-    submit_scenario(state)
+        # Create a scenario with the week cycle
+        start = time.time()
+        scenario = tp.create_scenario(scenario_weekly_cfg, creation_date=creation_date, name=name)
+        print("Scenario created in {} seconds".format(time.time() - start))
+        list_time.append(time.time() - start)
+        state.selected_scenario = (scenario.id, name)
+
+        # Change the scenario that is currently selected
+        submit_scenario(state)
+        #json.dump(list_time, open("time_cycle.json", "w"))
 
 
 def remove_scenario_from_selector(state, scenario: list):
@@ -60,12 +63,10 @@ def delete_scenario(state):
         notify(state,'info', 'Cannot delete the official scenario')
     else:
         # Delete the scenario and the related objects (datanodes, tasks, jobs,...)
-        os.remove('.data/scenarios/' + scenario.id + '.json')
-        # tp.delete_scenario(scenario)
+        tp.delete_scenario(scenario)
         
         # Update the scenario selector accordingly
         remove_scenario_from_selector(state,scenario)
-        state.selected_scenario = None
     
 
 def make_official(state):
@@ -75,7 +76,7 @@ def make_official(state):
     tp.set_official(scenario)
     
     # Update the scenario selector accordingly
-    state.scenario_selector = [(scenario.id, ("*" if scenario.is_official else "") + scenario.display_name) for scenario in tp.get_scenarios()]
+    state.scenario_selector = [(scenario.id, ("*" if scenario.is_official else "") + scenario.name) for scenario in tp.get_scenarios()]
     state.selected_scenario_is_official = True
 
 # Change the page_scenario_manager to add a delete scenario button and a make official button
@@ -92,7 +93,7 @@ page_scenario_manager = """
 |>
 
 <|
-**Number of predictions**\n\n<|{number_predictions}|number|>
+**Number of predictions**\n\n<|{n_predictions}|number|>
 |>
 
 <|
@@ -144,7 +145,7 @@ multi_pages = """
 
 
 def on_change(state, var_name: str, var_value):
-    if var_name == 'number_week':
+    if var_name == 'n_week':
         # Update the dataset when the slider is moved
         state.dataset_week = dataset[dataset['Date'].dt.isocalendar().week == var_value]
         

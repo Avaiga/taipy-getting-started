@@ -34,14 +34,14 @@ def create_predictions_dataset(pipeline):
     # Read data from the pipeline
     predictions = pipeline.predictions.read()
     day = pipeline.day.read()
-    number_predictions = pipeline.number_predictions.read()
+    n_predictions = pipeline.n_predictions.read()
     cleaned_data = pipeline.cleaned_dataset.read()
     
     # Set the time window for the chart (5 days, 5 weeks, 5 months,...)
-    window = 5 * number_predictions
+    window = 5 * n_predictions
 
     # Create the historical dataset that will be displayed
-    new_length = len(cleaned_data[cleaned_data['Date'] < day]) + number_predictions
+    new_length = len(cleaned_data[cleaned_data['Date'] < day]) + n_predictions
     temp_df = cleaned_data[:new_length]
     temp_df = temp_df[-window:].reset_index(drop=True)
     

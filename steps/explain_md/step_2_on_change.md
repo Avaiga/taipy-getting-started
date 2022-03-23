@@ -16,21 +16,21 @@ Here, `on_change` will be called whenever the slider's value changes. Each time 
 ... # code from earlier steps
 
 # Display the week given by the slider
-dataset_week = dataset[dataset['Date'].dt.isocalendar().week == number_week]
+dataset_week = dataset[dataset['Date'].dt.isocalendar().week == n_week]
 
 page = """
 # Getting started with Taipy
 
-Select week: *<|{number_week}|>*
+Select week: *<|{n_week}|>*
 
-<|{number_week}|slider|min=1|max=52|>
+<|{n_week}|slider|min=1|max=52|>
 
 <|{dataset_week}|chart|x=Date|y=Value|height=100%|width=100%|type=bar|>
 """
 
 # The on_change is the function that is called when any variable is changed
 def on_change(state, var_name: str, var_value):
-    if var_name == 'number_week':
+    if var_name == 'n_week':
         # Update the dataset when the slider is moved
         state.dataset_week = dataset[dataset['Date'].dt.isocalendar().week == var_value]
 

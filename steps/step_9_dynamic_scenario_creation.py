@@ -5,8 +5,8 @@ all_scenarios = tp.get_scenarios()
 
 # Initial variables
 ## Initial variable for the scenario selector
-# The value of my selector will be the ids and what is display will be the display_name of my scenario
-scenario_selector = [(scenario.id, scenario.display_name) for scenario in all_scenarios]
+# The value of my selector will be the ids and what is display will be the name of my scenario
+scenario_selector = [(scenario.id, scenario.name) for scenario in all_scenarios]
 selected_scenario = None
 
 scenario_manager_page = page + """
@@ -16,7 +16,7 @@ scenario_manager_page = page + """
 
 **Max capacity**\n\n <|{max_capacity}|number|>
 
-**Number of predictions**\n\n<|{number_predictions}|number|>
+**Number of predictions**\n\n<|{n_predictions}|number|>
 
 <|Create new scenario|button|on_action=create_scenario|>
 
@@ -29,7 +29,7 @@ scenario_manager_page = page + """
 """
 
 def create_name_for_scenario(state)->str:
-    name = f"Scenario ({state.day.strftime('%A, %d %b %Y')}; {state.max_capacity}; {state.number_predictions})"
+    name = f"Scenario ({state.day.strftime('%A, %d %b %Y')}; {state.max_capacity}; {state.n_predictions})"
     
     # If the name is already a name of a scenario, we change it
     if name in [s[1] for s in state.scenario_selector]:
@@ -38,23 +38,28 @@ def create_name_for_scenario(state)->str:
 
 import time
 
+list_time = []
+
+import json
+
 # Change the create_scenario function in order to change the default parameters
 # and to be able to create multiple scenarios
 def create_scenario(state):
-    print("Execution of scenario...")
-    # Extra information for the scenario
-    creation_date = state.day
-    display_name = create_name_for_scenario(state)
+        #for i in range(100):
+        print("Execution of scenario...")
+        # Extra information for the scenario
+        creation_date = state.day
+        name = create_name_for_scenario(state)
+        # Create a scenario
+        start = time.time()
+        scenario = tp.create_scenario(scenario_cfg, creation_date=creation_date, name=name)
+        print(f"Scenario created in {time.time() - start} seconds")
+        list_time.append(time.time() - start)
+        state.selected_scenario = (scenario.id, name)
+        # Submit the scenario that is currently selected
+        submit_scenario(state)
     
-    # Create a scenario
-    start = time.time()
-    scenario = tp.create_scenario(scenario_cfg, creation_date=creation_date, name=display_name)
-    print(f"Scenario created in {time.time() - start} seconds")
-    
-    state.selected_scenario = (scenario.id, display_name)
-    
-    # Submit the scenario that is currently selected
-    submit_scenario(state)
+        #json.dump(list_time, open("time.json", "w"))
 
 
 def submit_scenario(state):
@@ -68,8 +73,8 @@ def submit_scenario(state):
     # Change the default parameters by writing in the datanodes
     #if state.day != scenario.day.read():
     scenario.day.write(day)
-    #if int(state.number_predictions) != scenario.number_predictions.read(): 
-    scenario.number_predictions.write(int(state.number_predictions))
+    #if int(state.n_predictions) != scenario.n_predictions.read(): 
+    scenario.n_predictions.write(int(state.n_predictions))
     #if state.max_capacity != scenario.max_capacity.read():
     scenario.max_capacity.write(int(state.max_capacity))
     #if state.day != scenario.creation_date:
@@ -90,7 +95,7 @@ def submit_scenario(state):
 def update_scenario_selector(state, scenario):
     print("Updating scenario selector...")
     # Update the scenario selector
-    state.scenario_selector += [(scenario.id, scenario.display_name)]
+    state.scenario_selector += [(scenario.id, scenario.name)]
     
 
 def update_chart(state):
@@ -100,7 +105,7 @@ def update_chart(state):
 
 
 def on_change(state, var_name: str, var_value):
-    if var_name == 'number_week':
+    if var_name == 'n_week':
         # Update the dataset when the slider is moved
         state.dataset_week = dataset[dataset['Date'].dt.isocalendar().week == var_value]
         

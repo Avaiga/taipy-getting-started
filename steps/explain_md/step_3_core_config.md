@@ -44,7 +44,7 @@ These are my input data nodes. These data nodes represent my variables in Taipy 
 
 - *day* is the beginning of the predictions. The default value is the 26th of July. It means my training data will end before the 26th of July, and my predictions will begin on this day.
 
-- *number_predictions* is the number of predictions you want to make while predicting. The default value is 40. Each algorithm creates its own *prediction* data node hence `scope=Scope.PIPELINE`. 
+- *n_predictions* is the number of predictions you want to make while predicting. The default value is 40. Each algorithm creates its own *prediction* data node hence `scope=Scope.PIPELINE`. 
 
 - *max_capacity* is the maximum value that can take a prediction; it is the ceiling of the projections. The default value is 200.
 
@@ -54,7 +54,7 @@ initial_dataset_cfg = tp.configure_data_node(id="initial_dataset",
                                              storage_type="csv",
                                              path=path_to_csv)
 
-number_predictions_cfg = tp.configure_data_node(id="number_predictions", default_data=40)
+n_predictions_cfg = tp.configure_data_node(id="n_predictions", default_data=40)
 
 max_capacity_cfg = tp.configure_data_node(id="max_capacity", default_data=200)
 
@@ -87,7 +87,7 @@ def clean_data(initial_dataset: pd.DataFrame):
     return cleaned_dataset # returns a pd.DataFrame
 
 
-def predict_baseline(cleaned_dataset: pd.DataFrame, number_predictions: int, day: dt.datetime, max_capacity: int):
+def predict_baseline(cleaned_dataset: pd.DataFrame, n_predictions: int, day: dt.datetime, max_capacity: int):
     ...
     return predictions # returns a pd.DataFrame
 ```
@@ -122,6 +122,6 @@ This task will take your cleaned dataset and predict it according to your parame
 ```python
 predict_baseline_task_cfg = tp.configure_task(id="predict_baseline",
                                               function=predict_baseline,
-                                              input=[cleaned_dataset_cfg, number_predictions_cfg, day_cfg, max_capacity_cfg],
+                                              input=[cleaned_dataset_cfg, n_predictions_cfg, day_cfg, max_capacity_cfg],
                                               output=predictions_cfg)
 ```

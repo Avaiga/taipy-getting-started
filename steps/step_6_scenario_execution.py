@@ -1,10 +1,10 @@
 from statsmodels.tsa.ar_model import AutoReg
 
 from step_4_pipeline_execution import *
-from step_3_core_config import cleaned_dataset_cfg, number_predictions_cfg, day_cfg, max_capacity_cfg, predictions_cfg, pd, dt
+from step_3_core_config import cleaned_dataset_cfg, n_predictions_cfg, day_cfg, max_capacity_cfg, predictions_cfg, pd, dt
 
 # This is the function that will be used by the task
-def predict_ml(cleaned_dataset: pd.DataFrame, number_predictions: int, day: dt.datetime, max_capacity: int):
+def predict_ml(cleaned_dataset: pd.DataFrame, n_predictions: int, day: dt.datetime, max_capacity: int):
     print("     Predicting with ML")
     # Select the train data
     train_dataset = cleaned_dataset[cleaned_dataset['Date'] < day]
@@ -12,8 +12,8 @@ def predict_ml(cleaned_dataset: pd.DataFrame, number_predictions: int, day: dt.d
     # Fit the AutoRegressive model
     model = AutoReg(train_dataset['Value'], lags=7).fit()
     
-    # Get the number_predictions forecasts
-    predictions = model.forecast(number_predictions).reset_index(drop=True)
+    # Get the n_predictions forecasts
+    predictions = model.forecast(n_predictions).reset_index(drop=True)
     predictions = predictions.apply(lambda x: min(x, max_capacity))
     return predictions
 
@@ -21,7 +21,7 @@ def predict_ml(cleaned_dataset: pd.DataFrame, number_predictions: int, day: dt.d
 ## We use the same input and ouput as the previous predict_baseline task but we change the funtion
 predict_ml_task_cfg = tp.configure_task(id="predict_ml",
                                         function=predict_ml,
-                                        input=[cleaned_dataset_cfg, number_predictions_cfg, day_cfg, max_capacity_cfg],
+                                        input=[cleaned_dataset_cfg, n_predictions_cfg, day_cfg, max_capacity_cfg],
                                         output=predictions_cfg)
 
 # Create a ml pipeline that will clean and predict with the ml model

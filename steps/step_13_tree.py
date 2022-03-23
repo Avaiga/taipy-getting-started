@@ -40,7 +40,7 @@ def create_tree_dict(scenarios, tree_dict: dict=None):
             tree_dict[period] = []
         
         # Append this dictionary with the scenario id and the scenario name
-        scenario_name = ("*" if scenario.is_official else "") + scenario.display_name
+        scenario_name = ("*" if scenario.is_official else "") + scenario.name
         tree_dict[period] += [(scenario.id, scenario_name)]
     
     return tree_dict
@@ -100,12 +100,12 @@ def create_scenario(state):
     print("Execution of scenario...")
     # Extra information for scenario   
     creation_date = state.day
-    display_name = create_name_for_scenario(state)
+    name = create_name_for_scenario(state)
     
     # Create a scenario with the week cycle 
-    scenario = tp.create_scenario(scenario_weekly_cfg, creation_date=creation_date, name=display_name)
+    scenario = tp.create_scenario(scenario_weekly_cfg, creation_date=creation_date, name=name)
     
-    state.selected_scenario = (scenario.id, display_name)
+    state.selected_scenario = (scenario.id, name)
 
     # Change the scenario that is currently selected
     submit_scenario(state)
@@ -123,8 +123,8 @@ def submit_scenario(state):
     # Change the default parameters by writing in the datanodes
     #if state.day != scenario.day.read():
     scenario.day.write(day)
-    #if int(state.number_predictions) != scenario.number_predictions.read(): 
-    scenario.number_predictions.write(int(state.number_predictions))
+    #if int(state.n_predictions) != scenario.n_predictions.read(): 
+    scenario.n_predictions.write(int(state.n_predictions))
     #if int(state.max_capacity) != scenario.max_capacity.read():
     scenario.max_capacity.write(int(state.max_capacity))
     #if state.day != scenario.creation_date:
@@ -151,7 +151,7 @@ def make_official(state):
     tp.set_official(scenario)
     
     # Update the scenario selector accordingly
-    state.scenario_selector = [(scenario.id, ("*" if scenario.is_official else "") + scenario.display_name) for scenario in tp.get_scenarios()]
+    state.scenario_selector = [(scenario.id, ("*" if scenario.is_official else "") + scenario.name) for scenario in tp.get_scenarios()]
     state.selected_scenario_is_official = True
     
     # Update the tree dict and the tree lov
@@ -168,16 +168,15 @@ def delete_scenario(state):
         notify(state,'info', 'Cannot delete the official scenario')
     else:
         # Delete the scenario and the related objects (datanodes, tasks, jobs,...)
-        os.remove('.data/scenarios/' + scenario.id + '.json')
-        # tp.delete_scenario(scenario)
+        tp.delete(scenario.id)
         
         # Update the scenario selector accordingly
         remove_scenario_from_selector(state, scenario)
         # Update the tree dict and lov accordingly
         tree_dict = remove_scenario_from_tree(scenario, tree_dict)
         state.tree_lov = build_tree_lov(tree_dict)
-        state.selected_scenario[0] = None
-    
+
+
 # Create another page to display the tree
 page_cycle_manager = """
 <|layout|columns=1 1|
@@ -210,7 +209,7 @@ multi_pages = """
 
 
 def on_change(state, var_name: str, var_value):
-    if var_name == 'number_week':
+    if var_name == 'n_week':
         # Update the dataset when the slider is moved
         state.dataset_week = dataset[dataset['Date'].dt.isocalendar().week == var_value]
         

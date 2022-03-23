@@ -34,12 +34,12 @@ def compare(state):
     all_scenarios_ordered = sorted(all_scenarios, key=lambda x: x.creation_date.timestamp()) # delete?
     
     for scenario in all_scenarios_ordered:
-        print("Scenario...", scenario.display_name)
+        print("Scenario...", scenario.name)
         # Go through all the pipelines
         for pipeline in scenario.pipelines.values():
             print("     Pipeline...", pipeline.config_id)
             # Get the predictions dataset with the historical data
-            only_prediction_dataset = create_predictions_dataset(pipeline)[-pipeline.number_predictions.read():]
+            only_prediction_dataset = create_predictions_dataset(pipeline)[-pipeline.n_predictions.read():]
             
             # Series to compute the metrics (true values and predicted values)
             historical_values = only_prediction_dataset['Historical values']
@@ -56,7 +56,7 @@ def compare(state):
                 rmses_ml.append(rmse)
                 maes_ml.append(mae)
 
-        scenario_names.append(scenario.display_name)
+        scenario_names.append(scenario.name)
         
     # Update comparison_scenario
     state.comparison_scenario = pd.DataFrame({'Scenario Name':scenario_names,

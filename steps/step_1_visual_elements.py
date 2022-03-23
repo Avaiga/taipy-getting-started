@@ -11,17 +11,17 @@ def get_data(path_to_csv: str):
 path_to_csv = "dataset.csv"
 dataset = get_data(path_to_csv)
 
-# Initial value of number_week
-number_week = 10
+# Initial value of n_week
+n_week = 10
 
 # Definition of the page
 page = """
 # Getting started with Taipy
 
-Week number: *<|{number_week}|>*
+Week number: *<|{n_week}|>*
 
 Interact with this slider to change the week number:
-<|{number_week}|slider|min=1|max=52|>
+<|{n_week}|slider|min=1|max=52|>
 
 ## Full dataset:
 

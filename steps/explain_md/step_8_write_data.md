@@ -9,7 +9,7 @@ import datetime as dt
 # Initial variables
 ## Initial variables for the scenario   
 day = dt.datetime(2021, 7, 26)
-number_predictions = 40
+n_predictions = 40
 max_capacity = 200
 
 ```
@@ -24,7 +24,7 @@ page_scenario_manager = page + """
 
 **Max capacity**\n\n <|{max_capacity}|number|>
 
-**Number of predictions**\n\n<|{number_predictions}|number|>
+**Number of predictions**\n\n<|{n_predictions}|number|>
 
 <|Save changes|button|on_action={submit}|>
 
@@ -63,7 +63,7 @@ def submit(state):
 
     # Change the default parameters by writing in the datanodes
     scenario.day.write(day)
-    scenario.number_predictions.write(int(state.number_predictions))
+    scenario.n_predictions.write(int(state.n_predictions))
     scenario.max_capacity.write(int(state.max_capacity))
 
     # Execute the pipelines/code
