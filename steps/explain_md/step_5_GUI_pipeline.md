@@ -83,6 +83,5 @@ Gui(page=pipeline_page).run()
 ```
 
 <p align="center">
-    <img src="/steps/images/step_5_result.gif" width=700>
+    <img src="/steps/images/step_5_result.png" width=700>
 </p>
-                                                              
