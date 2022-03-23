@@ -16,7 +16,7 @@ pipeline_selector = ['baseline', 'ml']
 selected_pipeline = pipeline_selector[0]
 ```
 
-This pipeline selector is added in the Markdown file just before the chart.
+This pipeline selector is added in the Markdown file just before the chart as well as a button.
 
 ```python
 scenario_page = page + """
