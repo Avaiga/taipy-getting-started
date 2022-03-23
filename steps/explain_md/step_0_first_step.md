@@ -1,6 +1,6 @@
 **Taipy** is composed of two concepts: the **Graphical User Interface** and the **Scenario Management**. These two components are independent. You can use the GUI component without the Scenario Management and vice-versa. However, as you will see, they are incredibly efficient when combined.
 
-c
+<p align="center">
   <img src="/steps/images/taipy-gui-core-illustration.svg" height=300>
 </p>
 
