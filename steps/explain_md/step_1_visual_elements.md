@@ -24,6 +24,8 @@ dataset = get_data(path_to_csv)
 - Value is its value.
 After creating your first web client with just one line of code and reading your data with this code, let's create a more detailed page.
 
+<center><img src="/steps/images/table.png" ></center>
+
 
 # Visual elements
 
