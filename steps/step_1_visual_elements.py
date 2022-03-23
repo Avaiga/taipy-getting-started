@@ -2,7 +2,7 @@ from taipy.gui import Gui
 import pandas as pd
 
 def get_data(path_to_csv: str):
-    # "pd.read_csv()" function returns a dataframe
+    # "pd.read_csv()" function returns a pd.DataFrame
     dataset = pd.read_csv(path_to_csv)
     dataset['Date'] = pd.to_datetime(dataset['Date'])
     return dataset
