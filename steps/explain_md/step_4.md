@@ -1,3 +1,0 @@
-What we have done so far is to describe our graph, this graph represents our process. We can create our first pipeline that we can run. We configure it; note that the 'task_configs' is a list so you don't have to worry about the order of the tasks. Taipy will do that for you and optimize its execution.
-
-Then, we create our pipeline from its configuration, we submit it (execution) and we print the results of the "predictions" datanode.

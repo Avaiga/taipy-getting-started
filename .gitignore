@@ -1,3 +1,5 @@
 
 *.json
 *.p
+*.pyc
+perf.py
