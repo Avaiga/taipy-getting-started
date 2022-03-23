@@ -73,7 +73,7 @@ def submit(state):
     update_chart(state)
 ```
 
-`update_chart` uses a previous function (`update_predictions_dataset`) to update the predictions_dataset with the correct pipeline.
+`update_chart` uses a previous function (`update_predictions_dataset`) to update the `predictions_dataset` with the correct pipeline.
 
 ```python
 def update_chart(state):
