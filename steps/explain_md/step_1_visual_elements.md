@@ -24,7 +24,9 @@ dataset = get_data(path_to_csv)
 - Value is its value.
 
 <div style="text-align: center;">
-hello
+    
+    hello
+    
 </div>
 
 After creating your first web client with just one line of code and reading your data with this code, let's create a more detailed page.
