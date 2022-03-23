@@ -22,7 +22,9 @@ def predict_ml(cleaned_dataset: pd.DataFrame, n_predictions: int, day: dt.dateti
 
 The *predict_ml* task configuration must be created in the same format as before with a function, inputs, and outputs.
 
-<center><img src="/steps/images/predict_ml.svg" height=500px width=500px></center>
+<p align="center">
+    <img src="/steps/images/predict_ml.svg" height=500px width=500px>
+</p>
 
 ```python   
 # Create the task configuration of the predict_ml function.
