@@ -1,12 +1,11 @@
 With this last code, you should understand the basics of Taipy GUI. Let's go for a moment to the Scenario Management aspect of Taipy.
 
 There are a lot of reasons to use Taipy Core.
-- With it, you can efficiently manage the execution of your functions
+- Efficiently manage the execution of your functions
 - Keep track of data and KPIs.
-- It is handy to manage multiple pipelines in the context of Machine Learning or Mathematical optimization.
-- Taipy allows you to manage them effortlessly.
+- Handy to manage multiple pipelines in the context of Machine Learning or Mathematical optimization.
 
-To apprehend the Scenario Management aspect of Taipy, you need to understand four essential concepts.
+Taipy allows you to manage them effortlessly. To apprehend the Scenario Management aspect of Taipy, you need to understand four essential concepts.
 
 ## Four basic [concepts](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/) in Taipy Core:
 - [**Datanodes**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/data-node/): are the translation of variables in Taipy. They are objects that point to your data (pickle, CSV, JSON, etc.). They know how to read and write data.
