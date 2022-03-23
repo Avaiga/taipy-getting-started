@@ -23,6 +23,7 @@ dataset = get_data(path_to_csv)
 - Date is the date of the data point.
 - Value is its value.
 
+<<<<<<< Updated upstream
 <div style="text-align: center;">
     
     hello
