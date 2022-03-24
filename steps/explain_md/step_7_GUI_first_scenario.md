@@ -6,7 +6,7 @@ Just as before, this new configuration needs a new GUI. The scenario will be cre
     <img src="/steps/images/selector.gif" width=250>
 </p>
 
-A [selector](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/selector/) only need two parameters: a value that will change through the selector and the list of values possible (lov). Here is the syntax for selector: `<|{selected_value}|selector|lov={lov_selector}|>`. The Update chart button will update the chart according to the selected pipeline.
+A [selector](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/selector/) only need two parameters: a value that will change through the selector and the list of values possible (lov). Here is the syntax for selector: `<|{selected_value}|selector|lov={lov_selector}|>`. The 'Update chart' button will update the chart according to the selected pipeline.
 
 These variables below are the parameters of the pipeline selector. When starting the client, the selected pipeline will be the first one among 'baseline' and 'ml'.
 ```python
@@ -16,7 +16,7 @@ pipeline_selector = ['baseline', 'ml']
 selected_pipeline = pipeline_selector[0]
 ```
 
-This pipeline selector is added in the Markdown file just before the chart as well as a button.
+This pipeline selector is added in the Markdown file just before the chart as well as the 'Update chart' button.
 
 ```python
 scenario_page = page + """
@@ -27,11 +27,12 @@ Select the pipeline
 """
 ```
 
-The code around the GUI has evolved. `create_scenario` is creating a scenario and submitting with the `submit` function. `update_chart` is updating the chart based upon the selected scenario and pipeline.
+The code around the GUI has evolved. `create_scenario` is creating a scenario and submitting it with the `submit` function. `update_chart` is updating the chart based upon the selected scenario and pipeline.
 
 create_scenario > submit
 
 button > update_chart
+
 ```python
 def create_scenario():
     print("Creating scenario...")
