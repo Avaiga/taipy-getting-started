@@ -26,10 +26,10 @@ The creation of this graph is done by configuring data nodes (variables) and tas
 
 # Datanodes configuration
 
-Data nodes can point to anykind of *Python* variables by default: *int*, *string*, *dict*, *list*, *np.array*, *pd.DataFrame*, *models*, etc. Taipy also has the ability to read and write a CSV, Pickle file or SQL database through a data node.
+Data nodes can point to anykind of *Python* variables by default: *int*, *string*, *dict*, *list*, *np.array*, *pd.DataFrame*, *models*, etc. Taipy also has the ability to read and write a CSV, Pickle file or SQL database through a data node. These are considered in the parameters of the data node configuration.
 
-Let me introduce some parameters for data nodes :
-- **Storage_type**: There are multiple storage types. You can read csv file, SQL database, pickle file, etc.
+Let me introduce some parameters for data node configuration:
+- **Storage_type**: There are multiple storage types. You can read CSV file, SQL database, pickle file, etc.
             Here, you are going to create a csv datanode to read/store the initial dataset. Taipy knows how to access it thanks to the path.
 
 - **Scope**: You can find in the code below two types of Scope: the Pipeline and Scenario scope (by default). 
