@@ -36,7 +36,7 @@ Third column
 ```
 
 <p align="center">
-    <img src="/steps/images/layout.png" width=300>
+    <img src="/steps/images/layout.png" width=500>
 </p>
 
 Here, the part with the chart will be displayed when the first scenario will be created. A menu renders or not a part depending on the 'page' variable. This is how you can create easily multiple pages; there are a lot of other ways to do so.
