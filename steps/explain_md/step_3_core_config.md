@@ -46,7 +46,7 @@ These are my input data nodes. They represent my variables in Taipy when a pipel
 
 - *day* is the beginning of the predictions. The default value is the 26th of July. It means my training data will end before the 26th of July, and my predictions will begin on this day.
 
-- *n_predictions* is the number of predictions you want to make while predicting. The default value is 40. Each algorithm creates its own *prediction* data node hence `scope=Scope.PIPELINE`. 
+- *n_predictions* is the number of predictions you want to make while predicting. The default value is 40.
 
 - *max_capacity* is the maximum value that can take a prediction; it is the ceiling of the projections. The default value is 200.
 
@@ -68,7 +68,7 @@ max_capacity_cfg = tp.configure_data_node(id="max_capacity", default_data=200)
 
 - *cleaned_dataset* is the dataset after cleaning (after the *clean_data* function).
 
-- *predictions* is the predictions of the model. Here, it is the return of my *predict_baseline* function.
+- *predictions* is the predictions of the model. In this pipeline, it will be the output of my *predict_baseline* function. Each pipeline will create its own *prediction* data node hence `scope=Scope.PIPELINE`. 
 
 ```python
 ## Remaining data nodes
