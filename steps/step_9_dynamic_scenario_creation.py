@@ -19,7 +19,8 @@ scenario_manager_page = page + """
 
 <|Create new scenario|button|on_action=create_scenario|>
 
-## Scenario <|{selected_scenario}|selector|lov={scenario_selector}|dropdown=True|>
+## Scenario 
+<|{selected_scenario}|selector|lov={scenario_selector}|dropdown=True|>
 
 ## Display the pipeline
 <|{selected_pipeline}|selector|lov={pipeline_selector}|>

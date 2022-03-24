@@ -105,3 +105,7 @@ Run the Gui.
 ```python
 Gui(page=scenario_manager_page).run()
 ```
+
+<p align="center">
+    <img src="/steps/images/step_9_result.gif" width=700>
+</p>
