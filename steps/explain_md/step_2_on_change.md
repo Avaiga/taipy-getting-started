@@ -4,7 +4,7 @@ Great! Now, the page has a lot of visual elements. The slider is interactive and
 
 Try to open few clients with the same url. You will see that every client are independant from each other; you can change `value` on a client and `value` will not change in other clients. It is the concept of **state**.
 
-So, what is the state of a GUI? The application's state is the current state of the variables, so the values of all the variables for one client. In the beginning, `state.value = 10` and `state.data` is the dataset for the 10th week. When `value` is changing, this is in fact `state.value` that is really changing. To manipulate variables in the GUI, we always pass through the state.
+So, what is the state of a GUI? The application's state is the current state of the variables, so the values of all the variables for one client. In the beginning, `state.value = 10` and `state.data` is the dataset for the 10th week. When `value` is changing with the slider, this is in fact `state.value` that is changing. To manipulate variables in the GUI, we always pass through the state.
 
 In the code below, this concept will be used to connect a variable to other variables. For example, to create a chart that will only display one week of data, a connection has to be made between the slider's value and the data.
 
