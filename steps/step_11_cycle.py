@@ -1,17 +1,15 @@
-from taipy import Frequency
-import os
-
 from step_10_GUI_layout import *
 from step_6_scenario_execution import ml_pipeline_cfg
 
+from taipy import Frequency
 from taipy.gui import notify
 
 
 
 # Create scenarios each week and compare them
 scenario_weekly_cfg = tp.configure_scenario(id="scenario",
-                                     pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg],
-                                     frequency=Frequency.DAILY)
+                                            pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg],
+                                            frequency=Frequency.DAILY)
 
 # Change the inital scenario selector to see which scenario are officials
 scenario_selector = [(scenario.id, ("*" if scenario.is_official else "") + scenario.name) for scenario in all_scenarios]
@@ -22,34 +20,57 @@ def update_scenario_selector(state, scenario):
     # Create the scenario name for the scenario selector
     # This name changes dependind whether the scenario is official or not
     scenario_name = ("*" if scenario.is_official else "") + scenario.name
-    
+    print(scenario_name)
     # Update the scenario selector
     state.scenario_selector += [(scenario.id, scenario_name)]
 
 
 selected_scenario_is_official = None
 
-list_time = []
 
 # Change the create_scenario function to create a scenario with the selected frequency
 def create_scenario(state):
-        #for i in range(100):
         print("Execution of scenario...")
         # Extra information for scenario
         creation_date = state.day
         name = create_name_for_scenario(state)
 
         # Create a scenario with the week cycle
-        start = time.time()
         scenario = tp.create_scenario(scenario_weekly_cfg, creation_date=creation_date, name=name)
-        print("Scenario created in {} seconds".format(time.time() - start))
-        list_time.append(time.time() - start)
+
         state.selected_scenario = (scenario.id, name)
 
         # Change the scenario that is currently selected
         submit_scenario(state)
-        #json.dump(list_time, open("time_cycle.json", "w"))
 
+# This is the same code as in step_9_dynamic_scenario_creation.py
+def submit_scenario(state):
+    print("Submitting scenario...")
+    # Get the currently selected scenario
+    scenario = tp.get(state.selected_scenario[0])
+    
+    # Conversion to the right format (change?)
+    day = dt.datetime(state.day.year, state.day.month, state.day.day) 
+
+    # Change the default parameters by writing in the datanodes
+    #if state.day != scenario.day.read():
+    scenario.day.write(day)
+    #if int(state.n_predictions) != scenario.n_predictions.read(): 
+    scenario.n_predictions.write(int(state.n_predictions))
+    #if state.max_capacity != scenario.max_capacity.read():
+    scenario.max_capacity.write(int(state.max_capacity))
+    #if state.day != scenario.creation_date:
+    scenario.creation_date = state.day
+        
+
+    # Execute the pipelines/code
+    tp.submit(scenario)
+    
+    # Update the scenario selector and the scenario that is currently selected
+    update_scenario_selector(state, scenario) # change list to scenario
+    
+    # Update the chart directly
+    update_chart(state) 
 
 def remove_scenario_from_selector(state, scenario: list):
     # Take all the scenarios in the selector that doesn't have the scenario.id
@@ -81,7 +102,7 @@ def make_official(state):
 
 # Change the page_scenario_manager to add a delete scenario button and a make official button
 page_scenario_manager = """
-# Create your scenario :
+# Create your scenario:
 
 <|layout|columns=1 1 1 1|
 <|
@@ -102,6 +123,7 @@ page_scenario_manager = """
 <|Create new scenario|button|on_action=create_scenario|>
 |>
 |>
+
 
 <|part|render={len(scenario_selector) > 0}|
 <|layout|columns=1 1|
@@ -127,7 +149,7 @@ page_scenario_manager = """
 
 
 <|
-## Display the pipeline  <|{selected_pipeline}|selector|lov={pipeline_selector}|dropdown=True|>
+## Display the pipeline \n <|{selected_pipeline}|selector|lov={pipeline_selector}|dropdown=True|>
 |>
 |>
 

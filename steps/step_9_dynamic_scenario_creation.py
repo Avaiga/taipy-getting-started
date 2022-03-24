@@ -37,29 +37,21 @@ def create_name_for_scenario(state)->str:
     return name
 
 
-list_time = []
-import time
-import json
+
 
 # Change the create_scenario function in order to change the default parameters
 # and to be able to create multiple scenarios
 def create_scenario(state):
-        #for i in range(100):
         print("Execution of scenario...")
         # Extra information for the scenario
         creation_date = state.day
         name = create_name_for_scenario(state)
         # Create a scenario
-        start = time.time()
         scenario = tp.create_scenario(scenario_cfg, creation_date=creation_date, name=name)
-        print(f"Scenario created in {time.time() - start} seconds")
-        list_time.append(time.time() - start)
+        
         state.selected_scenario = (scenario.id, name)
         # Submit the scenario that is currently selected
         submit_scenario(state)
-    
-        #json.dump(list_time, open("time.json", "w"))
-
 
 def submit_scenario(state):
     print("Submitting scenario...")
