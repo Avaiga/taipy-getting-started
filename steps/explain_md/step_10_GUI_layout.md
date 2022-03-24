@@ -1,32 +1,41 @@
 With these few steps, you have created a full-AI application on which you can predict multiples days with different parameters. However, as you can see the layout of the page is not optimal. It could be greatly improved. This is the role of the code below.
 To get a more aesthetically pleasing page, three useful controls to use are:
 - [menu](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/menu/): creates a menu on the left to navigate through the pages.
-`<|menu|label=Menu|lov={lov_pages}|on_action=menu_fct_called|>`
+`<|menu|label=Menu|lov={lov_pages}|on_action=menu_fct_called|>`. For example, this code creates a menu with two pages:
 
-For example, this code creates a menu with two pages:
 ```python
 from taipy.gui import Gui
 
 Gui("<|menu|label=Menu|lov={['Data Visualization', 'Scenario Manager']}|>").run()
 ```
+
 <p align="center">
     <img src="/steps/images/menu.png" width=50>
 </p>
 
 
-- [part](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/part/): is used to create a group of text/visual elements. A useful parameter of 'part' is render. Set to False, it will not display the part.
+- [part](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/part/): is used to create a group of text/visual elements. A useful parameter of *part* is `render`. Set to `False`, it will not display the part.
+- 
 ```
 <|part|render={bool_variable}|
+Text
+Or visual elements...
 |>
 ```
 
 - [layout](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/layout/): creates invisible columns where you can put your texts and visual elements. Columns parameter will indicate the width and number of columns. Here, we have three columns of the same width.
 ```
-<|laout|columns=1 1 1|
+<|layout|columns=1 1 1|
+First column
+Button in first column <|Press|button|>
+
+Second column
+
+Third column
 |>
 ```
 
-Here, the part will be displayed when the first scenario will be created. A menu on top of it renders or not a part depending on the 'page' variable. This is how you can create easily multiple pages; there are a lot of other ways to do so.
+Here, the part with the chart will be displayed when the first scenario will be created. A menu renders or not a part depending on the 'page' variable. This is how you can create easily multiple pages; there are a lot of other ways to do so.
 
 
 My first page in the menu contains the chart with dataset focused on one week and the slider related to change the week. This is the page created in one of the first code.
