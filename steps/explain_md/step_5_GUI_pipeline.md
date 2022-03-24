@@ -27,7 +27,7 @@ Press <|predict|button|type=bar|on_action=predict|> to predict with default para
 def predict(state):
     print("'Predict' button clicked")
     pipeline = create_and_submit_pipeline()
-    update_predictions_dataset(state, pipeline
+    update_predictions_dataset(state, pipeline)
 
 def create_and_submit_pipeline():
     "Function called by the predict function"
