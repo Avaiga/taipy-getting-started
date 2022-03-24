@@ -4,7 +4,7 @@ Let's update the GUI to display the results of the pipeline. You can find a "Pre
 
 `<|Text displayed on button|button|on_action=fct_name_called_when_pressed|>`
    
-A chart control has been added to the markdown to see if the predictions seem correct. On the chart, the chart creates two traces: the historical values and the predicted values.
+A chart control has been added to the markdown to see if the predictions seem correct. The chart creates two traces: the historical values and the predicted values.
 
 ```python
 import numpy as np
