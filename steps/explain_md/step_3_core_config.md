@@ -26,7 +26,7 @@ The creation of this graph is done by configuring data nodes (variables) and tas
 
 # Datanodes configuration
 
-Data nodes can point to anykind of *Python* variables by default: *int*, *string*, *dict*, *list*, *np.array*, *pd.DataFrame*, *models*, etc. Taipy has the ability to read and write a CSV, Pickle file or SQL database through a data node.
+Data nodes can point to anykind of *Python* variables by default: *int*, *string*, *dict*, *list*, *np.array*, *pd.DataFrame*, *models*, etc. Taipy also has the ability to read and write a CSV, Pickle file or SQL database through a data node.
 
 Let me introduce some parameters for data nodes :
 - **Storage_type**: There are multiple storage types. You can read csv file, SQL database, pickle file, etc.
