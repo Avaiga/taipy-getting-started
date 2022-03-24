@@ -56,7 +56,7 @@ def compare(state):
                 rmses_ml.append(rmse)
                 maes_ml.append(mae)
 
-        scenario_names.append(scenario.name)
+        scenario_names.append(scenario.creation_date.strftime('%A %d %b'))
         
     # Update comparison_scenario
     state.comparison_scenario = pd.DataFrame({'Scenario Name':scenario_names,
@@ -72,6 +72,8 @@ def compare(state):
 
 # Create the performance page
 page_performance = """
+<br/>
+
 <|part|render={comparison_scenario_done}|
 
 <|Table|expanded=False|expandable|
@@ -81,14 +83,15 @@ page_performance = """
 <|{selected_metric}|selector|lov={metric_selector}|dropdown=True|>
 
 <|part|render={selected_metric=='RMSE'}|
-<|{comparison_scenario}|chart|type=bar|x=Scenario Name|y[1]=RMSE baseline|y[2]=RMSE ML|height=80%|width=100%|>
+<|{comparison_scenario}|chart|type=bar|x=Scenario Name|y[1]=RMSE baseline|y[2]=RMSE ML|height=100%|width=100%|>
 |>
 
 <|part|render={selected_metric=='MAE'}|
-<|{comparison_scenario}|chart|type=bar|x=Scenario Name|y[1]=MAE baseline|y[2]=MAE ML|height=80%|width=100%|>
+<|{comparison_scenario}|chart|type=bar|x=Scenario Name|y[1]=MAE baseline|y[2]=MAE ML|height=100%|width=100%|>
 |>
 
 |>
+
 
 <center>
 <|Compare officials|button|on_action=compare|>

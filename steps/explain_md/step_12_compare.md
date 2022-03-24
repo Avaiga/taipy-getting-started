@@ -107,7 +107,9 @@ page_performance = """
 """
 ```
 
->> show page
+<p align="center">
+    <img src="/steps/images/page_performance.gif" width=700>
+</p>
 
 
 ```python
@@ -122,3 +124,7 @@ multi_pages = """
 
 Gui(page=multi_pages).run() 
 ```
+
+<p align="center">
+    <img src="/steps/images/step_12_result.png" width=700>
+</p>

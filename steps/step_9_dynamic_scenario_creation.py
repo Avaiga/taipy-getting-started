@@ -29,7 +29,7 @@ scenario_manager_page = page + """
 """
 
 def create_name_for_scenario(state)->str:
-    name = f"Scenario ({state.day.strftime('%A, %d %b %Y')}; {state.max_capacity}; {state.n_predictions})"
+    name = f"Scenario ({state.day.strftime('%A, %d %b')}; {state.max_capacity}; {state.n_predictions})"
     
     # If the name is already a name of a scenario, we change it
     if name in [s[1] for s in state.scenario_selector]:
