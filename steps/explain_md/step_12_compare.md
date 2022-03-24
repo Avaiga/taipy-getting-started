@@ -1,3 +1,6 @@
+Cycles are useful in order to keep track of KPI over time. A primary scenario is the reference scenario for a cycle. The goal of the code below is to compare the primary scenarios of every cycles and see their evolution in time.
+
+To achieve this, a new dataframe has to be initialized. It will stores the metrics for the `baseline` and `ml` pipeline. Then, a part will use a boolean to show or not the comparison and finally, a selector will change the displayed metrics of the graph.
 
 ```python
 # Initial dataset for comparison
@@ -12,11 +15,10 @@ comparison_scenario_done = False
 metric_selector = ['RMSE', 'MAE']
 selected_metric = metric_selector[0]
 ```
-
+However, to begin, a function has to be created to compare the primary scenarios of all the cycles. `tp.get_official_scenarios()` is the useful function to use for this effect. `compare` goes through all of these scenarios and pipelines and add the metrics in lists. At the end, `state.comparison_scenario` is updated and `comparison_scenario_done` set to `True`.
 
 ```python
 from sklearn.metrics import mean_absolute_error, mean_squared_error
-
 
 def compute_metrics(historical_data, predicted_data):
     rmse = mean_squared_error(historical_data, predicted_data)
@@ -73,6 +75,10 @@ def compare(state):
     state.comparison_scenario_done = True
     
 ```
+
+Let's create a page related to this comparison. As said before, this page will contain a graph to compare scenarios and pipelines and a selector to choose the metric on which to compare. The button at the bottom of the page when pressed calls the `compare` function. When finished, the rest of the page will be shown thanks to the `render` parameter of the *part*.
+
+A new Taipy's block is present in the Markdown: [expandable](](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/expandable/).
 
 ```python
 # Create the performance page
