@@ -40,7 +40,7 @@ Some parameters for data node configuration:
 
 
 ## Input data nodes configuration
-These are my input data nodes. These data nodes represent my variables in Taipy when a pipeline is executed. Still, first, we have to configure them to create the DAG.
+These are my input data nodes. They represent my variables in Taipy when a pipeline is executed. Still, first, we have to configure them to create the DAG.
 
 - *initial_dataset* is simply the initial CSV file. Taipy needs some parameters to read this data like *path* and *header*. 
 
