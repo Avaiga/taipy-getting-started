@@ -3,8 +3,7 @@ from step_8_write_data import *
 # this function will get all the scenarios already created
 all_scenarios = tp.get_scenarios() 
 
-# Initial variables
-## Initial variable for the scenario selector
+# Initial variable for the scenario selector
 # The value of my selector will be the ids and what is display will be the name of my scenario
 scenario_selector = [(scenario.id, scenario.name) for scenario in all_scenarios]
 selected_scenario = None
@@ -36,10 +35,9 @@ def create_name_for_scenario(state)->str:
         name += f" ({len(state.scenario_selector)})"
     return name
 
-import time
 
 list_time = []
-
+import time
 import json
 
 # Change the create_scenario function in order to change the default parameters
