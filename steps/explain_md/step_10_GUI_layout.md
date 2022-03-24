@@ -15,7 +15,7 @@ Gui("<|menu|label=Menu|lov={['Data Visualization', 'Scenario Manager']}|>").run(
 
 
 - [part](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/part/): is used to create a group of text/visual elements. A useful parameter of *part* is `render`. Set to `False`, it will not display the part.
-- 
+
 ```
 <|part|render={bool_variable}|
 Text
@@ -100,7 +100,7 @@ page_scenario_manager = """
     <img src="/steps/images/scenario_manager.gif" width=700>
 </p>
 
-The menu combines these two pages and when a page will be selected, `menu_fct` will be called and update the page.
+The menu combines these two pages. When a page will be selected, `menu_fct` will be called and update the page.
 
 ```python
 # Create a menu with our pages
