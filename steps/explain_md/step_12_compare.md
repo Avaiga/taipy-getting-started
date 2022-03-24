@@ -4,7 +4,7 @@ To achieve this, a new dataframe has to be initialized. It will store the metric
 
 ```python
 # Initial dataset for comparison
-comparison_scenario = pd.DataFrame({ 'Scenario Name':[],
+comparison_scenario = pd.DataFrame({'Scenario Name':[],
                                     'RMSE baseline':[], 'MAE baseline':[],
                                     'RMSE ML':[], 'MAE ML':[]})
 
