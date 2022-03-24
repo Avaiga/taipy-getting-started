@@ -8,7 +8,7 @@ There are a lot of reasons to use Taipy Core.
 Taipy allows you to manage them effortlessly. To apprehend the Scenario Management aspect of Taipy, you need to understand four essential concepts.
 
 ## Four basic [concepts](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/) in Taipy Core:
-- [**Datanodes**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/data-node/): are the translation of variables in Taipy. They don't contain the data itself but knows how to retrieve it. It can refer to any type of data: any *Python* object (*string*, *int*, *list*, *dict*, *model*, *dataframe*, etc), Pickle, CSV file or even SQL database. They know how to read and write data. You can even write your own custom data node if needed to access a particular data.
+- [**Data nodes**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/data-node/): are the translation of variables in Taipy. They don't contain the data itself but knows how to retrieve it. It can refer to any type of data: any *Python* object (*string*, *int*, *list*, *dict*, *model*, *dataframe*, etc), Pickle, CSV file or even SQL database. They know how to read and write data. You can even write your own custom data node if needed to access a particular data.
 - [**Tasks**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/task/): are the translation of functions in Taipy.
 - [**Pipelines**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/pipeline/): are a list of tasks executed with intelligent scheduling created automatically by Taipy. They usually represent a series of tasks for different algorithms like a baseline or Machine-Learning algorithm.
 - [**Scenarios**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/scenario/): are your business problem with some parameters. They usually consist of one or multiple pipelines.
@@ -24,19 +24,19 @@ For simplification, one baseline pipeline will be configured in this step. There
 
 The creation of this graph is done by configuring data nodes (variables) and tasks (functions). This configuration doesn't execute anything; it is just a setup to create the DAG.
 
-# Datanodes configuration
+# Data nodes configuration
 
 Data nodes can point to anykind of *Python* variables by default: *int*, *string*, *dict*, *list*, *np.array*, *pd.DataFrame*, *models*, etc. Taipy also has the ability to read and write a CSV, Pickle file or SQL database through a data node. These are considered in the parameters of the data node configuration.
 
 Some parameters for data node configuration:
 - **Storage_type**: There are multiple storage types. You can read CSV file, SQL database, pickle file, etc.
-            Here, you are going to create a csv datanode to read/store the initial dataset. Taipy knows how to access it thanks to the path.
+            Here, you are going to create a csv data node to read/store the initial dataset. Taipy knows how to access it thanks to the path.
 
 - **Scope**: You can find in the code below two types of Scope: the Pipeline and Scenario scope (by default). 
-            Basically, with Scenario scope, datanodes are shared between all the pipelines of the scenario.
-            With Pipeline scope, datanodes are not shared between pipelines and don't have access to other datanodes from other pipelines. For example, here, a 'predictions' datanode is created for each pipeline. So, adding pipelines/algorithms will create predictions stored in different "predictions" datanodes.
+            Basically, with Scenario scope, data nodes are shared between all the pipelines of the scenario.
+            With Pipeline scope, data nodes are not shared between pipelines and don't have access to other data nodes from other pipelines. For example, here, a 'predictions' data node is created for each pipeline. So, adding pipelines/algorithms will create predictions stored in different "predictions" data nodes.
 
-"""- **Cacheable**: It is a parameter used for more performance. If the datanode has already been created and the inputs didn't    change. It is not necessary to run it again."""
+"""- **Cacheable**: It is a parameter used for more performance. If the data node has already been created and the inputs didn't    change. It is not necessary to run it again."""
 
 
 ## Input data nodes configuration
@@ -51,7 +51,7 @@ These are my input data nodes. These data nodes represent my variables in Taipy 
 - *max_capacity* is the maximum value that can take a prediction; it is the ceiling of the projections. The default value is 200.
 
 ```python
-## Input datanodes
+## Input data nodes
 initial_dataset_cfg = tp.configure_data_node(id="initial_dataset",
                                              storage_type="csv",
                                              path=path_to_csv)
@@ -71,7 +71,7 @@ max_capacity_cfg = tp.configure_data_node(id="max_capacity", default_data=200)
 - *predictions* is the predictions of the model. Here, it is the return of my *predict_baseline* function.
 
 ```python
-## Remaining datanodes
+## Remaining data nodes
 cleaned_dataset_cfg = tp.configure_data_node(id="cleaned_dataset") # ,
                                                                    # cacheable=True,
                                                                    # validity_period=dt.timedelta(days=1)
