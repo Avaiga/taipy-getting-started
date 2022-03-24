@@ -1,16 +1,15 @@
-# Mutli-scenarios GUI
+# GUI for mutli-scenarios
 
 ## Dynamic selectors
 
-Let's manage multiple scenarios. To do that, you will have a dynamic scenario selector. This selector will be updated whenever a new scenario is created. It will store the 'id' of the scenarios and the names of the scenarios. Only the names will be displayed.
+Let's manage multiple scenarios through a dynamic scenario selector. This selector will be updated whenever a new scenario is created. It will store the 'id' of the scenarios and their names. Only the names will be displayed.
 
-Initialize the scenario selector with all the already created scenarios.
+Initialize the scenario selector with the already created scenarios. If there are no scenarios, the selector will be empty.
 ```python
 # this function will get all the scenarios already created
 all_scenarios = tp.get_scenarios() 
 
-# Initial variables
-## Initial variable for the scenario selector
+# Initial variable for the scenario selector
 # The value of my selector will be the ids and what is display will be the name of my scenario
 scenario_selector = [(scenario.id, scenario.name) for scenario in all_scenarios]
 selected_scenario = None
@@ -33,7 +32,7 @@ scenario_manager_page = page + """
 """
 ```
 
-The main code to manage the scenario is here. As you can see, the architrecture doesn't really change from the previous code. Two functions have been changed with some addition: `create_scenario` and `submit_scenario`. 
+The main code managing scenarios is here. As you can see, the architrecture doesn't really change from the previous code. Two functions have been changed with some addition: `create_scenario` and `submit_scenario`. 
 
 ```python
 def create_name_for_scenario(state)->str:
@@ -88,7 +87,7 @@ def update_scenario_selector(state, scenario):
 
 ## Automatize the graph update - *on_change* function
 
-Also, you are going to change the 'on_change' function in order to automatically change the graph when another pipeline or scenario is selected.
+Also, the 'on_change' function can automatically change the graph when another pipeline or scenario is selected.
 
 ```python
 def on_change(state, var_name: str, var_value):
