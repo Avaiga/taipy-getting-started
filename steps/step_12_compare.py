@@ -3,7 +3,7 @@ from step_11_cycle import *
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 
 # Initial dataset for comparison
-comparison_scenario = pd.DataFrame({ 'Scenario Name':[],
+comparison_scenario = pd.DataFrame({'Scenario Name':[],
                                     'RMSE baseline':[], 'MAE baseline':[],
                                     'RMSE ML':[], 'MAE ML':[]})
 
