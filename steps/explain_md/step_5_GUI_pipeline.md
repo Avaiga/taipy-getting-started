@@ -17,7 +17,7 @@ predictions_dataset = pd.DataFrame({"Date":[dt.datetime(2021, 6, 1)], "Historica
 pipeline_page = page + """
 Press <|predict|button|type=bar|on_action=predict|> to predict with default parameters (30 predictions) and June 1st as day.
 
-<|{predictions_dataset}|chart|x=Date|y[1]=Historical values|y[2]=Predicted values|height=80%|width=100%|>
+<|{predictions_dataset}|chart|type=bar|x=Date|y[1]=Historical values|y[2]=Predicted values|height=80%|width=100%|>
 """
 ```
 
