@@ -70,7 +70,7 @@ def create_predictions_dataset(pipeline):
     return pd.concat([temp_df['Date'], historical_values, predicted_values], axis=1)
 ```
 
-When you press the 'Predict' button, Taipy calls this last function. It will update the predictions dataset, and this change will propagate to the chart.
+When you press the 'Predict' button, this last function is called. It will update the predictions dataset, and this change will propagate to the chart.
 
 ```python
 
