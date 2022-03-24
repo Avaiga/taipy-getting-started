@@ -26,7 +26,6 @@ Or visual elements...
 - [layout](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/layout/): creates invisible columns where you can put your texts and visual elements. Columns parameter will indicate the width and number of columns. Here, we have three columns of the same width.
 ```
 <|layout|columns=1 1 1|
-First column
 Button in first column <|Press|button|>
 
 Second column
