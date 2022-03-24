@@ -29,11 +29,11 @@ page_scenario_manager = """
 <|part|render={len(scenario_selector) > 0}|
 <|layout|columns=1 1|
 <|
-## Scenario <|{selected_scenario}|selector|lov={scenario_selector}|dropdown=True|>
+## Scenario \n <|{selected_scenario}|selector|lov={scenario_selector}|dropdown=True|>
 |>
 
 <|
-## Display the pipeline <|{selected_pipeline}|selector|lov={pipeline_selector}|dropdown=True|>
+## Display the pipeline \n <|{selected_pipeline}|selector|lov={pipeline_selector}|dropdown=True|>
 |>
 |>
 

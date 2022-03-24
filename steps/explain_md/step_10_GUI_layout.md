@@ -52,7 +52,10 @@ My first page in the menu contains the chart with dataset focused on one week an
 page_data_visualization = page
 ```
 
->>>>> show the result
+<p align="center">
+    <img src="/steps/images/data_visualization.png" width=700>
+</p>
+
 
 ```python
 
@@ -81,21 +84,22 @@ page_scenario_manager = """
 <|part|render={len(scenario_selector) > 0}|
 <|layout|columns=1 1|
 <|
-## Scenario <|{selected_scenario}|selector|lov={scenario_selector}|dropdown=True|>
+## Scenario \n <|{selected_scenario}|selector|lov={scenario_selector}|dropdown=True|>
 |>
 
 <|
-## Display the pipeline <|{selected_pipeline}|selector|lov={pipeline_selector}|dropdown=True|>
+## Display the pipeline \n <|{selected_pipeline}|selector|lov={pipeline_selector}|dropdown=True|>
 |>
 |>
 
 <|{predictions_dataset}|chart|x=Date|y[1]=Historical values|y[2]=Predicted values|height=80%|width=100%|type=bar|>
 |>
 """
-
 ```
 
->>>>> show the result
+<p align="center">
+    <img src="/steps/images/scenario_manager.gif" width=700>
+</p>
 
 The menu combines these two pages and when a page will be selected, `menu_fct` will be called and update the page.
 
@@ -117,3 +121,7 @@ def menu_fct(state, var_name: str, fct: str, var_value: list):
 
 Gui(page=multi_pages).run()
 ```
+
+<p align="center">
+    <img src="/steps/images/multi_pages.png" width=700>
+</p>
