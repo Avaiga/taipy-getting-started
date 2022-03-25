@@ -51,7 +51,9 @@ def create_scenario(state):
         submit_scenario(state)
 ```
 
-A 'Make official' button will be used in the Gui. It calls the function below to change the current primary scenario of the scenario. `tp.set_official(scenario)` is the function used to make a scenario primary.
+Two buttons are added to the Gui ('Make official' and 'Delete scenario'). They calls the `make_official` and `delete_scenario` functions below.
+
+`make_official` change the current primary scenario of the cycle. `tp.set_official(scenario)` is the Taipy function used to make a scenario primary.
 
 > Note that the previous primary sccenario will not be primary anymore. There is always just one primary scenario in a cycle. 
 
@@ -69,8 +71,7 @@ def make_official(state):
     state.selected_scenario_is_official = True
 ```
 
-
-Another button is present in the Gui. It will add the ability to delete a scenario by calling the `delete_scenario` function below when pressed.
+This function is triggered by the 'Delete scenario' button.
 
 > Note that a primary scenario cannot be deleted.
 
@@ -96,7 +97,7 @@ def delete_scenario(state):
 
 ```
 
-There has been just two buttons added to this page ('Make official' and 'Delete scenarios'). Nothing else.
+As previously said, just two visual elements ('Make official' and 'Delete scenario' buttons) have been added to the page. 
 
 ```python
 # Change the page_scenario_manager to add a delete scenario button and a make official button
@@ -164,7 +165,7 @@ multi_pages = """
 """
 ```
 
-When the scenario is changed, the `on_change` is called and will update `selected_scenario_is_official` which keeps track if the selected scenario is primary.
+When the selected scenario is changed, Taipy calls the `on_change` and will update `state.selected_scenario_is_official` which keeps track if the selected scenario is primary.
 
 ```python
 def on_change(state, var_name: str, var_value):
