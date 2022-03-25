@@ -51,8 +51,6 @@ def create_scenario(state):
         submit_scenario(state)
 ```
 
-Nothing changes in the `submit_scenario` function.
-
 A 'Make official' button will be used in the Gui. It calls the function below to change the current primary scenario of the scenario. `tp.set_official(scenario)` is the function used to make a scenario primary.
 
 > Note that the previous primary sccenario will not be primary anymore. There is always just one primary scenario in a cycle. 
