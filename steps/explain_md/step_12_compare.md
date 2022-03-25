@@ -1,7 +1,7 @@
 Cycles are useful to keep track of KPI over time. The goal of the code below is to compare the primary scenario of every cycle and their pipelines over time.
 
 To achieve this:
-- a new dataframe has to be initialized. It will store the metrics for the `baseline` and `ml` pipeline. 
+- A new dataframe has to be initialized. It will store the metrics for the `baseline` and `ml` pipeline. 
 - Then, a part will use a boolean to show or not the comparison.
 - Finally, a selector will change the displayed metrics of the graph.
 
@@ -11,7 +11,7 @@ comparison_scenario = pd.DataFrame({'Scenario Name':[],
                                     'RMSE baseline':[], 'MAE baseline':[],
                                     'RMSE ML':[], 'MAE ML':[]})
 
-# Boolean to check if the comparison is done
+# Boolean to check if the comparison is done (part to render or not)
 comparison_scenario_done = False
 
 # Selector for metric
