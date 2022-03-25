@@ -7,7 +7,7 @@ from taipy.gui import notify
 
 
 # Create scenarios each week and compare them
-scenario_weekly_cfg = tp.configure_scenario(id="scenario",
+scenario_daily_cfg = tp.configure_scenario(id="scenario",
                                             pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg],
                                             frequency=Frequency.DAILY)
 
@@ -36,7 +36,7 @@ def create_scenario(state):
         name = create_name_for_scenario(state)
 
         # Create a scenario with the week cycle
-        scenario = tp.create_scenario(scenario_weekly_cfg, creation_date=creation_date, name=name)
+        scenario = tp.create_scenario(scenario_daily_cfg, creation_date=creation_date, name=name)
 
         state.selected_scenario = (scenario.id, name)
 
