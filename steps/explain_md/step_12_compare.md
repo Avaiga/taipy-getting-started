@@ -1,6 +1,9 @@
 Cycles are useful to keep track of KPI over time. The goal of the code below is to compare the primary scenario of every cycle and their pipelines over time.
 
-To achieve this, a new dataframe has to be initialized. It will store the metrics for the `baseline` and `ml` pipeline. Then, a part will use a boolean to show or not the comparison and finally, a selector will change the displayed metrics of the graph.
+To achieve this:
+- a new dataframe has to be initialized. It will store the metrics for the `baseline` and `ml` pipeline. 
+- Then, a part will use a boolean to show or not the comparison.
+- Finally, a selector will change the displayed metrics of the graph.
 
 ```python
 # Initial dataset for comparison
