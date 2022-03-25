@@ -1,4 +1,4 @@
-# Building the GUI and selectors
+# Building the GUI for a scenario and selectors
 
 Just as before, this new configuration needs a new GUI. The scenario will be created and executed at the beginning then, a selector will be used to select a pipeline among the `baseline` and `ml` pipeline.
 
