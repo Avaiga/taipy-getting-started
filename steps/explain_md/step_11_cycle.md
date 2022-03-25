@@ -1,6 +1,8 @@
-## Frequency will create a Cycle object, it will be used in the code to navigate through the scenarios and have a master scenario for each cycle
+# Introduction to cycles
 
+The final concept of Taipy Core is [Cycles](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/cycle/). A cycle is a period of time representing a business time schedule. This period of time can be a day, a week, a month or a year. It is used to create temporal distinction between scenarios. Furthermore, in each period, a primary scenario is made; it is your main or reference scenario for this period. Typically, in a Machine Learning problem, a lot of scenarios can be created on a day for the next day. Just, one scenario will be the primary scenario. In this example, the scenario cycle is `DAILY`. Taipy can then get all the scenarios created in a day including the primary scenario but also can get all the primary scenarios over time to easily see the evolution of their performance.
 
+To create a cycle, nothing is simplier. The `frequency` parameter in a scenario configuration will create the type of Cycle of your desire. In the code below, the scenario has a daily cycle. It will be attached to the correct period (day) when it is created.
 
 ```python
 from taipy import Frequency
@@ -10,6 +12,9 @@ scenario_daily_cfg = tp.configure_scenario(id="scenario",
                                             pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg],
                                             frequency=Frequency.DAILY)
 ```
+
+To clarify this concept of primary scenario, a `*` will be shown before its name if the scenario is primary. This is why we update the following functions.
+
 ```python
 selected_scenario_is_official = None
 
@@ -27,6 +32,7 @@ def update_scenario_selector(state, scenario):
     state.scenario_selector += [(scenario.id, scenario_name)]
 ```
 
+In `create_scenario`, `scenario_daily_cfg` is now the configuration used to create the scenario. By creating it, you also create the depending cycle. For example, if `creation_date` is 04/02/2021, a cycle related to this day will be created. All scenarios that will be created on this day will be in this cycle with just one primary scenario. If `creation_date` changes, another cycle will be created for this different day and so on.
 
 ```python
 # Change the create_scenario function to create a scenario with the selected frequency
@@ -44,38 +50,31 @@ def create_scenario(state):
         # Change the scenario that is currently selected
         submit_scenario(state)
 ```
+
+Nothing changes in the `submit_scenario` function.
+
+A 'Make official' button will be used in the Gui. It calls the function below to change the current primary scenario of the scenario. `tp.set_official(scenario)` is the function used to make a scenario primary.
+
+> Note that the previous primary sccenario will not be primary anymore. There is always just one primary scenario in a cycle. 
+
 ```python
-# This is the same code as in step_9_dynamic_scenario_creation.py
-def submit_scenario(state):
-    print("Submitting scenario...")
-    # Get the currently selected scenario
+def make_official(state):
+    print('Making the current scenario official...')
     scenario = tp.get(state.selected_scenario[0])
+    # Take the current scenario official
+    tp.set_official(scenario)
     
-    # Conversion to the right format (change?)
-    day = dt.datetime(state.day.year, state.day.month, state.day.day) 
+    # Update the scenario selector accordingly
+    state.scenario_selector = [(scenario.id, ("*" if scenario.is_official else "") + scenario.name) 
+                               for scenario in tp.get_scenarios()]
 
-    # Change the default parameters by writing in the datanodes
-    #if state.day != scenario.day.read():
-    scenario.day.write(day)
-    #if int(state.n_predictions) != scenario.n_predictions.read(): 
-    scenario.n_predictions.write(int(state.n_predictions))
-    #if state.max_capacity != scenario.max_capacity.read():
-    scenario.max_capacity.write(int(state.max_capacity))
-    #if state.day != scenario.creation_date:
-    scenario.creation_date = state.day
-        
-
-    # Execute the pipelines/code
-    tp.submit(scenario)
-    
-    # Update the scenario selector and the scenario that is currently selected
-    update_scenario_selector(state, scenario) # change list to scenario
-    
-    # Update the chart directly
-    update_chart(state) 
+    state.selected_scenario_is_official = True
 ```
 
 
+Another button is present in the Gui. It will add the ability to delete a scenario by calling the `delete_scenario` function below when pressed.
+
+> Note that a primary scenario cannot be deleted.
 
 ```python
 from taipy.gui import notify
@@ -99,19 +98,7 @@ def delete_scenario(state):
 
 ```
 
-```python
-def make_official(state):
-    print('Making the current scenario official...')
-    scenario = tp.get(state.selected_scenario[0])
-    # Take the current scenario official
-    tp.set_official(scenario)
-    
-    # Update the scenario selector accordingly
-    state.scenario_selector = [(scenario.id, ("*" if scenario.is_official else "") + scenario.name) 
-                               for scenario in tp.get_scenarios()]
-
-    state.selected_scenario_is_official = True
-```
+There has been just two buttons added to this page ('Make official' and 'Delete scenarios'). Nothing else.
 
 ```python
 # Change the page_scenario_manager to add a delete scenario button and a make official button
@@ -179,6 +166,7 @@ multi_pages = """
 """
 ```
 
+When the scenario is changed, the `on_change` is called and will update `selected_scenario_is_official` which keeps track if the selected scenario is primary.
 
 ```python
 def on_change(state, var_name: str, var_value):
@@ -193,11 +181,6 @@ def on_change(state, var_name: str, var_value):
         # Check if we can read the data node to update the chart
         if tp.get(state.selected_scenario[0]).predictions.read() is not None:
             update_chart(state)
-```           
-        
 
-
-
-```python
 Gui(page=multi_pages).run()
 ```
