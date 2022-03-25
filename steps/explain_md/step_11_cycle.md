@@ -96,8 +96,10 @@ def delete_scenario(state):
         
         # Update the scenario selector accordingly
         remove_scenario_from_selector(state,scenario)
-    
 
+```
+
+```python
 def make_official(state):
     print('Making the current scenario official...')
     scenario = tp.get(state.selected_scenario[0])
