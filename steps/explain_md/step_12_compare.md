@@ -1,3 +1,5 @@
+# Compare primary scenarios
+
 Cycles are useful to keep track of KPI over time. The goal of the code below is to compare the primary scenario of every cycle and their pipelines over time.
 
 To achieve this:
