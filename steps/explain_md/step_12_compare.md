@@ -1,4 +1,4 @@
-Cycles are useful in order to keep track of KPI over time. A primary scenario is the reference scenario for a cycle. The goal of the code below is to compare the primary scenarios of every cycle and their pipelines in time.
+Cycles are useful to keep track of KPI over time. A primary scenario is the reference scenario for a cycle. The goal of the code below is to compare the primary scenarios of every cycle and their pipelines in time.
 
 To achieve this, a new dataframe has to be initialized. It will store the metrics for the `baseline` and `ml` pipeline. Then, a part will use a boolean to show or not the comparison and finally, a selector will change the displayed metrics of the graph.
 
