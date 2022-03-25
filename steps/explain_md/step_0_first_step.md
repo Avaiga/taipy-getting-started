@@ -1,3 +1,5 @@
+# First step in Taipy
+
 **Taipy** is composed of two concepts: the **Graphical User Interface** and the **Scenario Management**. These two components are independent. You can use the GUI component without the Scenario Management and vice-versa. However, as you will see, they are incredibly efficient when combined.
 
 <p align="center">
