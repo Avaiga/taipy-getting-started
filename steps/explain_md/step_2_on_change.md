@@ -1,4 +1,4 @@
-Now, the page has a lot of visual elements. The slider is interactive and changes `value`. Taipy manages everything. 
+Now, the page has a lot of visual elements. The slider is interactive and changes `value`. Taipy manages everything. To go further into Taipy GUI, the concept of **state** has to be evoked.
 
 # Multi client - state
 
