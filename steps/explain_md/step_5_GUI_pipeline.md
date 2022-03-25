@@ -1,4 +1,4 @@
-# Building the GUI and buttons
+# Building the GUI for a pipeline and buttons
 
 Let's update the GUI to display the results of the pipeline. You can find a "Predict" [button](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/button/) on the page to create the pipeline and run it. When you press the button, Taipy calls the function in the *on_action* parameter.
 
