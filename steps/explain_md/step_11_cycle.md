@@ -108,7 +108,8 @@ def make_official(state):
     
     # Update the scenario selector accordingly
     state.scenario_selector = [(scenario.id, ("*" if scenario.is_official else "") + scenario.name) 
-    for scenario in tp.get_scenarios()]
+                               for scenario in tp.get_scenarios()]
+
     state.selected_scenario_is_official = True
 ```
 
