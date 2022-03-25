@@ -1,4 +1,4 @@
-Great! Now, the page has a lot of visual elements. The slider is interactive and changes `value`. Taipy manages everything. 
+Now, the page has a lot of visual elements. The slider is interactive and changes `value`. Taipy manages everything. 
 
 # Multi client - state
 
