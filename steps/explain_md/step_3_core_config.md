@@ -1,3 +1,5 @@
+# Introducing Taipy Core
+
 With this last code, you should understand the basics of Taipy GUI. Let's go for a moment to the Scenario Management aspect of Taipy.
 
 There are a lot of reasons to use Taipy Core.
