@@ -6,7 +6,7 @@ The final concept of Taipy Core is [Cycles](https://didactic-broccoli-7da2dfd5.p
     <img src="/steps/images/cycle.svg" width=300>
 </p>
 
-Typically, in a Machine Learning problem, a lot of scenarios can be created on a day for the next day. Just, one scenario will be the primary scenario. For example, one could want to have `DAILY` cycle. Taipy can then get all the scenarios created in a day including the primary scenario but also can get all the primary scenarios over time to easily see the evolution of their performance.
+Typically, in a Machine Learning problem, a lot of scenarios can be created on a day for the next day. Just, one scenario will be the primary scenario. For example, one could want to have `DAILY` cycle. Taipy has the capability to get all the scenarios created in a day including the primary scenario but also has a function to get every primary scenarios made to see easily the evolution of their performance.
 
 To create a cycle, nothing is simplier. The `frequency` parameter in a scenario configuration will create the type of Cycle of your desire. In the code below, the scenario has a daily cycle. It will be attached to the correct period (day) when it is created.
 
