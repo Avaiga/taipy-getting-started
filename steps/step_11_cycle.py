@@ -128,24 +128,20 @@ page_scenario_manager = """
 <|part|render={len(scenario_selector) > 0}|
 <|layout|columns=1 1|
 
-
 <|layout|columns=1 1|
 <|
-## Scenario <|{selected_scenario}|selector|lov={scenario_selector}|dropdown=True|>
-<center>
+## Scenario \n <|{selected_scenario}|selector|lov={scenario_selector}|dropdown=True|>
+|>
+
+<br/>
+<br/>
+<br/>
+<br/>
 <|Delete scenario|button|on_action=delete_scenario|active={len(scenario_selector)>0}|>
 <|Make official|button|on_action=make_official|active={not(selected_scenario_is_official) and len(scenario_selector)>0}|>
-</center>
 |>
 
-<|part|render={selected_scenario_is_official}|
-<br/>
-<br/>
-<br/>
-<|{"main_scenario.png"}|image|width=40px|height=40px|>
-|>
 
-|>
 
 
 <|
