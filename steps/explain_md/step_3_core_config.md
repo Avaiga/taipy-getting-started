@@ -32,7 +32,7 @@ Some parameters for data node configuration:
 - **Storage_type**: There are multiple storage types. You can read CSV file, SQL database, pickle file, etc.
             Here, you are going to create a csv data node to read/store the initial dataset. Taipy knows how to access it thanks to the path.
 
-- **Scope**: You can find in the code below two types of Scope: the Pipeline and Scenario scope (by default). 
+- **[Scope](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/scope/)**: You can find in the code below two types of Scope: the Pipeline and Scenario scope (by default). 
             Basically, with Scenario scope, data nodes are shared between all the pipelines of the scenario.
             With Pipeline scope, data nodes are not shared between pipelines and don't have access to other data nodes from other pipelines. For example, here, a 'predictions' data node is created for each pipeline. So, adding pipelines/algorithms will create predictions stored in different "predictions" data nodes.
 
