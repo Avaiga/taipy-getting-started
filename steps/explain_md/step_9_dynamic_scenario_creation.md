@@ -87,7 +87,7 @@ def update_scenario_selector(state, scenario):
 
 ## Automatize the graph update - *on_change* function
 
-The 'on_change' function can automatically change the graph when another pipeline or scenario is selected.
+The `on_change` function can automatically change the graph when another pipeline or scenario is selected.
 
 ```python
 def on_change(state, var_name: str, var_value):
