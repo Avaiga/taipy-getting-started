@@ -1,6 +1,6 @@
 # How to write data and change your default parameters?
 
-Now that the Gui has been created to handle a scenario, it would be interesting to change the initial variables to see their impact on the predictions. These are the input variables that wasn't change so far: the *number of predictions*, the *max capacity* and the *day*. How can we interact with them in real time? It can easily be done with the 'write' function of data nodes.
+Now that the Gui has been created to handle a scenario, it would be interesting to change the initial variables to see their impact on the predictions. These are the input variables that wasn't change so far: the *number of predictions*, the *max capacity* and the *day*. How can we interact with them in real time? It can easily be done with the 'write' function of Data Nodes.
 
 First of all, to add variables to a visual element, they have to be initialized. 
 ```python
@@ -48,7 +48,7 @@ def create_scenario():
 
 In the `submit` function, two essential Taipy functions are introduced:
 - `tp.get(scenario_id)`: Taipy function used to get the scenario from its id.
-- `.write(new_value)`: is the function of a data node that changes the value stored in the data node. For example, `scenario.max_capacity` is a data node whose value can be changed to 100 like this `scenario.max_capacity.write(100)`.
+- `.write(new_value)`: is the function of a Data Node that changes the value stored in the Data Node. For example, `scenario.max_capacity` is a Data Node whose value can be changed to 100 like this `scenario.max_capacity.write(100)`.
 
 ```python
 def submit(state):

@@ -12,7 +12,7 @@ baseline_pipeline_cfg = tp.configure_pipeline(id="baseline",
 
 # Pipeline creation and execution
 
-Then, create your pipeline from its configuration, submit it, and print the results of the "predictions" data node.
+Then, create your pipeline from its configuration, submit it, and print the results of the "predictions" Data Node.
 
 ```python
 # Create the pipeline

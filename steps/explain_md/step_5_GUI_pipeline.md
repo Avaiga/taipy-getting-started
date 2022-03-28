@@ -38,8 +38,8 @@ def create_and_submit_pipeline():
     return pipeline
 ```
 
-After the first submission of the pipeline, the data stored in *predictions* and *cleaned_data* data nodes are accessible. The use of the `.read()` function is to access the data in data nodes.
-`create_predictions_dataset` reads the data nodes to create a prediction dataset with these columns:
+After the first submission of the pipeline, the data stored in *predictions* and *cleaned_data* Data Nodes are accessible. The use of the `.read()` function is to access the data in Data Nodes.
+`create_predictions_dataset` reads the Data Nodes to create a prediction dataset with these columns:
 - Date,
 - Historical values,
 - Predicted values.

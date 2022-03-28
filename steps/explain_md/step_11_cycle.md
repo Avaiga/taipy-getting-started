@@ -181,7 +181,7 @@ def on_change(state, var_name: str, var_value):
         # Update selected_scenario_is_primary indicating if the current scenario is primary or not
         state.selected_scenario_is_primary = tp.get(state.selected_scenario[0]).is_primary
 
-        # Check if we can read the data node to update the chart
+        # Check if we can read the Data Node to update the chart
         if tp.get(state.selected_scenario[0]).predictions.read() is not None:
             update_chart(state)
 
