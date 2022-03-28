@@ -29,9 +29,9 @@ Select the pipeline
 
 The code around the GUI has evolved. `create_scenario` is creating a scenario and submitting it with the `submit` function. `update_chart` is updating the chart based upon the selected scenario and pipeline.
 
-create_scenario > submit
-
-button > update_chart
+<p align="center">
+    <img src="/steps/images/step_7_organisation.svg" width=700>
+</p>
 
 ```python
 def create_scenario():
