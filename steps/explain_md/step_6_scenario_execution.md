@@ -1,6 +1,6 @@
 # Creation and execution of Scenarios
 
-Now that you have seen how to create and run a single pipeline let's configure a scenario. This scenario will run two pipelines: the first pipeline (*baseline*) and another one (*ml*) that will predict through a different function.
+Now that you have seen how to create and run a single pipeline let's configure a scenario. Remember, a scenario is usually your business problem. Different scenarios would represent different solutions to your problem. Here, the scenario is influenced by the *max_capacity*, *day* and *number of predictions*. This scenario will run two pipelines: the first pipeline (*baseline*) and another one (*ml*) that will predict through a different function.
 
 ```python      
 from statsmodels.tsa.ar_model import AutoReg
@@ -42,9 +42,8 @@ With this new task, the Machine Learning pipeline can finally be configured.
 ml_pipeline_cfg = tp.configure_pipeline(id="ml", task_configs=[clean_data_task_cfg, predict_ml_task_cfg])
 ```
 
-Remember, a scenario is usually your business problem. Different scenarios would represent different solutions to your problem. Here, the scenario is influenced by the *max_capacity*, *day* and *number of predictions*. With just a couple more lines you could add more pipelines/algorithms.
+To configure a scenario, you need to use `tp.configure_scenario` and the list of the related pipelines. With just a couple more lines you could add more pipelines/algorithms.
 
-To configure a scenario, you need to use `tp.configure_scenario` and the list of the related pipelines.
 ```python   
 # Configure our scenario which is our business problem.
 scenario_cfg = tp.configure_scenario(id="scenario", pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg]) 
