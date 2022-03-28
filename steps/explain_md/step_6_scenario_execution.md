@@ -1,6 +1,6 @@
 # Creation and execution of Scenarios
 
-Now that you have seen how to create and run a single pipeline let's configure a scenario. Remember, a scenario is usually your business problem. Different scenarios would represent different solutions to your problem. Here, the scenario is influenced by the *max_capacity*, *day* and *number of predictions*.
+Now that you have seen how to create and run a single pipeline let's configure a scenario. Remember, a scenario is usually your business problem. Different scenarios would represent different solutions to your problem. Here, *max_capacity*, *day* and *number of predictions* influences the scenario.
 
 In this example, the scenario will run two pipelines: the first pipeline (*baseline*) and another one (*ml*) that will predict through a different function.
 
@@ -44,14 +44,14 @@ With this new task, the Machine Learning pipeline can finally be configured.
 ml_pipeline_cfg = tp.configure_pipeline(id="ml", task_configs=[clean_data_task_cfg, predict_ml_task_cfg])
 ```
 
-To configure a scenario, you need to use `tp.configure_scenario` and the list of the related pipelines. With just a couple more lines you could add more pipelines/algorithms.
+To configure a scenario, you need to use `tp.configure_scenario` and the list of the related pipelines. You could add more pipelines/algorithms with just a couple more lines.
 
 ```python   
 # Configure our scenario which is our business problem.
 scenario_cfg = tp.configure_scenario(id="scenario", pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg])
 ```
 
-The configuration is now complete. Now, you can create your scenario and execute it. When creating your scenario, Taipy will create your pipelines and when you submit the scenario, it will execute them through smart scheduling. Taipy knows which tasks to do before which one and will be able to cancel Jobs if a task is repetitive.
+The configuration is now complete. Now, you can create your scenario and execute it. When creating it, Taipy will create your pipelines, and when you submit the scenario, it will run them based on intelligent scheduling. Taipy knows which tasks to do before which one and will be able to cancel Jobs if a task is repetitive.
 
 ```python
 # Create the scenario
