@@ -19,7 +19,7 @@ The **Scenario Management** of Taipy is a powerful tool to manage your scenarios
 
 You can use the GUI component without the Scenario Management and vice-versa. However, as you will see, they are incredibly efficient when combined.
 
-This 'Get Started' will go through all the basic concepts of Taipy. Each step is based on the code of the previous one. At the end of it, you will be able to create a full aplication using Taipy. without further delay, let's begin to code!
+This **'Get Started'** will go through all the basic concepts of *Taipy*. Each step is based on the code of the previous one. At the end of it, you will be able to create a full aplication using *Taipy*. So, without further delay, let's begin to code!
 
 ## First web page
 
