@@ -11,7 +11,7 @@ max_capacity = 200
 page_scenario_manager = page + """
 # Change your scenario
 
-**Prediction date**\n\n <|{day}|date|with_time=False|>
+**Prediction date**\n\n <|{day}|date|not with_time|>
 
 **Max capacity**\n\n <|{max_capacity}|number|>
 

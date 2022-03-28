@@ -1,17 +1,17 @@
-from taipy.gui import Gui
+from taipy import Gui
 import pandas as pd
 
 def get_data(path_to_csv: str):
-    # "pd.read_csv()" function returns a pd.DataFrame
+    # pandas.read_csv() returns a pd.DataFrame
     dataset = pd.read_csv(path_to_csv)
     dataset['Date'] = pd.to_datetime(dataset['Date'])
     return dataset
 
-# Get the dataframe
+# Read the dataframe
 path_to_csv = "dataset.csv"
 dataset = get_data(path_to_csv)
 
-# Initial value of n_week
+# Initial value
 n_week = 10
 
 # Definition of the page
@@ -25,11 +25,11 @@ Interact with this slider to change the week number:
 
 ## Full dataset:
 
-<|{dataset}|chart|x=Date|y=Value|height=100%|type=bar|>
+<|{dataset}|chart|type=bar|x=Date|y=Value|height=100%|>
 
 <|{dataset}|table|height=400px|width=95%|>
 """
 
 if __name__ == "__main__":
-    # Create a Gui object with our String
+    # Create a Gui object with our page content
     Gui(page=page).run()

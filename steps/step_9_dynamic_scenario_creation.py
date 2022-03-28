@@ -1,6 +1,6 @@
 from step_8_write_data import *
 
-# this function will get all the scenarios already created
+# Get all the scenarios already created
 all_scenarios = tp.get_scenarios() 
 
 # Initial variable for the scenario selector
@@ -11,7 +11,7 @@ selected_scenario = None
 scenario_manager_page = page + """
 # Create your scenario
 
-**Prediction date**\n\n <|{day}|date|with_time=False|>
+**Prediction date**\n\n <|{day}|date|not with_time|>
 
 **Max capacity**\n\n <|{max_capacity}|number|>
 
@@ -20,7 +20,7 @@ scenario_manager_page = page + """
 <|Create new scenario|button|on_action=create_scenario|>
 
 ## Scenario 
-<|{selected_scenario}|selector|lov={scenario_selector}|dropdown=True|>
+<|{selected_scenario}|selector|lov={scenario_selector}|dropdown|>
 
 ## Display the pipeline
 <|{selected_pipeline}|selector|lov={pipeline_selector}|>
@@ -31,16 +31,14 @@ scenario_manager_page = page + """
 def create_name_for_scenario(state)->str:
     name = f"Scenario ({state.day.strftime('%A, %d %b')}; {state.max_capacity}; {state.n_predictions})"
     
-    # If the name is already a name of a scenario, we change it
+    # Change the name if it is the same as some scenario's
     if name in [s[1] for s in state.scenario_selector]:
         name += f" ({len(state.scenario_selector)})"
     return name
 
 
-
-
 # Change the create_scenario function in order to change the default parameters
-# and to be able to create multiple scenarios
+# and allow the creation of multiple scenarios
 def create_scenario(state):
         print("Execution of scenario...")
         # Extra information for the scenario
@@ -61,7 +59,7 @@ def submit_scenario(state):
     # Conversion to the right format (change?)
     day = dt.datetime(state.day.year, state.day.month, state.day.day) 
 
-    # Change the default parameters by writing in the datanodes
+    # Change the default parameters by writing in the Data Nodes
     #if state.day != scenario.day.read():
     scenario.day.write(day)
     #if int(state.n_predictions) != scenario.n_predictions.read(): 
@@ -72,7 +70,7 @@ def submit_scenario(state):
     scenario.creation_date = state.day
         
 
-    # Execute the pipelines/code
+    # Execute the scenario
     tp.submit(scenario)
     
     # Update the scenario selector and the scenario that is currently selected
@@ -80,7 +78,6 @@ def submit_scenario(state):
     
     # Update the chart directly
     update_chart(state) 
-
 
 
 def update_scenario_selector(state, scenario):
@@ -109,4 +106,3 @@ def on_change(state, var_name: str, var_value):
 
 if __name__ == "__main__":
     Gui(page=scenario_manager_page).run()
-    

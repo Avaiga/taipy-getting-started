@@ -1,7 +1,5 @@
 from statsmodels.tsa.ar_model import AutoReg
 
-
-
 from step_4_pipeline_execution import *
 from step_3_core_config import cleaned_dataset_cfg, n_predictions_cfg, day_cfg, max_capacity_cfg, predictions_cfg, pd, dt
 
@@ -40,8 +38,8 @@ if __name__=='__main__':
     scenario = tp.create_scenario(scenario_cfg)
     # Execute it
     tp.submit(scenario)
+
     # Get the resulting scenario
-    
-    # Print the predictions of the two pipelines (baseline and ml)
+    ## Print the predictions of the two pipelines (baseline and ml)
     print("\nBaseline predictions\n", scenario.baseline.predictions.read())
     print("\nMachine Learning predictions\n", scenario.ml.predictions.read())

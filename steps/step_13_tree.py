@@ -31,7 +31,7 @@ def create_tree_dict(scenarios, tree_dict: dict=None):
     
     # Add all the scenarios that are in the list
     for scenario in scenarios:
-        # Creates the name for the cycle
+        # Create a name for the cycle
         day = scenario.day.read()
         period = f"{day.strftime('%A, %d %b %Y')} Cycle"
        
@@ -39,8 +39,8 @@ def create_tree_dict(scenarios, tree_dict: dict=None):
         if period not in tree_dict:
             tree_dict[period] = []
         
-        # Append this dictionary with the scenario id and the scenario name
-        scenario_name = ("*" if scenario.is_official else "") + scenario.name
+        # Append a new entry with the scenario id and the scenario name
+        scenario_name = ("*" if scenario.is_primary else "") + scenario.name
         tree_dict[period] += [(scenario.id, scenario_name)]
     
     return tree_dict
@@ -56,14 +56,13 @@ def build_childs(childs_):
         # tuple for the tree lov are composed this way:
         # (real_value, displayed_value, childs)
         if isinstance(mother, tuple):
-            # Here real_value is different from displayed_value
+            # 'real_value' is different from displayed_value
             childs_tupple = (f"{mother[0]}", mother[1], build_childs(childs))
         elif isinstance(childs, dict) :
-            # Here real_value is the same as displayed_value
+            # 'real_value' is the same as displayed_value
             childs_tupple = (f"{mother}", mother, build_childs(childs))
         else:
-            # Here, we are at the end of the tree
-            # Childs are the leafs
+            # End of the tree - Children are the leafs
             childs_tupple = (f"{mother}", mother, childs)
             
         childs_array.append(childs_tupple)
@@ -72,19 +71,18 @@ def build_childs(childs_):
 
 def build_tree_lov(tree_dict: dict):
     tree_lov = []
-    # Explore the first level of the tree and their childs
+    # Explore the first level of the tree and their children
     for mother, childs in tree_dict.items():
         # tuple for the tree lov are composed this way:
         # (real_value, displayed_value, childs)
         if isinstance(mother, tuple):
-            # Here real_value is different from displayed_value
+            # 'real_value' is different from displayed_value
             mother_tuple = (f"{mother[0]}", mother[1], build_childs(childs))
         elif isinstance(childs, dict) :
-            # Here real_value is the same as displayed_value
+            # 'real_value' is the same as displayed_value
             mother_tuple = (f"{mother}", mother, build_childs(childs))
         else:
-            # Here, we are at the end of the tree
-            # Childs are the leafs
+            # End of the tree - Children are the leafs
             mother_tuple = (f"{mother}", mother, childs)
             
         tree_lov.append(mother_tuple)
@@ -102,7 +100,7 @@ def create_scenario(state):
     creation_date = state.day
     name = create_name_for_scenario(state)
     
-    # Create a scenario with the week cycle 
+    # Create a scenario within the week cycle 
     scenario = tp.create_scenario(scenario_daily_cfg, creation_date=creation_date, name=name)
     
     state.selected_scenario = (scenario.id, name)
@@ -144,15 +142,16 @@ def submit_scenario(state):
     update_chart(state)
 
 
-def make_official(state):
-    print('Making the current scenario official...')
+def make_primary(state):
+    print('Making the current scenario primary...')
     scenario = tp.get(state.selected_scenario[0])
-    # Take the current scenario official
-    tp.set_official(scenario)
+    # Take the current scenario primary
+    tp.set_primary(scenario)
     
     # Update the scenario selector accordingly
-    state.scenario_selector = [(scenario.id, ("*" if scenario.is_official else "") + scenario.name) for scenario in tp.get_scenarios()]
-    state.selected_scenario_is_official = True
+    state.scenario_selector = [(scenario.id, ("*" if scenario.is_primary else "") + scenario.name)
+                               for scenario in tp.get_scenarios()]
+    state.selected_scenario_is_primary = True
     
     # Update the tree dict and the tree lov
     tree_dict = create_tree_dict(tp.get_scenarios())
@@ -163,9 +162,9 @@ def delete_scenario(state):
     global tree_dict
     scenario = tp.get(state.selected_scenario[0])
     
-    if scenario.is_official:
-        # Notify the user that official scenarios can't be deleted
-        notify(state,'info', 'Cannot delete the official scenario')
+    if scenario.is_primary:
+        # Notify the user that primary scenarios can't be deleted
+        notify(state, 'info', 'Cannot delete the primary scenario')
     else:
         # Delete the scenario and the related objects (datanodes, tasks, jobs,...)
         tp.delete(scenario.id)
@@ -184,13 +183,13 @@ page_cycle_manager = """
 ## Scenario
 <|{selected_scenario_tree}|tree|lov={tree_lov}|>
 <center>
-<|Delete scenario|button|on_action=delete_scenario|> <|Make official|button|on_action=make_official|active={not(selected_scenario_is_official)}|>
+<|Delete scenario|button|on_action=delete_scenario|> <|Make primary|button|on_action=make_primary|active={not(selected_scenario_is_primary)}|>
 </center>
 |>
 
 <|
 ## Display the pipeline
-<|{selected_pipeline}|selector|lov={pipeline_selector}|dropdown=True|>
+<|{selected_pipeline}|selector|lov={pipeline_selector}|dropdown|>
 |>
 |>
 
@@ -216,7 +215,7 @@ def on_change(state, var_name: str, var_value):
     elif var_name == 'selected_pipeline' or var_name == 'selected_scenario':
         print(state.selected_scenario[0])
         # Update the chart when the scenario or the pipeline is changed
-        state.selected_scenario_is_official = tp.get(state.selected_scenario[0]).is_official
+        state.selected_scenario_is_primary = tp.get(state.selected_scenario[0]).is_primary
         
         # Check if we can read the data node to update the chart
         if tp.get(state.selected_scenario[0]).predictions.is_ready_for_reading:
@@ -227,8 +226,6 @@ def on_change(state, var_name: str, var_value):
     elif var_name == "selected_scenario_tree":
         if 'scenario' in var_value[0][0]:
             state.selected_scenario = var_value[0]
-        
-
 
 
 if __name__ == '__main__':
