@@ -1,5 +1,4 @@
-With these few steps, you have created a full-AI application on which you can predict multiples days with different parameters. However, as you can see the layout of the page is not optimal. It could be greatly improved. This is the role of the code below.
-To get a more aesthetically pleasing page, three useful controls to use are:
+With these few steps, you have created a full-AI application on which you can predict multiples days with different parameters. However, as you can see, the page's layout is not optimal. It could be greatly improved. This is the role of the code below. To get a more aesthetically pleasing page, three useful controls to use are:
 - [menu](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/menu/): creates a menu on the left to navigate through the pages.
 `<|menu|label=Menu|lov={lov_pages}|on_action=menu_fct_called|>`. For example, this code creates a menu with two pages:
 
@@ -38,10 +37,9 @@ Third column
     <img src="/steps/images/layout.png" width=500>
 </p>
 
-Here, the part with the chart will be displayed when the first scenario will be created. A menu renders or not a part depending on the 'page' variable. This is how you can create easily multiple pages; there are a lot of other ways to do so.
+Here, the part with the chart will be displayed when you will create the first scenario. A menu renders or not a part depending on the 'page' variable. This is how you can easily create multiple pages; there are many other ways to do so.
 
-
-The first page in the menu contains the chart with dataset focused on one week and the slider related to change the week. This is the page created in one of the first code.
+The first page in the menu contains the chart with the dataset focused on one week and the slider related. This is the page created in one of the first codes.
 
 ```python
 # Our first page is the original page
