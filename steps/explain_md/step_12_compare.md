@@ -1,6 +1,6 @@
 # Compare primary scenarios
 
-Cycles are useful to keep track of KPI over time. The goal of the code below is to compare the primary scenario of every cycle and their pipelines over time.
+Cycles are helpful to keep track of KPI over time. The goal is to compare the primary scenario of every cycle and its pipelines over time.
 
 To achieve this:
 - A new dataframe has to be initialized. It will store the metrics for the `baseline` and `ml` pipeline. 
@@ -21,7 +21,7 @@ metric_selector = ['RMSE', 'MAE']
 selected_metric = metric_selector[0]
 ```
 
-First of all, a function has to be created to compare the primary scenario of all the cycles. `tp.get_primary_scenarios()` is the useful function to use for this effect. `compare` goes through all of these scenarios and pipelines and add the metrics in lists. At the end, `state.comparison_scenario` is updated and `comparison_scenario_done` set to `True`.
+First of all, a function has to be created to compare the primary scenario of all the cycles. `tp.get_primary_scenarios()` is the useful function to use for this effect. `compare` goes through all of these scenarios and pipelines and add the metrics in lists. In the end, `state.comparison_scenario` is updated and `comparison_scenario_done` set to `True`.
 
 ```python
 from sklearn.metrics import mean_absolute_error, mean_squared_error
@@ -81,7 +81,7 @@ def compare(state):
     state.comparison_scenario_done = True
 ```
 
-Let's create a page related to this comparison. As said before, this page will contain a graph to compare scenarios and pipelines; and a selector to choose the metric on which to compare. The button at the bottom of the page when pressed calls the `compare` function. When finished, the rest of the page will be shown thanks to the `render` parameter of the *part*. Also, a new Taipy's block is present in the Markdown: [expandable](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/expandable/).
+Let's create a page related to this comparison. As said before, this page will contain a graph to compare scenarios and pipelines; and a selector to choose the metric on which to compare. When pressed the button at the bottom of the page calls the `compare` function. When finished, the `render` parameter of the *part* will render the rest of the page. Also, a new Taipy's block is present in the Markdown: [expandable](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/expandable/).
 
 ```python
 # Performance page
