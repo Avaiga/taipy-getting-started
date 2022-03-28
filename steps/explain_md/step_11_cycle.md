@@ -1,12 +1,12 @@
 # Introducing cycles
 
-The final concept of Taipy Core is [Cycles](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/cycle/). A cycle is a period of time representing a business time schedule. This period of time can be a day, a week, a month or a year. It is used to create temporal distinction between scenarios. Furthermore, in each period, a primary scenario is made; it is your main or reference scenario for this period.
+The final concept of Taipy Core are [Cycles](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/cycle/). A cycle is a period of time representing a business time schedule. This period of time can be a day, a week, a month or a year. It is used to create temporal distinction between scenarios. Furthermore, in each period, a primary scenario is made; it is your main or reference scenario for this period.
 
 <p align="center">
     <img src="/steps/images/cycle.svg" width=300>
 </p>
 
-Typically, in a Machine Learning problem, a lot of scenarios can be created on a day for the next day. Just, one scenario will be the primary scenario. For example, one could want to have `DAILY` cycle. Taipy has the capability to get all the scenarios created in a day including the primary scenario but also has a function to get every primary scenarios made to see easily the evolution of their performance.
+Typically, in a Machine Learning problem, a lot of scenarios can be created on a daily basis to predict the next day. Among all the scenrios of the day, there will only be one primary scenario. In this context, scenarios are attached to a `DAILY` cycle. Taipy has the capability to get all the scenarios created in a day by providing the cycle and has also a function to get every primary scenarios ever made to see easily the evolution of their performance.
 
 To create a cycle, nothing is simplier. The `frequency` parameter in a scenario configuration will create the type of Cycle of your desire. In the code below, the scenario has a daily cycle. It will be attached to the correct period (day) when it is created.
 
