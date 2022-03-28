@@ -2,9 +2,9 @@
 
 ## Dynamic selectors
 
-Let's manage multiple scenarios through a dynamic scenario selector. This selector will be updated whenever a new scenario is created. It will store the 'id' of the scenarios and their names. Only the names will be displayed.
+Let's manage multiple scenarios through a dynamic scenario selector. This selector will be updated whenever a new scenario is created. It will store the 'id' of the scenarios and their names. Only the names will be displayed in the selector.
 
-Initialize the scenario selector with the already created scenarios. If there are no scenarios, the selector will be empty.
+This code initializes the scenario selector with the already created scenarios. If there are no scenarios, the selector will be empty.
 ```python
 # Get all the scenarios already created
 all_scenarios = tp.get_scenarios() 
@@ -15,7 +15,7 @@ scenario_selector = [(scenario.id, scenario.name) for scenario in all_scenarios]
 selected_scenario = None
 ```
 
-A new selector for the scenario is added in the Markdown with a 'Create new scenario' button. This button is calling the `create_scenario` function.
+A new selector for the scenario is added to the Markdown with a 'Create new scenario' button. This button is calling the `create_scenario` function.
 
 ```python
 scenario_manager_page = page + """
@@ -39,7 +39,7 @@ scenario_manager_page = page + """
 """
 ```
 
-The main code managing scenarios is here. As you can see, the architrecture doesn't really change from the previous code. Two functions have been changed with some addition: `create_scenario` and `submit_scenario`. 
+The main code managing scenarios is here. As you can see, the architecture doesn't change from the previous code. Two functions have been altered with some addition: `create_scenario` and `submit_scenario`. 
 
 ```python
 def create_name_for_scenario(state)->str:
@@ -94,7 +94,7 @@ def submit_scenario(state):
     update_chart(state) 
 ```
 
-This is the funciton that will update the scenario selector whenever the user creates a new scenario. It is called in the `submit_scenario` function.
+The function below will update the scenario selector whenever the user creates a new scenario. It is called in the `submit_scenario` function.
 
 ```python
 def update_scenario_selector(state, scenario):
