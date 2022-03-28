@@ -12,9 +12,9 @@ The **Graphical User Interface** allows anyone with basic knowledge in Python to
 - Augmented syntax for Markdown
 - Interactive
 
-The **Scenario Management** of Taipy is a powerful tool to manage your scenarios and pipelines. A scenario is your business problem with initial parameters. The implementation of **Taipy Core** is intuitve and easy. It will allow you:
-- To keep track of your KPI, data, scenarios, pipelines, etc.
-- To have smart scheduling in your Python code
+The **Scenario Management** of Taipy is a powerful tool to manage your scenarios and pipelines. A scenario is your business problem with initial parameters. The implementation of **Taipy Core** is intuitve and easy. It will allow you to:
+- Keep track of your KPI, data, scenarios, pipelines, etc.
+- Have smart scheduling in your Python code
 - Simplify industrialisation of Python code
 
 
