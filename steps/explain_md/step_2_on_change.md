@@ -6,7 +6,7 @@ Try to open few clients with the same url. You will see that every client are in
 
 So, what is the state of a GUI? The application's state is the current state of the variables, so the values of all the variables for one client. In the beginning, `state.value = 10` and `state.data` is the dataset for the 10th week. When `value` is changing with the slider, this is in fact `state.value` that is changing. To manipulate variables in the GUI, we always pass through the state.
 
-In the code below, this concept will be used to connect a variable to other variables. For example, to create a chart that will only display one week of data, a connection has to be made between the slider's value and the data.
+In the code below, this concept will be used to connect a variable to other variables. To create a chart that will only display one week of data, a connection has to be made between the slider's value and the data.
 
 # How to connect two variables - the *[on_change](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/callbacks/)* function
 
