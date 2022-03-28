@@ -19,9 +19,9 @@ dataset = get_data(path_to_csv)
 ```
 
 `dataset` is a `pd.DataFrame`, a basic *Python* object representing in this case a real time series. Because of that, there will be no information for specific days. The columns are:
-- Index: is a unique identifier for each data point.
-- Date: is the date of the data point.
-- Value: is its value.
+- Index: a unique identifier for each data point.
+- Date: the date of the data point.
+- Value: its value.
 
 <p align="center">
     <img src="/steps/images/table.png" width=500>
