@@ -17,7 +17,7 @@ Taipy allows you to manage them effortlessly. To apprehend the Scenario Manageme
 
 
 Let's create a Machine Learning example to make it more transparent. In a Machine Learning problem, it is usual to have numerous training and testing pipelines for different algorithms.
-For simplification, this step will configure one baseline pipeline in this step. Therefore, the goal is to create a Directed Acyclic Graph (DAG) that represents this pipeline. This single pipeline takes the initial dataset, cleans it, and gives predictions for the *day*.
+For simplification, this step will only configure one baseline pipeline. Therefore, the goal is to create a Directed Acyclic Graph (DAG) that represents this pipeline. This single pipeline takes the initial dataset, cleans it, and gives predictions for the *day*.
 
 <p align="center">
             <img src="/steps/images/baseline_pipeline.svg" width=500>
