@@ -1,6 +1,8 @@
 # Creation and execution of Scenarios
 
-Now that you have seen how to create and run a single pipeline let's configure a scenario. Remember, a scenario is usually your business problem. Different scenarios would represent different solutions to your problem. Here, the scenario is influenced by the *max_capacity*, *day* and *number of predictions*. This scenario will run two pipelines: the first pipeline (*baseline*) and another one (*ml*) that will predict through a different function.
+Now that you have seen how to create and run a single pipeline let's configure a scenario. Remember, a scenario is usually your business problem. Different scenarios would represent different solutions to your problem. Here, the scenario is influenced by the *max_capacity*, *day* and *number of predictions*.
+
+In this example, the scenario will run two pipelines: the first pipeline (*baseline*) and another one (*ml*) that will predict through a different function.
 
 ```python      
 from statsmodels.tsa.ar_model import AutoReg
