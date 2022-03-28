@@ -84,7 +84,7 @@ def update_predictions_dataset(state, pipeline):
 
 This is how the stucture of the code looks like for the GUI:
 <p align="center">
-    <img src="/steps/images/step_5_organisation.svg" width=700>
+    <img src="/steps/images/step_5_organisation.svg" width=500>
 </p>
 
 

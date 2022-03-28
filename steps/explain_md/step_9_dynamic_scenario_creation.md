@@ -106,7 +106,7 @@ def update_scenario_selector(state, scenario):
 This graph summarizes the code for the GUI.
 
 <p align="center">
-    <img src="/steps/images/step_7_organisation.svg" width=700>
+    <img src="/steps/images/step_7_organisation.svg" width=500>
 </p>
 
 
