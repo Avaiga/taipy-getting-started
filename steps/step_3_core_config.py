@@ -7,7 +7,7 @@ from taipy import Scope
 from step_1_visual_elements import path_to_csv
 
 # Datanodes (3.1)
-## Input datanodes
+## Input Data Nodes
 initial_dataset_cfg = tp.configure_data_node(id="initial_dataset",
                                              storage_type="csv",
                                              path=path_to_csv)
@@ -18,7 +18,7 @@ n_predictions_cfg = tp.configure_data_node(id="n_predictions", default_data=40)
 
 max_capacity_cfg = tp.configure_data_node(id="max_capacity", default_data=200)
 
-## Remaining datanodes
+## Remaining Data Nodes
 cleaned_dataset_cfg = tp.configure_data_node(id="cleaned_dataset") # ,
                                                                    # cacheable=True,
                                                                    # validity_period=dt.timedelta(days=1)

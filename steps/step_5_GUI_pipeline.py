@@ -5,10 +5,10 @@ from step_4_pipeline_execution import tp, baseline_pipeline_cfg, dt
 from step_2_on_change import *
 
 
-# Initialize the predictions dataset
+# Initialize the 'predictions' dataset
 predictions_dataset = pd.DataFrame({"Date":[dt.datetime(2021, 6, 1)], "Historical values":[np.NaN], "Predicted values":[np.NaN]})
 
-# This is our new string with a button and a chart for our predictions
+# Add a button and a chart for our predictions
 pipeline_page = page + """
 Press <|predict|button|on_action=predict|> to predict with default parameters (30 predictions) and June 1st as day.
 
@@ -63,4 +63,3 @@ def update_predictions_dataset(state, pipeline):
 
 if __name__ == "__main__":
     Gui(page=pipeline_page).run()
-    

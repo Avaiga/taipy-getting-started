@@ -7,10 +7,10 @@ comparison_scenario = pd.DataFrame({'Scenario Name':[],
                                     'RMSE baseline':[], 'MAE baseline':[],
                                     'RMSE ML':[], 'MAE ML':[]})
 
-# Boolean to check if the comparison is done
+# Indicates if the comparison is done
 comparison_scenario_done = False
 
-# Selector for metric
+# Selector for metrics
 metric_selector = ['RMSE', 'MAE']
 selected_metric = metric_selector[0]
 
@@ -29,15 +29,15 @@ def compare(state):
     rmses_ml = []
     maes_ml = []
     
-    # Go through all the official scenarios
-    all_scenarios = tp.get_official_scenarios()
+    # Go through all the primary scenarios
+    all_scenarios = tp.get_primary_scenarios()
     all_scenarios_ordered = sorted(all_scenarios, key=lambda x: x.creation_date.timestamp()) # delete?
     
     for scenario in all_scenarios_ordered:
-        print("Scenario...", scenario.name)
+        print(f"Scenario '{scenario.name}'")
         # Go through all the pipelines
         for pipeline in scenario.pipelines.values():
-            print("     Pipeline...", pipeline.config_id)
+            print(f"     Pipeline '{pipeline.config_id}'")
             # Get the predictions dataset with the historical data
             only_prediction_dataset = create_predictions_dataset(pipeline)[-pipeline.n_predictions.read():]
             
@@ -45,10 +45,10 @@ def compare(state):
             historical_values = only_prediction_dataset['Historical values']
             predicted_values = only_prediction_dataset['Predicted values']
             
-            # Compute the metrics for this pipeline and official scenario
+            # Compute the metrics for this pipeline and primary scenario
             rmse, mae = compute_metrics(historical_values, predicted_values)
             
-            # Add to the correct lists, the correct values    
+            # Add values to the appropriate lists
             if 'baseline' in pipeline.config_id:
                 rmses_baseline.append(rmse)
                 maes_baseline.append(mae)
@@ -70,7 +70,7 @@ def compare(state):
     state.comparison_scenario_done = True
     
 
-# Create the performance page
+# Performance page
 page_performance = """
 <br/>
 
@@ -80,7 +80,7 @@ page_performance = """
 <|{comparison_scenario}|table|width=100%|>
 |>
 
-<|{selected_metric}|selector|lov={metric_selector}|dropdown=True|>
+<|{selected_metric}|selector|lov={metric_selector}|dropdown|>
 
 <|part|render={selected_metric=='RMSE'}|
 <|{comparison_scenario}|chart|type=bar|x=Scenario Name|y[1]=RMSE baseline|y[2]=RMSE ML|height=100%|width=100%|>
@@ -94,12 +94,12 @@ page_performance = """
 
 
 <center>
-<|Compare officials|button|on_action=compare|>
+<|Compare primarys|button|on_action=compare|>
 </center>
 """
 
  
- # Add the page_performance to the menu   
+ # Add the page_performance section to the menu   
 multi_pages = """
 <|menu|label=Menu|lov={["Data Visualization", "Scenario Manager", "Performance"]}|on_action=menu_fct|>
 
@@ -110,5 +110,3 @@ multi_pages = """
 
 if __name__ == '__main__':
     Gui(page=multi_pages).run()
-    
-    
