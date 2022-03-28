@@ -36,7 +36,7 @@ Some parameters for Data Node configuration:
 
 - **[Scope](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/scope/)**: You can find below two types of Scope in the code: the Pipeline and Scenario scope (by default).
             Basically, with Scenario scope, Data Nodes are shared between all the pipelines of the scenario.
-            With Pipeline scope, Data Nodes are not shared between pipelines and don't have access to other Data Nodes from other pipelines. IA 'predictions' Data Node is created for each pipeline in the current example. So, adding pipelines/algorithms will store predictions in different "predictions" Data Nodes.
+            With Pipeline scope, Data Nodes are not shared between pipelines and don't have access to other Data Nodes from other pipelines. A 'predictions' Data Node is created for each pipeline in the current example. So, adding pipelines/algorithms will store predictions in different "predictions" Data Nodes.
 
 - **Cacheable**: It is a parameter used for more performance. If the Data Node has already been created and the inputs didn't change. It is not necessary to rerun it.
 
