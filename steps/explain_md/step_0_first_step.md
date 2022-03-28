@@ -6,17 +6,17 @@ Taipy is an innovative **low-code** package to create full applications in *Pyth
   <img src="/steps/images/taipy-gui-core-illustration.svg" height=300>
 </p>
 
-The **Graphical User Interface** of Taipy allows anyone with basic knowledge in Python to create a beautiful and interactive interface. It is a simple and intuitive way to create a GUI. No need to know how to design web pages with css or html, Taipy uses an augmented syntax of Markdown to create your desired web page.
+The **Graphical User Interface** of Taipy allows anyone with basic knowledge of Python to create a beautiful and interactive interface. It is a simple and intuitive way to create a GUI. No need to know how to design web pages with CSS or HTML; Taipy uses an augmented syntax of Markdown to create your desired web page.
 
-The **Scenario Management** component of Taipy is a powerful tool to manage business problems and pipelines. The implementation of **Taipy Core** is intuitve and easy. It will allow you to:
+The **Scenario Management** component of Taipy is a powerful tool to manage business problems and pipelines. The implementation of **Taipy Core** is straightforward and easy. It will allow you to:
 - Keep track of your KPI, data, scenarios, pipelines, etc.
 - Have smart scheduling
-- Simplify industrialisation for DataViz, Machine-Learning, Optimization, etc.
+- Simplify industrialization for DataViz, Machine-Learning, Optimization, etc.
 
 
 You can use the GUI component without the Scenario Management and vice-versa. However, as you will see, they are incredibly efficient when combined.
 
-This **'Get Started'** will go through all the basic concepts of *Taipy*. Each step is based on the code of the previous one. At the end of it, you will be able to create a full aplication using *Taipy*. So, without further delay, let's begin to code!
+This **'Get Started'** will go through all the basic concepts of *Taipy*. Each step is based on the code of the previous one. At the end of it, you will be able to create a complete application using *Taipy*. So, without further delay, let's begin to code!
 
 ## First web page
 
