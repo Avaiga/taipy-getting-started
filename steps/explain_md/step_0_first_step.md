@@ -1,6 +1,6 @@
 # What is Taipy?
 
-Taipy is an innovative **low-code** package to create full applications in *Python*. It is composed of two independant components: the **Graphical User Interface** and the **Scenario Management**.
+Taipy is an innovative **low-code** package to create full applications in *Python*. It is composed of two independant components: a **Graphical User Interface** and a **Scenario Management** part.
 
 <p align="center">
   <img src="/steps/images/taipy-gui-core-illustration.svg" height=300>
