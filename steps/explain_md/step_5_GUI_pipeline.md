@@ -4,7 +4,7 @@ Let's update the GUI to display the results of the pipeline. A "Predict" [button
 
 `<|Text displayed on button|button|on_action=fct_name_called_when_pressed|>`
    
-A chart control can be found at the end of the markdown to see if the predictions seem correct. The chart creates two traces: the historical values and the predicted values.
+A [chart](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/chart/) control can be found at the end of the markdown to see if the predictions seem correct. The chart creates two traces: the historical values and the predicted values.
 
 ```python
 import numpy as np
@@ -38,13 +38,13 @@ def create_and_submit_pipeline():
     return pipeline
 ```
 
-After the first submission of the pipeline, the data stored in *predictions* and *cleaned_data* Data Nodes are accessible. The use of the `.read()` function is to access the data in Data Nodes.
-`create_predictions_dataset` reads the Data Nodes to create a prediction dataset with these columns:
+After the first submission of the pipeline, the data stored in *predictions* and *cleaned_data* Data Nodes are accessible. The `.read()` function accesses the data in Data Nodes.
+By reading them, `create_predictions_dataset` creates a prediction dataset with these columns:
 - Date,
 - Historical values,
 - Predicted values.
 
-The goal is to make the prediction dataset and display it in a chart. However, a good option would have been to create this dataset directly in the pipeline. It is typically good to put all complexity in it.
+The goal is to make the predictions dataset and display it in a chart. However, a good option would have been to create this dataset directly in the pipeline. It is typically good to put all complexity in it.
 
 ```python
 def create_predictions_dataset(pipeline):
@@ -82,7 +82,7 @@ def update_predictions_dataset(state, pipeline):
     state.predictions_dataset = create_predictions_dataset(pipeline)
 ```
 
-This is how the stucture of the code looks like for the GUI:
+This is what the structure of the code looks like for the GUI:
 <p align="center">
     <img src="/steps/images/step_5_organisation.svg" width=500>
 </p>
