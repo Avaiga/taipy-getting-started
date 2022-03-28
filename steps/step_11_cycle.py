@@ -71,6 +71,19 @@ def submit_scenario(state):
     # Update the chart directly
     update_chart(state) 
 
+
+def make_primary(state):
+    print('Making the current scenario primary...')
+    scenario = tp.get(state.selected_scenario[0])
+    # Take the current scenario primary
+    tp.set_primary(scenario)
+    
+    # Update the scenario selector accordingly
+    state.scenario_selector = [(scenario.id, ("*" if scenario.is_primary else "") + scenario.name)
+                               for scenario in tp.get_scenarios()]
+    state.selected_scenario_is_primary = True
+
+
 def remove_scenario_from_selector(state, scenario: list):
     # Take all the scenarios in the selector that doesn't have the scenario.id
     state.scenario_selector = [(s[0], s[1]) for s in state.scenario_selector if s[0] != scenario.id]
@@ -88,17 +101,6 @@ def delete_scenario(state):
         # Update the scenario selector accordingly
         remove_scenario_from_selector(state,scenario)
     
-
-def make_primary(state):
-    print('Making the current scenario primary...')
-    scenario = tp.get(state.selected_scenario[0])
-    # Take the current scenario primary
-    tp.set_primary(scenario)
-    
-    # Update the scenario selector accordingly
-    state.scenario_selector = [(scenario.id, ("*" if scenario.is_primary else "") + scenario.name)
-                               for scenario in tp.get_scenarios()]
-    state.selected_scenario_is_primary = True
 
 # Add a 'Delete scenario' and a 'Make primary' button s
 page_scenario_manager = """

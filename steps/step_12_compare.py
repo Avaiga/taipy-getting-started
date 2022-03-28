@@ -99,7 +99,7 @@ page_performance = """
 """
 
  
- # Add the page_performance section to the menu   
+# Add the page_performance section to the menu   
 multi_pages = """
 <|menu|label=Menu|lov={["Data Visualization", "Scenario Manager", "Performance"]}|on_action=menu_fct|>
 

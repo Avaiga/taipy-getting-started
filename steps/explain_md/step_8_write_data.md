@@ -4,14 +4,11 @@ Now that the Gui has been created to handle a scenario, it would be interesting 
 
 First of all, to add variables to a visual element, they have to be initialized. 
 ```python
-import datetime as dt
-
 # Initial variables
 ## Initial variables for the scenario   
 day = dt.datetime(2021, 7, 26)
 n_predictions = 40
 max_capacity = 200
-
 ```
 
 Some additions have been made to the Markdown before the chart. Three visual elements are created and will be used to change the scenario with at the end a 'Save changes' button to call the `submit` function. See the documentation for these visual elements here: [date](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/date/) and [number](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/number/). A 'Save button' is also created to run the 'submit' function when pressed.
@@ -20,7 +17,7 @@ Some additions have been made to the Markdown before the chart. Three visual ele
 page_scenario_manager = page + """
 # Change your scenario
 
-**Prediction date**\n\n <|{day}|date|with_time=False|>
+**Prediction date**\n\n <|{day}|date|not with_time|>
 
 **Max capacity**\n\n <|{max_capacity}|number|>
 
@@ -28,15 +25,16 @@ page_scenario_manager = page + """
 
 <|Save changes|button|on_action={submit}|>
 
-...
-"""
+Select the pipeline
+<|{selected_pipeline}|selector|lov={pipeline_selector}|> <|Update chart|button|on_action={update_chart}|>
 
+<|{predictions_dataset}|chart|type=bar|x=Date|y[1]=Historical values|y[2]=Predicted values|height=80%|width=100%|>
+"""
 ```
 
 `create_scenario` function is almost the same as before whereas there have been some addition made to the `submit` function.
 
 ```python
-
 def create_scenario():
     global selected_scenario
 
@@ -61,8 +59,7 @@ def submit(state):
     # Conversion to the right format (change?)
     day = dt.datetime(state.day.year, state.day.month, state.day.day)
 
-    # Change the default parameters by writing in the data 
-    nodes
+    # Change the default parameters by writing in the datanodes
     scenario.day.write(day)
     scenario.n_predictions.write(int(state.n_predictions))
     scenario.max_capacity.write(int(state.max_capacity))

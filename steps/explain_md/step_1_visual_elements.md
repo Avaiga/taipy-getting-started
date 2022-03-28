@@ -6,12 +6,12 @@ The data used in the following codes will be retrieved this way.
 import pandas as pd
 
 def get_data(path_to_csv: str):
-    # "pd.read_csv()" function returns a pd.DataFrame
+    # pandas.read_csv() returns a pd.DataFrame
     dataset = pd.read_csv(path_to_csv)
     dataset['Date'] = pd.to_datetime(dataset['Date'])
     return dataset
 
-# Get the dataframe
+# Read the dataframe
 path_to_csv = "dataset.csv"
 dataset = get_data(path_to_csv)
 
@@ -52,11 +52,11 @@ Here is the code combined:
 ```python
 ...
 
-from taipy.gui import Gui
+from taipy import Gui
 
 dataset = get_data(path_to_csv)
 
-# Initial value of n_week
+# Initial value
 n_week = 10
 
 # Definition of the page
@@ -75,7 +75,7 @@ Interact with this slider to change the week number:
 <|{dataset}|table|height=400px|width=95%|>
 """
 
-# Create a Gui object with our String
+# Create a Gui object with our page content
 Gui(page=page).run()
 ```
 

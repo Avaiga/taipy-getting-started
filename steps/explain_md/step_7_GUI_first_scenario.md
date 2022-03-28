@@ -55,9 +55,9 @@ def update_chart(state):
     update_predictions_dataset(state, pipeline)
 
 
- # Creation of our first scenario
- scenario = create_scenario()
- Gui(page=scenario_page).run()  
+# Creation of our first scenario
+scenario = create_scenario()
+Gui(page=scenario_page).run() 
 ```
 
 <p align="center">

@@ -20,7 +20,7 @@ Here, `on_change` will be called whenever the slider's value changes. Each time 
 ```python
 ... # code from earlier steps
 
-# Display the week given by the slider
+# Select the week based on the the slider value
 dataset_week = dataset[dataset['Date'].dt.isocalendar().week == n_week]
 
 page = """
@@ -33,7 +33,7 @@ Select week: *<|{n_week}|>*
 <|{dataset_week}|chart|type=bar|x=Date|y=Value|height=100%|width=100%|>
 """
 
-# The on_change is the function that is called when any variable is changed
+# on_change is the function that is called when any variable is changed
 def on_change(state, var_name: str, var_value):
     if var_name == 'n_week':
         # Update the dataset when the slider is moved

@@ -10,12 +10,12 @@ A chart control can be found at the end of the markdown to see if the prediction
 import numpy as np
 import pandas as pd
 
-# Initialize the predictions dataset
+# Initialize the 'predictions' dataset
 predictions_dataset = pd.DataFrame({"Date":[dt.datetime(2021, 6, 1)], "Historical values":[np.NaN], "Predicted values":[np.NaN]})
 
-# This is our new string with a button and a chart for our predictions
+# Add a button and a chart for our predictions
 pipeline_page = page + """
-Press <|predict|button|type=bar|on_action=predict|> to predict with default parameters (30 predictions) and June 1st as day.
+Press <|predict|button|on_action=predict|> to predict with default parameters (30 predictions) and June 1st as day.
 
 <|{predictions_dataset}|chart|type=bar|x=Date|y[1]=Historical values|y[2]=Predicted values|height=80%|width=100%|>
 """
@@ -30,7 +30,6 @@ def predict(state):
     update_predictions_dataset(state, pipeline)
 
 def create_and_submit_pipeline():
-    "Function called by the predict function"
     print("Execution of pipeline...")
     # Create the pipeline from the pipeline config
     pipeline = tp.create_pipeline(baseline_pipeline_cfg)
@@ -49,7 +48,6 @@ The goal is to make the prediction dataset and display it in a chart. However, a
 
 ```python
 def create_predictions_dataset(pipeline):
-    "Function called by the update_predictions_dataset function"
     print("Creating predictions dataset...")
     # Read data from the pipeline
     predictions = pipeline.predictions.read()
@@ -78,7 +76,6 @@ def create_predictions_dataset(pipeline):
 When you press the 'Predict' button, this last function is also called. It will update the predictions dataset, and this change will propagate to the chart.
 
 ```python
-
 def update_predictions_dataset(state, pipeline):
     print("Updating predictions dataset...")
     # Update the predictions dataset

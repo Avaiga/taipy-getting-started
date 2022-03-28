@@ -13,13 +13,14 @@ comparison_scenario = pd.DataFrame({'Scenario Name':[],
                                     'RMSE baseline':[], 'MAE baseline':[],
                                     'RMSE ML':[], 'MAE ML':[]})
 
-# Boolean to check if the comparison is done (part to render or not)
+# Indicates if the comparison is done
 comparison_scenario_done = False
 
-# Selector for metric
+# Selector for metrics
 metric_selector = ['RMSE', 'MAE']
 selected_metric = metric_selector[0]
 ```
+
 First of all, a function has to be created to compare the primary scenario of all the cycles. `tp.get_official_scenarios()` is the useful function to use for this effect. `compare` goes through all of these scenarios and pipelines and add the metrics in lists. At the end, `state.comparison_scenario` is updated and `comparison_scenario_done` set to `True`.
 
 ```python
@@ -39,15 +40,15 @@ def compare(state):
     rmses_ml = []
     maes_ml = []
     
-    # Go through all the official scenarios
-    all_scenarios = tp.get_official_scenarios()
+    # Go through all the primary scenarios
+    all_scenarios = tp.get_primary_scenarios()
     all_scenarios_ordered = sorted(all_scenarios, key=lambda x: x.creation_date.timestamp()) # delete?
     
     for scenario in all_scenarios_ordered:
-        print("Scenario...", scenario.name)
+        print(f"Scenario '{scenario.name}'")
         # Go through all the pipelines
         for pipeline in scenario.pipelines.values():
-            print("     Pipeline...", pipeline.config_id)
+            print(f"     Pipeline '{pipeline.config_id}'")
             # Get the predictions dataset with the historical data
             only_prediction_dataset = create_predictions_dataset(pipeline)[-pipeline.n_predictions.read():]
             
@@ -55,10 +56,10 @@ def compare(state):
             historical_values = only_prediction_dataset['Historical values']
             predicted_values = only_prediction_dataset['Predicted values']
             
-            # Compute the metrics for this pipeline and official scenario
+            # Compute the metrics for this pipeline and primary scenario
             rmse, mae = compute_metrics(historical_values, predicted_values)
             
-            # Add to the correct lists, the correct values    
+            # Add values to the appropriate lists
             if 'baseline' in pipeline.config_id:
                 rmses_baseline.append(rmse)
                 maes_baseline.append(mae)
@@ -66,7 +67,7 @@ def compare(state):
                 rmses_ml.append(rmse)
                 maes_ml.append(mae)
 
-        scenario_names.append(scenario.name)
+        scenario_names.append(scenario.creation_date.strftime('%A %d %b'))
         
     # Update comparison_scenario
     state.comparison_scenario = pd.DataFrame({'Scenario Name':scenario_names,
@@ -78,34 +79,36 @@ def compare(state):
     # When comparison_scenario_done will be set to True,
     # the part with the graphs will be finally rendered
     state.comparison_scenario_done = True
-    
 ```
 
 Let's create a page related to this comparison. As said before, this page will contain a graph to compare scenarios and pipelines; and a selector to choose the metric on which to compare. The button at the bottom of the page when pressed calls the `compare` function. When finished, the rest of the page will be shown thanks to the `render` parameter of the *part*. Also, a new Taipy's block is present in the Markdown: [expandable](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/expandable/).
 
 ```python
-# Create the performance page
+# Performance page
 page_performance = """
+<br/>
+
 <|part|render={comparison_scenario_done}|
 
 <|Table|expanded=False|expandable|
 <|{comparison_scenario}|table|width=100%|>
 |>
 
-<|{selected_metric}|selector|lov={metric_selector}|dropdown=True|>
+<|{selected_metric}|selector|lov={metric_selector}|dropdown|>
 
 <|part|render={selected_metric=='RMSE'}|
-<|{comparison_scenario}|chart|type=bar|x=Scenario Name|y[1]=RMSE baseline|y[2]=RMSE ML|height=80%|width=100%|>
+<|{comparison_scenario}|chart|type=bar|x=Scenario Name|y[1]=RMSE baseline|y[2]=RMSE ML|height=100%|width=100%|>
 |>
 
 <|part|render={selected_metric=='MAE'}|
-<|{comparison_scenario}|chart|type=bar|x=Scenario Name|y[1]=MAE baseline|y[2]=MAE ML|height=80%|width=100%|>
+<|{comparison_scenario}|chart|type=bar|x=Scenario Name|y[1]=MAE baseline|y[2]=MAE ML|height=100%|width=100%|>
 |>
 
 |>
+
 
 <center>
-<|Compare officials|button|on_action=compare|>
+<|Compare primarys|button|on_action=compare|>
 </center>
 """
 ```
@@ -116,13 +119,14 @@ page_performance = """
 
 
 ```python
-# Add the page_performance to the menu   
+# Add the page_performance section to the menu   
 multi_pages = """
 <|menu|label=Menu|lov={["Data Visualization", "Scenario Manager", "Performance"]}|on_action=menu_fct|>
 
 <|part|render={page=="Data Visualization"}|""" + page_data_visualization + """|>
 <|part|render={page=="Scenario Manager"}|""" + page_scenario_manager + """|>
 <|part|render={page=="Performance"}|""" + page_performance + """|>
+"""erformance + """|>
 """
 
 Gui(page=multi_pages).run() 

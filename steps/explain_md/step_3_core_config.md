@@ -53,7 +53,11 @@ These are my input data nodes. They represent my variables in Taipy when a pipel
 - *max_capacity* is the maximum value that can take a prediction; it is the ceiling of the projections. The default value is 200.
 
 ```python
-## Input data nodes
+import taipy as tp
+from taipy import Scope
+import datetime as dt
+
+## Input Data Nodes
 initial_dataset_cfg = tp.configure_data_node(id="initial_dataset",
                                              storage_type="csv",
                                              path=path_to_csv)
@@ -63,7 +67,6 @@ day_cfg = tp.configure_data_node(id="day", default_data=dt.datetime(2021, 7, 26)
 n_predictions_cfg = tp.configure_data_node(id="n_predictions", default_data=40)
 
 max_capacity_cfg = tp.configure_data_node(id="max_capacity", default_data=200)
-
 ```
 
  ## Remaining data nodes
@@ -73,7 +76,7 @@ max_capacity_cfg = tp.configure_data_node(id="max_capacity", default_data=200)
 - *predictions* is the predictions of the model. In this pipeline, it will be the output of my *predict_baseline* function. Each pipeline will create its own *prediction* data node hence `scope=Scope.PIPELINE`. 
 
 ```python
-## Remaining data nodes
+## Remaining Data Nodes
 cleaned_dataset_cfg = tp.configure_data_node(id="cleaned_dataset") # ,
                                                                    # cacheable=True,
                                                                    # validity_period=dt.timedelta(days=1)
@@ -89,12 +92,13 @@ Let's declare my functions: *clean_data* and *predict_baseline*. Their goal is r
 ```python
 def clean_data(initial_dataset: pd.DataFrame):
     ...
-    return cleaned_dataset # returns a pd.DataFrame
+    return cleaned_dataset
 
 
 def predict_baseline(cleaned_dataset: pd.DataFrame, n_predictions: int, day: dt.datetime, max_capacity: int):
     ...
-    return predictions # returns a pd.DataFrame
+    predictions = predictions.apply(lambda x: min(x, max_capacity))
+    return predictions
 ```
 
 # Tasks

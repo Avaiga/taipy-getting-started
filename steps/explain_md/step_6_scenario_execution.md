@@ -48,7 +48,7 @@ To configure a scenario, you need to use `tp.configure_scenario` and the list of
 
 ```python   
 # Configure our scenario which is our business problem.
-scenario_cfg = tp.configure_scenario(id="scenario", pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg]) 
+scenario_cfg = tp.configure_scenario(id="scenario", pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg])
 ```
 
 The configuration is now complete. Now, you can create your scenario and execute it. When creating your scenario, Taipy will create your pipelines and when you submit the scenario, it will execute them through smart scheduling. Taipy knows which tasks to do before which one and will be able to cancel Jobs if a task is repetitive.
@@ -59,8 +59,7 @@ scenario = tp.create_scenario(scenario_cfg)
 # Execute it
 tp.submit(scenario)
 # Get the resulting scenario
-
-# Print the predictions of the two pipelines (baseline and ml)
+## Print the predictions of the two pipelines (baseline and ml)
 print("\nBaseline predictions\n", scenario.baseline.predictions.read())
-print("\nMachine Learning predictions\n", scenario.ml.predictions.read())        
+print("\nMachine Learning predictions\n", scenario.ml.predictions.read())   
 ```

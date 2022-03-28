@@ -4,7 +4,7 @@ To get a more aesthetically pleasing page, three useful controls to use are:
 `<|menu|label=Menu|lov={lov_pages}|on_action=menu_fct_called|>`. For example, this code creates a menu with two pages:
 
 ```python
-from taipy.gui import Gui
+from taipy import Gui
 
 Gui("<|menu|label=Menu|lov={['Data Visualization', 'Scenario Manager']}|>").run()
 ```
@@ -44,10 +44,8 @@ Here, the part with the chart will be displayed when the first scenario will be 
 My first page in the menu contains the chart with dataset focused on one week and the slider related to change the week. This is the page created in one of the first code.
 
 ```python
-...
-
-# Our first page will be page
-# so the page with the slider and the chart that display a week of the historical data
+# Our first page is the original page
+# (with the slider and the chart that displays a week of the historical data)
 page_data_visualization = page
 ```
 
@@ -57,14 +55,13 @@ page_data_visualization = page
 
 
 ```python
-
-# Second page: page to create scenarios and display its results
+# Second page: create scenarios and display results
 page_scenario_manager = """
 # Create your scenario
 
 <|layout|columns=1 1 1 1|
 <|
-**Prediction date**\n\n <|{day}|date|with_time=False|>
+**Prediction date**\n\n <|{day}|date|not with_time|>
 |>
 
 <|
@@ -83,11 +80,11 @@ page_scenario_manager = """
 <|part|render={len(scenario_selector) > 0}|
 <|layout|columns=1 1|
 <|
-## Scenario \n <|{selected_scenario}|selector|lov={scenario_selector}|dropdown=True|>
+## Scenario \n <|{selected_scenario}|selector|lov={scenario_selector}|dropdown|>
 |>
 
 <|
-## Display the pipeline \n <|{selected_pipeline}|selector|lov={pipeline_selector}|dropdown=True|>
+## Display the pipeline \n <|{selected_pipeline}|selector|lov={pipeline_selector}|dropdown|>
 |>
 |>
 
@@ -117,6 +114,7 @@ page = "Data Visualization"
 def menu_fct(state, var_name: str, fct: str, var_value: list):
     # Change the value of the state.page variable in order to render the correct page
     state.page = var_value['args'][0]
+
 
 Gui(page=multi_pages).run()
 ```
