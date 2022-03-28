@@ -44,8 +44,6 @@ By reading them, `create_predictions_dataset` creates a prediction dataset with 
 - Historical values,
 - Predicted values.
 
-The goal is to make the predictions dataset and display it in a chart. However, a good option would have been to create this dataset directly in the pipeline. It is typically good to put all complexity in it.
-
 ```python
 def create_predictions_dataset(pipeline):
     print("Creating predictions dataset...")
@@ -72,6 +70,8 @@ def create_predictions_dataset(pipeline):
     # Columns : [Date, Historical values, Predicted values]
     return pd.concat([temp_df['Date'], historical_values, predicted_values], axis=1)
 ```
+
+The goal is to make the predictions dataset and display it in a chart. However, a good option would have been to create this dataset directly in the pipeline. It is typically good to put all complexity in it.
 
 When you press the 'Predict' button, this last function is also called. It will update the predictions dataset, and this change will propagate to the chart.
 
