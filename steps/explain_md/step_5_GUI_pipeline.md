@@ -83,7 +83,15 @@ def update_predictions_dataset(state, pipeline):
     print("Updating predictions dataset...")
     # Update the predictions dataset
     state.predictions_dataset = create_predictions_dataset(pipeline)
+```
 
+This is how the stucture of the code looks like for the GUI:
+<p align="center">
+    <img src="/steps/images/step_5_organisation.svg" width=700>
+</p>
+
+
+```python
 Gui(page=pipeline_page).run()
 ```
 
