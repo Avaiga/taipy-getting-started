@@ -85,6 +85,13 @@ def update_scenario_selector(state, scenario):
 
 ```
 
+This graph summarizes the code for the GUI.
+
+<p align="center">
+    <img src="/steps/images/step_7_organisation.svg" width=700>
+</p>
+
+
 ## Automatize the graph update - *on_change* function
 
 The `on_change` function can automatically change the graph when another pipeline or scenario is selected.
