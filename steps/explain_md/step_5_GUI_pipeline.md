@@ -44,6 +44,7 @@ After the first submission of the pipeline, the data stored in *predictions* and
 - Date,
 - Historical values,
 - Predicted values.
+
 The goal is to make the prediction dataset and display it in a chart. However, a good option would have been to create this dataset directly in the pipeline. It is typically good to put all complexity in it.
 
 ```python
