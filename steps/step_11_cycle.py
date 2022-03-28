@@ -84,7 +84,7 @@ def delete_scenario(state):
         notify(state,'info', 'Cannot delete the official scenario')
     else:
         # Delete the scenario and the related objects (datanodes, tasks, jobs,...)
-        tp.delete_scenario(scenario)
+        tp.delete(scenario.id)
         
         # Update the scenario selector accordingly
         remove_scenario_from_selector(state,scenario)
