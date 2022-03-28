@@ -42,11 +42,11 @@ Some parameters for Data Node configuration:
 
 
 ## Input Data Nodes configuration
-These are my input Data Nodes. They represent my variables in Taipy when a pipeline is executed. Still, first, we have to configure them to create the DAG.
+These are the input Data Nodes. They represent the variables in Taipy when a pipeline is executed. Still, first, we have to configure them to create the DAG.
 
 - *initial_dataset* is simply the initial CSV file. Taipy needs some parameters to read this data: *path* and *header*. 
 
-- *day* is the beginning of the predictions. The default value is the 26th of July. It means my training data will end before the 26th of July, and my predictions will begin on this day.
+- *day* is the beginning of the predictions. The default value is the 26th of July. It means the training data will end before the 26th of July, and predictions will begin on this day.
 
 - *n_predictions* is the number of predictions you want to make while predicting. The default value is 40.
 
@@ -73,7 +73,7 @@ max_capacity_cfg = tp.configure_data_node(id="max_capacity", default_data=200)
 
 - *cleaned_dataset* is the dataset after cleaning (after the *clean_data* function).
 
-- *predictions* is the predictions of the model. In this pipeline, it will be the output of my *predict_baseline* function. Each pipeline will create its own *prediction* Data Node hence `scope=Scope.PIPELINE`. 
+- *predictions* is the predictions of the model. In this pipeline, it will be the output of the *predict_baseline* function. Each pipeline will create its own *prediction* Data Node hence `scope=Scope.PIPELINE`. 
 
 ```python
 ## Remaining Data Nodes
@@ -87,7 +87,7 @@ predictions_cfg = tp.configure_data_node(id="predictions", scope=Scope.PIPELINE)
 
 # Functions
 
-Let's declare my functions: *clean_data* and *predict_baseline*. Their goal is respectively to clean the data and to predict the data.
+Let's declare the functions: *clean_data* and *predict_baseline*. Their goal is respectively to clean the data and to predict the data.
 
 ```python
 def clean_data(initial_dataset: pd.DataFrame):

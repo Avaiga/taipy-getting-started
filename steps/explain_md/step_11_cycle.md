@@ -55,7 +55,7 @@ def create_scenario(state):
     submit_scenario(state)
 ```
 
-Two buttons are added to the Gui ('Make primary' and 'Delete scenario'). They calls the `make_primary` and `delete_scenario` functions below.
+Two buttons are added to the GUI ('Make primary' and 'Delete scenario'). They calls the `make_primary` and `delete_scenario` functions below.
 
 `make_primary` change the current primary scenario of the cycle. `tp.set_primary(scenario)` is the Taipy function used to make a scenario primary.
 

@@ -41,7 +41,7 @@ Third column
 Here, the part with the chart will be displayed when the first scenario will be created. A menu renders or not a part depending on the 'page' variable. This is how you can create easily multiple pages; there are a lot of other ways to do so.
 
 
-My first page in the menu contains the chart with dataset focused on one week and the slider related to change the week. This is the page created in one of the first code.
+The first page in the menu contains the chart with dataset focused on one week and the slider related to change the week. This is the page created in one of the first code.
 
 ```python
 # Our first page is the original page

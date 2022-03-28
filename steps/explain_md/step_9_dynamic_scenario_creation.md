@@ -10,7 +10,7 @@ Initialize the scenario selector with the already created scenarios. If there ar
 all_scenarios = tp.get_scenarios() 
 
 # Initial variable for the scenario selector
-# The value of my selector will be the ids and what is display will be the name of my scenario
+# The value of selector will be the ids and what is display will be the name of the scenario
 scenario_selector = [(scenario.id, scenario.name) for scenario in all_scenarios]
 selected_scenario = None
 ```
