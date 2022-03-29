@@ -1,4 +1,4 @@
-So far, you have described your graph; this graph represents your process. 
+So far, you have described your graph; let's implement it with Taipy! 
 
 # Pipeline configuration
 
