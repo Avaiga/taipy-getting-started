@@ -1,4 +1,4 @@
-With these few steps, you have created a full-AI application on which you can predict multiples days with different parameters. However, as you can see, the page's layout is not optimal. It could be greatly improved. This is the role of the code below. To get a more aesthetically pleasing page, three useful controls to use are:
+With just a few steps, you have created a full-AI application on which you can predict multiple days with different parameters. However, the page's layout is not yet optimal and it could be greatly improved. This will be done with the code below. To get a more aesthetically pleasing page, three useful controls to use are:
 - [menu](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/menu/): creates a menu on the left to navigate through the pages.
 `<|menu|label=Menu|lov={lov_pages}|on_action=menu_fct_called|>`. For example, this code creates a menu with two pages:
 
@@ -13,7 +13,7 @@ Gui("<|menu|label=Menu|lov={['Data Visualization', 'Scenario Manager']}|>").run(
 </p>
 
 
-- [part](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/part/): is used to create a group of text/visual elements. A useful parameter of *part* is `render`. Set to `False`, it will not display the part.
+- [part](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/part/): creates a group of text/visual elements. A useful parameter of *part* is `render`. Set to `False`, it will not display the part.
 
 ```
 <|part|render={bool_variable}|
@@ -37,7 +37,7 @@ Third column
     <img src="/steps/images/layout.png" width=500>
 </p>
 
-Here, the part with the chart will be displayed when you will create the first scenario. A menu renders or not a part depending on the 'page' variable. This is how you can easily create multiple pages; there are many other ways to do so.
+Here, the part with the chart will be displayed when you create the first scenario. The menu is the control changing the `page` variable. Consequently, it changes the part displayed on the client. This is how you can easily create multiple pages; there are many other ways to do so.
 
 The first page in the menu contains the chart with the dataset focused on one week and the slider related. This is the page created in one of the first codes.
 
