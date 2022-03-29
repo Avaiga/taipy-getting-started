@@ -1,6 +1,6 @@
 # Introducing Taipy Core
 
-With this last code, you should understand the basics of Taipy GUI. Let's go for a moment to the Scenario Management aspect of Taipy.
+From Step 2, you now know the basics of Taipy GUI. Let's go for a moment to the Scenario Management aspect of Taipy.
 
 There are a lot of reasons to use Taipy Core.
 - Efficiently manage the execution of your functions
@@ -16,15 +16,15 @@ Taipy allows you to manage them effortlessly. To apprehend the Scenario Manageme
 - [**Scenarios**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/scenario/): are your business problem with some parameters. They usually consist of one or multiple pipelines.
 
 
-Let's create a Machine Learning example to make it more transparent. In a Machine Learning problem, it is usual to have numerous training and testing pipelines for different algorithms.
-For simplification, this step will only configure one baseline pipeline. Therefore, the goal is to create a Directed Acyclic Graph (DAG) that represents this pipeline. This single pipeline takes the initial dataset, cleans it, and gives predictions for the *day*.
+Let's create a Machine Learning (ML) example to  answer any confusions that you may have. In a ML problem, it is common to have numerous training and testing pipelines for different algorithms.
+For simplification, this step will only configure one baseline pipeline. Therefore, the goal is to create a Directed Acyclic Graph (DAG) that represents this pipeline. This single pipeline retrieves the initial dataset, cleans it, and gives predictions for the *day*.
 
 <p align="center">
             <img src="/steps/images/baseline_pipeline.svg" width=500>
 </p>
 
 
-This graph is created by configuring Data Nodes (variables) and tasks (functions). This configuration doesn't execute anything; it is just a setup to make the DAG.
+This graph is created by configuring Data Nodes (variables) and tasks (functions). This configuration doesn't execute anything; it is just a setup for the DAG.
 
 # Data Nodes configuration
 
@@ -38,7 +38,7 @@ Some parameters for Data Node configuration:
             Basically, with Scenario scope, Data Nodes are shared between all the pipelines of the scenario.
             With Pipeline scope, Data Nodes are not shared between pipelines and don't have access to other Data Nodes from other pipelines. A 'predictions' Data Node is created for each pipeline in the current example. So, adding pipelines/algorithms will store predictions in different "predictions" Data Nodes.
 
-- **Cacheable**: It is a parameter used for more performance. If the Data Node has already been created and the inputs didn't change. It is not necessary to rerun it.
+- **Cacheable**: This is a parameter used to increase the efficiency of the program. If the Data Node has already been created and the inputs didn't change, it is not necessary to rerun it.
 
 
 ## Input Data Nodes configuration
