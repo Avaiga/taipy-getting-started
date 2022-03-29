@@ -6,7 +6,7 @@ The final concept of Taipy Core is [Cycles](https://didactic-broccoli-7da2dfd5.p
     <img src="/steps/images/cycle.svg" width=300>
 </p>
 
-Typically, in a Machine Learning problem, a lot of scenarios can be created daily to predict the next day. Among all the day's scenarios, there is only one primary scenario. In the step's example, scenarios are attached to a DAILY cycle. Using Cycles is useful because some specific Taipy's functions exists to navigate through these Cycles. Taipy can get all the scenarios created in a day by providing the Cycle and has a function to get every primary scenario ever made to quickly see the evolution of their performance.
+Typically, in a Machine Learning problem, a lot of scenarios are created daily to predict the next day. Among all those scenarios, there is only one primary scenario. In the step's example, scenarios are attached to a DAILY cycle. Using Cycles is useful because some specific Taipy's functions exist to navigate through these Cycles. Taipy can get all the scenarios created in a day by providing the Cycle. It also has a function to get every primary scenario ever made to quickly see their progress over time.
 
 Moreover, nothing is more straightforward than creating a Cycle. The frequency parameter in a scenario configuration will create the desired type of Cycle. In the code below, the scenario has a daily cycle. It will be attached to the correct period (day) when it is created.
 
@@ -36,7 +36,7 @@ def update_scenario_selector(state, scenario):
     state.scenario_selector += [(scenario.id, scenario_name)]
 ```
 
-In `create_scenario`, `scenario_daily_cfg` is now the configuration used to create the scenario. By creating it, you also create the depending Cycle. For example, setting `creation_date` to 04/02/2021 makes a cycle related to this day. All scenarios that are created on this day belongs to this Cycle with just one primary scenario. Changing `creation_date` again will create another cycle for a different day and so on.
+In `create_scenario`, `scenario_daily_cfg` is now the configuration used to create the scenario. By creating it, you also create the dependent Cycle. For example, setting `creation_date` to 04/02/2021 makes a cycle related to this day. All scenarios that are created on this day belong to this Cycle with just one primary scenario. Changing `creation_date` again will create another cycle for a different day and so on.
 
 ```python
 # Change the create_scenario function to create a scenario with the selected frequency
@@ -59,7 +59,7 @@ Two buttons are added to the GUI ('Make primary' and 'Delete scenario'). They ca
 
 `make_primary` changes the current primary scenario of the cycle thanks to `tp.set_primary(scenario). It is the Taipy function used to make a scenario primary.
 
-> Note that the previous primary scenario will not be primary anymore. There is always just one primary scenario in a cycle. 
+> Note that the previous primary scenario will not longer be primary. There is always just one primary scenario in a cycle. 
 
 ```python
 selected_scenario_is_primary = None
