@@ -194,7 +194,7 @@ def on_change(state, var_name: str, var_value):
         # Check if we can read the Data Node to update the chart
         if tp.get(state.selected_scenario[0]).predictions.read() is not None:
             update_chart(state)
-
+```
 
 
 ```python
