@@ -2,7 +2,7 @@
 
 # Introducing Taipy visual elements
 
-A lot of visual elements can be added to the basic code viewed on Step 0. This Step shows how to use visual elements like charts, sliders and tables and implement them in the GUI.
+Many visual elements can be added to the basic code viewed in Step 0. This Step shows how to use visual elements like charts, sliders and tables and implement them in the GUI.
 
 ## Importing the Dataset
 
