@@ -28,7 +28,7 @@ For simplification, this step will only configure one baseline pipeline. Therefo
 
 This graph is created by configuring Data Nodes (variables) and tasks (functions). This configuration doesn't execute anything; it is just a setup for the DAG.
 
-# Data Nodes configuration
+## Data Nodes configuration
 
 Data Nodes can point to any kind of *Python* variables by default: *int*, *string*, *dict*, *list*, *np.array*, *pd.DataFrame*, *models*, etc. Taipy also can read and write a CSV, Pickle file or SQL database through a Data Node. The Data Node configuration allows you to select the storage type of the Data Node.
 
@@ -43,7 +43,7 @@ Some parameters for Data Node configuration:
 - **Cacheable**: This is a parameter used to increase the efficiency of the program. If the Data Node has already been created and the inputs didn't change, it is not necessary to rerun it.
 
 
-## Input Data Nodes configuration
+### Input Data Nodes configuration
 These are the input Data Nodes. They represent the variables in Taipy when a pipeline is executed. Still, first, we have to configure them to create the DAG.
 
 - *initial_dataset* is simply the initial CSV file. Taipy needs some parameters to read this data: *path* and *header*. 
@@ -71,7 +71,7 @@ n_predictions_cfg = tp.configure_data_node(id="n_predictions", default_data=40)
 max_capacity_cfg = tp.configure_data_node(id="max_capacity", default_data=200)
 ```
 
- ## Remaining Data Nodes
+ ### Remaining Data Nodes
 
 - *cleaned_dataset* is the dataset after cleaning (after the *clean_data* function).
 
@@ -87,7 +87,7 @@ predictions_cfg = tp.configure_data_node(id="predictions", scope=Scope.PIPELINE)
 ```
 
 
-# Functions
+## Functions
 
 Let's declare the functions: *clean_data* and *predict_baseline*. Their goal is respectively to clean the data and to predict the data.
 
@@ -103,7 +103,7 @@ def predict_baseline(cleaned_dataset: pd.DataFrame, n_predictions: int, day: dt.
     return predictions
 ```
 
-# Tasks
+## Tasks
 
 Tasks are the translation of functions in Taipy. These tasks combined with Data Nodes create your graph. Creating a task is simple; you need:
 - An id
@@ -111,7 +111,7 @@ Tasks are the translation of functions in Taipy. These tasks combined with Data 
 - Inputs
 - Outputs
 
-## clean_data_task
+### clean_data_task
 
 The first task that you want to create is your *clean_data* task. It will take your initial dataset and clean it.
 
@@ -126,7 +126,7 @@ clean_data_task_cfg = tp.configure_task(id="clean_data",
                                         output=cleaned_dataset_cfg)
 ```
 
-## predict_baseline_task
+### predict_baseline_task
 
 This task will take the cleaned dataset and predict it according to your parameters.
 

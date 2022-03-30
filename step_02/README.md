@@ -4,7 +4,7 @@
 
 Now, the page has a lot of visual elements. The slider is interactive and changes `value`. Taipy manages everything. To go further into Taipy GUI, let's consider the concept of **state** in Taipy.
 
-# Multi-client - state
+## Multi-client - state
 
 Try to open a few clients with the same URL. You will see that every client is independent of each other; you can change `value` on a client, and `value` will not change in other clients. It is the concept of **state**.
 
@@ -12,7 +12,7 @@ So, what is the state of a GUI? The application's state is the current state of 
 
 In the code below, this concept will be used to connect a variable to other variables. To create a chart that will only display one week of data, a connection has to be made between the slider's value and the data.
 
-# How to connect two variables - the *[on_change](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/callbacks/)* function
+## How to connect two variables - the *[on_change](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/callbacks/)* function
 
 In *Taipy*, the `on_change` function is a "special" function. **Taipy** will check if you created a function with this name and will use it. Whenever the state of a variable is modified, the *callback* function is called with three parameters:
 - state (the state of the variables)
