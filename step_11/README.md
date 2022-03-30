@@ -156,8 +156,6 @@ page_scenario_manager = """
 |>
 
 
-
-
 <|
 ## Display the pipeline \n <|{selected_pipeline}|selector|lov={pipeline_selector}|dropdown|>
 |>
