@@ -111,7 +111,7 @@ def delete_scenario(state):
         remove_scenario_from_selector(state,scenario)
 ```
 
-As previously said, just two visual elements ('Make primary' and 'Delete scenario' buttons) have been added to the page. 
+As previously said, just two visual elements ('Make primary' and 'Delete scenario' buttons) have been added to the page. This code is almost identical to the previous `page_scenario_manager`.
 
 ```python
 # Add a 'Delete scenario' and a 'Make primary' button s
