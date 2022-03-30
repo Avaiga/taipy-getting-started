@@ -1,4 +1,4 @@
-> You can download this final code of this step [here](../src/step_08.py).
+> You can download the code of this step [here](../src/step_08.py).
 
 # How to write data and change your default parameters?
 
