@@ -1,6 +1,6 @@
 # Creation and execution of Scenarios
 
-Now that you have seen how to create and run a single pipeline let's configure a scenario. Remember, a scenario is usually your business problem. Different scenarios would represent different solutions to your problem. Here, *max_capacity*, *day* and *number of predictions* influences the scenario.
+Now that you have seen how to create and run a single pipeline, let's configure a scenario. Remember, a scenario is usually used to answer your business problem. Different scenarios would represent different solutions to your problem. Here, *max_capacity*, *day* and *number of predictions* influences the scenario.
 
 In this example, it will run two pipelines: the first pipeline (*baseline*) and another one (*ml*) that will predict through a different function.
 
@@ -51,7 +51,7 @@ To configure a scenario, you need to use `tp.configure_scenario` and the list of
 scenario_cfg = tp.configure_scenario(id="scenario", pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg])
 ```
 
-The configuration is now complete. Now, you can create your scenario and execute it. When creating it, Taipy will create your pipelines, and when you submit the scenario, it will run them based on intelligent scheduling. Taipy knows which tasks to do before which one and will be able to cancel Jobs if a task is repetitive.
+The configuration is now complete. Now, you can create your scenario and execute it. When creating it, Taipy will create your pipelines, and when you submit the scenario, it will run them based on the built-in intelligent scheduling. Taipy knows which tasks to do before which one and will be able to cancel Jobs if a task is repetitive.
 
 ```python
 # Create the scenario

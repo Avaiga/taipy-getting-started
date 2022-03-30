@@ -1,10 +1,10 @@
-# GUI for mutli-scenarios
+# GUI for multi-scenarios
 
 ## Dynamic selectors
 
-Let's manage multiple scenarios through a dynamic scenario selector. This selector will be updated whenever a new scenario is created. It will store the 'id' of the scenarios and their names. Only the names will be displayed in the selector.
+Let's manage multiple scenarios through a dynamic scenario selector. This selector will be updated whenever a new scenario is created. It will store the 'id' of the scenarios and their names. Naturally, only the names will be displayed in the selector.
 
-This code initializes the scenario selector with the already created scenarios. If there are no scenarios, the selector will be empty.
+This code initializes the scenario selector with the previously created scenarios. If there are no scenarios, the selector will be empty.
 ```python
 # Get all the scenarios already created
 all_scenarios = tp.get_scenarios() 
@@ -15,7 +15,7 @@ scenario_selector = [(scenario.id, scenario.name) for scenario in all_scenarios]
 selected_scenario = None
 ```
 
-A new selector for the scenario is added to the Markdown with a 'Create new scenario' button. This button is calling the `create_scenario` function.
+A new selector for the scenario is added to the Markdown with a 'Create new scenario' button. This button calls the `create_scenario` function.
 
 ```python
 scenario_manager_page = page + """
@@ -39,7 +39,7 @@ scenario_manager_page = page + """
 """
 ```
 
-The main code managing scenarios is here. As you can see, the architecture doesn't change from the previous code. Two functions have been altered with some addition: `create_scenario` and `submit_scenario`. 
+Here is the main code for managing scenarios. As you can see, the architecture doesn't change from the previous code. Two functions have been altered with some addition: `create_scenario` and `submit_scenario`. 
 
 ```python
 def create_name_for_scenario(state)->str:
@@ -106,11 +106,11 @@ def update_scenario_selector(state, scenario):
 This graph summarizes the code for the GUI.
 
 <p align="center">
-    <img src="/steps/images/organisation.svg" width=500>
+    <img src="organisation.svg" width=500>
 </p>
 
 
-## Automatize the graph update - *on_change* function
+## Automating the graph update - *on_change* function
 
 The `on_change` function can automatically change the graph when another pipeline or scenario is selected.
 
