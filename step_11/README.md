@@ -1,3 +1,5 @@
+> You can download this final code of this step [here](../src/step_11.py).
+
 # Introducing cycles
 
 The final concept of Taipy Core is [Cycles](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/cycle/). A cycle is a period representing a business schedule. It can be a day, a week, a month or a year. It is used to create a temporal distinction between scenarios. Furthermore, in each period, a unique primary scenario is made; it is your main or reference scenario for this period.
@@ -187,3 +189,7 @@ def on_change(state, var_name: str, var_value):
 
 Gui(page=multi_pages).run()
 ```
+
+<p align="center">
+    <img src="result.gif" width=700>
+</p>

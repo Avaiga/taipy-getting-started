@@ -1,6 +1,8 @@
+> You can download this final code of this step [here](../src/step_07.py).
+
 # Building the GUI for a scenario and selectors
 
-Just as before, this new configuration needs a new GUI. A first scenario will be created and executed at the beginning. Then, a selector will be used to select a pipeline among the `baseline` and `ml` pipeline.
+Just before, Step 7 created a scenario only using Taipy Core. This new configuration needs a new GUI. A first scenario will be created and executed at the beginning. Then, a selector will be used to select a pipeline among the `baseline` and `ml` pipeline.
 
 <p align="center">
     <img src="selector.gif" width=250>
