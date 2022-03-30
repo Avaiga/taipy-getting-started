@@ -1,5 +1,5 @@
 # taipy-getting-started
-Packages nedded: taipy (0.13), pandas, numpy, statsmodels, scikit-learn.
+Packages nedded: taipy (0.13), statsmodels, scikit-learn.
 
 Make sure to have the good path for the csv. This path could change depending on how you run the scripts.
 
