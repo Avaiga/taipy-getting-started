@@ -1,6 +1,12 @@
+> You can download the final code of this step [here](../src/step_01.py).
+
+# Introducing Taipy visual elements
+
+A lot of visual elements can be added to the basic code viewed on Step 0. This Step shows how to use visual elements like charts, sliders and tables and implement them in the GUI.
+
 ## Importing the Dataset
 
-Suppose that you have a dataset.csv file, using the *Pandas* library, you can retrieve this dataset with the following codes:
+Suppose that you have a `dataset.csv` file, using the *Pandas* library, you can retrieve this dataset with the following codes:
 
 ```python
 import pandas as pd
@@ -29,7 +35,7 @@ dataset = get_data(path_to_csv)
 
 After creating your first web client with just one line of code and reading your data with this code, let's create a more detailed page with visual elements.
 
-# Visual elements
+## Visual elements
 
 Taipy GUI can be considered as an **augmented** Markdown; it adds the concept of **'[Visual elements](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/)'** on top of all the Markdown syntax.  A visual element is a Taipy graphical object displayed on the client. It can be a [slider](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/slider/), a [chart](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/chart/), a [table](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/table/), an [input](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/input/), a [menu](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/menu/), etc. Check the list [here](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/controls/).
 

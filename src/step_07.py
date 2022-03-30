@@ -1,10 +1,11 @@
 from step_05 import *
 from step_06 import scenario_cfg
 
-# Delete all entities? / delete .data file
-#
-#
-#
+from taipy.core.config import Config
+
+# Delete all entities
+Config._set_global_config(clean_entities_enabled=True)
+tp.clean_all_entities()
 
 # Set the list of pipelines names
 # It will be used in a selector of pipelines

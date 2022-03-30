@@ -1,3 +1,7 @@
+> You can download this final code of this step [here](../src/step_02.py).
+
+# Creating an interactive GUI
+
 Now, the page has a lot of visual elements. The slider is interactive and changes `value`. Taipy manages everything. To go further into Taipy GUI, let's consider the concept of **state** in Taipy.
 
 # Multi-client - state

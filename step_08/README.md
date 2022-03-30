@@ -1,3 +1,5 @@
+> You can download this final code of this step [here](../src/step_08.py).
+
 # How to write data and change your default parameters?
 
 Now that the GUI has been created to handle a scenario, it would be interesting to change the initial variables to see their impact on the predictions. These are the input variables that haven't changed so far: the *number of predictions*, the *max capacity* and the *day*. How can we interact with them in real-time?

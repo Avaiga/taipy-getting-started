@@ -1,6 +1,8 @@
+> You can download this final code of this step [here](../src/step_12.py).
+
 # Compare primary scenarios
 
-Cycles are helpful to keep track of KPI over time. The goal is to compare the primary scenario of every cycle and its pipelines over time.
+Cycles are helpful to keep track of KPI over time. The goal of this step is to compare the primary scenario of every cycle and its pipelines over time.
 
 To achieve this:
 - A new dataframe has to be initialized. It will store the metrics for the `baseline` and `ml` pipeline. 

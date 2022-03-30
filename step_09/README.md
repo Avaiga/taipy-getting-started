@@ -1,8 +1,12 @@
+> You can download this final code of this step [here](../src/step_09.py).
+
 # GUI for multi-scenarios
+
+Now that you know how to create scenarios, submit them and change them, you can create a GUI to manage mulitple scenarios and pipelines.
 
 ## Dynamic selectors
 
-Let's manage multiple scenarios through a dynamic scenario selector. This selector will be updated whenever a new scenario is created. It will store the 'id' of the scenarios and their names. Naturally, only the names will be displayed in the selector.
+Let's manage scenarios through a dynamic scenario selector. This selector will be updated whenever a new scenario is created. It will store the 'id' of the scenarios and their names. Naturally, only the names will be displayed in the selector.
 
 This code initializes the scenario selector with the previously created scenarios. If there are no scenarios, the selector will be empty.
 ```python

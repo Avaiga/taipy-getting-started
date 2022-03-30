@@ -1,6 +1,10 @@
+> You can download this final code of this step [here](../src/step_05.py).
+
 # Building the GUI for a pipeline and buttons
 
-Let's update the GUI to display the results of the pipeline. A "Predict" [button](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/button/) has been added to the page to create the pipeline and run it. When you press a button, Taipy calls the function in the *on_action* parameter.
+Step 4 created a first pipeline using only Taipy Core, let's update the GUI to display the results of the pipeline.
+
+A "Predict" [button](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/button/) has been added to the page to create the pipeline and run it. When you press a button, Taipy calls the function in the *on_action* parameter.
 
 `<|Text displayed on button|button|on_action=fct_name_called_when_pressed|>`
    

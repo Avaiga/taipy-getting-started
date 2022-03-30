@@ -3,6 +3,11 @@ from step_06 import ml_pipeline_cfg
 
 from taipy import Frequency
 from taipy.gui import notify
+from taipy.core.config import Config
+
+# Delete all entities
+Config._set_global_config(clean_entities_enabled=True)
+tp.clean_all_entities()
 
 
 # Create scenarios each week and compare them
