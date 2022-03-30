@@ -1,4 +1,4 @@
-> You can download this code final code of this step [here](../src/step_03.py).
+> You can download the code of this step [here](../src/step_03.py).
 
 # Introducing Taipy Core
 

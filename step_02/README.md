@@ -1,4 +1,4 @@
-> You can download this final code of this step [here](../src/step_02.py).
+> You can download the code of this step [here](../src/step_02.py).
 
 # Creating an interactive GUI
 
@@ -47,6 +47,6 @@ Gui(page=page).run()
 ```
 
 <p align="center">
-    <img src="step_2_result.gif" width=700>
+    <img src="result.gif" width=700>
 </p>
 
