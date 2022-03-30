@@ -1,4 +1,4 @@
-> You can download this final code of this step [here](../src/step_02.py).
+> You can download the code of this step [here](../src/step_02.py).
 
 # Creating an interactive GUI
 
