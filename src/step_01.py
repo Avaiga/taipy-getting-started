@@ -11,9 +11,6 @@ def get_data(path_to_csv: str):
 path_to_csv = "dataset.csv"
 dataset = get_data(path_to_csv)
 
-# Aggregates the dataframe based on the day
-dataset_day = dataset.resample('D', on='Date').mean().reset_index()
-
 # Initial value
 n_week = 10
 
@@ -26,9 +23,9 @@ Week number: *<|{n_week}|>*
 Interact with this slider to change the week number:
 <|{n_week}|slider|min=1|max=52|>
 
-## Dataset:
+## Full dataset:
 
-<|{dataset_day}|chart|type=bar|x=Date|y=Value|height=100%|>
+<|{dataset}|chart|type=bar|x=Date|y=Value|height=100%|>
 
 <|{dataset}|table|height=400px|width=95%|>
 """

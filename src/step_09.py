@@ -25,7 +25,7 @@ scenario_manager_page = page + """
 ## Display the pipeline
 <|{selected_pipeline}|selector|lov={pipeline_selector}|>
 
-<|{predictions_dataset}|chart|type=bar|x=Date|y[1]=Historical values|y[2]=Predicted values|height=80%|width=100%|>
+<|{predictions_dataset}|chart|x=Date|y[1]=Historical values|type[1]=bar|y[2]=Predicted values|type[2]=scatter|height=80%|width=100%|>
 """
 
 def create_name_for_scenario(state)->str:

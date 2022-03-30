@@ -55,8 +55,17 @@ def update_chart(state):
     # Update the chart based on this pipeline
     # It is the same function as created before in step_5
     update_predictions_dataset(state, pipeline)
+```
 
+Before running the GUI, these two lines of code will erase the previous scenarios, pipelines, datanodes that you created in the previous steps to avoid any problem of compability.
 
+```python
+# Delete all entities
+Config._set_global_config(clean_entities_enabled=True)
+tp.clean_all_entities()
+```
+
+```python
 # Creation of our first scenario
 scenario = create_scenario()
 Gui(page=scenario_page).run() 

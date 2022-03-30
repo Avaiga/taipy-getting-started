@@ -21,6 +21,14 @@ scenario_daily_cfg = tp.configure_scenario(id="scenario",
                                            frequency=Frequency.DAILY)
 ```
 
+To avoid any problem of compability between scenarios with or without cycle, this code will erase the previous scenarios, pipelines, datanodes that you have maybe created in the previous steps.
+
+```python
+# Delete all entities
+Config._set_global_config(clean_entities_enabled=True)
+tp.clean_all_entities()
+```
+
 To clarify this concept of primary scenario, the scenario selector will show a `*` before its name if the scenario is primary. This is why we update the following functions.
 
 ```python
@@ -187,6 +195,9 @@ def on_change(state, var_name: str, var_value):
         if tp.get(state.selected_scenario[0]).predictions.read() is not None:
             update_chart(state)
 
+
+
+```python
 Gui(page=multi_pages).run()
 ```
 

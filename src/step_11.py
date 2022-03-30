@@ -5,15 +5,16 @@ from taipy import Frequency
 from taipy.gui import notify
 from taipy.core.config import Config
 
-# Delete all entities
-Config._set_global_config(clean_entities_enabled=True)
-tp.clean_all_entities()
-
 
 # Create scenarios each week and compare them
 scenario_daily_cfg = tp.configure_scenario(id="scenario",
                                            pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg],
                                            frequency=Frequency.DAILY)
+
+if __name__ == '__main__':
+    # Delete all entities
+    Config._set_global_config(clean_entities_enabled=True)
+    tp.clean_all_entities()
 
 # Change the inital scenario selector to see which scenarios are primary
 scenario_selector = [(scenario.id, ("*" if scenario.is_primary else "") + scenario.name) for scenario in all_scenarios]
@@ -156,7 +157,7 @@ page_scenario_manager = """
 |>
 |>
 
-<|{predictions_dataset}|chart|type=bar|x=Date|y[1]=Historical values|y[2]=Predicted values|height=80%|width=100%|>
+<|{predictions_dataset}|chart|x=Date|y[1]=Historical values|type[1]=bar|y[2]=Predicted values|type[2]=scatter|height=80%|width=100%|>
 |>
 """
 
