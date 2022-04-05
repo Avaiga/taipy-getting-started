@@ -37,9 +37,12 @@ Some parameters for Data Node configuration:
             Here, the initial dataset is a CSV file so `storage_type="csv"` for this Data Node. Taipy knows how to access it, thanks to the path. By default, the storage type is `pickle`.
 
 - **[Scope](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/scope/)**: You can find below three types of Scope in the code: the Pipeline, the Scenario (by default) and the Global scope.
-            Basically, with Global scope, all Data Nodes are shared between every pipelines, scenarios and cycles. For example, the initial dataset is shared between every pipelines and scenarios. 
-            With Scenario scope, they are shared between all the pipelines of the scenario.
-            With Pipeline scope, Data Nodes don't have access to other Data Nodes from other pipelines. A 'predictions' Data Node is created for each pipeline in the current example. So, adding pipelines/algorithms will store predictions in different "predictions" Data Nodes.
+
+   - *Global scope*: all Data Nodes are shared between every pipelines, scenarios and cycles. For example, the initial dataset is shared between every pipelines and scenarios. 
+            
+   - *Scenario scope*: they are shared between all the pipelines of the scenario.
+            
+   - *Pipeline scope*: Data Nodes don't have access to other Data Nodes from other pipelines. A 'predictions' Data Node is created for each pipeline in the current example. So, adding pipelines/algorithms will store predictions in different "predictions" Data Nodes.
 
 - **Cacheable**: This is a parameter used to increase the efficiency of the program. If the Data Node has already been created and the inputs to create it didn't change, it is not necessary to rerun the task that creates it.
 
