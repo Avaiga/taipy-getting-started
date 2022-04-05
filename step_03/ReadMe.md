@@ -36,11 +36,12 @@ Some parameters for Data Node configuration:
 - **Storage_type**: This is where the storage type is selected: CSV file, SQL database, pickle file, etc.
             Here, the initial dataset is a CSV file so `storage_type="csv"` for this Data Node. Taipy knows how to access it, thanks to the path. By default, the storage type is `pickle`.
 
-- **[Scope](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/scope/)**: You can find below two types of Scope in the code: the Pipeline and Scenario scope (by default).
-            Basically, with Scenario scope, Data Nodes are shared between all the pipelines of the scenario.
-            With Pipeline scope, Data Nodes are not shared between pipelines and don't have access to other Data Nodes from other pipelines. A 'predictions' Data Node is created for each pipeline in the current example. So, adding pipelines/algorithms will store predictions in different "predictions" Data Nodes.
+- **[Scope](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/scope/)**: You can find below three types of Scope in the code: the Pipeline, the Scenario (by default) and the Global scope.
+            Basically, with Global scope, all Data Nodes are shared between every pipelines, scenarios and cycles. For example, the initial dataset is shared between every pipelines and scenarios. 
+            With Scenario scope, they are shared between all the pipelines of the scenario.
+            With Pipeline scope, Data Nodes don't have access to other Data Nodes from other pipelines. A 'predictions' Data Node is created for each pipeline in the current example. So, adding pipelines/algorithms will store predictions in different "predictions" Data Nodes.
 
-- **Cacheable**: This is a parameter used to increase the efficiency of the program. If the Data Node has already been created and the inputs didn't change, it is not necessary to rerun it.
+- **Cacheable**: This is a parameter used to increase the efficiency of the program. If the Data Node has already been created and the inputs to create it didn't change, it is not necessary to rerun the task that creates it.
 
 
 ### Input Data Nodes configuration
@@ -62,7 +63,8 @@ import datetime as dt
 ## Input Data Nodes
 initial_dataset_cfg = tp.configure_data_node(id="initial_dataset",
                                              storage_type="csv",
-                                             path=path_to_csv)
+                                             path=path_to_csv,
+                                             scope=Scope.GLOBAL)
 
 day_cfg = tp.configure_data_node(id="day", default_data=dt.datetime(2021, 7, 26))
 
@@ -73,15 +75,16 @@ max_capacity_cfg = tp.configure_data_node(id="max_capacity", default_data=200)
 
  ### Remaining Data Nodes
 
-- *cleaned_dataset* is the dataset after cleaning (after the *clean_data* function).
+- *cleaned_dataset* is the dataset after cleaning (after the *clean_data* function). `cacheable` is set to `True` with a `scope.GLOBAL`. It means if the initial dataset didn't change, Taipy will not re-execute the `clean_data` task. In other words, after the creation of this data node through `clean_data`, Taipy knows that it is not necessary to create it again.
 
 - *predictions* are the predictions of the model. In this pipeline, it will be the output of the *predict_baseline* function. Each pipeline will create its own *prediction* Data Node hence `scope=Scope.PIPELINE`. 
 
 ```python
 ## Remaining Data Nodes
-cleaned_dataset_cfg = tp.configure_data_node(id="cleaned_dataset") # ,
-                                                                   # cacheable=True,
-                                                                   # validity_period=dt.timedelta(days=1)
+cleaned_dataset_cfg = tp.configure_data_node(id="cleaned_dataset",
+                                             cacheable=True,
+                                             validity_period=dt.timedelta(days=1),
+                                             scope=Scope.GLOBAL) 
 
 predictions_cfg = tp.configure_data_node(id="predictions", scope=Scope.PIPELINE)
 ```
