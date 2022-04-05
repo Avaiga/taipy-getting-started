@@ -1,4 +1,4 @@
-> You can download the code of this step [here](../src/step_12.py).
+> You can download the code of this step [here](../src/step_12.py) or the whole code [here](../src).
 
 # Compare primary scenarios
 

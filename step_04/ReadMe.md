@@ -1,4 +1,4 @@
-> You can download this code final code of this step [here](../src/step_04.py).
+> You can download this code final code of this step [here](../src/step_04.py) or the whole code [here](../src).
 
 # Pipeline Management
 

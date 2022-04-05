@@ -1,4 +1,4 @@
-> You can download the code of this step [here](../src/step_09.py).
+> You can download the code of this step [here](../src/step_09.py) or the whole code [here](../src).
 
 # GUI for multi-scenarios
 

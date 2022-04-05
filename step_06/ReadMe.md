@@ -1,4 +1,4 @@
-> You can download the code of this step [here](../src/step_06.py).
+> You can download the code of this step [here](../src/step_06.py) or the whole code [here](../src).
 
 # Creation and execution of Scenarios
 
