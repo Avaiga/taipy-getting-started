@@ -30,7 +30,7 @@ dataset = get_data(path_to_csv)
 - Value: its value.
 
 <p align="center">
-    <img src="table.png" width=500>
+    <img src="table.png" width=700>
 </p>
 
 After creating your first web client with just one line of code and reading your data with this code, let's create a more detailed page with visual elements.
