@@ -148,9 +148,7 @@ clean_data_task_cfg = tp.configure_task(id="clean_data",
 
 This task will take the cleaned dataset and predict it according to your parameters.
 
-<p align="center">
-            <img src="predict_baseline.svg" width=300>
-</p>
+[](predict_baseline.svg){ align=center } 
 
 ```python
 predict_baseline_task_cfg = tp.configure_task(id="predict_baseline",

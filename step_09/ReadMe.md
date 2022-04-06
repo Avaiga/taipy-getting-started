@@ -109,9 +109,7 @@ def update_scenario_selector(state, scenario):
 
 This graph summarizes the code for the GUI.
 
-<p align="center">
-    <img src="organisation.svg" width=500>
-</p>
+[](organisation.svg){ align=center } 
 
 
 ## Automating the graph update - *on_change* function
@@ -137,6 +135,4 @@ Run the Gui.
 Gui(page=scenario_manager_page).run()
 ```
 
-<p align="center">
-    <img src="result.gif" width=700>
-</p>
+[](result.gif){ align=center } 

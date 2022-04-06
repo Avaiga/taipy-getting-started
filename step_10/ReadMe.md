@@ -14,9 +14,8 @@ from taipy import Gui
 Gui("<|menu|label=Menu|lov={['Data Visualization', 'Scenario Manager']}|>").run()
 ```
 
-<p align="center">
-    <img src="menu.png" width=50>
-</p>
+[](menu.png){ align=center } 
+
 
 
 - [part](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/part/): creates a group of text/visual elements. A useful parameter of *part* is `render`. Set to `False`, it will not display the part.
@@ -40,9 +39,8 @@ Third column
 |>
 ```
 
-<p align="center">
-    <img src="layout.png" width=500>
-</p>
+[](layout.png){ align=center } 
+
 
 Here, the part with the chart will be displayed when you create the first scenario. The menu is the control changing the `page` variable. Consequently, it changes the part displayed on the client. This is how you can easily create multiple pages; there are many other ways to do so.
 
@@ -54,9 +52,7 @@ The first page in the menu contains the chart with the dataset focused on one we
 page_data_visualization = page
 ```
 
-<p align="center">
-    <img src="data_visualization.png" width=700>
-</p>
+[](data_visualization.png){ align=center } 
 
 
 ```python
@@ -98,9 +94,8 @@ page_scenario_manager = """
 """
 ```
 
-<p align="center">
-    <img src="scenario_manager.gif" width=700>
-</p>
+[](scenario_manager.gif){ align=center } 
+
 
 The menu combines these two pages. When a page will be selected, `menu_fct` will be called and update the page.
 
@@ -124,6 +119,5 @@ def menu_fct(state, var_name: str, fct: str, var_value: list):
 Gui(page=multi_pages).run()
 ```
 
-<p align="center">
-    <img src="multi_pages.png" width=700>
-</p>
+[](multi_pages.png){ align=center } 
+

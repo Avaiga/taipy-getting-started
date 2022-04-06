@@ -137,6 +137,5 @@ multi_pages = """
 Gui(page=multi_pages).run() 
 ```
 
-<p align="center">
-    <img src="result.png" width=700>
-</p>
+[](result.png){ align=center } 
+

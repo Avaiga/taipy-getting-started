@@ -32,9 +32,7 @@ dataset = get_data(path_to_csv)
 
 - Value: its value.
 
-<p align="center">
-    <img src="table.png" width=700>
-</p>
+[](table.png){ align=center } 
 
 After creating your first web client with just one line of code and reading your data with this code, let's create a more detailed page with visual elements.
 
@@ -88,6 +86,4 @@ Interact with this slider to change the week number:
 Gui(page=page).run()
 ```
 
-<p align="center">
-    <img src="result.gif" width=700>
-</p>
+[](result.gif){ align=center } 

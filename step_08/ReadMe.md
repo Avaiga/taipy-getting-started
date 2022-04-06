@@ -94,6 +94,4 @@ create_scenario()
 Gui(page=page_scenario_manager).run()
 ```
 
-<p align="center">
-    <img src="step_8_result.gif" width=700>
-</p>
+[](result.gif){ align=center } 
