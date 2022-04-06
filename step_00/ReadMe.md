@@ -15,3 +15,5 @@ Gui(page="# Getting started with *Taipy*").run()
 <div align="center">
     <img src="result.png" width=700>
 </div>
+
+![](result.png){:style="align: center; width: 700px;"}
