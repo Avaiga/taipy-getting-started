@@ -14,6 +14,6 @@ Gui(page="# Getting started with *Taipy*").run()
 
 
 <div style="margin: auto" width=700>
-![First Web Page](results.png)
+  ![First Web Page](results.png)
 </div>
 
