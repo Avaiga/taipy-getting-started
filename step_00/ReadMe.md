@@ -16,33 +16,33 @@ Gui(page="# Getting started with *Taipy*").run()
 
 
 <p align="center">
-    <img src="results.png" width=700>
+    <img src="result.png" width=700>
 </p>
 
 <center>
-![test](results.png)
+![test](result.png)
 </center>
 
 <p align="center">
-  ![test](results.png){align=center}
+  ![test](result.png){align=center}
 </p>
 
 <div align="center">
-  ![test2](results.png)
+  ![test2](result.png)
 </div>
 
 <div style="margin: auto">
-  ![test3](results.png)
+  ![test3](result.png)
 </div>
 
 <p align="center">
-![test111](results.png)
+![test111](result.png)
 </p>
 
 <div align="center">
-![test112](results.png)
+![test112](result.png)
 </div>
 
 <div style="margin: auto">
-![test113](results.png)
+![test113](result.png)
 </div>
