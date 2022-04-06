@@ -9,7 +9,7 @@ Taipy is an innovative **low-code** package to create complete applications in *
 The **Graphical User Interface** of Taipy allows anyone with basic knowledge of Python to create a beautiful and interactive interface. It is a simple and intuitive way to create a GUI. No need to know how to design web pages with CSS or HTML; Taipy uses an augmented syntax of Markdown to create your desired web page.
 
 <p align="center">
-  <img src="step_00/img_demo.png" width=700>
+  <img src="step_00/img_demo.png" width=500>
 </p>
 
 The **Scenario Management** component of Taipy is a powerful tool to manage business problems and pipelines. The implementation of **Taipy Core** is straightforward. For example, it will allow you to:
@@ -20,7 +20,11 @@ The **Scenario Management** component of Taipy is a powerful tool to manage busi
 
 You can use the GUI component without the Scenario Management and vice-versa. However, as you will see, they are incredibly efficient when combined.
 
-This **'Getting Started'** will go through all the basic concepts of *Taipy* to create a complete application. Each step is based on the code of the previous one. At the end of it, you will be able to create a complete application using *Taipy*. So, without further delay, let's begin to code!
+This **'Getting Started'** will go through all the basic concepts of *Taipy* to create a complete application.
+
+[<img src="http://www.google.com.au/images/nav_logo7.png">](http://google.com.au/)
+
+Each step is based on the code of the previous one. At the end of it, you will be able to create a complete application using *Taipy*. So, without further delay, let's begin to code!
 
 ## Steps:
 > Packages needed: *taipy*,*scikit-learn*,*statsmodels*
