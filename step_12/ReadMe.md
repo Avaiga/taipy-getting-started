@@ -118,9 +118,9 @@ page_performance = """
 """
 ```
 
-<p align="center">
-    <img src="page_performance.gif" width=700>
-</p>
+
+[Page Performance](page_performance.gif){ align=center } 
+
 
 
 ```python
@@ -137,5 +137,5 @@ multi_pages = """
 Gui(page=multi_pages).run() 
 ```
 
-[](result.png){ align=center } 
+[Compare Scenarios](result.png){ align=center } 
 

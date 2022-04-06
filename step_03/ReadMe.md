@@ -28,10 +28,7 @@ Taipy allows you to manage them effortlessly. To apprehend the Scenario Manageme
 Let's create a Machine Learning (ML) example to  answer any confusions that you may have. In a ML problem, it is common to have numerous training and testing pipelines for different algorithms.
 For simplification, this step will only configure one baseline pipeline. Therefore, the goal is to create a Directed Acyclic Graph (DAG) that represents this pipeline. This single pipeline retrieves the initial dataset, cleans it, and gives predictions for the *day*.
 
-<p align="center">
-            <img src="baseline_pipeline.svg" width=500>
-</p>
-
+[Baseline Pipeline](baseline_pipeline.svg){ align=center } 
 
 This graph is created by configuring Data Nodes (variables) and tasks (functions). This configuration doesn't execute anything; it is just a setup for the DAG.
 
@@ -133,9 +130,7 @@ Tasks are the translation of functions in Taipy. These tasks combined with Data 
 
 The first task that you want to create is your *clean_data* task. It will take your initial dataset and clean it.
 
-<p align="center">
-            <img src="clean_data.svg" width=300>
-</p>
+[Clean Data](clean_data.svg){ align=center } 
 
 ```python
 clean_data_task_cfg = tp.configure_task(id="clean_data",
@@ -148,7 +143,7 @@ clean_data_task_cfg = tp.configure_task(id="clean_data",
 
 This task will take the cleaned dataset and predict it according to your parameters.
 
-[](predict_baseline.svg){ align=center } 
+[Predict Baseline](predict_baseline.svg){ align=center } 
 
 ```python
 predict_baseline_task_cfg = tp.configure_task(id="predict_baseline",

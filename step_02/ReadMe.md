@@ -47,5 +47,5 @@ def on_change(state, var_name: str, var_value):
 Gui(page=page).run()
 ```
 
-[](result.gif){ align=center } 
+[Interactive GUI](result.gif){ align=center } 
 
