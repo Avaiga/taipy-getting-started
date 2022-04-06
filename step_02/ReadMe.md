@@ -12,7 +12,7 @@ So, what is the state of a GUI? The application's state is the current state of 
 
 In the code below, this concept will be used to connect a variable to other variables. To create a chart that will only display one week of data, a connection has to be made between the slider's value and the data.
 
-## How to connect two variables - the *[on_change](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/callbacks/)* function
+## How to connect two variables - the *[on_change](https://docs.taipy.io/manuals/gui/callbacks/)* function
 
 In *Taipy*, the `on_change` function is a "special" function. **Taipy** will check if you created a function with this name and will use it. Whenever the state of a variable is modified, the *callback* function is called with three parameters:
 

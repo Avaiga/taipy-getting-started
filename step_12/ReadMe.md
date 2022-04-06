@@ -86,7 +86,7 @@ def compare(state):
     state.comparison_scenario_done = True
 ```
 
-Let's create a page related to this comparison. As said before, this page will contain a graph to compare scenarios and pipelines; and a selector to choose the metric on which to compare. When pressed the button at the bottom of the page calls the `compare` function. When finished, the `render` parameter of the *part* will render the rest of the page. Also, a new Taipy's block is present in the Markdown: [expandable](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/expandable/).
+Let's create a page related to this comparison. As said before, this page will contain a graph to compare scenarios and pipelines; and a selector to choose the metric on which to compare. When pressed the button at the bottom of the page calls the `compare` function. When finished, the `render` parameter of the *part* will render the rest of the page. Also, a new Taipy's block is present in the Markdown: [expandable](https://docs.taipy.io/manuals/gui/viselements/expandable/).
 
 ```python
 # Performance page

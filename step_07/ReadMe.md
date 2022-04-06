@@ -4,9 +4,9 @@
 
 Just before, Step 7 created a scenario only using Taipy Core. This new configuration needs a new GUI. A first scenario will be created and executed at the beginning. Then, a selector will be used to select a pipeline among the `baseline` and `ml` pipeline.
 
-![Selector](selector.gif){ width: 250; align=center } 
+![Selector](selector.gif){ width=250; align=center } 
 
-A [selector](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/selector/) only needs two parameters: a value that will change through the selector and the list of values possible (lov). Here is the syntax for selector: `<|{selected_value}|selector|lov={lov_selector}|>`. An 'Update chart' button will update the chart according to the selected pipeline.
+A [selector](https://docs.taipy.io/manuals/gui/viselements/selector/) only needs two parameters: a value that will change through the selector and the list of values possible (lov). Here is the syntax for selector: `<|{selected_value}|selector|lov={lov_selector}|>`. An 'Update chart' button will update the chart according to the selected pipeline.
 
 These variables below are the parameters of the pipeline selector. The selected pipeline will be the first among 'baseline' and 'ml' when starting the client.
 
@@ -30,7 +30,7 @@ Select the pipeline
 
 The code around the GUI has evolved. `create_scenario` is creating a scenario and submitting it with the `submit` function. `update_chart` is updating the chart based upon the selected scenario and pipeline.
 
-![Organisation](organisation.svg){ width: 500; align=center } 
+![Organisation](organisation.svg){ width=500; align=center } 
 
 
 ```python
@@ -69,4 +69,4 @@ scenario = create_scenario()
 Gui(page=scenario_page).run() 
 ```
 
-![GUI for a scenario](result.gif){ width: 700; align=center } 
+![GUI for a scenario](result.gif){ width=700; align=center } 

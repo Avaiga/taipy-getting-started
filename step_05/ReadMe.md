@@ -4,11 +4,11 @@
 
 Step 4 created a first pipeline using only Taipy Core, let's update the GUI to display the results of the pipeline.
 
-A "Predict" [button](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/button/) has been added to the page to create the pipeline and run it. When you press a button, Taipy calls the function in the *on_action* parameter.
+A "Predict" [button](https://docs.taipy.io/manuals/gui/viselements/button/) has been added to the page to create the pipeline and run it. When you press a button, Taipy calls the function in the *on_action* parameter.
 
 `<|Text displayed on button|button|on_action=fct_name_called_when_pressed|>`
    
-A [chart](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/chart/) control can be found at the end of the markdown to see if the predictions seem correct. The chart creates two traces: the historical values and the predicted values.
+A [chart](https://docs.taipy.io/manuals/gui/viselements/chart/) control can be found at the end of the markdown to see if the predictions seem correct. The chart creates two traces: the historical values and the predicted values.
 
 ```python
 import numpy as np
@@ -91,10 +91,10 @@ def update_predictions_dataset(state, pipeline):
 
 This is what the structure of the code looks like for the GUI:
 
-![Organisation](organisation.svg){ width: 500; align=center } 
+![Organisation](organisation.svg){ width=500; align=center } 
 
 ```python
 Gui(page=pipeline_page).run()
 ```
 
-![GUI for a pipeline](result.png){ width: 700; align=center } 
+![GUI for a pipeline](result.png){ width=700; align=center } 
