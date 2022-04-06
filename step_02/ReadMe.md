@@ -15,8 +15,11 @@ In the code below, this concept will be used to connect a variable to other vari
 ## How to connect two variables - the *[on_change](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/callbacks/)* function
 
 In *Taipy*, the `on_change` function is a "special" function. **Taipy** will check if you created a function with this name and will use it. Whenever the state of a variable is modified, the *callback* function is called with three parameters:
+
 - state (the state of the variables)
+
 - The name of the modified variable
+
 - Its value.
 
 Here, `on_change` will be called whenever the slider's value changes. Each time this happens, `state.data` will be updated according to the week. Then, Taipy will propagate this change automatically to the associated chart.

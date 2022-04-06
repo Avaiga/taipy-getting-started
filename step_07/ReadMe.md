@@ -11,6 +11,7 @@ Just before, Step 7 created a scenario only using Taipy Core. This new configura
 A [selector](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/selector/) only needs two parameters: a value that will change through the selector and the list of values possible (lov). Here is the syntax for selector: `<|{selected_value}|selector|lov={lov_selector}|>`. An 'Update chart' button will update the chart according to the selected pipeline.
 
 These variables below are the parameters of the pipeline selector. The selected pipeline will be the first among 'baseline' and 'ml' when starting the client.
+
 ```python
 # Set the list of pipelines names
 # It will be used in a selector of pipelines

@@ -26,18 +26,31 @@ This **'Getting Started'** will go through all the basic concepts of *Taipy* to 
 
 ## Steps:
 > Packages needed: *taipy*, *scikit-learn*, *statsmodels*
-- [Step 0 - First web page](https://docs.taipy.io/getting_started/step_00/ReadMe/)
-- [Step 1 - Introducing Taipy visual elements](https://docs.taipy.io/getting_started/step_01/ReadMe/)
-- [Step 2 - Creating an interactive GUI](https://docs.taipy.io/getting_started/step_02/ReadMe/)
-- [Step 3 - Introducing Taipy Core](https://docs.taipy.io/getting_started/step_03/ReadMe/)
-- [Step 4 - Pipeline Management](https://docs.taipy.io/getting_started/step_04/ReadMe/)
-- [Step 5 - Building the GUI for a pipeline and buttons](https://docs.taipy.io/getting_started/step_05/ReadMe/)
-- [Step 6 - Creation and execution of Scenarios](https://docs.taipy.io/getting_started/step_06/ReadMe/)
-- [Step 7 - Building the GUI for a scenario and selectors](https://docs.taipy.io/getting_started/step_07/ReadMe/)
-- [Step 8 - How to write data and change your default parameters?](https://docs.taipy.io/getting_started/step_08/ReadMe/)
-- [Step 9 - GUI for multi-scenarios](https://docs.taipy.io/getting_started/step_09/ReadMe/)
-- [Step 10 - Make your application beautiful](https://docs.taipy.io/getting_started/step_10/ReadMe/)
-- [Step 11 - Introducing cycles](https://docs.taipy.io/getting_started/step_11/ReadMe/)
-- [Step 12 - Compare primary scenarios](https://docs.taipy.io/getting_started/step_12/ReadMe/)
+
+0. [First web page](https://docs.taipy.io/getting_started/step_00/ReadMe/)
+
+1. [Introducing Taipy visual elements](https://docs.taipy.io/getting_started/step_01/ReadMe/)
+
+2. [Creating an interactive GUI](https://docs.taipy.io/getting_started/step_02/ReadMe/)
+
+3. [Introducing Taipy Core](https://docs.taipy.io/getting_started/step_03/ReadMe/)
+
+4. [Pipeline Management](https://docs.taipy.io/getting_started/step_04/ReadMe/)
+
+5. [Building the GUI for a pipeline and buttons](https://docs.taipy.io/getting_started/step_05/ReadMe/)
+
+6. [Creation and execution of Scenarios](https://docs.taipy.io/getting_started/step_06/ReadMe/)
+
+7. [Building the GUI for a scenario and selectors](https://docs.taipy.io/getting_started/step_07/ReadMe/)
+
+8. [How to write data and change your default parameters?](https://docs.taipy.io/getting_started/step_08/ReadMe/)
+
+9. [GUI for multi-scenarios](https://docs.taipy.io/getting_started/step_09/ReadMe/)
+
+10. [Make your application beautiful](https://docs.taipy.io/getting_started/step_10/ReadMe/)
+
+11. [Introducing cycles](https://docs.taipy.io/getting_started/step_11/ReadMe/)
+
+12. [Compare primary scenarios](https://docs.taipy.io/getting_started/step_12/ReadMe/)
 
 

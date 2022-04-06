@@ -51,7 +51,9 @@ def create_scenario():
 ```
 
 The `submit` function introduces two essential Taipy functions:
+
 - `tp.get(scenario_id)`: Taipy function used to get the scenario from its id.
+
 - `.write(new_value)`: a Data Node function that changes the value stored in the Data Node. For example, `scenario.max_capacity` is a Data Node whose value can be changed to 100 like this `scenario.max_capacity.write(100)`.
 
 ```python

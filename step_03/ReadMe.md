@@ -5,16 +5,23 @@
 From Step 2, you now know the basics of Taipy GUI. Let's go for a moment to the Scenario Management aspect of Taipy.
 
 There are a lot of reasons to use Taipy Core.
+
 - Efficiently manage the execution of your functions
+
 - Keep track of data and KPIs.
+
 - Handy to manage multiple pipelines in the context of Machine Learning or Mathematical optimization.
 
 Taipy allows you to manage them effortlessly. To apprehend the Scenario Management aspect of Taipy, you need to understand four essential concepts.
 
 ## Four fundamental [concepts](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/) in Taipy Core:
+
 - [**Data Nodes**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/data-node/): are the translation of variables in Taipy. They don't contain the data itself but know how to retrieve it. It can refer to any data: any *Python* object (*string*, *int*, *list*, *dict*, *model*, *dataframe*, etc), Pickle, CSV file, or even SQL database. They know how to read and write data. You can even write your own custom Data Node if needed to access a particular data.
+
 - [**Tasks**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/task/): are the translation of functions in Taipy.
+
 - [**Pipelines**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/pipeline/): are a list of tasks executed with intelligent scheduling created automatically by Taipy. They usually represent a series of functions for different algorithms like a baseline or Machine-Learning algorithm.
+
 - [**Scenarios**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/scenario/): are your business problem with some parameters. They usually consist of one or multiple pipelines.
 
 
@@ -33,6 +40,7 @@ This graph is created by configuring Data Nodes (variables) and tasks (functions
 Data Nodes can point to any kind of *Python* variables by default: *int*, *string*, *dict*, *list*, *np.array*, *pd.DataFrame*, *models*, etc. Taipy also can read and write a CSV, Pickle file or SQL database through a Data Node. The Data Node configuration allows you to select the storage type of the Data Node.
 
 Some parameters for Data Node configuration:
+
 - **Storage_type**: This is where the storage type is selected: CSV file, SQL database, pickle file, etc.
             Here, the initial dataset is a CSV file so `storage_type="csv"` for this Data Node. Taipy knows how to access it, thanks to the path. By default, the storage type is `pickle`.
 
@@ -112,9 +120,13 @@ def predict_baseline(cleaned_dataset: pd.DataFrame, n_predictions: int, day: dt.
 ## Tasks
 
 Tasks are the translation of functions in Taipy. These tasks combined with Data Nodes create your graph. Creating a task is simple; you need:
+
 - An id
+
 - A function
+
 - Inputs
+
 - Outputs
 
 ### clean_data_task
