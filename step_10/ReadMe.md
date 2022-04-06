@@ -4,7 +4,7 @@
 
 With just a few steps, you have created a full-AI application on which you can predict multiple days with different parameters. However, the page's layout is not yet optimal and it could be greatly improved. This will be done with the code below. To get a more aesthetically pleasing page, three useful controls to use are:
 
-- [menu](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/menu/): creates a menu on the left to navigate through the pages.
+- [menu](https://docs.taipy.io/manuals/gui/viselements/menu/): creates a menu on the left to navigate through the pages.
 
 `<|menu|label=Menu|lov={lov_pages}|on_action=menu_fct_called|>`. For example, this code creates a menu with two pages:
 
@@ -18,7 +18,7 @@ Gui("<|menu|label=Menu|lov={['Data Visualization', 'Scenario Manager']}|>").run(
 
 
 
-- [part](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/part/): creates a group of text/visual elements. A useful parameter of *part* is `render`. Set to `False`, it will not display the part.
+- [part](https://docs.taipy.io/manuals/gui/viselements/part/): creates a group of text/visual elements. A useful parameter of *part* is `render`. Set to `False`, it will not display the part.
 
 ```
 <|part|render={bool_variable}|
@@ -27,7 +27,7 @@ Or visual elements...
 |>
 ```
 
-- [layout](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/layout/): creates invisible columns where you can put your texts and visual elements. Columns parameter will indicate the width and number of columns. Here, we have three columns of the same width.
+- [layout](https://docs.taipy.io/manuals/gui/viselements/layout/): creates invisible columns where you can put your texts and visual elements. Columns parameter will indicate the width and number of columns. Here, we have three columns of the same width.
 
 ```
 <|layout|columns=1 1 1|

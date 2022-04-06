@@ -2,9 +2,9 @@
 
 # Introducing cycles
 
-The final concept of Taipy Core is [Cycles](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/cycle/). A cycle is a period representing a business schedule. It can be a day, a week, a month or a year. It is used to create a temporal distinction between scenarios. Furthermore, in each period, a unique primary scenario is made; it is your main or reference scenario for this period.
+The final concept of Taipy Core is [Cycles](https://docs.taipy.io/manuals/core/concepts/cycle/). A cycle is a period representing a business schedule. It can be a day, a week, a month or a year. It is used to create a temporal distinction between scenarios. Furthermore, in each period, a unique primary scenario is made; it is your main or reference scenario for this period.
 
-![Cycle](cycle.svg){ style="margin:auto;display:block" }
+![Cycle](cycle.svg){ width=300 style="margin:auto;display:block" }
 
 Typically, in a Machine Learning problem, a lot of scenarios are created daily to predict the next day. Among all those scenarios, there is only one primary scenario. In the step's example, scenarios are attached to a DAILY cycle. Using Cycles is useful because some specific Taipy's functions exist to navigate through these Cycles. Taipy can get all the scenarios created in a day by providing the Cycle. It also has a function to get every primary scenario ever made to quickly see their progress over time.
 

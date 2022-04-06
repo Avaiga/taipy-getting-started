@@ -14,15 +14,15 @@ There are a lot of reasons to use Taipy Core.
 
 Taipy allows you to manage them effortlessly. To apprehend the Scenario Management aspect of Taipy, you need to understand four essential concepts.
 
-## Four fundamental [concepts](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/) in Taipy Core:
+## Four fundamental [concepts](https://docs.taipy.io/manuals/core/concepts/) in Taipy Core:
 
-- [**Data Nodes**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/data-node/): are the translation of variables in Taipy. They don't contain the data itself but know how to retrieve it. It can refer to any data: any *Python* object (*string*, *int*, *list*, *dict*, *model*, *dataframe*, etc), Pickle, CSV file, or even SQL database. They know how to read and write data. You can even write your own custom Data Node if needed to access a particular data.
+- [**Data Nodes**](https://docs.taipy.io/manuals/core/concepts/data-node/): are the translation of variables in Taipy. They don't contain the data itself but know how to retrieve it. It can refer to any data: any *Python* object (*string*, *int*, *list*, *dict*, *model*, *dataframe*, etc), Pickle, CSV file, or even SQL database. They know how to read and write data. You can even write your own custom Data Node if needed to access a particular data.
 
-- [**Tasks**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/task/): are the translation of functions in Taipy.
+- [**Tasks**](https://docs.taipy.io/manuals/core/concepts/task/): are the translation of functions in Taipy.
 
-- [**Pipelines**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/pipeline/): are a list of tasks executed with intelligent scheduling created automatically by Taipy. They usually represent a series of functions for different algorithms like a baseline or Machine-Learning algorithm.
+- [**Pipelines**](https://docs.taipy.io/manuals/core/concepts/pipeline/): are a list of tasks executed with intelligent scheduling created automatically by Taipy. They usually represent a series of functions for different algorithms like a baseline or Machine-Learning algorithm.
 
-- [**Scenarios**](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/scenario/): are your business problem with some parameters. They usually consist of one or multiple pipelines.
+- [**Scenarios**](https://docs.taipy.io/manuals/core/concepts/scenario/): are your business problem with some parameters. They usually consist of one or multiple pipelines.
 
 
 Let's create a Machine Learning (ML) example to  answer any confusions that you may have. In a ML problem, it is common to have numerous training and testing pipelines for different algorithms.
@@ -41,7 +41,7 @@ Some parameters for Data Node configuration:
 - **Storage type**: This is where the storage type is selected: CSV file, SQL database, pickle file, etc.
             Here, the initial dataset is a CSV file so `storage_type="csv"` for this Data Node. Taipy knows how to access it, thanks to the path. By default, the storage type is `pickle`.
 
-- **[Scope](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/scope/)**: You can find below three types of Scope in the code: the Pipeline, the Scenario (by default) and the Global scope.
+- **[Scope](https://docs.taipy.io/manuals/core/concepts/scope/)**: You can find below three types of Scope in the code: the Pipeline, the Scenario (by default) and the Global scope.
 
     - *Global scope*: all Data Nodes are shared between every pipelines, scenarios and cycles. For example, the initial dataset is shared between every pipelines and scenarios.
 

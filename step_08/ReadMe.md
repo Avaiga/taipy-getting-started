@@ -15,7 +15,7 @@ n_predictions = 40
 max_capacity = 200
 ```
 
-Some additions have been made to the Markdown before the chart. Three visual elements are created and will be used to change the scenario. See the documentation for these visual elements here: [date](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/date/) and [number](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/number/). A 'Save button' is also created to run the 'submit' function when pressed.
+Some additions have been made to the Markdown before the chart. Three visual elements are created and will be used to change the scenario. See the documentation for these visual elements here: [date](https://docs.taipy.io/manuals/gui/viselements/date/) and [number](https://docs.taipy.io/manuals/gui/viselements/number/). A 'Save button' is also created to run the 'submit' function when pressed.
 
 ```python
 page_scenario_manager = page + """
