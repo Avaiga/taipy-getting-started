@@ -8,7 +8,7 @@ Welcome to the **Getting Started** guide for Taipy. This tour shows you how to c
     </a>
 </p>
 
-You can use the GUI component without the Scenario Management and vice-versa. However, as you will see, they are incredibly efficient when combined. Each step of the **'Getting Started'** will focus on basic concepts of *Taipy*. All of the steps are based on the code of the previous ones. At the end of it, you will be able to create a complete application using *Taipy*. So, without further delay, let's begin to code!
+You can use the GUI component without the Scenario Management and vice-versa. However, as you will see, they are incredibly efficient when combined. Each step of the **'Getting Started'** will focus on basic concepts of *Taipy*. Every step is dependant on the code of the previous ones. At the end of it, you will be able to create a complete application using *Taipy*. So, without further delay, let's begin to code!
 
 ## Steps:
 > Packages needed: *taipy*, *scikit-learn*, *statsmodels*
