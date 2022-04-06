@@ -1,4 +1,4 @@
-> You can download this final code of this step [here](../src/step_05.py) or the whole code [here](../src).
+> You can download this final code of this step [here](../src/step_05.py) or all the steps [here](../src).
 
 # Building the GUI for a pipeline and buttons
 

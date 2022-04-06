@@ -1,4 +1,4 @@
-> You can download the code of this step [here](../src/step_07.py) or the whole code [here](../src).
+> You can download the code of this step [here](../src/step_07.py) or all the steps [here](../src).
 
 # Building the GUI for a scenario and selectors
 

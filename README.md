@@ -1,8 +1,8 @@
 # taipy-getting-started
 
-**Packages needed**: *taipy (0.13), statsmodels, scikit-learn*.
+**Packages needed**: *taipy, statsmodels, scikit-learn*.
 
-The code for all the steps is stored in `src/`. For more information, on the steps, read the README.md file in their respective folder (`step_xx/README.md`) that explains the step in detail.
+The code for all the steps is stored in `src/`. For more information, on the steps, read the ReadMe.md file in their respective folder (`step_xx/README.md`) that explains the step in detail.
 
 ## Step 00
 

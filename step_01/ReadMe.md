@@ -1,4 +1,4 @@
-> You can download the final code of this step [here](../src/step_01.py) or the whole code [here](../src).
+> You can download the final code of this step [here](../src/step_01.py) or all the steps [here](../src).
 
 # Introducing Taipy visual elements
 

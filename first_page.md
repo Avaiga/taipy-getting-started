@@ -21,22 +21,16 @@ You can use the GUI component without the Scenario Management and vice-versa. Ho
 This **'Getting Started'** will go through all the basic concepts of *Taipy*. Each step is based on the code of the previous one. At the end of it, you will be able to create a complete application using *Taipy*. So, without further delay, let's begin to code!
 
 
-
-
-## First web page
-
-> You can download the code for this step [here](../src/step_00.py) or all the steps [here](../src).
-
-To create your first Taipy web page, you only need one line of code. Create a `Gui` object with a String and run it. A client link will be displayed in the console. Enter it in a web browser to open your first Taipy web client!
-
-```python
-from taipy import Gui
-
-Gui(page="# Getting started with *Taipy*").run()
-```
-
-> Note that you can style the text. Taipy uses the Markdown syntax to style your text and more. Therefore, # creates a title, ## makes a subtitle. Put your text in $'**'$ for italics or in $'*'$ to have it in bold (**italics**, *bold*).
-
-<p align="center">
-  <img src="result.png" width=700>
-</p>
+- [Step 0 - First web page]
+- [Step 1 - Introducing Taipy visual elements]
+- [Step 2 - Creating an interactive GUI]
+- [Step 3 - Introducing Taipy Core]
+- [Step 4 - Pipeline Management]
+- [Step 5 - Building the GUI for a pipeline and buttons]
+- [Step 6 - Creation and execution of Scenarios]
+- [Step 7 - Building the GUI for a scenario and selectors]
+- [Step 8 - How to write data and change your default parameters?]
+- [Step 9 - GUI for multi-scenarios]
+- [Step 10 - Make your application beautiful]
+- [Step 11 - Introducing cycles]
+- [Step 12 - Compare primary scenarios]
