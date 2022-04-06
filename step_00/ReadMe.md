@@ -24,3 +24,15 @@ Gui(page="# Getting started with *Taipy*").run()
 <div style="margin: auto">
   ![test3](results.png)
 </div>
+
+<p align="center">
+![test111](results.png)
+</p>
+
+<div align="center">
+![test112](results.png)
+</div>
+
+<div style="margin: auto">
+![test113](results.png)
+</div>
