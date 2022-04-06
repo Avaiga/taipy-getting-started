@@ -7,7 +7,7 @@ Welcome to the **Getting Started** guide for Taipy. This tour shows you how to c
  - the **Scenario Management** part: to facilitate the deployment of a data-driven application based on your business case.
 
 <p align="center">
-    <img src="step_00/imd_end_interface.png" width=500>
+    <img src="step_00/imd_end_interface.png" width=700>
 </p>
 
 You can use the GUI component without the Scenario Management and vice-versa. However, as you will see, they are incredibly efficient when combined. Each step of the **'Getting Started'** will focus on basic concepts of *Taipy*. Note also that every step is dependant on the code of the previous ones. Arrived to the last step, you will be able to use Taipy on your own to create your aplication. So, without further delay, let's begin to code!
