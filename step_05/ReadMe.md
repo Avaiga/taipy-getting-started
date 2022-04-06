@@ -91,10 +91,10 @@ def update_predictions_dataset(state, pipeline):
 
 This is what the structure of the code looks like for the GUI:
 
-![Organisation](organisation.svg){ align=center } 
+![Organisation](organisation.svg){ width: 500; align=center } 
 
 ```python
 Gui(page=pipeline_page).run()
 ```
 
-![GUI for a pipeline](result.png){ align=center } 
+![GUI for a pipeline](result.png){ width: 700; align=center } 
