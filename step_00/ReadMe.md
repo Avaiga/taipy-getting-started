@@ -15,9 +15,9 @@ Gui(page="# Getting started with *Taipy*").run()
 ![test](result.png)
 
 
-<p align="center">
+<div align="center">
     <img src="result.png" width=700>
-</p>
+</div>
 
 <center>
 ![test](result.png)
