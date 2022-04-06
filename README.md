@@ -1,14 +1,16 @@
 # Getting Started with Taipy
 
-Welcome to the **Getting Started** guide for Taipy. This tour shows you how to create an entire application using the two components of Taipy: the **Graphical User Interface** and the **Scenario Management** part. The first one allows any Python developers to create a complex and interactive GUI, while **Taipy Core** helps to deploy a data-driven application using pipelines and scenarios.
+Welcome to the **Getting Started** guide for Taipy. This tour shows you how to create an entire application using the two components of Taipy:
+
+- the **Graphical User Interface** part: to allow any Python developpers to create a complex and interactive GUI.
+
+ - the **Scenario Management** part: to facilitate the deployment of a data-driven application based on your business case.
 
 <p align="center">
-    <a href="http://tp-classification-churn.herokuapp.com/">
-        <img src="step_00/img_demo_classif.png" width=700>
-    </a>
+    <img src="step_00/imd_end_interface.png" width=500>
 </p>
 
-You can use the GUI component without the Scenario Management and vice-versa. However, as you will see, they are incredibly efficient when combined. Each step of the **'Getting Started'** will focus on basic concepts of *Taipy*. Every step is dependant on the code of the previous ones. At the end of it, you will be able to create a complete application using *Taipy*. So, without further delay, let's begin to code!
+You can use the GUI component without the Scenario Management and vice-versa. However, as you will see, they are incredibly efficient when combined. Each step of the **'Getting Started'** will focus on basic concepts of *Taipy*. Note also that every step is dependant on the code of the previous ones. Arrived to the last step, you will be able to use Taipy on your own to create your aplication. So, without further delay, let's begin to code!
 
 ## Steps:
 > Packages needed: *taipy*, *scikit-learn*, *statsmodels*
