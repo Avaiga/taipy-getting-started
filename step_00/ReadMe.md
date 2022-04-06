@@ -13,5 +13,14 @@ Gui(page="# Getting started with *Taipy*").run()
 > Note that you can style the text. Taipy uses the Markdown syntax to style your text and more. Therefore, # creates a title, ## makes a subtitle. Put your text in $'**'$ for italics or in $'*'$ to have it in bold (**italics**, *bold*).
 
 
-![result](result.png){ align=center }
+<p align="center">
+  ![test](results.png)
+</p>
 
+<div align="center">
+  ![test2](results.png)
+</div>
+
+<div style="margin: auto">
+  ![test3](results.png)
+</div>
