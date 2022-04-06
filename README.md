@@ -4,7 +4,7 @@ Welcome to the **Getting Started** guide for Taipy. This tour shows you how to c
 
 <p align="center">
     <a href="http://tp-classification-churn.herokuapp.com/">
-        <img src="step_00/img_demo_classif.png" width=500>
+        <img src="step_00/img_demo_classif.png" width=700>
     </a>
 </p>
 
