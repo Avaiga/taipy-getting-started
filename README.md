@@ -1,57 +1,37 @@
-# taipy-getting-started
+# What is Taipy?
 
-**Packages needed**: *taipy, statsmodels, scikit-learn*.
+Taipy is an innovative **low-code** package to create complete applications in *Python*. It is composed of two independent components: a **Graphical User Interface** and a **Scenario Management** part.
 
-The code for all the steps is stored in `src/`. For more information, on the steps, read the ReadMe.md file in their respective folder (`step_xx/README.md`) that explains the step in detail.
+<p align="center">
+  <img src="step_00/taipy-gui-core-illustration.svg" height=300>
+</p>
 
-## Step 00
+The **Graphical User Interface** of Taipy allows anyone with basic knowledge of Python to create a beautiful and interactive interface. It is a simple and intuitive way to create a GUI. No need to know how to design web pages with CSS or HTML; Taipy uses an augmented syntax of Markdown to create your desired web page.
 
-The presentation of Taipy and the minimum code to run the gui.
+The **Scenario Management** component of Taipy is a powerful tool to manage business problems and pipelines. The implementation of **Taipy Core** is straightforward. For example, it will allow you to:
+- Keep track of your KPI, data, scenarios, pipelines, etc.
+- Have smart scheduling
+- Simplify industrialization for DataViz, Machine-Learning, Optimization, etc.
 
-## Step 01
 
-Presentation of the interactiveness of Taipy as well as different controls (slider and chart).
+You can use the GUI component without the Scenario Management and vice-versa. However, as you will see, they are incredibly efficient when combined.
 
-## Step 02
+This **'Getting Started'** will go through all the basic concepts of *Taipy*. Each step is based on the code of the previous one. At the end of it, you will be able to create a complete application using *Taipy*. So, without further delay, let's begin to code!
 
-Introduction to the on_change function with the choice of the week. The week displayed on the graph is the week of the slider.
+## Steps:
+> Packages needed: *taipy*,*scikit-learn*,*statsmodels*
+- [Step 0 - First web page]()
+- [Step 1 - Introducing Taipy visual elements]()
+- [Step 2 - Creating an interactive GUI]()
+- [Step 3 - Introducing Taipy Core]()
+- [Step 4 - Pipeline Management]()
+- [Step 5 - Building the GUI for a pipeline and buttons]()
+- [Step 6 - Creation and execution of Scenarios]()
+- [Step 7 - Building the GUI for a scenario and selectors]()
+- [Step 8 - How to write data and change your default parameters?]()
+- [Step 9 - GUI for multi-scenarios]()
+- [Step 10 - Make your application beautiful]()
+- [Step 11 - Introducing cycles]()
+- [Step 12 - Compare primary scenarios]()
 
-## Step 03
 
-Introduction to Taipy Core. Creation of the configuration for a baseline model.
-
-## Step 04
-
-Add to the previous config, a pipeline config to create and execute the pipeline without the GUI. 
-
-## Step 05
-
-Add the execution of the pipeline thanks to a "Predict" button on the Gui (first button). The default parameters are used to run the pipeline. The results are shown in a chart.
-
-## Step 06
-
-Creation of a second pipeline (the machine learning pipeline : Auto-Regressive model). Creation and execution of the scenario with the default parameters wihout the GUI.
-
-## Step 07
-
-Scenario is being runned at the beginning and we can change the selected pipeline through a selector (first selector) and a button.
-
-## Step 08
-
-A first scenario is created. We can change the default parameters of this scenario with controls (date, number, selector); the default parameters are the date, the number of predictions and max capacity. A 'change_scenario' button is pressed to apply these changes and re-submit the scenario.
-
-## Step 09
-
-Now, we want to show how to create scenarios directly through the gui and keep track of them.
-
-## Step 10
-
-Organize the page with a menu, layouts and parts that can be not rendered.
-
-## Step 11
-
-Introduce the concepts of Cycles and primary scenarios. Deletion of a scenario and setting a scenario, primary.
-
-## Step 12
-
-Create a 'Performance' page that will compare all the primary scenarios and display metrics of these scenarios.
