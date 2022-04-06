@@ -1,23 +1,22 @@
 from step_10 import *
 from step_06 import ml_pipeline_cfg
 
-from taipy import Frequency
+from taipy import Config, Frequency
 from taipy.gui import notify
-from taipy.core.config import Config
 
 
 # Create scenarios each week and compare them
-scenario_daily_cfg = tp.configure_scenario(id="scenario",
-                                           pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg],
-                                           frequency=Frequency.DAILY)
+scenario_daily_cfg = Config.configure_scenario(id="scenario",
+                                            pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg],
+                                            frequency=Frequency.DAILY)
 
 if __name__ == '__main__':
     # Delete all entities
-    Config._set_global_config(clean_entities_enabled=True)
+    Config.configure_global_app(clean_entities_enabled=True)
     tp.clean_all_entities()
 
 # Change the inital scenario selector to see which scenarios are primary
-scenario_selector = [(scenario.id, ("*" if scenario.is_primary else "") + scenario.name) for scenario in all_scenarios]
+scenario_selector = [(scenario.id, ("*" if scenario.is_primary else "") + scenario.id) for scenario in all_scenarios]
 
 # Redefine update_scenario_selector to add '*' in the display name when the scnario is primary
 def update_scenario_selector(state, scenario):
@@ -47,6 +46,7 @@ def create_scenario(state):
 
     # Change the scenario that is currently selected
     submit_scenario(state)
+
 
 # This is the same code as in step_9_dynamic_scenario_creation.py
 def submit_scenario(state):
@@ -93,6 +93,7 @@ def make_primary(state):
 def remove_scenario_from_selector(state, scenario: list):
     # Take all the scenarios in the selector that doesn't have the scenario.id
     state.scenario_selector = [(s[0], s[1]) for s in state.scenario_selector if s[0] != scenario.id]
+
 
 def delete_scenario(state):
     scenario = tp.get(state.selected_scenario[0])
