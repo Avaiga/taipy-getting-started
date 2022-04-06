@@ -109,7 +109,7 @@ def update_scenario_selector(state, scenario):
 
 This graph summarizes the code for the GUI.
 
-[Organisation](organisation.svg){ align=center } 
+![Organisation](organisation.svg){ align=center } 
 
 
 ## Automating the graph update - *on_change* function
@@ -135,4 +135,4 @@ Run the Gui.
 Gui(page=scenario_manager_page).run()
 ```
 
-[Multi-scenarios](result.gif){ align=center } 
+![Multi-scenarios](result.gif){ align=center } 

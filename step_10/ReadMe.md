@@ -14,7 +14,7 @@ from taipy import Gui
 Gui("<|menu|label=Menu|lov={['Data Visualization', 'Scenario Manager']}|>").run()
 ```
 
-[Menu](menu.png){ align=center } 
+![Menu](menu.png){ align=center } 
 
 
 
@@ -39,7 +39,7 @@ Third column
 |>
 ```
 
-[Layout](layout.png){ align=center } 
+![Layout](layout.png){ align=center } 
 
 
 Here, the part with the chart will be displayed when you create the first scenario. The menu is the control changing the `page` variable. Consequently, it changes the part displayed on the client. This is how you can easily create multiple pages; there are many other ways to do so.
@@ -52,7 +52,7 @@ The first page in the menu contains the chart with the dataset focused on one we
 page_data_visualization = page
 ```
 
-[Data Visualization](data_visualization.png){ align=center } 
+![Data Visualization](data_visualization.png){ align=center } 
 
 
 ```python
@@ -94,7 +94,7 @@ page_scenario_manager = """
 """
 ```
 
-[Scenario Manager](scenario_manager.gif){ align=center } 
+![Scenario Manager](scenario_manager.gif){ align=center } 
 
 
 The menu combines these two pages. When a page will be selected, `menu_fct` will be called and update the page.
@@ -119,5 +119,5 @@ def menu_fct(state, var_name: str, fct: str, var_value: list):
 Gui(page=multi_pages).run()
 ```
 
-[Multi Pages](multi_pages.png){ align=center } 
+![Multi Pages](multi_pages.png){ align=center } 
 
