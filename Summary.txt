@@ -1,5 +1,5 @@
 Step 0 : First web page
-Step 1 : Introducing Taipy visual elements
+Step 1 : Introducing visual elements
 Step 2 : Creating an interactive GUI
 Step 3 : Introducing Taipy Core
 Step 4 : Pipeline Management
