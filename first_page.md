@@ -1,6 +1,4 @@
-# First step in Taipy
-
-## What is Taipy?
+# What is Taipy?
 
 Taipy is an innovative **low-code** package to create complete applications in *Python*. It is composed of two independent components: a **Graphical User Interface** and a **Scenario Management** part.
 
@@ -20,7 +18,8 @@ You can use the GUI component without the Scenario Management and vice-versa. Ho
 
 This **'Getting Started'** will go through all the basic concepts of *Taipy*. Each step is based on the code of the previous one. At the end of it, you will be able to create a complete application using *Taipy*. So, without further delay, let's begin to code!
 
-
+## Steps:
+> Packages needed: *taipy*,*scikit-learn*,*statsmodels*
 - [Step 0 - First web page]()
 - [Step 1 - Introducing Taipy visual elements]()
 - [Step 2 - Creating an interactive GUI]()
@@ -34,3 +33,5 @@ This **'Getting Started'** will go through all the basic concepts of *Taipy*. Ea
 - [Step 10 - Make your application beautiful]()
 - [Step 11 - Introducing cycles]()
 - [Step 12 - Compare primary scenarios]()
+
+

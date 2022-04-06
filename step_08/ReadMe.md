@@ -1,4 +1,4 @@
-> You can download the code of this step [here](../src/step_08.py) or all the steps [here](../src).
+> You can download the code of this step [here](../src/step_08.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
 # How to write data and change your default parameters?
 

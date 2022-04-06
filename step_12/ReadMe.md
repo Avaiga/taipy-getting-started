@@ -1,4 +1,4 @@
-> You can download the code of this step [here](../src/step_12.py) or all the steps [here](../src).
+> You can download the code of this step [here](../src/step_12.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
 # Compare primary scenarios
 

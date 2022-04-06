@@ -25,7 +25,7 @@ This **'Getting Started'** will go through all the basic concepts of *Taipy*. Ea
 
 ## First web page
 
-> You can download the code for this step [here](../src/step_00.py) or all the steps [here](../src).
+> You can download the code for this step [here](../src/step_00.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
 To create your first Taipy web page, you only need one line of code. Create a `Gui` object with a String and run it. A client link will be displayed in the console. Enter it in a web browser to open your first Taipy web client!
 
