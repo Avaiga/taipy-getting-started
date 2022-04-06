@@ -20,26 +20,24 @@ Each step of the **'Getting Started'** will focus on basic concepts of *Taipy*. 
 
 1. [Taipy visual elements](step_01/ReadMe.md)
 
-2. [Creating an interactive GUI](step_02/Readme.md)
+2. [Creating an interactive GUI](step_02/ReadMe.md)
 
-3. [Introducing Taipy Core](step_03/Readme.md)
+3. [Introducing Taipy Core](step_03/ReadMe.md)
 
-4. [Pipeline Management](step_04/Readme.md)
+4. [Pipeline Management](step_04/ReadMe.md)
 
-5. [Building the GUI for a pipeline and buttons](step_05/Readme.md)
+5. [Building the GUI for a pipeline and buttons](step_05/ReadMe.md)
 
-6. [Creation and execution of Scenarios](step_06/Readme.md)
+6. [Creation and execution of Scenarios](step_06/ReadMe.md)
 
-7. [Building the GUI for a scenario and selectors](step_07/Readme.md)
+7. [Building the GUI for a scenario and selectors](step_07/ReadMe.md)
 
-8. [Write data in Data Nodes](step_08/Readme.md)
+8. [Write data in Data Nodes](step_08/ReadMe.md)
 
-9. [GUI for multi-scenarios](step_09/Readme.md)
+9. [GUI for multi-scenarios](step_09/ReadMe.md)
 
-10. [Make your application beautiful](step_10/Readme.md)
+10. [Make your application beautiful](step_10/ReadMe.md)
 
-11. [Introducing cycles](step_11/Readme.md)
+11. [Introducing cycles](step_11/ReadMe.md)
 
-12. [Compare primary scenarios](step_12/Readme.md)
-
-
+12. [Compare primary scenarios](step_12/ReadMe.md)
