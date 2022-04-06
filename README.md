@@ -1,6 +1,6 @@
 # Getting Started with Taipy
 
-Welcome to the getting started guide for Taipy. This tour shows you how to create a full-application using the two components of Taipy: : the **Graphical User Interface** and the **Scenario Management** part. The first one allows any Python developpers to create a complex and interactive GUI while **Taipy Core** helps to deploy a data-dirven application using pipelines and scenarios.
+Welcome to the **Getting Started** guide for Taipy. This tour shows you how to create a full-application using the two components of Taipy: : the **Graphical User Interface** and the **Scenario Management** part. The first one allows any Python developpers to create a complex and interactive GUI while **Taipy Core** helps to deploy a data-dirven application using pipelines and scenarios.
 
 <p align="center">
     <a href="http://tp-classification-churn.herokuapp.com/">
