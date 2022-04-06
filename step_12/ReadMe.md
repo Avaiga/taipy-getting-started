@@ -119,7 +119,7 @@ page_performance = """
 ```
 
 
-![Page Performance](page_performance.gif){ width=700; align=center } 
+![Page Performance](page_performance.gif){ width=700 style="margin:auto;display:block" }
 
 
 
@@ -137,5 +137,5 @@ multi_pages = """
 Gui(page=multi_pages).run() 
 ```
 
-![Compare Scenarios](result.png){ width=700;align=center } 
+![Compare Scenarios](result.png){ width=700 style="margin:auto;display:block" }
 

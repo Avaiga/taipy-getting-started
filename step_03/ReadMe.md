@@ -28,7 +28,7 @@ Taipy allows you to manage them effortlessly. To apprehend the Scenario Manageme
 Let's create a Machine Learning (ML) example to  answer any confusions that you may have. In a ML problem, it is common to have numerous training and testing pipelines for different algorithms.
 For simplification, this step will only configure one baseline pipeline. Therefore, the goal is to create a Directed Acyclic Graph (DAG) that represents this pipeline. This single pipeline retrieves the initial dataset, cleans it, and gives predictions for the *day*.
 
-![Baseline Pipeline](baseline_pipeline.svg){ width=500; align=center } 
+![Baseline Pipeline](baseline_pipeline.svg){ width=500 style="margin:auto;display:block" }
 
 This graph is created by configuring Data Nodes (variables) and tasks (functions). This configuration doesn't execute anything; it is just a setup for the DAG.
 
@@ -38,16 +38,16 @@ Data Nodes can point to any kind of *Python* variables by default: *int*, *strin
 
 Some parameters for Data Node configuration:
 
-- **Storage_type**: This is where the storage type is selected: CSV file, SQL database, pickle file, etc.
+- **Storage type**: This is where the storage type is selected: CSV file, SQL database, pickle file, etc.
             Here, the initial dataset is a CSV file so `storage_type="csv"` for this Data Node. Taipy knows how to access it, thanks to the path. By default, the storage type is `pickle`.
 
 - **[Scope](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/core/concepts/scope/)**: You can find below three types of Scope in the code: the Pipeline, the Scenario (by default) and the Global scope.
 
-   - *Global scope*: all Data Nodes are shared between every pipelines, scenarios and cycles. For example, the initial dataset is shared between every pipelines and scenarios. 
-            
-   - *Scenario scope*: they are shared between all the pipelines of the scenario.
-            
-   - *Pipeline scope*: Data Nodes don't have access to other Data Nodes from other pipelines. A 'predictions' Data Node is created for each pipeline in the current example. So, adding pipelines/algorithms will store predictions in different "predictions" Data Nodes.
+    - *Global scope*: all Data Nodes are shared between every pipelines, scenarios and cycles. For example, the initial dataset is shared between every pipelines and scenarios.
+
+    - *Scenario scope*: they are shared between all the pipelines of the scenario.
+
+    - *Pipeline scope*: Data Nodes don't have access to other Data Nodes from other pipelines. A 'predictions' Data Node is created for each pipeline in the current example. So, adding pipelines/algorithms will store predictions in different "predictions" Data Nodes.
 
 - **Cacheable**: This is a parameter used to increase the efficiency of the program. If the Data Node has already been created and the inputs to create it didn't change, it is not necessary to rerun the task that creates it.
 
@@ -81,7 +81,7 @@ n_predictions_cfg = tp.configure_data_node(id="n_predictions", default_data=40)
 max_capacity_cfg = tp.configure_data_node(id="max_capacity", default_data=200)
 ```
 
- ### Remaining Data Nodes
+### Remaining Data Nodes
 
 - *cleaned_dataset* is the dataset after cleaning (after the *clean_data* function). `cacheable` is set to `True` with a `scope.GLOBAL`. It means if the initial dataset didn't change, Taipy will not re-execute the `clean_data` task. In other words, after the creation of this data node through `clean_data`, Taipy knows that it is not necessary to create it again.
 
@@ -130,7 +130,7 @@ Tasks are the translation of functions in Taipy. These tasks combined with Data 
 
 The first task that you want to create is your *clean_data* task. It will take your initial dataset and clean it.
 
-![Clean Data](clean_data.svg){ width=300; align=center } 
+![Clean Data](clean_data.svg){ width=300 style="margin:auto;display:block" }
 
 ```python
 clean_data_task_cfg = tp.configure_task(id="clean_data",
@@ -143,7 +143,7 @@ clean_data_task_cfg = tp.configure_task(id="clean_data",
 
 This task will take the cleaned dataset and predict it according to your parameters.
 
-![Predict Baseline](predict_baseline.svg){ width=300; align=center } 
+![Predict Baseline](predict_baseline.svg){ width=300 style="margin:auto;display:block" }
 
 ```python
 predict_baseline_task_cfg = tp.configure_task(id="predict_baseline",

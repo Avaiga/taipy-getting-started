@@ -94,4 +94,4 @@ create_scenario()
 Gui(page=page_scenario_manager).run()
 ```
 
-![Write data](result.gif){ width: 700; align=center } 
+![Write data](result.gif){ width=700 style="margin:auto;display:block" }
