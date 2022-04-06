@@ -25,19 +25,19 @@ You can use the GUI component without the Scenario Management and vice-versa. Ho
 This **'Getting Started'** will go through all the basic concepts of *Taipy* to create a complete application. Each step is based on the code of the previous one. At the end of it, you will be able to create a complete application using *Taipy*. So, without further delay, let's begin to code!
 
 ## Steps:
-> Packages needed: *taipy*,*scikit-learn*,*statsmodels*
-- [Step 0 - First web page]()
-- [Step 1 - Introducing Taipy visual elements]()
-- [Step 2 - Creating an interactive GUI]()
-- [Step 3 - Introducing Taipy Core]()
-- [Step 4 - Pipeline Management]()
-- [Step 5 - Building the GUI for a pipeline and buttons]()
-- [Step 6 - Creation and execution of Scenarios]()
-- [Step 7 - Building the GUI for a scenario and selectors]()
-- [Step 8 - How to write data and change your default parameters?]()
-- [Step 9 - GUI for multi-scenarios]()
-- [Step 10 - Make your application beautiful]()
-- [Step 11 - Introducing cycles]()
-- [Step 12 - Compare primary scenarios]()
+> Packages needed: *taipy*, *scikit-learn*, *statsmodels*
+- [Step 0 - First web page](https://docs.taipy.io/getting_started/step_00/ReadMe/)
+- [Step 1 - Introducing Taipy visual elements](https://docs.taipy.io/getting_started/step_01/ReadMe/)
+- [Step 2 - Creating an interactive GUI](https://docs.taipy.io/getting_started/step_02/ReadMe/)
+- [Step 3 - Introducing Taipy Core](https://docs.taipy.io/getting_started/step_03/ReadMe/)
+- [Step 4 - Pipeline Management](https://docs.taipy.io/getting_started/step_04/ReadMe/)
+- [Step 5 - Building the GUI for a pipeline and buttons](https://docs.taipy.io/getting_started/step_05/ReadMe/)
+- [Step 6 - Creation and execution of Scenarios](https://docs.taipy.io/getting_started/step_06/ReadMe/)
+- [Step 7 - Building the GUI for a scenario and selectors](https://docs.taipy.io/getting_started/step_07/ReadMe/)
+- [Step 8 - How to write data and change your default parameters?](https://docs.taipy.io/getting_started/step_08/ReadMe/)
+- [Step 9 - GUI for multi-scenarios](https://docs.taipy.io/getting_started/step_09/ReadMe/)
+- [Step 10 - Make your application beautiful](https://docs.taipy.io/getting_started/step_10/ReadMe/)
+- [Step 11 - Introducing cycles](https://docs.taipy.io/getting_started/step_11/ReadMe/)
+- [Step 12 - Compare primary scenarios](https://docs.taipy.io/getting_started/step_12/ReadMe/)
 
 
