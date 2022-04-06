@@ -9,7 +9,7 @@ Taipy is an innovative **low-code** package to create complete applications in *
 The **Graphical User Interface** of Taipy allows anyone with basic knowledge of Python to create a beautiful and interactive interface. It is a simple and intuitive way to create a GUI. No need to know how to design web pages with CSS or HTML; Taipy uses an augmented syntax of Markdown to create your desired web page.
 
 <p align="center">
-  <img src="step_00/img_demo.svg" height=700>
+  <img src="step_00/img_demo.png" height=700>
 </p>
 
 The **Scenario Management** component of Taipy is a powerful tool to manage business problems and pipelines. The implementation of **Taipy Core** is straightforward. For example, it will allow you to:
