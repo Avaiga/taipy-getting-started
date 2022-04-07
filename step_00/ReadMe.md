@@ -10,7 +10,7 @@ from taipy import Gui
 Gui(page="# Getting started with *Taipy*").run()
 ```
 
-> Note that you can style the text. Taipy uses the Markdown syntax to style your text and more. Therefore, # creates a title, ## makes a subtitle. Put your text in $'**'$ for italics or in $'*'$ to have it in bold (**italics**, *bold*).
+Note that you can style the text. Taipy uses the Markdown syntax to style your text and more. Therefore, `#` creates a title, `##` makes a subtitle. Put your text in `*` for italics or in `**` to have it in bold.
 
 
 ![First Web Page](result.png){ width=700 style="margin:auto;display:block" }
