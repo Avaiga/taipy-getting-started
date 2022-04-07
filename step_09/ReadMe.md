@@ -1,6 +1,6 @@
-> You can download the code of this step [here](../src/step_09.py) or the whole code [here](../src).
+> You can download the code of this step [here](../src/step_09.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
-# GUI for multi-scenarios
+# Manage Scenarios
 
 Now that you know how to create scenarios, submit them and change them, you can create a GUI to manage mulitple scenarios and pipelines.
 
@@ -11,7 +11,11 @@ Let's manage scenarios through a dynamic scenario selector. This selector will b
 This code initializes the scenario selector with the previously created scenarios. If there are no scenarios, the selector will be empty.
 ```python
 # Get all the scenarios already created
-all_scenarios = tp.get_scenarios() 
+all_scenarios = tp.get_scenarios()
+
+# Delete the scenarios that doesn't have a name attribute
+# All the scenarios of the previous steps will be deleted but not the ones created by this step
+[tp.delete(scenario.id) for scenario in all_scenarios if scenario.name is None]
 
 # Initial variable for the scenario selector
 # The value of selector will be the ids and what is display will be the name of the scenario
@@ -69,6 +73,7 @@ def create_scenario(state):
     # Submit the scenario that is currently selected
     submit_scenario(state)
 
+
 def submit_scenario(state):
     print("Submitting scenario...")
     # Get the currently selected scenario
@@ -109,9 +114,7 @@ def update_scenario_selector(state, scenario):
 
 This graph summarizes the code for the GUI.
 
-<p align="center">
-    <img src="organisation.svg" width=500>
-</p>
+![Organisation](organisation.svg){ width=500 style="margin:auto;display:block" }
 
 
 ## Automating the graph update - *on_change* function
@@ -137,6 +140,4 @@ Run the Gui.
 Gui(page=scenario_manager_page).run()
 ```
 
-<p align="center">
-    <img src="result.gif" width=700>
-</p>
+![Multi-scenarios](result.gif){ width=700 style="margin:auto;display:block" }

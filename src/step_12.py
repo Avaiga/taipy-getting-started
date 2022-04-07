@@ -20,6 +20,7 @@ def compute_metrics(historical_data, predicted_data):
     mae = mean_absolute_error(historical_data, predicted_data)
     return rmse, mae
 
+
 def compare(state):
     print('Comparing...')
     # Initial lists for comparison
@@ -72,6 +73,7 @@ def compare(state):
 
 # Performance page
 page_performance = """
+
 <br/>
 
 <|part|render={comparison_scenario_done}|

@@ -1,4 +1,4 @@
-> You can download this code final code of this step [here](../src/step_04.py) or the whole code [here](../src).
+> You can download this code final code of this step [here](../src/step_04.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
 # Pipeline Management
 
@@ -10,8 +10,8 @@ To configure your first pipeline, you need to list all the tasks you want to be 
 
 ```python
 # Create the the first scenario configuration
-baseline_pipeline_cfg = tp.configure_pipeline(id="baseline",
-                                              task_configs=[clean_data_task_cfg, predict_baseline_task_cfg])
+baseline_pipeline_cfg = Config.configure_pipeline(id="baseline",
+                                                  task_configs=[clean_data_task_cfg, predict_baseline_task_cfg])
 ```
 
 ## Pipeline creation and execution
@@ -19,6 +19,8 @@ baseline_pipeline_cfg = tp.configure_pipeline(id="baseline",
 Then, create your pipeline from its configuration, submit it, and print the "predictions" Data Node results.
 
 ```python
+import taipy as tp
+
 # Create the pipeline
 baseline_pipeline = tp.create_pipeline(baseline_pipeline_cfg)
 # Submit the pipeline (Execution)

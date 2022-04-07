@@ -1,10 +1,10 @@
-> You can download the code of this step [here](../src/step_08.py) or the whole code [here](../src).
+> You can download the code of this step [here](../src/step_08.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
-# How to write data and change your default parameters?
+# Update data of Data Nodes
 
 Now that the GUI has been created to handle a scenario, it would be interesting to change the initial variables to see their impact on the predictions. These are the input variables that haven't changed so far: the *number of predictions*, the *max capacity* and the *day*. How can we interact with them in real-time?
 
-It can easily be done with the `.write()` function of Data Nodes.
+It can easily be done with the `write()` function of Data Nodes.
 
 First, to add variables to a visual element, they have to be initialized. 
 ```python
@@ -15,7 +15,7 @@ n_predictions = 40
 max_capacity = 200
 ```
 
-Some additions have been made to the Markdown before the chart. Three visual elements are created and will be used to change the scenario. See the documentation for these visual elements here: [date](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/date/) and [number](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/number/). A 'Save button' is also created to run the 'submit' function when pressed.
+Some additions have been made to the Markdown before the chart. Three visual elements are created and will be used to change the scenario. See the documentation for these visual elements here: [date](https://docs.taipy.io/manuals/gui/viselements/date/) and [number](https://docs.taipy.io/manuals/gui/viselements/number/). A 'Save button' is also created to run the 'submit' function when pressed.
 
 ```python
 page_scenario_manager = page + """
@@ -51,8 +51,10 @@ def create_scenario():
 ```
 
 The `submit` function introduces two essential Taipy functions:
+
 - `tp.get(scenario_id)`: Taipy function used to get the scenario from its id.
-- `.write(new_value)`: a Data Node function that changes the value stored in the Data Node. For example, `scenario.max_capacity` is a Data Node whose value can be changed to 100 like this `scenario.max_capacity.write(100)`.
+
+- `write(new_value)`: a Data Node function that changes the value stored in the Data Node. For example, `scenario.max_capacity` is a Data Node whose value can be changed to 100 like this `scenario.max_capacity.write(100)`.
 
 ```python
 def submit(state):
@@ -92,6 +94,4 @@ create_scenario()
 Gui(page=page_scenario_manager).run()
 ```
 
-<p align="center">
-    <img src="step_8_result.gif" width=700>
-</p>
+![Write data](result.gif){ width=700 style="margin:auto;display:block" }

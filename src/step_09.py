@@ -1,7 +1,12 @@
 from step_08 import *
 
+
 # Get all the scenarios already created
-all_scenarios = tp.get_scenarios() 
+all_scenarios = tp.get_scenarios()
+
+# Delete the scenarios that doesn't have a name attribute
+# All the scenarios of the previous steps will be deleted but not the ones created by this step
+[tp.delete(scenario.id) for scenario in all_scenarios if scenario.name is None]
 
 # Initial variable for the scenario selector
 # The value of my selector will be the ids and what is display will be the name of my scenario

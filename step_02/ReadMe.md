@@ -1,6 +1,6 @@
-> You can download the code of this step [here](../src/step_02.py) or the whole code [here](../src).
+> You can download the code of this step [here](../src/step_02.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
-# Creating an interactive GUI
+# Interactive GUI
 
 Now, the page has a lot of visual elements. The slider is interactive and changes `value`. Taipy manages everything. To go further into Taipy GUI, let's consider the concept of **state** in Taipy.
 
@@ -12,11 +12,14 @@ So, what is the state of a GUI? The application's state is the current state of 
 
 In the code below, this concept will be used to connect a variable to other variables. To create a chart that will only display one week of data, a connection has to be made between the slider's value and the data.
 
-## How to connect two variables - the *[on_change](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/callbacks/)* function
+## How to connect two variables - the *[on_change](https://docs.taipy.io/manuals/gui/callbacks/)* function
 
 In *Taipy*, the `on_change` function is a "special" function. **Taipy** will check if you created a function with this name and will use it. Whenever the state of a variable is modified, the *callback* function is called with three parameters:
+
 - state (the state of the variables)
+
 - The name of the modified variable
+
 - Its value.
 
 Here, `on_change` will be called whenever the slider's value changes. Each time this happens, `state.data` will be updated according to the week. Then, Taipy will propagate this change automatically to the associated chart.
@@ -44,7 +47,5 @@ def on_change(state, var_name: str, var_value):
 Gui(page=page).run()
 ```
 
-<p align="center">
-    <img src="result.gif" width=700>
-</p>
+![Interactive GUI](result.gif){ width=700 style="margin:auto;display:block" }
 

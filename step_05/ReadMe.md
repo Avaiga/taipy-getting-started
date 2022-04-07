@@ -1,14 +1,14 @@
-> You can download this final code of this step [here](../src/step_05.py) or the whole code [here](../src).
+> You can download the code of this step [here](../src/step_05.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
-# Building the GUI for a pipeline and buttons
+# Integrate GUI & Pipeline
 
 Step 4 created a first pipeline using only Taipy Core, let's update the GUI to display the results of the pipeline.
 
-A "Predict" [button](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/button/) has been added to the page to create the pipeline and run it. When you press a button, Taipy calls the function in the *on_action* parameter.
+A "Predict" [button](https://docs.taipy.io/manuals/gui/viselements/button/) has been added to the page to create the pipeline and run it. When you press a button, Taipy calls the function in the *on_action* parameter.
 
 `<|Text displayed on button|button|on_action=fct_name_called_when_pressed|>`
    
-A [chart](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/chart/) control can be found at the end of the markdown to see if the predictions seem correct. The chart creates two traces: the historical values and the predicted values.
+A [chart](https://docs.taipy.io/manuals/gui/viselements/chart/) control can be found at the end of the markdown to see if the predictions seem correct. The chart creates two traces: the historical values and the predicted values.
 
 ```python
 import numpy as np
@@ -33,6 +33,7 @@ def predict(state):
     pipeline = create_and_submit_pipeline()
     update_predictions_dataset(state, pipeline)
 
+
 def create_and_submit_pipeline():
     print("Execution of pipeline...")
     # Create the pipeline from the pipeline config
@@ -44,8 +45,11 @@ def create_and_submit_pipeline():
 
 After the first submission of the pipeline, the data stored in *predictions* and *cleaned_data* Data Nodes become accessible. The `.read()` function accesses the data in Data Nodes.
 By reading them, `create_predictions_dataset` creates a prediction dataset with these columns:
+
 - Date,
+
 - Historical values,
+
 - Predicted values.
 
 ```python
@@ -87,15 +91,11 @@ def update_predictions_dataset(state, pipeline):
 ```
 
 This is what the structure of the code looks like for the GUI:
-<p align="center">
-    <img src="organisation.svg" width=500>
-</p>
 
+![Organisation](organisation.svg){ width=500 style="margin:auto;display:block" }
 
 ```python
 Gui(page=pipeline_page).run()
 ```
 
-<p align="center">
-    <img src="result.png" width=700>
-</p>
+![GUI for a pipeline](result.png){ width=700 style="margin:auto;display:block" }

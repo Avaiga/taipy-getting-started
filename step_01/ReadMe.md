@@ -1,6 +1,6 @@
-> You can download the final code of this step [here](../src/step_01.py) or the whole code [here](../src).
+> You can download the final code of this step [here](../src/step_01.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
-# Introducing Taipy visual elements
+# Visual elements
 
 Many visual elements can be added to the basic code viewed in Step 0. This Step shows how to use visual elements like charts, sliders and tables and implement them in the GUI.
 
@@ -25,21 +25,22 @@ dataset = get_data(path_to_csv)
 ```
 
 `dataset` is a `pd.DataFrame`, a basic *Python* object representing, in this case, a real time series. Because of that, there will be no information for specific days. The columns are:
+
 - Index: a unique identifier for each data point.
+
 - Date: the date of the data point.
+
 - Value: its value.
 
-<p align="center">
-    <img src="table.png" width=700>
-</p>
+![Table](table.png){ width=700 style="margin:auto;display:block" }
 
 After creating your first web client with just one line of code and reading your data with this code, let's create a more detailed page with visual elements.
 
 ## Visual elements
 
-Taipy GUI can be considered as an **augmented** Markdown; it adds the concept of **'[Visual elements](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/)'** on top of all the Markdown syntax.  A visual element is a Taipy graphical object displayed on the client. It can be a [slider](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/slider/), a [chart](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/chart/), a [table](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/table/), an [input](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/input/), a [menu](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/menu/), etc. Check the list [here](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/controls/).
+Taipy GUI can be considered as an **augmented** Markdown; it adds the concept of **'[Visual elements](https://docs.taipy.io/manuals/gui/viselements/)'** on top of all the Markdown syntax.  A visual element is a Taipy graphical object displayed on the client. It can be a [slider](https://docs.taipy.io/manuals/gui/viselements/slider/), a [chart](https://docs.taipy.io/manuals/gui/viselements/chart/), a [table](https://docs.taipy.io/manuals/gui/viselements/table/), an [input](https://docs.taipy.io/manuals/gui/viselements/input/), a [menu](https://docs.taipy.io/manuals/gui/viselements/menu/), etc. Check the list [here](https://docs.taipy.io/manuals/gui/controls/).
 
-Every visual element has a similar syntax.`<|{variable}|visual_element_name|param_1=param_1|param_2=param_2| ... |>`. For example, a [slider](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/slider/) is written this way :`<|{variable}|slider|min=min_value|max=max_value|>`.
+Every visual element has a similar syntax.`<|{variable}|visual_element_name|param_1=param_1|param_2=param_2| ... |>`. For example, a [slider](https://docs.taipy.io/manuals/gui/viselements/slider/) is written this way :`<|{variable}|slider|min=min_value|max=max_value|>`.
 To add it to a page, write this syntax wherever you want in your string representing your Page.
 
 For the first half of the Page, a variable **n_week** and add a slider to modify its value will be created; here is the overall syntax:
@@ -74,9 +75,10 @@ Week number: *<|{n_week}|>*
 Interact with this slider to change the week number:
 <|{n_week}|slider|min=1|max=52|>
 
-## Full dataset:
+## Dataset:
 
-<|{dataset}|chart|type=bar|x=Date|y=Value|height=100%|>
+Display the last three months of data:
+<|{dataset[9000:]}|chart|type=bar|x=Date|y=Value|height=100%|>
 
 <|{dataset}|table|height=400px|width=95%|>
 """
@@ -85,6 +87,4 @@ Interact with this slider to change the week number:
 Gui(page=page).run()
 ```
 
-<p align="center">
-    <img src="result.gif" width=700>
-</p>
+![Visual Elements](result.gif){ width=700 style="margin:auto;display:block" }

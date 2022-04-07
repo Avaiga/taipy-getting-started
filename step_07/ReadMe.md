@@ -1,16 +1,15 @@
-> You can download the code of this step [here](../src/step_07.py) or the whole code [here](../src).
+> You can download the code of this step [here](../src/step_07.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
-# Building the GUI for a scenario and selectors
+# Integrate GUI & Scenarios
 
 Just before, Step 7 created a scenario only using Taipy Core. This new configuration needs a new GUI. A first scenario will be created and executed at the beginning. Then, a selector will be used to select a pipeline among the `baseline` and `ml` pipeline.
 
-<p align="center">
-    <img src="selector.gif" width=250>
-</p>
+![Selector](selector.gif){ width=250 style="margin:auto;display:block" }
 
-A [selector](https://didactic-broccoli-7da2dfd5.pages.github.io/manuals/gui/viselements/selector/) only needs two parameters: a value that will change through the selector and the list of values possible (lov). Here is the syntax for selector: `<|{selected_value}|selector|lov={lov_selector}|>`. An 'Update chart' button will update the chart according to the selected pipeline.
+A [selector](https://docs.taipy.io/manuals/gui/viselements/selector/) only needs two parameters: a value that will change through the selector and the list of values possible (lov). Here is the syntax for selector: `<|{selected_value}|selector|lov={lov_selector}|>`. An 'Update chart' button will update the chart according to the selected pipeline.
 
 These variables below are the parameters of the pipeline selector. The selected pipeline will be the first among 'baseline' and 'ml' when starting the client.
+
 ```python
 # Set the list of pipelines names
 # It will be used in a selector of pipelines
@@ -31,9 +30,8 @@ Select the pipeline
 
 The code around the GUI has evolved. `create_scenario` is creating a scenario and submitting it with the `submit` function. `update_chart` is updating the chart based upon the selected scenario and pipeline.
 
-<p align="center">
-    <img src="organisation.svg" width=500>
-</p>
+![Organisation](organisation.svg){ width=500 style="margin:auto;display:block" }
+
 
 ```python
 def create_scenario():
@@ -61,7 +59,7 @@ Before running the GUI, these two lines of code will erase the previous scenario
 
 ```python
 # Delete all entities
-Config._set_global_config(clean_entities_enabled=True)
+Config.configure_global_app(clean_entities_enabled=True)
 tp.clean_all_entities()
 ```
 
@@ -71,6 +69,4 @@ scenario = create_scenario()
 Gui(page=scenario_page).run() 
 ```
 
-<p align="center">
-    <img src="result.gif" width=700>
-</p>
+![GUI for a scenario](result.gif){ width=700 style="margin:auto;display:block" }

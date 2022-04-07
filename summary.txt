@@ -1,0 +1,13 @@
+Step 0: First web page
+Step 1: Visual elements
+Step 2: Interactive GUI
+Step 3: Introducing Taipy Core
+Step 4: Pipeline Management
+Step 5: Integrate GUI & Pipeline
+Step 6: Creation of Scenarios
+Step 7: Integrate GUI & Scenarios
+Step 8: Update data
+Step 9: Manage Scenarios
+Step 10: Make it beautiful
+Step 11: Introducing Cycles
+Step 12: Compare Scenarios

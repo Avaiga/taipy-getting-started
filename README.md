@@ -1,57 +1,43 @@
-# taipy-getting-started
+# Getting Started with Taipy
 
-**Packages needed**: *taipy (0.13), statsmodels, scikit-learn*.
+Welcome to the **Getting Started** guide for Taipy. This tour shows you how to create an entire application using the two components of Taipy:
 
-The code for all the steps is stored in `src/`. For more information, on the steps, read the README.md file in their respective folder (`step_xx/README.md`) that explains the step in detail.
+- **Graphical User Interface builder** (Taipy GUI): allows any Python developer to create a complex and interactive GUI.
 
-## Step 00
+ - **Scenario Management** (Taipy Core): implements a modern backend for any data-driven application based on your business case.
 
-The presentation of Taipy and the minimum code to run the gui.
+![Getting Started application](step_00/imd_end_interface.png){ width=700 style="margin:auto;display:block" }
 
-## Step 01
 
-Presentation of the interactiveness of Taipy as well as different controls (slider and chart).
+You can use Taipy GUI without Taipy Core and vice-versa. However, as you will see, they are incredibly efficient when combined.
 
-## Step 02
+Each step of the **'Getting Started'** will focus on basic concepts of *Taipy*. Note that every step is dependent on the code of the previous one. After completing the last step, you will have the skills to develop your own Taipy application. So, without further delay, let's begin to code!
 
-Introduction to the on_change function with the choice of the week. The week displayed on the graph is the week of the slider.
+## Steps:
+> Packages needed: *taipy*, *scikit-learn*, *statsmodels*
 
-## Step 03
+0. [First web page](step_00/ReadMe.md)
 
-Introduction to Taipy Core. Creation of the configuration for a baseline model.
+1. [Visual elements](step_01/ReadMe.md)
 
-## Step 04
+2. [Interactive GUI](step_02/ReadMe.md)
 
-Add to the previous config, a pipeline config to create and execute the pipeline without the GUI. 
+3. [Introducing Taipy Core](step_03/ReadMe.md)
 
-## Step 05
+4. [Pipeline Management](step_04/ReadMe.md)
 
-Add the execution of the pipeline thanks to a "Predict" button on the Gui (first button). The default parameters are used to run the pipeline. The results are shown in a chart.
+5. [Integrate GUI & Pipeline](step_05/ReadMe.md)
 
-## Step 06
+6. [Creation of Scenarios](step_06/ReadMe.md)
 
-Creation of a second pipeline (the machine learning pipeline : Auto-Regressive model). Creation and execution of the scenario with the default parameters wihout the GUI.
+7. [Integrate GUI & Scenarios](step_07/ReadMe.md)
 
-## Step 07
+8. [Update data of Data Nodes](step_08/ReadMe.md)
 
-Scenario is being runned at the beginning and we can change the selected pipeline through a selector (first selector) and a button.
+9. [Manage Scenarios](step_09/ReadMe.md)
 
-## Step 08
+10. [Make your application beautiful](step_10/ReadMe.md)
 
-A first scenario is created. We can change the default parameters of this scenario with controls (date, number, selector); the default parameters are the date, the number of predictions and max capacity. A 'change_scenario' button is pressed to apply these changes and re-submit the scenario.
+11. [Introducing Cycles](step_11/ReadMe.md)
 
-## Step 09
-
-Now, we want to show how to create scenarios directly through the gui and keep track of them.
-
-## Step 10
-
-Organize the page with a menu, layouts and parts that can be not rendered.
-
-## Step 11
-
-Introduce the concepts of Cycles and primary scenarios. Deletion of a scenario and setting a scenario, primary.
-
-## Step 12
-
-Create a 'Performance' page that will compare all the primary scenarios and display metrics of these scenarios.
+12. [Compare Scenarios](step_12/ReadMe.md)
