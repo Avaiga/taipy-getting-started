@@ -73,6 +73,7 @@ def compare(state):
 
 # Performance page
 page_performance = """
+
 <br/>
 
 <|part|render={comparison_scenario_done}|

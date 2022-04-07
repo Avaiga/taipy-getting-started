@@ -16,7 +16,7 @@ if __name__ == '__main__':
     tp.clean_all_entities()
 
 # Change the inital scenario selector to see which scenarios are primary
-scenario_selector = [(scenario.id, ("*" if scenario.is_primary else "") + scenario.id) for scenario in all_scenarios]
+scenario_selector = [(scenario.id, ("*" if scenario.is_primary else "") + scenario.name) for scenario in all_scenarios]
 
 # Redefine update_scenario_selector to add '*' in the display name when the scnario is primary
 def update_scenario_selector(state, scenario):

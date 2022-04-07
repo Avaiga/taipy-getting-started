@@ -11,10 +11,10 @@ Typically, in a Machine Learning problem, a lot of scenarios are created daily t
 Moreover, nothing is more straightforward than creating a Cycle. The frequency parameter in a scenario configuration will create the desired type of Cycle. In the code below, the scenario has a daily cycle. It will be attached to the correct period (day) when it is created.
 
 ```python
-from taipy import Frequency
+from taipy import Config, Frequency
 
 # Create scenarios each week and compare them
-scenario_daily_cfg = tp.configure_scenario(id="scenario",
+scenario_daily_cfg = Config.configure_scenario(id="scenario",
                                            pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg],
                                            frequency=Frequency.DAILY)
 ```
@@ -23,7 +23,7 @@ To avoid any problem of compability between scenarios with or without cycle, thi
 
 ```python
 # Delete all entities
-Config._set_global_config(clean_entities_enabled=True)
+Config.configure_global_app(clean_entities_enabled=True)
 tp.clean_all_entities()
 ```
 

@@ -31,10 +31,12 @@ First of all, a function has to be created to compare the primary scenario of al
 ```python
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 
+
 def compute_metrics(historical_data, predicted_data):
     rmse = mean_squared_error(historical_data, predicted_data)
     mae = mean_absolute_error(historical_data, predicted_data)
     return rmse, mae
+
 
 def compare(state):
     print('Comparing...')

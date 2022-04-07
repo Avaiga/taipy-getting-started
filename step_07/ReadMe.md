@@ -59,7 +59,7 @@ Before running the GUI, these two lines of code will erase the previous scenario
 
 ```python
 # Delete all entities
-Config._set_global_config(clean_entities_enabled=True)
+Config.configure_global_app(clean_entities_enabled=True)
 tp.clean_all_entities()
 ```
 

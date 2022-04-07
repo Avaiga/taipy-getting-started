@@ -64,21 +64,23 @@ These are the input Data Nodes. They represent the variables in Taipy when a pip
 - *max_capacity* is the maximum value that can take a prediction; it is the ceiling of the projections. The default value is 200.
 
 ```python
-import taipy as tp
-from taipy import Scope
 import datetime as dt
+import pandas as pd
+
+from taipy import Config, Scope
 
 ## Input Data Nodes
-initial_dataset_cfg = tp.configure_data_node(id="initial_dataset",
-                                             storage_type="csv",
-                                             path=path_to_csv,
-                                             scope=Scope.GLOBAL)
+initial_dataset_cfg = Config.configure_data_node(id="initial_dataset",
+                                                 storage_type="csv",
+                                                 path=path_to_csv,
+                                                 scope=Scope.GLOBAL)
 
-day_cfg = tp.configure_data_node(id="day", default_data=dt.datetime(2021, 7, 26))
+day_cfg = Config.configure_data_node(id="day", default_data=dt.datetime(2021, 7, 26))
 
-n_predictions_cfg = tp.configure_data_node(id="n_predictions", default_data=40)
+n_predictions_cfg = Config.configure_data_node(id="n_predictions", default_data=40)
 
-max_capacity_cfg = tp.configure_data_node(id="max_capacity", default_data=200)
+max_capacity_cfg = Config.configure_data_node(id="max_capacity", default_data=200)
+
 ```
 
 ### Remaining Data Nodes
@@ -133,10 +135,10 @@ The first task that you want to create is your *clean_data* task. It will take y
 ![Clean Data](clean_data.svg){ width=300 style="margin:auto;display:block" }
 
 ```python
-clean_data_task_cfg = tp.configure_task(id="clean_data",
-                                        function=clean_data,
-                                        input=initial_dataset_cfg,
-                                        output=cleaned_dataset_cfg)
+clean_data_task_cfg = Config.configure_task(id="clean_data",
+                                            function=clean_data,
+                                            input=initial_dataset_cfg,
+                                            output=cleaned_dataset_cfg)
 ```
 
 ### predict_baseline_task
@@ -146,8 +148,8 @@ This task will take the cleaned dataset and predict it according to your paramet
 ![Predict Baseline](predict_baseline.svg){ width=300 style="margin:auto;display:block" }
 
 ```python
-predict_baseline_task_cfg = tp.configure_task(id="predict_baseline",
-                                              function=predict_baseline,
-                                              input=[cleaned_dataset_cfg, n_predictions_cfg, day_cfg, max_capacity_cfg],
-                                              output=predictions_cfg)
+predict_baseline_task_cfg = Config.configure_task(id="predict_baseline",
+                                                  function=predict_baseline,
+                                                  input=[cleaned_dataset_cfg, n_predictions_cfg, day_cfg, max_capacity_cfg],
+                                                  output=predictions_cfg)
 ```

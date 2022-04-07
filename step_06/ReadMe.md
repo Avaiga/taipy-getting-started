@@ -31,24 +31,24 @@ The *predict_ml* task configuration must be created in the same format as before
 ```python   
 # Create the task configuration of the predict_ml function.
 ## We use the same input and ouput as the previous predict_baseline task but we change the funtion
-predict_ml_task_cfg = tp.configure_task(id="predict_ml",
-                                        function=predict_ml,
-                                        input=[cleaned_dataset_cfg, n_predictions_cfg, day_cfg, max_capacity_cfg],
-                                        output=predictions_cfg)
+predict_ml_task_cfg = Config.configure_task(id="predict_ml",
+                                            function=predict_ml,
+                                            input=[cleaned_dataset_cfg, n_predictions_cfg, day_cfg, max_capacity_cfg],
+                                            output=predictions_cfg)
 ```
 
 With this new task, the Machine Learning pipeline can finally be configured.
 
 ```python   
 # Create a ml pipeline that will clean and predict with the ml model
-ml_pipeline_cfg = tp.configure_pipeline(id="ml", task_configs=[clean_data_task_cfg, predict_ml_task_cfg])
+ml_pipeline_cfg = Config.configure_pipeline(id="ml", task_configs=[clean_data_task_cfg, predict_ml_task_cfg])
 ```
 
 To configure a scenario, you need to use `tp.configure_scenario` and the list of the related pipelines. You could add more pipelines/algorithms with just a couple more lines.
 
 ```python   
 # Configure our scenario which is our business problem.
-scenario_cfg = tp.configure_scenario(id="scenario", pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg])
+scenario_cfg = Config.configure_scenario(id="scenario", pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg])
 ```
 
 The configuration is now complete. Now, you can create your scenario and execute it. When creating it, Taipy will create your pipelines, and when you submit the scenario, it will run them based on the built-in intelligent scheduling. Taipy knows which tasks to do before which one and will be able to cancel Jobs if a task is repetitive.

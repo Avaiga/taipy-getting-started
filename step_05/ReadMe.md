@@ -33,6 +33,7 @@ def predict(state):
     pipeline = create_and_submit_pipeline()
     update_predictions_dataset(state, pipeline)
 
+
 def create_and_submit_pipeline():
     print("Execution of pipeline...")
     # Create the pipeline from the pipeline config
