@@ -7,7 +7,7 @@ Step 5: Integrate GUI & Pipeline
 Step 6: Creation of Scenarios
 Step 7: Integrate GUI & Scenarios
 Step 8: Update data
-Step 9: Multi-scenarios
+Step 9: Manage Scenarios
 Step 10: Make it beautiful
 Step 11: Introducing cycles
 Step 12: Compare Scenarios

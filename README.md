@@ -34,7 +34,7 @@ Each step of the **'Getting Started'** will focus on basic concepts of *Taipy*. 
 
 8. [Update data of Data Nodes](step_08/ReadMe.md)
 
-9. [Multi-scenarios](step_09/ReadMe.md)
+9. [Manage Scenarios](step_09/ReadMe.md)
 
 10. [Make your application beautiful](step_10/ReadMe.md)
 
