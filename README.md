@@ -2,7 +2,7 @@
 
 Welcome to the **Getting Started** guide for Taipy. This tour shows you how to create an entire application using the two components of Taipy:
 
-- the **Graphical User Interface** (Taipy GUI): to allow any Python developpers to create a complex and interactive GUI.
+- the **Graphical User Interface** (Taipy GUI): to allow any Python developers to create a complex and interactive GUI.
 
  - the **Scenario Management** (Taipy Core): to implement a modern backend for any data-driven application based on your business case.
 
@@ -11,7 +11,7 @@ Welcome to the **Getting Started** guide for Taipy. This tour shows you how to c
 
 You can use Taipy GUI without Taipy Core and vice-versa. However, as you will see, they are incredibly efficient when combined.
 
-Each step of the **'Getting Started'** will focus on basic concepts of *Taipy*. Note also that every step is dependant on the code of the previous ones. After completing the last step, you will be able to create your own Taipy application. So, without further delay, let's begin to code!
+Each step of the **'Getting Started'** will focus on basic concepts of *Taipy*. Note also that every step is dependent on the code of the previous ones. After completing the last step, you will be able to create your own Taipy application. So, without further delay, let's begin to code!
 
 ## Steps:
 > Packages needed: *taipy*, *scikit-learn*, *statsmodels*
