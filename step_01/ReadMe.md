@@ -1,6 +1,6 @@
 > You can download the final code of this step [here](../src/step_01.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
-# Visual elements
+# Step 1: Visual elements
 
 Many visual elements can be added to the basic code viewed in Step 0. This Step shows how to use visual elements like charts, sliders and tables and implement them in the GUI.
 

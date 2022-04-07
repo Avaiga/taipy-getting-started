@@ -1,6 +1,6 @@
 > You can download the code of this step [here](../src/step_03.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
-# Introducing Taipy Core
+# Step 3: Introducing Taipy Core
 
 From Step 2, you now know the basics of Taipy GUI. Let's go for a moment to the Scenario Management aspect of Taipy.
 

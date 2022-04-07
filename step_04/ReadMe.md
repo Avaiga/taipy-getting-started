@@ -1,6 +1,6 @@
 > You can download this code final code of this step [here](../src/step_04.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
-# Pipeline Management
+# Step 4: Pipeline Management
 
 So far, you have described your graph; let's implement it with Taipy! 
 
