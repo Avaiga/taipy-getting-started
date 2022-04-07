@@ -1,6 +1,6 @@
 > You can download the code of this step [here](../src/step_05.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
-# Building the GUI for a pipeline and buttons
+# Integrate GUI & Pipeline
 
 Step 4 created a first pipeline using only Taipy Core, let's update the GUI to display the results of the pipeline.
 

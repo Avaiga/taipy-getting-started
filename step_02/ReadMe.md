@@ -1,6 +1,6 @@
 > You can download the code of this step [here](../src/step_02.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
-# Creating an interactive GUI
+# Interactive GUI
 
 Now, the page has a lot of visual elements. The slider is interactive and changes `value`. Taipy manages everything. To go further into Taipy GUI, let's consider the concept of **state** in Taipy.
 

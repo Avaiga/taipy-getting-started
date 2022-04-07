@@ -1,6 +1,6 @@
 > You can download the code of this step [here](../src/step_12.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
-# Compare primary scenarios
+# Compare Scenarios
 
 Cycles are helpful to keep track of KPI over time. The goal of this step is to compare the primary scenario of every cycle and its pipelines over time.
 

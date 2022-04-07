@@ -1,6 +1,6 @@
 > You can download the code of this step [here](../src/step_11.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
-# Introducing cycles
+# Introducing Cycles
 
 The final concept of Taipy Core is [Cycles](https://docs.taipy.io/manuals/core/concepts/cycle/). A cycle is a period representing a business schedule. It can be a day, a week, a month or a year. It is used to create a temporal distinction between scenarios. Furthermore, in each period, a unique primary scenario is made; it is your main or reference scenario for this period.
 

@@ -1,6 +1,6 @@
 > You can download the code of this step [here](../src/step_09.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
-# GUI for multi-scenarios
+# Manage Scenarios
 
 Now that you know how to create scenarios, submit them and change them, you can create a GUI to manage mulitple scenarios and pipelines.
 

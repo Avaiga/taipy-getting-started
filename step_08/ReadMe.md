@@ -1,10 +1,10 @@
 > You can download the code of this step [here](../src/step_08.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
-# How to write data and change your default parameters?
+# Update data of Data Nodes
 
 Now that the GUI has been created to handle a scenario, it would be interesting to change the initial variables to see their impact on the predictions. These are the input variables that haven't changed so far: the *number of predictions*, the *max capacity* and the *day*. How can we interact with them in real-time?
 
-It can easily be done with the `.write()` function of Data Nodes.
+It can easily be done with the `write()` function of Data Nodes.
 
 First, to add variables to a visual element, they have to be initialized. 
 ```python
@@ -54,7 +54,7 @@ The `submit` function introduces two essential Taipy functions:
 
 - `tp.get(scenario_id)`: Taipy function used to get the scenario from its id.
 
-- `.write(new_value)`: a Data Node function that changes the value stored in the Data Node. For example, `scenario.max_capacity` is a Data Node whose value can be changed to 100 like this `scenario.max_capacity.write(100)`.
+- `write(new_value)`: a Data Node function that changes the value stored in the Data Node. For example, `scenario.max_capacity` is a Data Node whose value can be changed to 100 like this `scenario.max_capacity.write(100)`.
 
 ```python
 def submit(state):
