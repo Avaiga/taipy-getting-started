@@ -22,7 +22,7 @@ page_scenario_manager = """
 |>
 
 <|
-<br/>\n <|Create new scenario|button|on_action=create_scenario|>
+<br/> <br/>\n <|Create new scenario|button|on_action=create_scenario|>
 |>
 |>
 

@@ -23,9 +23,10 @@ Week number: *<|{n_week}|>*
 Interact with this slider to change the week number:
 <|{n_week}|slider|min=1|max=52|>
 
-## Full dataset:
+## Dataset:
 
-<|{dataset}|chart|type=bar|x=Date|y=Value|height=100%|>
+Display the last three months of data:
+<|{dataset[9000:]}|chart|type=bar|x=Date|y=Value|height=100%|>
 
 <|{dataset}|table|height=400px|width=95%|>
 """

@@ -1,5 +1,3 @@
-import datetime as dt
-
 from step_07 import *
 
 # Initial variables
@@ -25,6 +23,7 @@ Select the pipeline
 <|{predictions_dataset}|chart|x=Date|y[1]=Historical values|type[1]=bar|y[2]=Predicted values|type[2]=scatter|height=80%|width=100%|>
 """
 
+
 def create_scenario():
     global selected_scenario
 
@@ -34,6 +33,7 @@ def create_scenario():
     selected_scenario = scenario.id
   
     tp.submit(scenario)
+
 
 def submit(state):
     print("Submitting scenario...")
@@ -54,6 +54,7 @@ def submit(state):
     # Update the chart when we change the scenario
     update_chart(state)
 
+
 def update_chart(state):
     # Select the right scenario and pipeline
     scenario = tp.get(selected_scenario)
@@ -61,9 +62,9 @@ def update_chart(state):
     # Update the chart based on this pipeline
     update_predictions_dataset(state, pipeline)
 
+
 if __name__ == "__main__":
     global selected_scenario
     # Creation of our first scenario
     create_scenario()
     Gui(page=page_scenario_manager).run()
-    
