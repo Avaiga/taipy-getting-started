@@ -55,7 +55,7 @@ Some parameters for Data Node configuration:
 ### Input Data Nodes configuration
 These are the input Data Nodes. They represent the variables in Taipy when a pipeline is executed. Still, first, we have to configure them to create the DAG.
 
-- *initial_dataset* is simply the initial CSV file. Taipy needs some parameters to read this data: *path* and *header*. 
+- *initial_dataset* is simply the initial CSV file. Taipy needs some parameters to read this data: *path* and *header*. The `scope` is global; each scenario or pipeline has the same initial dataset.
 
 - *day* is the beginning of the predictions. The default value is the 26th of July. It means the training data will end before the 26th of July, and predictions will begin on this day.
 
@@ -106,12 +106,19 @@ Let's declare the functions: *clean_data* and *predict_baseline*. Their goal is 
 
 ```python
 def clean_data(initial_dataset: pd.DataFrame):
-    ...
+    print("     Cleaning data")
+    # Convert the date column to datetime
+    initial_dataset['Date'] = pd.to_datetime(initial_dataset['Date'])
+    cleaned_dataset = initial_dataset.copy()
     return cleaned_dataset
 
 
 def predict_baseline(cleaned_dataset: pd.DataFrame, n_predictions: int, day: dt.datetime, max_capacity: int):
-    ...
+    print("     Predicting baseline")
+    # Select the train data
+    train_dataset = cleaned_dataset[cleaned_dataset['Date'] < day]
+    
+    predictions = train_dataset['Value'][-n_predictions:].reset_index(drop=True)
     predictions = predictions.apply(lambda x: min(x, max_capacity))
     return predictions
 ```
