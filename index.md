@@ -15,17 +15,15 @@ Each step of the **'Getting Started'** will focus on basic concepts of *Taipy*. 
 
 ## Before we begin:
 
-- Install taipy. See the [Installation](installation/installation.md) guide.
+- Install taipy. See the [Installation](installation/installation.md) guide. *scikit-learn* and *statsmodels* packages are also required.
 
 - Use Python scripts (.py) to run the code
 
 - Or use a Notebook (.ipynb) with the specific Gui functions for Notebooks. See the docs [here](https://docs.taipy.io/manuals/gui/notebooks/)
 
-
 So, without further delay, let's begin to code!
 
 ## Steps:
-> Packages needed: *taipy*, *scikit-learn*, *statsmodels*
 
 0. [First web page](step_00/ReadMe.md)
 
