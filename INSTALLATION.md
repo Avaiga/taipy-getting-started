@@ -1,3 +1,8 @@
 # Installation
 
-**Packages needed**: *taipy (1.0.0), statsmodels, scikit-learn*.
+To contribute to this repository, please create a new virtual environment with:
+- A Python version superior or equal to 3.8
+
+- taipy: `pip install taipy`
+- statsmodels: `pip install statsmodels`
+- scikit-learn: `pip install scikit-learn`

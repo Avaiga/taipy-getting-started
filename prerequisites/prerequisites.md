@@ -1,0 +1,51 @@
+# Prerequisites
+
+## How to begin:
+
+- Install Taipy
+
+- Use Python scripts (.py) to run the code
+
+- Or use a Notebook (.ipynb) with the specific Gui functions for Notebooks. See the docs [here](https://docs.taipy.io/manuals/gui/notebooks/)
+
+## Stable release
+
+To install Taipy, run this command in your
+terminal:
+
+``` console
+$ pip install taipy
+```
+
+!!! info "This is the preferred method to install Taipy, as it will always install the most recent stable release."
+
+    If you don't have [pip][] installed, this [Python installation guide][]
+    can guide you through the process.
+
+## From source
+
+The source for Taipy can be downloaded from
+the [Github repo][].
+
+You can either clone the public repository:
+
+``` console
+$ git clone git://github.com/avaiga/taipy
+```
+
+Or download the [tarball][]:
+
+``` console
+$ curl -OJL https://github.com/avaiga/taipy/tarball/main
+```
+
+Once you have a copy of the source, you can install it with:
+
+``` console
+$ pip install .
+```
+
+  [pip]: https://pip.pypa.io
+  [Python installation guide]: http://docs.python-guide.org/en/latest/starting/installation/
+  [Github repo]: https://github.com/Avaiga/taipy
+  [tarball]: https://github.com/Avaiga/taipy/tarball/main
