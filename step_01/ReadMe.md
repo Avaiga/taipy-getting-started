@@ -6,7 +6,7 @@ Many visual elements can be added to the basic code viewed in Step 0. This Step 
 
 ## Importing the Dataset
 
-Suppose that you have a [`dataset.csv`](https://github.com/Avaiga/taipy-getting-started/tree/develop/src/dataset.csv) file, using the *Pandas* library, you can retrieve this dataset with the following codes:
+Suppose that you have a [`dataset.csv`](dataset.csv) file, using the *Pandas* library, you can retrieve this dataset with the following codes:
 
 ```python
 import pandas as pd
