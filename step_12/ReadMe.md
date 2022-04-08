@@ -133,7 +133,7 @@ multi_pages = """
 <|part|render={page=="Data Visualization"}|""" + page_data_visualization + """|>
 <|part|render={page=="Scenario Manager"}|""" + page_scenario_manager + """|>
 <|part|render={page=="Performance"}|""" + page_performance + """|>
-"""erformance + """|>
+
 """
 
 Gui(page=multi_pages).run() 
