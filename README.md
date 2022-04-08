@@ -26,17 +26,17 @@ Each step of the **'Getting Started'** will focus on basic concepts of *Taipy*. 
 
 4. [Pipeline Management](step_04/ReadMe.md)
 
-5. [Integrate GUI & Pipeline](step_05/ReadMe.md)
+5. [GUI & Pipeline](step_05/ReadMe.md)
 
 6. [Creation of Scenarios](step_06/ReadMe.md)
 
-7. [Integrate GUI & Scenarios](step_07/ReadMe.md)
+7. [GUI & Scenarios](step_07/ReadMe.md)
 
 8. [Update data of Data Nodes](step_08/ReadMe.md)
 
 9. [Manage Scenarios](step_09/ReadMe.md)
 
-10. [Make your application beautiful](step_10/ReadMe.md)
+10. [Embellish your APP](step_10/ReadMe.md)
 
 11. [Introducing Cycles](step_11/ReadMe.md)
 
