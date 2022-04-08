@@ -1,12 +1,4 @@
-# Prerequisites
-
-## How to begin:
-
-- Install Taipy
-
-- Use Python scripts (.py) to run the code
-
-- Or use a Notebook (.ipynb) with the specific Gui functions for Notebooks. See the docs [here](https://docs.taipy.io/manuals/gui/notebooks/)
+# Taipy's installation
 
 ## Stable release
 

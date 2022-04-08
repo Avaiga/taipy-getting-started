@@ -13,7 +13,16 @@ You can use Taipy GUI without Taipy Core and vice-versa. However, as you will se
 
 Each step of the **'Getting Started'** will focus on basic concepts of *Taipy*. Note that every step is dependent on the code of the previous one. After completing the last step, you will have the skills to develop your own Taipy application. 
 
-Check the [**prerequisites**](prerequisites/prerequisites.md) and let's begin to code!
+## Before we begin:
+
+- Install taipy. See the [Installation](installation/installation.md) guide.
+
+- Use Python scripts (.py) to run the code
+
+- Or use a Notebook (.ipynb) with the specific Gui functions for Notebooks. See the docs [here](https://docs.taipy.io/manuals/gui/notebooks/)
+
+
+So, without further delay, let's begin to code!
 
 ## Steps:
 > Packages needed: *taipy*, *scikit-learn*, *statsmodels*
