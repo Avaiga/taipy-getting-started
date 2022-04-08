@@ -1,6 +1,6 @@
 > You can download the code of this step [here](../src/step_10.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
-# Make your application beautiful
+# Step 10: Embellish your App
 
 With just a few steps, you have created a full-AI application on which you can predict multiple days with different parameters. However, the page's layout is not yet optimal and it could be greatly improved. This will be done with the code below. To get a more aesthetically pleasing page, three useful controls to use are:
 

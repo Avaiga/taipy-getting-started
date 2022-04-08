@@ -1,6 +1,6 @@
 > You can download the code of this step [here](../src/step_06.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
-# Creation and execution of Scenarios
+# Step 6: Creation and execution of Scenarios
 
 Now that you have seen how to create and run a single pipeline, let's configure a scenario. Remember, a scenario is usually used to answer your business problem. Different scenarios would represent different solutions to your problem. Here, *max_capacity*, *day* and *number of predictions* influences the scenario.
 
