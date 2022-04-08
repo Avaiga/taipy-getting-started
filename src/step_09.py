@@ -88,6 +88,7 @@ def update_scenario_selector(state, scenario):
     
 
 def update_chart(state):
+    # now, the selected_scenario comes from the state, it is interactive
     scenario = tp.get(state.selected_scenario[0])
     pipeline = scenario.pipelines[state.selected_pipeline]
     update_predictions_dataset(state, pipeline)
