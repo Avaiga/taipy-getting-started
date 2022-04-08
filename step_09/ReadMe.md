@@ -83,13 +83,9 @@ def submit_scenario(state):
     day = dt.datetime(state.day.year, state.day.month, state.day.day) 
 
     # Change the default parameters by writing in the Data Nodes
-    #if state.day != scenario.day.read():
     scenario.day.write(day)
-    #if int(state.n_predictions) != scenario.n_predictions.read(): 
     scenario.n_predictions.write(int(state.n_predictions))
-    #if state.max_capacity != scenario.max_capacity.read():
     scenario.max_capacity.write(int(state.max_capacity))
-    #if state.day != scenario.creation_date:
     scenario.creation_date = state.day
         
 
