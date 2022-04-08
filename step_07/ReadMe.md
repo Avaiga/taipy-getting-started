@@ -1,6 +1,6 @@
 > You can download the code of this step [here](../src/step_07.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
-# Step 7: Integrate GUI & Scenarios
+# Step 7: GUI & Scenarios
 
 Just before, Step 7 created a scenario only using Taipy Core. This new configuration needs a new GUI. A first scenario will be created and executed at the beginning. Then, a selector will be used to select a pipeline among the `baseline` and `ml` pipeline.
 
