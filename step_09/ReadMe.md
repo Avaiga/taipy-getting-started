@@ -19,7 +19,7 @@ all_scenarios = tp.get_scenarios()
 
 # Initial variable for the scenario selector
 # The value of selector will be the ids and what is display will be the name of the scenario
-scenario_selector = [(scenario.id, scenario.name) for scenario in all_scenarios]
+scenario_selector = [(scenario.id, scenario.name) for scenario in tp.get_scenarios()]
 selected_scenario = None
 ```
 
