@@ -59,6 +59,13 @@ def create_name_for_scenario(state)->str:
     return name
 
 
+def update_chart(state):
+    # now, the selected_scenario comes from the state, it is interactive
+    scenario = tp.get(state.selected_scenario[0])
+    pipeline = scenario.pipelines[state.selected_pipeline]
+    update_predictions_dataset(state, pipeline)
+    
+
 # Change the create_scenario function in order to change the default parameters
 # and allow the creation of multiple scenarios
 def create_scenario(state):
