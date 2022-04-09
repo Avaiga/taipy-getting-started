@@ -28,19 +28,19 @@ Taipy is a Python library for creating Business Applications. More information o
 [Taipy Getting Started](https://docs.taipy.io/getting_started/) provides a step-by-step opening to Taipy. 
 Taipy features are leveraged as the application becomes more and more complex.
 
-A more in depth documentation of taipy can be found [here](https://docs.taipy.io).
+A more in depth documentation of Taipy can be found [here](https://docs.taipy.io).
 
 ## Installation
 
-Want to install _Taipy Core_? Check out our [`INSTALLATION.md`](INSTALLATION.md) file.
+Want to install _Taipy Getting Started_? Check out our [`INSTALLATION.md`](INSTALLATION.md) file.
 
 ## Contributing
 
-Want to help build _Taipy Core_? Check out our [`CONTRIBUTING.md`](CONTRIBUTING.md) file.
+Want to help build _Taipy Getting Started_? Check out our [`CONTRIBUTING.md`](CONTRIBUTING.md) file.
 
 ## Code of conduct
 
-Want to be part of the _Taipy Core_ community? Check out our [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) file.
+Want to be part of the _Taipy Getting Started_ community? Check out our [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) file.
 
 ## Directory Structure
 

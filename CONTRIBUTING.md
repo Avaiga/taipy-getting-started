@@ -41,12 +41,14 @@ attached to the `current sprint`. Please, do not work on it, the Taipy team is o
 
 ## Code organisation
 
-Taipy is organised in four main repositories:
+Taipy is organised in six repositories:
 
 - [taipy-core](https://github.com/Avaiga/taipy-core).
 - [taipy-gui](https://github.com/Avaiga/taipy-gui).
 - [taipy-rest](https://github.com/Avaiga/taipy-rest).
 - [taipy](https://github.com/Avaiga/taipy) brings previous packages in a single one.
+- [taipy-getting-started](https://github.com/Avaiga/taipy-getting-started).
+- [taipy-doc](https://github.com/Avaiga/taipy-doc).
 
 ## Coding style and best practices
 
