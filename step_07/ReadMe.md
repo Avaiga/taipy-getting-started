@@ -2,7 +2,7 @@
 
 # Step 7: GUI & Scenarios
 
-Just before, Step 7 created a scenario only using Taipy Core. This new configuration needs a new GUI. A first scenario will be created and executed at the beginning. Then, a selector will be used to select a pipeline among the `baseline` and `ml` pipeline.
+Just before, Step 7 created a scenario only using Taipy Core. This new configuration needs a new GUI. A first scenario will be created and executed at the beginning. Then, a selector will be used to select a pipeline among the *baseline* and *ml* pipeline.
 
 ![Selector](selector.gif){ width=250 style="margin:auto;display:block" }
 
@@ -28,7 +28,7 @@ Select the pipeline
 """
 ```
 
-The code around the GUI has evolved. `create_scenario` is creating a scenario and submitting it with the `submit` function. `update_chart` is updating the chart based upon the selected scenario and pipeline.
+The code around the GUI has evolved. __create_scenario__ is creating a scenario and submitting it with the __submit__ function. __update_chart__ is updating the chart based upon the selected scenario and pipeline.
 
 ![Organisation](organisation.svg){ width=500 style="margin:auto;display:block" }
 

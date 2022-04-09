@@ -47,7 +47,7 @@ scenario_manager_page = page + """
 """
 ```
 
-Here is the main code for managing scenarios. As you can see, the architecture doesn't change from the previous code. Two functions have been altered with some addition: `create_scenario` and `submit_scenario`. 
+Here is the main code for managing scenarios. As you can see, the architecture doesn't change from the previous code. Two functions have been altered with some addition: __create_scenario__ and __submit_scenario__. 
 
 ```python
 def create_name_for_scenario(state)->str:

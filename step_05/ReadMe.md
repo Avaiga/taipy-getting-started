@@ -4,7 +4,7 @@
 
 Step 4 created a first pipeline using only Taipy Core, let's update the GUI to display the results of the pipeline.
 
-A "Predict" [button](https://docs.taipy.io/manuals/gui/viselements/button/) has been added to the page to create the pipeline and run it. When you press a button, Taipy calls the function in the *on_action* parameter.
+A "Predict" [button](https://docs.taipy.io/manuals/gui/viselements/button/) has been added to the page to create the pipeline and run it. When you press a button, Taipy calls the function in the `on_action` parameter.
 
 `<|Text displayed on button|button|on_action=fct_name_called_when_pressed|>`
    
@@ -25,7 +25,7 @@ Press <|predict|button|on_action=predict|> to predict with default parameters (3
 """
 ```
 
-`create_and_submit_pipeline` creates and executes the pipeline after being called by `predict`. 
+__create_and_submit_pipeline__ creates and executes the pipeline after being called by __predict__. 
 
 ```python
 def predict(state):
@@ -43,8 +43,8 @@ def create_and_submit_pipeline():
     return pipeline
 ```
 
-After the first submission of the pipeline, the data stored in *predictions* and *cleaned_data* Data Nodes become accessible. The `.read()` function accesses the data in Data Nodes.
-By reading them, `create_predictions_dataset` creates a prediction dataset with these columns:
+After the first submission of the pipeline, the data stored in __predictions__ and __cleaned_data__ Data Nodes become accessible. The __read()__ function accesses the data in Data Nodes.
+By reading them, __create_predictions_dataset__ creates a prediction dataset with these columns:
 
 - Date,
 

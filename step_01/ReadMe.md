@@ -6,7 +6,7 @@ Many visual elements can be added to the basic code viewed in Step 0. This Step 
 
 ## Importing the Dataset
 
-Suppose that you have a [`dataset.csv`](dataset.csv) file, using the *Pandas* library, you can retrieve this dataset with the following codes:
+Suppose that you have a [*dataset.csv*](dataset.csv) file, using the *Pandas* library, you can retrieve this dataset with the following codes:
 
 ```python
 import pandas as pd
@@ -24,7 +24,7 @@ dataset = get_data(path_to_csv)
 ...
 ```
 
-`dataset` is a `pd.DataFrame`, a basic *Python* object representing, in this case, a real time series. Because of that, there will be no information for specific days. The columns are:
+__dataset__ is a *pd.DataFrame*, a basic *Python* object representing, in this case, a real time series. Because of that, there will be no information for specific days. The columns are:
 
 - Index: a unique identifier for each data point.
 
@@ -43,7 +43,7 @@ Taipy GUI can be considered as an **augmented** Markdown; it adds the concept of
 Every visual element has a similar syntax.`<|{variable}|visual_element_name|param_1=param_1|param_2=param_2| ... |>`. For example, a [slider](https://docs.taipy.io/manuals/gui/viselements/slider/) is written this way :`<|{variable}|slider|min=min_value|max=max_value|>`.
 To add it to a page, write this syntax wherever you want in your string representing your Page.
 
-For the first half of the Page, a variable **n_week** and add a slider to modify its value will be created; here is the overall syntax:
+For the first half of the Page, a variable __n_week__ and add a slider to modify its value will be created; here is the overall syntax:
 ```
 *<|{n_week}|>*
 <|{n_week}|slider|min=1|max=52|>

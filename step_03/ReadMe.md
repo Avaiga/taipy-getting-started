@@ -39,7 +39,7 @@ Data Nodes can point to any kind of *Python* variables by default: *int*, *strin
 Some parameters for Data Node configuration:
 
 - **Storage type**: This is where the storage type is selected: CSV file, SQL database, pickle file, etc.
-            Here, the initial dataset is a CSV file so `storage_type="csv"` for this Data Node. Taipy knows how to access it, thanks to the path. By default, the storage type is `pickle`.
+            Here, the initial dataset is a CSV file so `storage_type="csv"` for this Data Node. Taipy knows how to access it, thanks to the path. By default, the storage type is *pickle*.
 
 - **[Scope](https://docs.taipy.io/manuals/core/concepts/scope/)**: You can find below three types of Scope in the code: the Pipeline, the Scenario (by default) and the Global scope.
 
@@ -85,9 +85,9 @@ max_capacity_cfg = Config.configure_data_node(id="max_capacity", default_data=20
 
 ### Remaining Data Nodes
 
-- *cleaned_dataset* is the dataset after cleaning (after the *clean_data* function). `cacheable` is set to `True` with a `scope.GLOBAL`. It means if the initial dataset didn't change, Taipy will not re-execute the `clean_data` task. In other words, after the creation of this data node through `clean_data`, Taipy knows that it is not necessary to create it again.
+- *cleaned_dataset* is the dataset after cleaning (after the __clean_data__ function). `cacheable` is set to `True` with a `scope.GLOBAL`. It means if the initial dataset didn't change, Taipy will not re-execute the __clean_data__ task. In other words, after the creation of this data node through __clean_data__, Taipy knows that it is not necessary to create it again.
 
-- *predictions* are the predictions of the model. In this pipeline, it will be the output of the *predict_baseline* function. Each pipeline will create its own *prediction* Data Node hence `scope=Scope.PIPELINE`. 
+- *predictions* are the predictions of the model. In this pipeline, it will be the output of the __predict_baseline__ function. Each pipeline will create its own *prediction* Data Node hence `scope=Scope.PIPELINE`. 
 
 ```python
 ## Remaining Data Nodes
@@ -102,7 +102,7 @@ predictions_cfg = Config.configure_data_node(id="predictions", scope=Scope.PIPEL
 
 ## Functions
 
-Let's declare the functions: *clean_data* and *predict_baseline*. Their goal is respectively to clean the data and to predict the data.
+Let's declare the functions: __clean_data__ and __predict_baseline__. Their goal is respectively to clean the data and to predict the data.
 
 ```python
 def clean_data(initial_dataset: pd.DataFrame):
@@ -137,7 +137,7 @@ Tasks are the translation of functions in Taipy. These tasks combined with Data 
 
 ### clean_data_task
 
-The first task that you want to create is your *clean_data* task. It will take your initial dataset and clean it.
+The first task that you want to create is your __clean_data__ task. It will take your initial dataset and clean it.
 
 ![Clean Data](clean_data.svg){ width=300 style="margin:auto;display:block" }
 

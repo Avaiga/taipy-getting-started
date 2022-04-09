@@ -44,7 +44,7 @@ def update_scenario_selector(state, scenario):
     state.scenario_selector += [(scenario.id, scenario_name)]
 ```
 
-In `create_scenario`, `scenario_daily_cfg` is now the configuration used to create the scenario. By creating it, you also create the dependent Cycle. For example, setting `creation_date` to 04/02/2021 makes a cycle related to this day. All scenarios that are created on this day belong to this Cycle with just one primary scenario. Changing `creation_date` again will create another cycle for a different day and so on.
+In __create_scenario__, __scenario_daily_cfg__ is now the configuration used to create the scenario. By creating it, you also create the dependent Cycle. For example, setting `creation_date` to 04/02/2021 makes a cycle related to this day. All scenarios that are created on this day belong to this Cycle with just one primary scenario. Changing `creation_date` again will create another cycle for a different day and so on.
 
 ```python
 # Change the create_scenario function to create a scenario with the selected frequency
@@ -65,7 +65,7 @@ def create_scenario(state):
 
 Two buttons are added to the GUI ('Make primary' and 'Delete scenario'). They call the `make_primary` and `delete_scenario` functions below.
 
-`make_primary` changes the current primary scenario of the cycle thanks to `tp.set_primary(scenario)`. It is the Taipy function used to make a scenario primary.
+__make_primary__ changes the current primary scenario of the cycle thanks to `tp.set_primary(scenario)`. It is the Taipy function used to make a scenario primary.
 
 > Note that the previous primary scenario will not longer be primary. There is always just one primary scenario in a cycle. 
 

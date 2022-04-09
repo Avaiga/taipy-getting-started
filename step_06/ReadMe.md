@@ -24,7 +24,7 @@ def predict_ml(cleaned_dataset: pd.DataFrame, n_predictions: int, day: dt.dateti
     return predictions
 ```
 
-The *predict_ml* task configuration must be created in the same format as before with a function, inputs, and outputs.
+The __predict_ml__ task configuration must be created in the same format as before with a function, inputs, and outputs.
 
 ![Predict ML](predict_ml.svg){ width=300 style="margin:auto;display:block" }
 
