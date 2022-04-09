@@ -55,7 +55,7 @@ def update_chart(state):
     update_predictions_dataset(state, pipeline)
 ```
 
-Before running the GUI, these two lines of code will erase the previous scenarios, pipelines, datanodes that you created in the previous steps to avoid any problem of compability.
+Before running the GUI, these two lines of code will erase the previous scenarios, pipelines, datanodes that you created in the previous steps to avoid any problem of compatibility.
 
 ```python
 # Delete all entities

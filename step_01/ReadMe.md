@@ -54,7 +54,7 @@ The second half will create a chart and a table.
 <|{dataset}|table|height=400px|width=95%|>
 ```
 
-Here is the code combined:
+Here is the combined code:
 
 ```python
 ...
