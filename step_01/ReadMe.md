@@ -26,7 +26,7 @@ dataset = get_data(path_to_csv)
 ...
 ```
 
-__dataset__ is a *pd.DataFrame*, a basic *Pandas main* object representing, in this case, a realistic time series. 
+_dataset_ is a *pd.DataFrame*, a basic *Pandas main* object representing, in this case, a realistic time series. 
 It represents the historical number of articles sold for a given store on a 15-minute basis (we have the historical 
 sales data for the year 2021). Being a real dataset, there will sometimes be missing information for specific days. 
 The columns are:
@@ -65,9 +65,9 @@ For example, a [slider](https://docs.taipy.io/manuals/gui/viselements/slider/) i
 For each visual element you wish to add to your web page, you must include the syntax above inside your markdown 
 string (representing your page). For example, at the beginning of the page, let’s display:
 
-- a Python variable __n_week__;
+- a Python variable _n_week_;
 
-- a slider that will “visually” modify the value of __n_week__.
+- a slider that will “visually” modify the value of _n_week_.
 
 
 Here is the overall syntax:

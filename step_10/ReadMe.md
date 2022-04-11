@@ -52,7 +52,7 @@ This is how you can easily create multiple pages; there are many other ways to d
  
 First, let’s start by creating the 2 pages.
 
-The first page contains the original chart and slider defined in Step 2. Let’s use the same Markdown as the one defined in Step 2. It is named __page__ (and is also present in Step 9). 
+The first page contains the original chart and slider defined in Step 2. Let’s use the same Markdown as the one defined in Step 2. It is named _page_ (and is also present in Step 9). 
 
 
 ```python

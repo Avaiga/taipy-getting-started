@@ -62,7 +62,7 @@ def update_scenario_selector(state, scenario):
     state.scenario_selector += [(scenario.id, scenario_name)]
 ```
 
-In `create_scenario()`, __scenario_daily_cfg__ is now the configuration used to create the scenario. By creating it, 
+In `create_scenario()`, *scenario_daily_cfg* is now the configuration used to create the scenario. By creating it, 
 you also create the dependent Cycle. For example, setting `creation_date` to 04/02/2021 makes a cycle related to 
 this day. All scenarios that are created on this day belong to this Cycle with just one primary scenario. Changing 
 `creation_date` again will create another cycle for a different day and so on.
@@ -133,7 +133,7 @@ def delete_scenario(state):
 ```
 
 As previously said, just two visual elements ('Make primary' and 'Delete scenario' buttons) have been added to the 
-page. This code is almost identical to the previous __page_scenario_manager__.
+page. This code is almost identical to the previous *page_scenario_manager*.
 
 ```python
 # Add a 'Delete scenario' and a 'Make primary' button s

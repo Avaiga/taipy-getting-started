@@ -46,7 +46,7 @@ def create_and_submit_pipeline():
     return pipeline
 ```
 
-After the execution of the pipeline (`tp.submit()`), the data stored in __predictions__ and __cleaned_data__ Data 
+After the execution of the pipeline (`tp.submit()`), the data stored in *predictions* and *cleaned_data* Data 
 Nodes become accessible. The `read()` method accesses the data in Data Nodes.
 
 The `create_predictions_dataset()` function below creates a final dataframe (that concatenates the predictions and 
