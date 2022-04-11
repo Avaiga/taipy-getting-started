@@ -17,7 +17,7 @@ Each step of the **'Getting Started'** will focus on basic concepts of *Taipy*. 
 
 - Three packages have to be installed:
 
-1. **Taipy** package:
+  1. **Taipy** package:
 
 ``` console
 $ pip install taipy
@@ -28,14 +28,14 @@ $ pip install taipy
     If you don't have [pip][] installed, this [Python installation guide][]
     can guide you through the process.
 
-2. **scikit-learn**: A Machine-Learning package that will be used in the Getting Started user code.
+ 2. **scikit-learn**: A Machine-Learning package that will be used in the Getting Started user code.
 
-*scikit-learn*'s installation:
 ``` console
 $ pip install scikit-learn
 ```
 
-4. **statsmodels**: Another package for statitics used in the User Code of the Getting Started
+ 3. **statsmodels**: Another package for statitics used in the User Code of the Getting Started.
+
 ``` console
 $ pip install statsmodels
 ```
