@@ -56,7 +56,7 @@ So, without further delay, let's begin to code!
 
 7. [GUI & Scenarios](step_07/ReadMe.md)
 
-8. [Edit Data Nodes content](step_08/ReadMe.md)
+8. [Modify Data Nodes content](step_08/ReadMe.md)
 
 9. [Manage Scenarios](step_09/ReadMe.md)
 

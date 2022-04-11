@@ -36,7 +36,7 @@ Select the pipeline
 """
 ```
 
-The code around the GUI has evolved. `create_scenario()` is creating a scenario and submitting it with the `submit()` function. `update_chart()` is updating the chart based upon the selected scenario and pipeline.
+The code around the GUI has evolved. `create_scenario()` is creating a scenario and submitting it with the `submit_scenario()` function. `update_chart()` is updating the chart based upon the selected scenario and pipeline.
 
 ![Organisation](organisation.svg){ width=500 style="margin:auto;display:block" }
 
@@ -45,10 +45,10 @@ The code around the GUI has evolved. `create_scenario()` is creating a scenario 
 def create_scenario():
     print("Creating scenario...")
     scenario = tp.create_scenario(scenario_cfg)
-    scenario = submit(scenario)
+    scenario = submit_scenario(scenario)
     return scenario
 
-def submit(scenario):
+def submit_scenario(scenario):
     print("Submitting scenario...")
     tp.submit(scenario)
     return scenario

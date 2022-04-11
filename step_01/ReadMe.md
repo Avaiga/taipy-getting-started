@@ -24,7 +24,7 @@ dataset = get_data(path_to_csv)
 ...
 ```
 
-__dataset__ is a *pd.DataFrame*, a basic *Pandas main* object representing, in this case, a real time series. Because of that, there will be no information for specific days. The columns are:
+__dataset__ is a *pd.DataFrame*, a basic *Pandas main* object representing, in this case, a realistic time series. It represents the number of sold articles for a given store. Because of that, there will be no information for specific days. The columns are:
 
 - Index: a unique identifier for each data point.
 

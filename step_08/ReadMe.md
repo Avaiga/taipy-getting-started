@@ -1,6 +1,6 @@
 > You can download the code of this step [here](../src/step_08.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
-# Step 8: Edit Data Nodes content
+# Step 8: Modify Data Nodes content
 
 Now that the GUI has been created to handle one scenario, it would be interesting to change the “initial” variables to see their impact on the predictions. These variables are: the *number of predictions*, the *max capacity* and the *day*. How can we interact with them in real-time?
 
@@ -15,7 +15,7 @@ n_predictions = 40
 max_capacity = 200
 ```
 
-Second, we will add to the Markdown (before the chart), a visual element binding each of these variables. We will be using them to “modify” the scenario. See the documentation for these newly introduced visual elements here: [date](https://docs.taipy.io/manuals/gui/viselements/date/) and [number](https://docs.taipy.io/manuals/gui/viselements/number/). A 'Save button' is also created to run the 'submit' function when pressed.
+Second, we will add to the Markdown (before the chart), a visual element binding each of these variables. We will be using them to “modify” the scenario. See the documentation for these newly introduced visual elements here: [date](https://docs.taipy.io/manuals/gui/viselements/date/) and [number](https://docs.taipy.io/manuals/gui/viselements/number/). A 'Save button' is also created to run the 'submit_scenario()' function when pressed.
 
 ```python
 page_scenario_manager = page + """
@@ -27,7 +27,7 @@ page_scenario_manager = page + """
 
 **Number of predictions**\n\n<|{n_predictions}|number|>
 
-<|Save changes|button|on_action={submit}|>
+<|Save changes|button|on_action={submit_scenario}|>
 
 Select the pipeline
 <|{selected_pipeline}|selector|lov={pipeline_selector}|> <|Update chart|button|on_action={update_chart}|>
@@ -50,14 +50,14 @@ def create_scenario():
     tp.submit(scenario)
 ```
 
-The `submit()` function introduces two essential Taipy functions:
+The `submit_scenario()` function introduces two essential Taipy functions:
 
 - `tp.get(scenario_id)`: Taipy function used to get the scenario from its id.
 
 - `write(new_value)`: a Data Node function that changes the value stored in the Data Node. For example, __scenario.max_capacity__ is a Data Node whose value can be changed to 100 like this `scenario.max_capacity.write(100)`.
 
 ```python
-def submit(state):
+def submit_scenario(state):
     print("Submitting scenario...")
     # Get the selected scenario: in this current step a single scenario is created then modified here.
     scenario = tp.get(selected_scenario)

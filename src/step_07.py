@@ -19,11 +19,11 @@ Select the pipeline
 def create_scenario():
     print("Creating scenario...")
     scenario = tp.create_scenario(scenario_cfg)
-    scenario = submit(scenario)
+    scenario = submit_scenario(scenario)
     return scenario
 
 
-def submit(scenario):
+def submit_scenario(scenario):
     print("Submitting scenario...")
     tp.submit(scenario)
     return scenario

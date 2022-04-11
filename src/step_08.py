@@ -15,7 +15,7 @@ page_scenario_manager = page + """
 
 **Number of predictions**\n\n<|{n_predictions}|number|>
 
-<|Save changes|button|on_action={submit}|>
+<|Save changes|button|on_action={submit_scenario}|>
 
 Select the pipeline
 <|{selected_pipeline}|selector|lov={pipeline_selector}|> <|Update chart|button|on_action={update_chart}|>
@@ -35,7 +35,7 @@ def create_scenario():
     tp.submit(scenario)
 
 
-def submit(state):
+def submit_scenario(state):
     print("Submitting scenario...")
     # Get the selected scenario: in this current step a single scenario is created then modified here.
     scenario = tp.get(selected_scenario)
