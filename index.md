@@ -26,7 +26,7 @@ Three packages have to be installed:
 
  2. **scikit-learn**: A Machine-Learning package that will be used in the Getting Started user code;
 
- 3. **statsmodels**: Another package for statistics used in the User Code of the Getting Started.
+ 3. **statsmodels**: Another package for statistics also used in the user code.
 
 ``` console
 $ pip install taipy
