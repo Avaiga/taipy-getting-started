@@ -2,28 +2,31 @@
 
 # Step 9: Manage Scenarios
 
-Now that you know how to create scenarios, submit them and change them, you can create a GUI to manage mulitple scenarios and pipelines.
+Now that you know how to create a scenario, submit it and change it, you will create in this step a Taipy program able to manage multiple scenarios (and pipelines).
 
 ## Dynamic selectors
 
-Let's manage scenarios through a dynamic scenario selector. This selector will be updated whenever a new scenario is created. It will store the 'id' of the scenarios and their names. Naturally, only the names will be displayed in the selector.
+Let's manage multiple scenarios through a dynamic scenario selector. This selector will be updated whenever a new scenario is created. It will store the 'id' of the scenarios and their names. For clarity, only their names do get displayed (in the selector).
 
-This code initializes the scenario selector with the previously created scenarios. If there are no scenarios, the selector will be empty.
+This code initializes the scenario selector with previously created scenarios. If there are no scenarios yet, the scenario selector will be empty.
+
 ```python
 # Get all the scenarios already created
 all_scenarios = tp.get_scenarios()
 
-# Delete the scenarios that doesn't have a name attribute
-# All the scenarios of the previous steps will be deleted but not the ones created by this step
+# Delete the scenarios that don't have a name attribute
+# All the scenarios of the previous steps do not have an associated name so they will be deleted,
+# this will not be the case for those created by this step
 [tp.delete(scenario.id) for scenario in all_scenarios if scenario.name is None]
 
 # Initial variable for the scenario selector
-# The value of selector will be the ids and what is display will be the name of the scenario
+# The list of possible values (lov) for the scenario selector is a list of tuples (scenario_id, scenario_name),
+# but the selected_scenario is just used to retrieve the scenario id and what gets displayed is the name of the scenario.
 scenario_selector = [(scenario.id, scenario.name) for scenario in tp.get_scenarios()]
 selected_scenario = None
 ```
 
-A new selector for the scenario is added to the Markdown with a 'Create new scenario' button. This button calls the `create_scenario` function.
+Beside adding to the Markdown the new scenario selector, we also add a new 'Create new scenario' button. This button calls the `create_scenario()` function. So, now each time we modify the parameters (*day*, *max_capacity*, *n_prediction*) we will create a new scenario upon clicking on this 'Create new scenario' button.
 
 ```python
 scenario_manager_page = page + """
@@ -47,13 +50,13 @@ scenario_manager_page = page + """
 """
 ```
 
-Here is the main code for managing scenarios. As you can see, the architecture doesn't change from the previous code. Two functions have been altered with some addition: __create_scenario__ and __submit_scenario__. 
+Here is the main code for managing scenarios. As you can see, the architecture doesn't change from the previous code. Two functions have been altered: `_create_scenario()` and `submit_scenario()`. 
 
 ```python
 def create_name_for_scenario(state)->str:
     name = f"Scenario ({state.day.strftime('%A, %d %b')}; {state.max_capacity}; {state.n_predictions})"
     
-    # Change the name if it is the same as some scenario's
+    # Change the name if it is the same as some scenarios
     if name in [s[1] for s in state.scenario_selector]:
         name += f" ({len(state.scenario_selector)})"
     return name
@@ -140,7 +143,7 @@ def on_change(state, var_name: str, var_value):
 Run the Gui.
 
 ```python
-Gui(page=scenario_manager_page).run()
+Gui(page=scenario_manager_page).run(dark_mode=False)
 ```
 
 ![Multi-scenarios](result.gif){ width=700 style="margin:auto;display:block" }

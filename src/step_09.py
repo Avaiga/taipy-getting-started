@@ -4,12 +4,14 @@ from step_08 import *
 # Get all the scenarios already created
 all_scenarios = tp.get_scenarios()
 
-# Delete the scenarios that doesn't have a name attribute
-# All the scenarios of the previous steps will be deleted but not the ones created by this step
+# Delete the scenarios that don't have a name attribute
+# All the scenarios of the previous steps do not have an associated name so they will be deleted,
+# this will not be the case for those created by this step
 [tp.delete(scenario.id) for scenario in all_scenarios if scenario.name is None]
 
 # Initial variable for the scenario selector
-# The value of my selector will be the ids and what is display will be the name of my scenario
+# The list of possible values (lov) for the scenario selector is a list of tuples (scenario_id, scenario_name),
+# but the selected_scenario is just used to retrieve the scenario id and what gets displayed is the name of the scenario.
 scenario_selector = [(scenario.id, scenario.name) for scenario in tp.get_scenarios()]
 selected_scenario = None
 
@@ -36,7 +38,7 @@ scenario_manager_page = page + """
 def create_name_for_scenario(state)->str:
     name = f"Scenario ({state.day.strftime('%A, %d %b')}; {state.max_capacity}; {state.n_predictions})"
     
-    # Change the name if it is the same as some scenario's
+    # Change the name if it is the same as some scenarios
     if name in [s[1] for s in state.scenario_selector]:
         name += f" ({len(state.scenario_selector)})"
     return name
@@ -107,4 +109,4 @@ def on_change(state, var_name: str, var_value):
 
 
 if __name__ == "__main__":
-    Gui(page=scenario_manager_page).run()
+    Gui(page=scenario_manager_page).run(dark_mode=False)

@@ -186,4 +186,4 @@ def on_change(state, var_name: str, var_value):
 
 
 if __name__ == '__main__':
-    Gui(page=multi_pages).run()
+    Gui(page=multi_pages).run(dark_mode=False)

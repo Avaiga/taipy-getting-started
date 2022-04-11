@@ -2,7 +2,7 @@
 
 # Step 10: Embellish your App
 
-With just a few steps, you have created a full-AI application on which you can predict multiple days with different parameters. However, the page's layout is not yet optimal and it could be greatly improved. This will be done with the code below. To get a more aesthetically pleasing page, three useful controls to use are:
+With just a few steps, you have created a full forecasting application which predicts across multiple days with different parameters. However, the page's layout is not yet optimal and it could be greatly improved. This will be done during this step. To get a more aesthetically pleasing page, three new useful controls will be used. These are:
 
 - [menu](https://docs.taipy.io/manuals/gui/viselements/menu/): creates a menu on the left to navigate through the pages.
 
@@ -18,7 +18,7 @@ Gui("<|menu|label=Menu|lov={['Data Visualization', 'Scenario Manager']}|>").run(
 
 
 
-- [part](https://docs.taipy.io/manuals/gui/viselements/part/): creates a group of text/visual elements. A useful parameter of *part* is `render`. Set to `False`, it will not display the part.
+- [part](https://docs.taipy.io/manuals/gui/viselements/part/): creates a group of text/visual elements. A useful parameter of *part* is `render`. If set to `False`, it will not display the part. This allows the developer to dynamically display a group of visual elements or not.
 
 ```
 <|part|render={bool_variable}|
@@ -27,7 +27,7 @@ Or visual elements...
 |>
 ```
 
-- [layout](https://docs.taipy.io/manuals/gui/viselements/layout/): creates invisible columns where you can put your texts and visual elements. Columns parameter will indicate the width and number of columns. Here, we have three columns of the same width.
+- [layout](https://docs.taipy.io/manuals/gui/viselements/layout/): creates invisible columns where you can put your texts and visual elements. `columns` parameter indicates the width and number of columns. Here, we create three columns of the same width.
 
 ```
 <|layout|columns=1 1 1|
@@ -42,9 +42,18 @@ Third column
 ![Layout](layout.png){ width=500 style="margin:auto;display:block" }
 
 
-Here, the part with the chart will be displayed when you create the first scenario. The menu is the control changing the `page` variable. Consequently, it changes the part displayed on the client. This is how you can easily create multiple pages; there are many other ways to do so.
+One strategy to switch from one page to another is:
 
-The first page in the menu contains the chart with the dataset focused on one week and the slider related. This is the page created in one of the first codes.
+1. To create a specific Markdown string for each page;
+
+2. Use the Menu control to switch from one page to another by controlling the page variable.
+
+This is how you can easily create multiple pages; there are many other ways to do so.
+ 
+First, let’s start by creating the 2 pages.
+
+The first page contains the original chart and slider defined in Step 2. Let’s use the same Markdown as the one defined in Step 2. It is named __page__ (and is also present in Step 9). 
+
 
 ```python
 # Our first page is the original page
@@ -54,6 +63,8 @@ page_data_visualization = page
 
 ![Data Visualization](data_visualization.png){ width=700 style="margin:auto;display:block" }
 
+
+Then let’s create our second page which contains the page corresponding to the creation of scenarios seen in Step 9.
 
 ```python
 # Second page: create scenarios and display results
@@ -97,7 +108,7 @@ page_scenario_manager = """
 ![Scenario Manager](scenario_manager.gif){ width=700 style="margin:auto;display:block" }
 
 
-The menu combines these two pages. When a page will be selected, `menu_fct` will be called and update the page.
+The menu combines these two pages. When a page is selected in the menu control, `menu_fct` is called and updates the page.
 
 ```python
 # Create a menu with our pages
@@ -109,14 +120,14 @@ multi_pages = """
 """
 
 
-# The initial page is the "Scenario Manager" page
+# The initial page is the "Data Visualization" page
 page = "Data Visualization"
 def menu_fct(state, var_name: str, fct: str, var_value: list):
     # Change the value of the state.page variable in order to render the correct page
     state.page = var_value['args'][0]
 
 
-Gui(page=multi_pages).run()
+Gui(page=multi_pages).run(dark_mode=False)
 ```
 
 ![Multi Pages](multi_pages.png){ width=700 style="margin:auto;display:block" }

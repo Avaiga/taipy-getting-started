@@ -2,11 +2,19 @@
 
 # Step 7: GUI & Scenarios
 
-Just before, Step 7 created a scenario only using Taipy Core. This new configuration needs a new GUI. A first scenario will be created and executed at the beginning. Then, a selector will be used to select a pipeline among the *baseline* and *ml* pipeline.
+In Step 6, using Taipy Core, we implemented a scenario configuration and created our first scenario (based on that config) . In this step, we will implement a graphical interface that makes use of scenarios. 
+
+- First, a scenario will be created and executed at the beginning.
+
+- Then, a Taipy GUI *selector* will be used to select one of the two pipelines associated with the scenario: the *baseline* or the *ml* pipeline.
 
 ![Selector](selector.gif){ width=250 style="margin:auto;display:block" }
 
-A [selector](https://docs.taipy.io/manuals/gui/viselements/selector/) only needs two parameters: a value that will change through the selector and the list of values possible (lov). Here is the syntax for selector: `<|{selected_value}|selector|lov={lov_selector}|>`. An 'Update chart' button will update the chart according to the selected pipeline.
+A [selector](https://docs.taipy.io/manuals/gui/viselements/selector/) only needs two parameters: a value that gets dynamically updated through the selector and the list of values possible (aka 'lov'). Here is the syntax for a selector:
+
+`<|{selected_value}|selector|lov={lov_selector}|>`.
+
+An 'Update chart' button will update the chart according to the selected pipeline.
 
 These variables below are the parameters of the pipeline selector. The selected pipeline will be the first among 'baseline' and 'ml' when starting the client.
 
@@ -28,7 +36,7 @@ Select the pipeline
 """
 ```
 
-The code around the GUI has evolved. __create_scenario__ is creating a scenario and submitting it with the __submit__ function. __update_chart__ is updating the chart based upon the selected scenario and pipeline.
+The code around the GUI has evolved. `create_scenario()` is creating a scenario and submitting it with the `submit()` function. `update_chart()` is updating the chart based upon the selected scenario and pipeline.
 
 ![Organisation](organisation.svg){ width=500 style="margin:auto;display:block" }
 
@@ -66,7 +74,7 @@ tp.clean_all_entities()
 ```python
 # Creation of our first scenario
 scenario = create_scenario()
-Gui(page=scenario_page).run() 
+Gui(page=scenario_page).run(dark_mode=False) 
 ```
 
 ![GUI for a scenario](result.gif){ width=700 style="margin:auto;display:block" }

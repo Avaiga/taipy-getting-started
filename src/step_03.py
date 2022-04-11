@@ -12,6 +12,8 @@ initial_dataset_cfg = Config.configure_data_node(id="initial_dataset",
                                                  path=path_to_csv,
                                                  scope=Scope.GLOBAL)
 
+# We assume the current day is the 26th of July 2021.
+# This day can be changed to simulate multiple executions of scenarios on different days
 day_cfg = Config.configure_data_node(id="day", default_data=dt.datetime(2021, 7, 26))
 
 n_predictions_cfg = Config.configure_data_node(id="n_predictions", default_data=40)

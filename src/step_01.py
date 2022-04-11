@@ -33,4 +33,4 @@ Display the last three months of data:
 
 if __name__ == "__main__":
     # Create a Gui object with our page content
-    Gui(page=page).run()
+    Gui(page=page).run(dark_mode=False)

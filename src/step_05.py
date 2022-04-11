@@ -37,7 +37,7 @@ def create_predictions_dataset(pipeline):
     n_predictions = pipeline.n_predictions.read()
     cleaned_data = pipeline.cleaned_dataset.read()
     
-    # Set the time window for the chart (5 days, 5 weeks, 5 months,...)
+    # Set arbitrarily the time window for the chart as 5 times the number of predictions
     window = 5 * n_predictions
 
     # Create the historical dataset that will be displayed
@@ -57,9 +57,8 @@ def create_predictions_dataset(pipeline):
 
 def update_predictions_dataset(state, pipeline):
     print("Updating predictions dataset...")
-    # Update the predictions dataset
     state.predictions_dataset = create_predictions_dataset(pipeline)
     
 
 if __name__ == "__main__":
-    Gui(page=pipeline_page).run()
+    Gui(page=pipeline_page).run(dark_mode=False)

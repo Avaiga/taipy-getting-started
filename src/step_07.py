@@ -46,4 +46,4 @@ if __name__ == "__main__":
     
     # Creation of our first scenario
     scenario = create_scenario()
-    Gui(page=scenario_page).run()
+    Gui(page=scenario_page).run(dark_mode=False)

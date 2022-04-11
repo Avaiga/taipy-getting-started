@@ -2,11 +2,11 @@
 
 # Step 4: Pipeline Management
 
-So far, you have described your graph; let's implement it with Taipy! 
+In Step 3, you have described your graph; let's implement it with Taipy! 
 
 ## Pipeline configuration
 
-To configure your first pipeline, you need to list all the tasks you want to be done by the pipeline. This pipeline executes the cleaning (__clean_data_task__) and the predicting (__predict_baseline__). Note that the **task_configs** is a list, so you don't have to worry about the order of the tasks. Taipy does that for you and optimizes its execution.
+To configure your first pipeline, you need to list all the tasks you want to be done by the pipeline. This pipeline executes the cleaning (__clean_data_task__) and the predicting (`predict_baseline_task`). Note that the **task_configs** is a list, so you don't have to worry about the order of the tasks. Taipy does that for you and optimizes its execution.
 
 ```python
 # Create the the first scenario configuration
@@ -30,3 +30,5 @@ tp.submit(baseline_pipeline)
 baseline_predictions = baseline_pipeline.predictions.read()
 print("Predictions of baseline algorithm\n", baseline_predictions)
 ```
+
+> Note that when creating the pipeline (`tp.create_pipeline()`), all associated Taipy objects of the pipeline (Data nodes, Tasks, etc) get automatically created (unless already present).

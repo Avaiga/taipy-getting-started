@@ -2,13 +2,13 @@
 
 # Step 5: GUI & Pipeline
 
-Step 4 created a first pipeline using only Taipy Core, let's update the GUI to display the results of the pipeline.
+In Step 4, we created a first pipeline using only Taipy Core. Let's update the GUI to reflect the results of the pipeline.
 
-A "Predict" [button](https://docs.taipy.io/manuals/gui/viselements/button/) has been added to the page to create the pipeline and run it. When you press a button, Taipy calls the function in the `on_action` parameter.
+A "Predict" [button](https://docs.taipy.io/manuals/gui/viselements/button/) is added to the page to create the pipeline and run it. When you press a button, Taipy calls the function passed to the `on_action` parameter.
 
 `<|Text displayed on button|button|on_action=fct_name_called_when_pressed|>`
    
-A [chart](https://docs.taipy.io/manuals/gui/viselements/chart/) control can be found at the end of the markdown to see if the predictions seem correct. The chart creates two traces: the historical values and the predicted values.
+A [chart](https://docs.taipy.io/manuals/gui/viselements/chart/) control can be found at the end of the markdown to visualize the predictions. The chart plots two traces: the historical values and the predicted values.
 
 ```python
 import numpy as np
@@ -25,7 +25,7 @@ Press <|predict|button|on_action=predict|> to predict with default parameters (3
 """
 ```
 
-__create_and_submit_pipeline__ creates and executes the pipeline after being called by __predict__. 
+`create_and_submit_pipeline()` creates and executes the pipeline after being called by `predict()`. 
 
 ```python
 def predict(state):
@@ -43,8 +43,9 @@ def create_and_submit_pipeline():
     return pipeline
 ```
 
-After the first submission of the pipeline, the data stored in __predictions__ and __cleaned_data__ Data Nodes become accessible. The __read()__ function accesses the data in Data Nodes.
-By reading them, __create_predictions_dataset__ creates a prediction dataset with these columns:
+After the execution of the pipeline (`tp.submit()`), the data stored in __predictions__ and __cleaned_data__ Data Nodes become accessible. The `read()` method accesses the data in Data Nodes.
+
+The `create_predictions_dataset()` function below creates a final dataframe (that concatenates the predictions and the historical data together) containing three columns::
 
 - Date,
 
@@ -61,7 +62,7 @@ def create_predictions_dataset(pipeline):
     n_predictions = pipeline.n_predictions.read()
     cleaned_data = pipeline.cleaned_dataset.read()
     
-    # Set the time window for the chart (5 days, 5 weeks, 5 months,...)
+    # Set arbitrarily the time window for the chart as 5 times the number of predictions
     window = 5 * n_predictions
 
     # Create the historical dataset that will be displayed
@@ -79,14 +80,15 @@ def create_predictions_dataset(pipeline):
     return pd.concat([temp_df['Date'], historical_values, predicted_values], axis=1)
 ```
 
-The goal is to make the predictions dataset and display it in a chart. However, a good option would have been to create this dataset directly in the pipeline. It is typically good to put all complexity in it.
+It is now really simple to get  the predictions dataset and display it in the “Prediction chart” created above.
 
-When you press the 'Predict' button, this last function is also called. It will update the predictions dataset, and this change will propagate to the chart.
+
+When you press the 'Predict' button, this function below is called. It will update the predictions dataset, and this change will propagate to the chart.
+
 
 ```python
 def update_predictions_dataset(state, pipeline):
     print("Updating predictions dataset...")
-    # Update the predictions dataset
     state.predictions_dataset = create_predictions_dataset(pipeline)
 ```
 
@@ -95,7 +97,9 @@ This is what the structure of the code looks like for the GUI:
 ![Organisation](organisation.svg){ width=500 style="margin:auto;display:block" }
 
 ```python
-Gui(page=pipeline_page).run()
+Gui(page=pipeline_page).run(dark_mode=False)
 ```
 
 ![GUI for a pipeline](result.png){ width=700 style="margin:auto;display:block" }
+
+> **Important Remark**: A better option would have been to have the `create_predictions_dataset()` modeled as a last **Task** inside the pipeline graph.

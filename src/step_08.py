@@ -37,14 +37,14 @@ def create_scenario():
 
 def submit(state):
     print("Submitting scenario...")
-    # Get the selected scenario, we have just one scenario created
+    # Get the selected scenario: in this current step a single scenario is created then modified here.
     scenario = tp.get(selected_scenario)
     
-    # Conversion to the right format (change?)
-    day = dt.datetime(state.day.year, state.day.month, state.day.day)
+    # Conversion to the right format
+    state_day = dt.datetime(state.day.year, state.day.month, state.day.day)
 
     # Change the default parameters by writing in the datanodes
-    scenario.day.write(day)
+    scenario.day.write(state_day)
     scenario.n_predictions.write(int(state.n_predictions))
     scenario.max_capacity.write(int(state.max_capacity))
 
@@ -65,6 +65,6 @@ def update_chart(state):
 
 if __name__ == "__main__":
     global selected_scenario
-    # Creation of our first scenario
+    # Creation of a single scenario
     create_scenario()
-    Gui(page=page_scenario_manager).run()
+    Gui(page=page_scenario_manager).run(dark_mode=False)

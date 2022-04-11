@@ -20,4 +20,4 @@ def on_change(state, var_name: str, var_value):
         state.dataset_week = dataset[dataset['Date'].dt.isocalendar().week == var_value]
 
 if __name__ == "__main__":
-    Gui(page=page).run()
+    Gui(page=page).run(dark_mode=False)

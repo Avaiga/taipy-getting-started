@@ -26,7 +26,7 @@ predict_ml_task_cfg = Config.configure_task(id="predict_ml",
                                             input=[cleaned_dataset_cfg, n_predictions_cfg, day_cfg, max_capacity_cfg],
                                             output=predictions_cfg)
 
-# Create a ml pipeline that will clean and predict with the ml model
+# Create the new pipeline that will clean and predict with the ml model
 ml_pipeline_cfg = Config.configure_pipeline(id="ml", task_configs=[clean_data_task_cfg, predict_ml_task_cfg])
 
 
