@@ -2,13 +2,16 @@
 
 # Step 5: GUI & Pipeline
 
-In Step 4, we created a first pipeline using only Taipy Core. Let's update the GUI to reflect the results of the pipeline.
+In Step 4, we created a first pipeline using only Taipy Core. Let's update the GUI to reflect the results of the 
+pipeline.
 
-A "Predict" [button](https://docs.taipy.io/manuals/gui/viselements/button/) is added to the page to create the pipeline and run it. When you press a button, Taipy calls the function passed to the `on_action` parameter.
+A "Predict" [button](https://docs.taipy.io/manuals/gui/viselements/button/) is added to the page to create the 
+pipeline and run it. When you press a button, Taipy calls the function passed to the `on_action` parameter.
 
 `<|Text displayed on button|button|on_action=fct_name_called_when_pressed|>`
    
-A [chart](https://docs.taipy.io/manuals/gui/viselements/chart/) control can be found at the end of the markdown to visualize the predictions. The chart plots two traces: the historical values and the predicted values.
+A [chart](https://docs.taipy.io/manuals/gui/viselements/chart/) control can be found at the end of the markdown to 
+visualize the predictions. The chart plots two traces: the historical values and the predicted values.
 
 ```python
 import numpy as np
@@ -43,9 +46,11 @@ def create_and_submit_pipeline():
     return pipeline
 ```
 
-After the execution of the pipeline (`tp.submit()`), the data stored in __predictions__ and __cleaned_data__ Data Nodes become accessible. The `read()` method accesses the data in Data Nodes.
+After the execution of the pipeline (`tp.submit()`), the data stored in __predictions__ and __cleaned_data__ Data 
+Nodes become accessible. The `read()` method accesses the data in Data Nodes.
 
-The `create_predictions_dataset()` function below creates a final dataframe (that concatenates the predictions and the historical data together) containing three columns::
+The `create_predictions_dataset()` function below creates a final dataframe (that concatenates the predictions and 
+the historical data together) containing three columns:
 
 - Date,
 
@@ -83,7 +88,8 @@ def create_predictions_dataset(pipeline):
 It is now really simple to get  the predictions dataset and display it in the “Prediction chart” created above.
 
 
-When you press the 'Predict' button, this function below is called. It will update the predictions dataset, and this change will propagate to the chart.
+When you press the 'Predict' button, this function below is called. It will update the predictions' dataset, and 
+this change will propagate to the chart.
 
 
 ```python

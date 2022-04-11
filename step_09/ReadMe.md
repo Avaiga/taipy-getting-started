@@ -2,13 +2,17 @@
 
 # Step 9: Manage Scenarios
 
-Now that you know how to create a scenario, submit it and change it, you will create in this step a Taipy program able to manage multiple scenarios (and pipelines).
+Now that you know how to create a scenario, submit it and change it, you will create in this step a Taipy program 
+able to manage multiple scenarios (and pipelines).
 
 ## Dynamic selectors
 
-Let's manage multiple scenarios through a dynamic scenario selector. This selector will be updated whenever a new scenario is created. It will store the 'id' of the scenarios and their names. For clarity, only their names do get displayed (in the selector).
+Let's manage multiple scenarios through a dynamic scenario selector. This selector will be updated whenever a new 
+scenario is created. It will store the 'id' of the scenarios and their names. For clarity, only their names do get 
+displayed (in the selector).
 
-This code initializes the scenario selector with previously created scenarios. If there are no scenarios yet, the scenario selector will be empty.
+This code initializes the scenario selector with previously created scenarios. If there are no scenarios yet, the 
+scenario selector will be empty.
 
 ```python
 # Get all the scenarios already created
@@ -26,7 +30,9 @@ scenario_selector = [(scenario.id, scenario.name) for scenario in tp.get_scenari
 selected_scenario = None
 ```
 
-Beside adding to the Markdown the new scenario selector, we also add a new 'Create new scenario' button. This button calls the `create_scenario()` function. So, now each time we modify the parameters (*day*, *max_capacity*, *n_prediction*) we will create a new scenario upon clicking on this 'Create new scenario' button.
+Beside adding to the Markdown the new scenario selector, we also add a new 'Create new scenario' button. This button 
+calls the `create_scenario()` function. So, now each time we modify the parameters (*day*, *max_capacity*, 
+*n_prediction*) we will create a new scenario upon clicking on this 'Create new scenario' button.
 
 ```python
 scenario_manager_page = page + """
@@ -50,7 +56,8 @@ scenario_manager_page = page + """
 """
 ```
 
-Here is the main code for managing scenarios. As you can see, the architecture doesn't change from the previous code. Two functions have been altered: `_create_scenario()` and `submit_scenario()`. 
+Here is the main code for managing scenarios. As you can see, the architecture doesn't change from the previous code.
+Two functions have been altered: `_create_scenario()` and `submit_scenario()`. 
 
 ```python
 def create_name_for_scenario(state)->str:
@@ -109,7 +116,8 @@ def submit_scenario(state):
     update_chart(state) 
 ```
 
-The function below will update the scenario selector whenever the user creates a new scenario. It is called in the `submit_scenario` function.
+The function below will update the scenario selector whenever the user creates a new scenario. It is called in the 
+`submit_scenario` function.
 
 ```python
 def update_scenario_selector(state, scenario):

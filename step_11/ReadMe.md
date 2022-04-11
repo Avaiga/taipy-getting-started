@@ -2,17 +2,29 @@
 
 # Step 11: Introducing Cycles
 
-So far, we have talked about how having different scenarios helps us to oversee our assumptions about the future. For example, in business, it is critical to weigh different options in order to come up with an optimal solution. However, this decision making process isn’t just a one-time task, but rather a recurrent operation that happens over a time period. This is why we want to introduce [Cycles](https://docs.taipy.io/manuals/core/concepts/cycle/).
+So far, we have talked about how having different scenarios helps us to oversee our assumptions about the future. 
+For example, in business, it is critical to weigh different options in order to come up with an optimal solution. 
+However, this decision making process isn’t just a one-time task, but rather a recurrent operation that happens over 
+a time period. This is why we want to introduce [Cycles](https://docs.taipy.io/manuals/core/concepts/cycle/).
 
-A cycle can be thought of as a place to store different and recurrent scenarios, within a time frame. In Taipy Core, each cycle will have a unique primary scenario, which represents the reference scenario for a time period.
+A cycle can be thought of as a place to store different and recurrent scenarios, within a time frame. In Taipy Core, 
+each cycle will have a unique primary scenario, which represents the reference scenario for a time period.
 
 ![Cycle](cycle.svg){ width=300 style="margin:auto;display:block" }
 
-Typically, in a Machine Learning problem, a lot of scenarios are created daily to predict the next day. Among all those scenarios, there is only one primary scenario. In the step's example, scenarios are attached to a DAILY cycle. Using Cycles is useful because some specific Taipy's functions exist to navigate through these Cycles. Taipy can get all the scenarios created in a day by providing the Cycle. You can also get every primary scenario ever made to quickly see their progress over time.
+Typically, in a Machine Learning problem, a lot of scenarios are created daily to predict the next day. Among all 
+those scenarios, there is only one primary scenario. In the step's example, scenarios are attached to a DAILY cycle. 
+Using Cycles is useful because some specific Taipy's functions exist to navigate through these Cycles. Taipy can get 
+all the scenarios created in a day by providing the Cycle. You can also get every primary scenario ever made to 
+quickly see their progress over time.
 
-Moreover, nothing is more straightforward than creating a Cycle. The frequency parameter in a scenario configuration will create the desired type of Cycle. In the code below, the scenario has a daily cycle. It will be attached to the correct period (day) when it is created.
+Moreover, nothing is more straightforward than creating a Cycle. The frequency parameter in a scenario configuration 
+will create the desired type of Cycle. In the code below, the scenario has a daily cycle. It will be attached to the 
+correct period (day) when it is created.
 
-As you can see, a Cycle can be made very easily once you have the desired frequency. In this snippet of code, since we have specified `frequency=Frequency.DAILY`, the corresponding scenario will be automatically attached to the correct period (*day*) once it is created. 
+As you can see, a Cycle can be made very easily once you have the desired frequency. In this snippet of code, since 
+we have specified `frequency=Frequency.DAILY`, the corresponding scenario will be automatically attached to the 
+correct period (*day*) once it is created. 
 
 ```python
 from taipy import Config, Frequency
@@ -23,7 +35,8 @@ scenario_daily_cfg = Config.configure_scenario(id="scenario",
                                            frequency=Frequency.DAILY)
 ```
 
-To avoid any compatibility issue between scenarios with or without cycle, this code will erase the previous scenarios, pipelines, datanodes that you have maybe created in the previous steps.
+To avoid any compatibility issue between scenarios with or without cycle, this code will erase the previous 
+scenarios, pipelines, datanodes that you have maybe created in the previous steps.
 
 ```python
 # Delete all entities
@@ -31,7 +44,8 @@ Config.configure_global_app(clean_entities_enabled=True)
 tp.clean_all_entities()
 ```
 
-To clarify this concept of primary scenario, the scenario selector will show a `*` before its name if the scenario is primary. This is why we update the following functions.
+To clarify this concept of primary scenario, the scenario selector will show a `*` before its name if the scenario 
+is primary. This is why we update the following functions.
 
 ```python
 # Change the inital scenario selector to see which scenarios are primary
@@ -48,7 +62,10 @@ def update_scenario_selector(state, scenario):
     state.scenario_selector += [(scenario.id, scenario_name)]
 ```
 
-In `create_scenario()`, __scenario_daily_cfg__ is now the configuration used to create the scenario. By creating it, you also create the dependent Cycle. For example, setting `creation_date` to 04/02/2021 makes a cycle related to this day. All scenarios that are created on this day belong to this Cycle with just one primary scenario. Changing `creation_date` again will create another cycle for a different day and so on.
+In `create_scenario()`, __scenario_daily_cfg__ is now the configuration used to create the scenario. By creating it, 
+you also create the dependent Cycle. For example, setting `creation_date` to 04/02/2021 makes a cycle related to 
+this day. All scenarios that are created on this day belong to this Cycle with just one primary scenario. Changing 
+`creation_date` again will create another cycle for a different day and so on.
 
 ```python
 # Change the create_scenario function to create a scenario with the selected frequency
@@ -67,9 +84,11 @@ def create_scenario(state):
     submit_scenario(state)
 ```
 
-Two buttons are added to the GUI ('Make primary' and 'Delete scenario'). They call the `make_primary()` and `delete_scenario()` functions below.
+Two buttons are added to the GUI ('Make primary' and 'Delete scenario'). They call the `make_primary()` and 
+`delete_scenario()` functions below.
 
-`make_primary()` changes the current primary scenario of the cycle thanks to `tp.set_primary(scenario)`. It is the Taipy function used to make a scenario primary.
+`make_primary()` changes the current primary scenario of the cycle thanks to `tp.set_primary(scenario)`. It is the 
+Taipy function used to make a scenario primary.
 
 > Note that the previous primary scenario will not longer be primary. There is always just one primary scenario in a cycle. 
 
@@ -113,7 +132,8 @@ def delete_scenario(state):
         remove_scenario_from_selector(state,scenario)
 ```
 
-As previously said, just two visual elements ('Make primary' and 'Delete scenario' buttons) have been added to the page. This code is almost identical to the previous __page_scenario_manager__.
+As previously said, just two visual elements ('Make primary' and 'Delete scenario' buttons) have been added to the 
+page. This code is almost identical to the previous __page_scenario_manager__.
 
 ```python
 # Add a 'Delete scenario' and a 'Make primary' button s
@@ -179,7 +199,8 @@ multi_pages = """
 """
 ```
 
-When the selected scenario is changed, Taipy calls the `on_change` and will update `state.selected_scenario_is_primary` (set to `True` if the selected scenario is primary).
+When the selected scenario is changed, Taipy calls the `on_change` and will update `state.
+selected_scenario_is_primary` (set to `True` if the selected scenario is primary).
 
 ```python
 def on_change(state, var_name: str, var_value):

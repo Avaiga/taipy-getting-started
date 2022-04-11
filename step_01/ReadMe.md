@@ -2,11 +2,13 @@
 
 # Step 1: Visual elements
 
-Many visual elements can be added to the basic code viewed in Step 0. This Step shows how to use visual elements like charts, sliders and tables and implement them in the GUI.
+Many visual elements can be added to the basic code viewed in Step 0. This Step shows how to use visual elements 
+like charts, sliders and tables and implement them in the GUI.
 
 ## Importing the Dataset
 
-Suppose that you have a [*dataset.csv*](dataset.csv) file, using the *Pandas* library, you can retrieve this dataset with the following codes:
+Suppose that you have a [*dataset.csv*](dataset.csv) file, using the *Pandas* library, you can retrieve this dataset 
+with the following codes:
 
 ```python
 import pandas as pd
@@ -24,7 +26,10 @@ dataset = get_data(path_to_csv)
 ...
 ```
 
-__dataset__ is a *pd.DataFrame*, a basic *Pandas main* object representing, in this case, a realistic time series. It represents the historical number of articles sold for a given store on a 15-minute basis (we have the historical sales data for the year 2021). Being a real dataset, there will sometimes be missing information for specific days. The columns are:
+__dataset__ is a *pd.DataFrame*, a basic *Pandas main* object representing, in this case, a realistic time series. 
+It represents the historical number of articles sold for a given store on a 15-minute basis (we have the historical 
+sales data for the year 2021). Being a real dataset, there will sometimes be missing information for specific days. 
+The columns are:
 
 - Index: a unique identifier for each data point.
 
@@ -34,11 +39,20 @@ __dataset__ is a *pd.DataFrame*, a basic *Pandas main* object representing, in t
 
 ![Table](table.png){ width=700 style="margin:auto;display:block" }
 
-After creating your first web client with just one line of code and reading our dataset data with the code above, let's add some  visual elements to our initial page.
+After creating your first web client with just one line of code and reading our dataset data with the code above, 
+let's add some  visual elements to our initial page.
 
 ## Visual elements
 
-Taipy GUI can be considered as an **augmented** Markdown; it adds the concept of **'[Visual elements](https://docs.taipy.io/manuals/gui/viselements/)'** on top of all the Markdown syntax.  A visual element is a Taipy graphical object displayed on the client. It can be a [slider](https://docs.taipy.io/manuals/gui/viselements/slider/), a [chart](https://docs.taipy.io/manuals/gui/viselements/chart/), a [table](https://docs.taipy.io/manuals/gui/viselements/table/), an [input](https://docs.taipy.io/manuals/gui/viselements/input/), a [menu](https://docs.taipy.io/manuals/gui/viselements/menu/), etc. Check the list [here](https://docs.taipy.io/manuals/gui/controls/).
+Taipy GUI can be considered as an **augmented** Markdown; it adds the concept of 
+**'[Visual elements](https://docs.taipy.io/manuals/gui/viselements/)'** on top of all the Markdown syntax. A visual 
+element is a Taipy graphical object displayed on the client. It can be a 
+[slider](https://docs.taipy.io/manuals/gui/viselements/slider/), a 
+[chart](https://docs.taipy.io/manuals/gui/viselements/chart/), a 
+[table](https://docs.taipy.io/manuals/gui/viselements/table/), an 
+[input](https://docs.taipy.io/manuals/gui/viselements/input/), a 
+[menu](https://docs.taipy.io/manuals/gui/viselements/menu/), etc. Check the list 
+[here](https://docs.taipy.io/manuals/gui/controls/).
 
 Every visual element follows a similar syntax:
 
@@ -48,7 +62,8 @@ For example, a [slider](https://docs.taipy.io/manuals/gui/viselements/slider/) i
 
 `<|{variable}|slider|min=min_value|max=max_value|>`.
 
-For each visual element you wish to add to your web page, you must include the syntax above inside your markdown string (representing your page). For example, at the beginning of the page, let’s display:
+For each visual element you wish to add to your web page, you must include the syntax above inside your markdown 
+string (representing your page). For example, at the beginning of the page, let’s display:
 
 - a Python variable __n_week__;
 

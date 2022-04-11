@@ -108,7 +108,8 @@ page_scenario_manager = """
 ![Scenario Manager](scenario_manager.gif){ width=700 style="margin:auto;display:block" }
 
 
-The menu combines these two pages. When a page is selected in the menu control, `menu_fct` is called and updates the page.
+The menu combines these two pages. When a page is selected in the menu control, `menu_fct` is called and updates the 
+page.
 
 ```python
 # Create a menu with our pages

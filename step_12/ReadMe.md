@@ -2,7 +2,8 @@
 
 # Step 12: Compare Scenarios
 
-Cycles are helpful to keep track of KPI over time. The goal of this step is to compare the primary scenario of every cycle and its pipelines over time.
+Cycles are helpful to keep track of KPI over time. The goal of this step is to compare the primary scenario of every 
+cycle and its pipelines over time.
 
 To achieve this:
 
@@ -26,7 +27,10 @@ metric_selector = ['RMSE', 'MAE']
 selected_metric = metric_selector[0]
 ```
 
-First of all, a function has to be created to compare the primary scenario of all the cycles. `tp.get_primary_scenarios()` is the useful function to use for this effect. `compare()` goes through all of these scenarios and pipelines and add the metrics in lists. In the end, __state.comparison_scenario__ is updated and __comparison_scenario_done__ set to `True`.
+First, a function has to be created to compare the primary scenario of all the cycles. 
+`tp.get_primary_scenarios()` is the useful function to use for this effect. `compare()` goes through all of these 
+scenarios and pipelines and add the metrics in lists. In the end, __state.comparison_scenario__ is updated and 
+__comparison_scenario_done__ set to `True`.
 
 ```python
 from sklearn.metrics import mean_absolute_error, mean_squared_error
@@ -88,7 +92,11 @@ def compare(state):
     state.comparison_scenario_done = True
 ```
 
-Let's create a page related to this comparison. As said before, this page will contain a graph to compare scenarios and pipelines; and a selector to choose the metric on which to compare. When pressed the button at the bottom of the page calls the `compare()` function. When finished, the `render` parameter of the *part* will render the rest of the page. Also, a new Taipy's block is present in the Markdown: [expandable](https://docs.taipy.io/manuals/gui/viselements/expandable/).
+Let's create a page related to this comparison. As said before, this page will contain a graph to compare scenarios 
+and pipelines; and a selector to choose the metric on which to compare. When pressed the button at the bottom of the 
+page calls the `compare()` function. When finished, the `render` parameter of the *part* will render the rest of the 
+page. Also, a new Taipy's block is present in the Markdown: 
+[expandable](https://docs.taipy.io/manuals/gui/viselements/expandable/).
 
 ```python
 # Performance page

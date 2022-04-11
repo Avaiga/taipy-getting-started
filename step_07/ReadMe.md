@@ -2,21 +2,25 @@
 
 # Step 7: GUI & Scenarios
 
-In Step 6, using Taipy Core, we implemented a scenario configuration and created our first scenario (based on that config) . In this step, we will implement a graphical interface that makes use of scenarios. 
+In Step 6, using Taipy Core, we implemented a scenario configuration and created our first scenario (based on that 
+config) . In this step, we will implement a graphical interface that makes use of scenarios. 
 
 - First, a scenario will be created and executed at the beginning.
 
-- Then, a Taipy GUI *selector* will be used to select one of the two pipelines associated with the scenario: the *baseline* or the *ml* pipeline.
+- Then, a Taipy GUI *selector* will be used to select one of the two pipelines associated with the scenario: the 
+  *baseline* or the *ml* pipeline.
 
 ![Selector](selector.gif){ width=250 style="margin:auto;display:block" }
 
-A [selector](https://docs.taipy.io/manuals/gui/viselements/selector/) only needs two parameters: a value that gets dynamically updated through the selector and the list of values possible (aka 'lov'). Here is the syntax for a selector:
+A [selector](https://docs.taipy.io/manuals/gui/viselements/selector/) only needs two parameters: a value that gets 
+dynamically updated through the selector and the list of values possible (aka 'lov'). Here is the syntax for a selector:
 
 `<|{selected_value}|selector|lov={lov_selector}|>`.
 
 An 'Update chart' button will update the chart according to the selected pipeline.
 
-These variables below are the parameters of the pipeline selector. The selected pipeline will be the first among 'baseline' and 'ml' when starting the client.
+These variables below are the parameters of the pipeline selector. The selected pipeline will be the first among 
+'baseline' and 'ml' when starting the client.
 
 ```python
 # Set the list of pipelines names
@@ -36,7 +40,8 @@ Select the pipeline
 """
 ```
 
-The code around the GUI has evolved. `create_scenario()` is creating a scenario and submitting it with the `submit_scenario()` function. `update_chart()` is updating the chart based upon the selected scenario and pipeline.
+The code around the GUI has evolved. `create_scenario()` is creating a scenario and submitting it with the 
+`submit_scenario()` function. `update_chart()` is updating the chart based upon the selected scenario and pipeline.
 
 ![Organisation](organisation.svg){ width=500 style="margin:auto;display:block" }
 
@@ -63,7 +68,8 @@ def update_chart(state):
     update_predictions_dataset(state, pipeline)
 ```
 
-Before running the GUI, these two lines of code will erase the previous scenarios, pipelines, datanodes that you created in the previous steps to avoid any problem of compatibility.
+Before running the GUI, these two lines of code will erase the previous scenarios, pipelines, data nodes that you 
+created in the previous steps to avoid any problem of compatibility.
 
 ```python
 # Delete all entities

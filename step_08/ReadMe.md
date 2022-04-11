@@ -2,7 +2,9 @@
 
 # Step 8: Modify Data Nodes content
 
-Now that the GUI has been created to handle one scenario, it would be interesting to change the “initial” variables to see their impact on the predictions. These variables are: the *number of predictions*, the *max capacity* and the *day*. How can we interact with them in real-time?
+Now that the GUI has been created to handle one scenario, it would be interesting to change the “initial” variables 
+to see their impact on the predictions. These variables are: the *number of predictions*, the *max capacity* and the 
+*day*. How can we interact with them in real-time?
 
 It can easily be done using the `write()` function of Data Nodes.
 
@@ -15,7 +17,11 @@ n_predictions = 40
 max_capacity = 200
 ```
 
-Second, we will add to the Markdown (before the chart), a visual element binding each of these variables. We will be using them to “modify” the scenario. See the documentation for these newly introduced visual elements here: [date](https://docs.taipy.io/manuals/gui/viselements/date/) and [number](https://docs.taipy.io/manuals/gui/viselements/number/). A 'Save button' is also created to run the 'submit_scenario()' function when pressed.
+Second, we will add to the Markdown (before the chart), a visual element binding each of these variables. We will be 
+using them to “modify” the scenario. See the documentation for these newly introduced visual elements here: 
+[date](https://docs.taipy.io/manuals/gui/viselements/date/) and 
+[number](https://docs.taipy.io/manuals/gui/viselements/number/). A 'Save button' is also created to run the 
+'submit_scenario()' function when pressed.
 
 ```python
 page_scenario_manager = page + """
@@ -36,7 +42,8 @@ Select the pipeline
 """
 ```
 
-`create_scenario()` function is almost the same as before except for the need to track the __scenario_id__ of the newly created scenario (using the Global variable __selected_scenario__).
+`create_scenario()` function is almost the same as before except for the need to track the __scenario_id__ of the 
+newly created scenario (using the Global variable __selected_scenario__).
 
 ```python
 def create_scenario():
@@ -54,7 +61,9 @@ The `submit_scenario()` function introduces two essential Taipy functions:
 
 - `tp.get(scenario_id)`: Taipy function used to get the scenario from its id.
 
-- `write(new_value)`: a Data Node function that changes the value stored in the Data Node. For example, __scenario.max_capacity__ is a Data Node whose value can be changed to 100 like this `scenario.max_capacity.write(100)`.
+- `write(new_value)`: a Data Node function that changes the value stored in the Data Node. For example, 
+  __scenario.max_capacity__ is a Data Node whose value can be changed to 100 like this
+  `scenario.max_capacity.write(100)`.
 
 ```python
 def submit_scenario(state):
@@ -77,7 +86,8 @@ def submit_scenario(state):
     update_chart(state)
 ```
 
-`update_chart()` uses a previous function (`update_predictions_dataset()`) to update the __predictions_dataset__ with the correct pipeline.
+`update_chart()` uses a previous function (`update_predictions_dataset()`) to update the __predictions_dataset__ 
+with the correct pipeline.
 
 ```python
 def update_chart(state):
