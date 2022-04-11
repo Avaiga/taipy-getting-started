@@ -46,7 +46,6 @@ Want to be part of the _Taipy Getting Started_ community? Check out our [`CODE_O
 
 - `src`: Common code shared by all the steps. For more information, on each step a README.md file is available in their
   respective folder (`step_xx/ReadMe.md`).
-- `prerequisite`: The presentation of Taipy prerequisites, in particular a Taipy installation documentation.
 - `step_00`: The presentation of Taipy and the minimum code to run the gui.
 - `step_01`: Presentation of the interactiveness of Taipy as well as different controls (slider and chart).
 - `step_02`: Introduction to the on_change function with the choice of the week. The week displayed on the graph is 
