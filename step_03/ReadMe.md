@@ -64,7 +64,7 @@ Data Nodes can point to:
 - a CSV file, Pickle file or SQL database.
 
 During the configuration of the Data Nodes, the developer specifies the type or format of each Data Node. A *Python* 
-variable is store by default by a Pickle file.
+variable is stored by default by a Pickle file.
 
 Some parameters for Data Node configuration:
 
