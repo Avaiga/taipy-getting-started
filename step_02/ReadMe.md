@@ -16,9 +16,7 @@ Try to open a few clients with the same URL. You will see that every client is i
 
 The state holds the value of all the variables that are used in the user interface, for one specific connection.
 
-For example:
-
-At the beginning, `state.n_week = 10`. When *n_week* is modified by the slider (through a given graphical client), this is, in fact, *state.n_week* that is modified, not *n_week* (the global Python variable). Therefore, if you open 2 different clients, *n_week* will have 2 state values (*state.n_week*), one for each client.
+For example, at the beginning, `state.n_week = 10`. When *n_week* is modified by the slider (through a given graphical client), this is, in fact, *state.n_week* that is modified, not *n_week* (the global Python variable). Therefore, if you open 2 different clients, *n_week* will have 2 state values (*state.n_week*), one for each client.
 
 In the code below, this concept will be used to connect a variable (*n_week*) to other variables:
 
