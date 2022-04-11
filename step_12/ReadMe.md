@@ -29,8 +29,8 @@ selected_metric = metric_selector[0]
 
 First, a function has to be created to compare the primary scenario of all the cycles. 
 `tp.get_primary_scenarios()` is the useful function to use for this effect. `compare()` goes through all of these 
-scenarios and pipelines and add the metrics in lists. In the end, __state.comparison_scenario__ is updated and 
-__comparison_scenario_done__ set to `True`.
+scenarios and pipelines and add the metrics in lists. In the end, *state.comparison_scenario* is updated and 
+*comparison_scenario_done* set to `True`.
 
 ```python
 from sklearn.metrics import mean_absolute_error, mean_squared_error
@@ -128,7 +128,7 @@ page_performance = """
 """
 ```
 
-![Page Performance](page_performance.gif){ width=700 style="margin:auto;display:block" }
+![Page Performance](page_performance.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
 ```python
 # Add the page_performance section to the menu   
@@ -144,5 +144,5 @@ multi_pages = """
 Gui(page=multi_pages).run(dark_mode=False) 
 ```
 
-![Compare Scenarios](result.png){ width=700 style="margin:auto;display:block" }
+![Compare Scenarios](result.png){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 

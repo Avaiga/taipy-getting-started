@@ -46,7 +46,7 @@ def create_and_submit_pipeline():
     return pipeline
 ```
 
-After the execution of the pipeline (`tp.submit()`), the data stored in __predictions__ and __cleaned_data__ Data 
+After the execution of the pipeline (`tp.submit()`), the data stored in *predictions* and *cleaned_data* Data 
 Nodes become accessible. The `read()` method accesses the data in Data Nodes.
 
 The `create_predictions_dataset()` function below creates a final dataframe (that concatenates the predictions and 
@@ -106,6 +106,6 @@ This is what the structure of the code looks like for the GUI:
 Gui(page=pipeline_page).run(dark_mode=False)
 ```
 
-![GUI for a pipeline](result.png){ width=700 style="margin:auto;display:block" }
+![GUI for a pipeline](result.png){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
 > **Important Remark**: A better option would have been to have the `create_predictions_dataset()` modeled as a last **Task** inside the pipeline graph.
