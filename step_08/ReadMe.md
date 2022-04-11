@@ -1,12 +1,14 @@
 > You can download the code of this step [here](../src/step_08.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
-# Step 8: Update data of Data Nodes
+# Step 8: Modify Data Nodes content
 
-Now that the GUI has been created to handle a scenario, it would be interesting to change the initial variables to see their impact on the predictions. These are the input variables that haven't changed so far: the *number of predictions*, the *max capacity* and the *day*. How can we interact with them in real-time?
+Now that the GUI has been created to handle one scenario, it would be interesting to change the “initial” variables 
+to see their impact on the predictions. These variables are: the *number of predictions*, the *max capacity* and the 
+*day*. How can we interact with them in real-time?
 
-It can easily be done with the `write()` function of Data Nodes.
+It can easily be done using the `write()` function of Data Nodes.
 
-First, to add variables to a visual element, they have to be initialized. 
+First, to link these variables to a visual element, they have to be initialized. 
 ```python
 # Initial variables
 ## Initial variables for the scenario   
@@ -15,7 +17,11 @@ n_predictions = 40
 max_capacity = 200
 ```
 
-Some additions have been made to the Markdown before the chart. Three visual elements are created and will be used to change the scenario. See the documentation for these visual elements here: [date](https://docs.taipy.io/manuals/gui/viselements/date/) and [number](https://docs.taipy.io/manuals/gui/viselements/number/). A 'Save button' is also created to run the 'submit' function when pressed.
+Second, we will add to the Markdown (before the chart), a visual element binding each of these variables. We will be 
+using them to “modify” the scenario. See the documentation for these newly introduced visual elements here: 
+[date](https://docs.taipy.io/manuals/gui/viselements/date/) and 
+[number](https://docs.taipy.io/manuals/gui/viselements/number/). A 'Save button' is also created to run the 
+'submit_scenario()' function when pressed.
 
 ```python
 page_scenario_manager = page + """
@@ -27,7 +33,7 @@ page_scenario_manager = page + """
 
 **Number of predictions**\n\n<|{n_predictions}|number|>
 
-<|Save changes|button|on_action={submit}|>
+<|Save changes|button|on_action={submit_scenario}|>
 
 Select the pipeline
 <|{selected_pipeline}|selector|lov={pipeline_selector}|> <|Update chart|button|on_action={update_chart}|>
@@ -36,7 +42,8 @@ Select the pipeline
 """
 ```
 
-`create_scenario` function is almost the same as before whereas some additions have been made to the `submit` function.
+`create_scenario()` function is almost the same as before except for the need to track the __scenario_id__ of the 
+newly created scenario (using the Global variable __selected_scenario__).
 
 ```python
 def create_scenario():
@@ -50,23 +57,25 @@ def create_scenario():
     tp.submit(scenario)
 ```
 
-The `submit` function introduces two essential Taipy functions:
+The `submit_scenario()` function introduces two essential Taipy functions:
 
 - `tp.get(scenario_id)`: Taipy function used to get the scenario from its id.
 
-- `write(new_value)`: a Data Node function that changes the value stored in the Data Node. For example, `scenario.max_capacity` is a Data Node whose value can be changed to 100 like this `scenario.max_capacity.write(100)`.
+- `write(new_value)`: a Data Node function that changes the value stored in the Data Node. For example, 
+  __scenario.max_capacity__ is a Data Node whose value can be changed to 100 like this
+  `scenario.max_capacity.write(100)`.
 
 ```python
-def submit(state):
+def submit_scenario(state):
     print("Submitting scenario...")
-    # Get the selected scenario, we have just one scenario created
+    # Get the selected scenario: in this current step a single scenario is created then modified here.
     scenario = tp.get(selected_scenario)
     
-    # Conversion to the right format (change?)
-    day = dt.datetime(state.day.year, state.day.month, state.day.day)
+    # Conversion to the right format
+    state_day = dt.datetime(state.day.year, state.day.month, state.day.day)
 
     # Change the default parameters by writing in the datanodes
-    scenario.day.write(day)
+    scenario.day.write(state_day)
     scenario.n_predictions.write(int(state.n_predictions))
     scenario.max_capacity.write(int(state.max_capacity))
 
@@ -77,7 +86,8 @@ def submit(state):
     update_chart(state)
 ```
 
-`update_chart` uses a previous function (`update_predictions_dataset`) to update the `predictions_dataset` with the correct pipeline.
+`update_chart()` uses a previous function (`update_predictions_dataset()`) to update the __predictions_dataset__ 
+with the correct pipeline.
 
 ```python
 def update_chart(state):
@@ -89,9 +99,9 @@ def update_chart(state):
 
 
 global selected_scenario
-# Creation of our first scenario
+# Creation of a single scenario
 create_scenario()
-Gui(page=page_scenario_manager).run()
+Gui(page=page_scenario_manager).run(dark_mode=False)
 ```
 
 ![Write data](result.gif){ width=700 style="margin:auto;display:block" }

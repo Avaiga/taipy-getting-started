@@ -6,7 +6,7 @@ Step 4: Pipeline Management
 Step 5: GUI & Pipeline
 Step 6: Creation of Scenarios
 Step 7: GUI & Scenarios
-Step 8: Update data of Data Nodes
+Step 8: Modify Data Nodes content
 Step 9: Manage Scenarios
 Step 10: Embellish your App
 Step 11: Introducing Cycles

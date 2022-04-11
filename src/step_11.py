@@ -4,11 +4,10 @@ from step_06 import ml_pipeline_cfg
 from taipy import Config, Frequency
 from taipy.gui import notify
 
-
 # Create scenarios each week and compare them
 scenario_daily_cfg = Config.configure_scenario(id="scenario",
-                                            pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg],
-                                            frequency=Frequency.DAILY)
+                                               pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg],
+                                               frequency=Frequency.DAILY)
 
 if __name__ == '__main__':
     # Delete all entities
@@ -17,6 +16,7 @@ if __name__ == '__main__':
 
 # Change the inital scenario selector to see which scenarios are primary
 scenario_selector = [(scenario.id, ("*" if scenario.is_primary else "") + scenario.name) for scenario in all_scenarios]
+
 
 # Redefine update_scenario_selector to add '*' in the display name when the scnario is primary
 def update_scenario_selector(state, scenario):
@@ -53,29 +53,28 @@ def submit_scenario(state):
     print("Submitting scenario...")
     # Get the currently selected scenario
     scenario = tp.get(state.selected_scenario[0])
-    
+
     # Conversion to the right format (change?)
-    day = dt.datetime(state.day.year, state.day.month, state.day.day) 
+    day = dt.datetime(state.day.year, state.day.month, state.day.day)
 
     # Change the default parameters by writing in the Data Nodes
-    #if state.day != scenario.day.read():
+    # if state.day != scenario.day.read():
     scenario.day.write(day)
-    #if int(state.n_predictions) != scenario.n_predictions.read(): 
+    # if int(state.n_predictions) != scenario.n_predictions.read():
     scenario.n_predictions.write(int(state.n_predictions))
-    #if state.max_capacity != scenario.max_capacity.read():
+    # if state.max_capacity != scenario.max_capacity.read():
     scenario.max_capacity.write(int(state.max_capacity))
-    #if state.day != scenario.creation_date:
+    # if state.day != scenario.creation_date:
     scenario.creation_date = state.day
-        
 
     # Execute the pipelines/code
     tp.submit(scenario)
-    
+
     # Update the scenario selector and the scenario that is currently selected
-    update_scenario_selector(state, scenario) # change list to scenario
-    
+    update_scenario_selector(state, scenario)  # change list to scenario
+
     # Update the chart directly
-    update_chart(state) 
+    update_chart(state)
 
 
 def make_primary(state):
@@ -83,7 +82,7 @@ def make_primary(state):
     scenario = tp.get(state.selected_scenario[0])
     # Take the current scenario primary
     tp.set_primary(scenario)
-    
+
     # Update the scenario selector accordingly
     state.scenario_selector = [(scenario.id, ("*" if scenario.is_primary else "") + scenario.name)
                                for scenario in tp.get_scenarios()]
@@ -97,17 +96,17 @@ def remove_scenario_from_selector(state, scenario: list):
 
 def delete_scenario(state):
     scenario = tp.get(state.selected_scenario[0])
-    
+
     if scenario.is_primary:
         # Notify the user that primary scenarios can not be deleted
         notify(state, 'info', 'Cannot delete the primary scenario')
     else:
         # Delete the scenario and the related objects (datanodes, tasks, jobs,...)
         tp.delete(scenario.id)
-        
+
         # Update the scenario selector accordingly
-        remove_scenario_from_selector(state,scenario)
-    
+        remove_scenario_from_selector(state, scenario)
+
 
 # Add a 'Delete scenario' and a 'Make primary' button s
 page_scenario_manager = """
@@ -175,7 +174,7 @@ def on_change(state, var_name: str, var_value):
     if var_name == 'n_week':
         # Update the dataset when the slider is moved
         state.dataset_week = dataset[dataset['Date'].dt.isocalendar().week == var_value]
-        
+
     elif var_name == 'selected_pipeline' or var_name == 'selected_scenario':
         # Update selected_scenario_is_primary indicating if the current scenario is primary or not
         state.selected_scenario_is_primary = tp.get(state.selected_scenario[0]).is_primary
@@ -186,4 +185,4 @@ def on_change(state, var_name: str, var_value):
 
 
 if __name__ == '__main__':
-    Gui(page=multi_pages).run()
+    Gui(page=multi_pages).run(dark_mode=False)

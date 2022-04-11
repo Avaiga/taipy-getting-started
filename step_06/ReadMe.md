@@ -2,11 +2,17 @@
 
 # Step 6: Creation and execution of Scenarios
 
-Now that you have seen how to create and run a single pipeline, let's configure a scenario. Remember, a scenario is usually used to answer your business problem. Different scenarios would represent different solutions to your problem. Here, *max_capacity*, *day* and *number of predictions* influences the scenario.
+Now that you have seen how to create and run a single pipeline, let's configure a scenario. Remember, scenarios are 
+required whenever the end-user wants to run variations of the pipelines and perform what-if analysis to simulate 
+different business situations . Each scenario would represent a different solution to your problem. Here, 
+*max_capacity*, *day* and *number of predictions* can influence the scenario.
 
-In this example, it will run two pipelines: the first pipeline (*baseline*) and another one (*ml*) that will predict through a different function.
+In this example, we will run two pipelines: our initial  pipeline (*baseline*) together with a new one (referred as 
+'*ml*') that will implement a  different prediction function/model.
 
-```python      
+```python
+# For the sake of clarity, we have used an AutoRegressive model rather than a pure ML model such as:
+# Random Forest, Linear Regression, LSTM, etc   
 from statsmodels.tsa.ar_model import AutoReg
 
 # This is the function that will be used by the task
@@ -24,7 +30,8 @@ def predict_ml(cleaned_dataset: pd.DataFrame, n_predictions: int, day: dt.dateti
     return predictions
 ```
 
-The *predict_ml* task configuration must be created in the same format as before with a function, inputs, and outputs.
+A **predict_ml** Task config will need to be created and associated with the newly created __predict_ml()__ function.
+The **predict_ml** Task configuration is created using the same format as before with a function, inputs, and outputs.
 
 ![Predict ML](predict_ml.svg){ width=300 style="margin:auto;display:block" }
 
@@ -40,18 +47,21 @@ predict_ml_task_cfg = Config.configure_task(id="predict_ml",
 With this new task, the Machine Learning pipeline can finally be configured.
 
 ```python   
-# Create a ml pipeline that will clean and predict with the ml model
+# Create the new ml pipeline that will clean and predict with the ml model
 ml_pipeline_cfg = Config.configure_pipeline(id="ml", task_configs=[clean_data_task_cfg, predict_ml_task_cfg])
 ```
 
-To configure a scenario, you need to use `tp.configure_scenario` and the list of the related pipelines. You could add more pipelines/algorithms with just a couple more lines.
+To configure a scenario, you need to use `tp.configure_scenario` and the list of the related pipelines. You can 
+easily add more pipelines/algorithms if you wished to.
 
 ```python   
 # Configure our scenario which is our business problem.
 scenario_cfg = Config.configure_scenario(id="scenario", pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg])
 ```
 
-The configuration is now complete. Now, you can create your scenario and execute it. When creating it, Taipy will create your pipelines, and when you submit the scenario, it will run them based on the built-in intelligent scheduling. Taipy knows which tasks to do before which one and will be able to cancel Jobs if a task is repetitive.
+The configuration is now complete. Now, you can create your scenario and execute it. When creating it, Taipy will 
+create your pipelines (and its associated Tasks), and when you submit the scenario, it will run them based on 
+Taipy’s built-in intelligent scheduling. Taipy knows in which sequence the Tasks need to be performed.
 
 ```python
 # Create the scenario

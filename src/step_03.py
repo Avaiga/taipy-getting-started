@@ -12,6 +12,8 @@ initial_dataset_cfg = Config.configure_data_node(id="initial_dataset",
                                                  path=path_to_csv,
                                                  scope=Scope.GLOBAL)
 
+# We assume the current day is the 26th of July 2021.
+# This day can be changed to simulate multiple executions of scenarios on different days
 day_cfg = Config.configure_data_node(id="day", default_data=dt.datetime(2021, 7, 26))
 
 n_predictions_cfg = Config.configure_data_node(id="n_predictions", default_data=40)
@@ -23,11 +25,8 @@ cleaned_dataset_cfg = Config.configure_data_node(id="cleaned_dataset",
                                                  cacheable=True,
                                                  validity_period=dt.timedelta(days=1),
                                                  scope=Scope.GLOBAL)
-                                                                   
-                                                                   
 
 predictions_cfg = Config.configure_data_node(id="predictions", scope=Scope.PIPELINE)
-
 
 
 # Functions (3.2)
@@ -43,7 +42,7 @@ def predict_baseline(cleaned_dataset: pd.DataFrame, n_predictions: int, day: dt.
     print("     Predicting baseline")
     # Select the train data
     train_dataset = cleaned_dataset[cleaned_dataset['Date'] < day]
-    
+
     predictions = train_dataset['Value'][-n_predictions:].reset_index(drop=True)
     predictions = predictions.apply(lambda x: min(x, max_capacity))
     return predictions
@@ -57,5 +56,6 @@ clean_data_task_cfg = Config.configure_task(id="clean_data",
 
 predict_baseline_task_cfg = Config.configure_task(id="predict_baseline",
                                                   function=predict_baseline,
-                                                  input=[cleaned_dataset_cfg, n_predictions_cfg, day_cfg, max_capacity_cfg],
+                                                  input=[cleaned_dataset_cfg, n_predictions_cfg, day_cfg,
+                                                         max_capacity_cfg],
                                                   output=predictions_cfg)
