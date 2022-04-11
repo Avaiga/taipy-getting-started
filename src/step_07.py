@@ -8,13 +8,13 @@ from taipy import Config
 pipeline_selector = ['baseline', 'ml']
 selected_pipeline = pipeline_selector[0]
 
-
 scenario_page = page + """
 Select the pipeline
 <|{selected_pipeline}|selector|lov={pipeline_selector}|> <|Update chart|button|on_action=update_chart|>
 
 <|{predictions_dataset}|chart|x=Date|y[1]=Historical values|type[1]=bar|y[2]=Predicted values|type[2]=scatter|height=80%|width=100%|>
 """
+
 
 def create_scenario():
     print("Creating scenario...")
@@ -43,7 +43,7 @@ if __name__ == "__main__":
     # Delete all entities
     Config.configure_global_app(clean_entities_enabled=True)
     tp.clean_all_entities()
-    
+
     # Creation of our first scenario
     scenario = create_scenario()
     Gui(page=scenario_page).run(dark_mode=False)

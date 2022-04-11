@@ -1,11 +1,13 @@
 from taipy import Gui
 import pandas as pd
 
+
 def get_data(path_to_csv: str):
     # pandas.read_csv() returns a pd.DataFrame
     dataset = pd.read_csv(path_to_csv)
     dataset['Date'] = pd.to_datetime(dataset['Date'])
     return dataset
+
 
 # Read the dataframe
 path_to_csv = "dataset.csv"

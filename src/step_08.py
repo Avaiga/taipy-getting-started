@@ -29,9 +29,9 @@ def create_scenario():
 
     print("Creating scenario...")
     scenario = tp.create_scenario(scenario_cfg)
-  
+
     selected_scenario = scenario.id
-  
+
     tp.submit(scenario)
 
 
@@ -39,7 +39,7 @@ def submit_scenario(state):
     print("Submitting scenario...")
     # Get the selected scenario: in this current step a single scenario is created then modified here.
     scenario = tp.get(selected_scenario)
-    
+
     # Conversion to the right format
     state_day = dt.datetime(state.day.year, state.day.month, state.day.day)
 
@@ -50,7 +50,7 @@ def submit_scenario(state):
 
     # Execute the pipelines/code
     tp.submit(scenario)
-    
+
     # Update the chart when we change the scenario
     update_chart(state)
 

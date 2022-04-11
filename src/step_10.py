@@ -49,13 +49,14 @@ multi_pages = """
 <|part|render={page=="Scenario Manager"}|""" + page_scenario_manager + """|>
 """
 
-
 # The initial page is the "Data Visualization" page
 page = "Data Visualization"
+
+
 def menu_fct(state, var_name: str, fct: str, var_value: list):
     # Change the value of the state.page variable in order to render the correct page
     state.page = var_value['args'][0]
 
+
 if __name__ == "__main__":
     Gui(page=multi_pages).run(dark_mode=False)
-    

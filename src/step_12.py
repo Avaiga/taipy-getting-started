@@ -3,9 +3,9 @@ from step_11 import *
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 
 # Initial dataset for comparison
-comparison_scenario = pd.DataFrame({'Scenario Name':[],
-                                    'RMSE baseline':[], 'MAE baseline':[],
-                                    'RMSE ML':[], 'MAE ML':[]})
+comparison_scenario = pd.DataFrame({'Scenario Name': [],
+                                    'RMSE baseline': [], 'MAE baseline': [],
+                                    'RMSE ML': [], 'MAE ML': []})
 
 # Indicates if the comparison is done
 comparison_scenario_done = False
@@ -29,11 +29,11 @@ def compare(state):
     maes_baseline = []
     rmses_ml = []
     maes_ml = []
-    
+
     # Go through all the primary scenarios
     all_scenarios = tp.get_primary_scenarios()
-    all_scenarios_ordered = sorted(all_scenarios, key=lambda x: x.creation_date.timestamp()) # delete?
-    
+    all_scenarios_ordered = sorted(all_scenarios, key=lambda x: x.creation_date.timestamp())  # delete?
+
     for scenario in all_scenarios_ordered:
         print(f"Scenario '{scenario.name}'")
         # Go through all the pipelines
@@ -41,14 +41,14 @@ def compare(state):
             print(f"     Pipeline '{pipeline.config_id}'")
             # Get the predictions dataset with the historical data
             only_prediction_dataset = create_predictions_dataset(pipeline)[-pipeline.n_predictions.read():]
-            
+
             # Series to compute the metrics (true values and predicted values)
             historical_values = only_prediction_dataset['Historical values']
             predicted_values = only_prediction_dataset['Predicted values']
-            
+
             # Compute the metrics for this pipeline and primary scenario
             rmse, mae = compute_metrics(historical_values, predicted_values)
-            
+
             # Add values to the appropriate lists
             if 'baseline' in pipeline.config_id:
                 rmses_baseline.append(rmse)
@@ -58,18 +58,18 @@ def compare(state):
                 maes_ml.append(mae)
 
         scenario_names.append(scenario.creation_date.strftime('%A %d %b'))
-        
+
     # Update comparison_scenario
-    state.comparison_scenario = pd.DataFrame({'Scenario Name':scenario_names,
-                                              'RMSE baseline':rmses_baseline,
-                                              'MAE baseline':maes_baseline,
-                                              'RMSE ML':rmses_ml,
-                                              'MAE ML':maes_ml})
-    
+    state.comparison_scenario = pd.DataFrame({'Scenario Name': scenario_names,
+                                              'RMSE baseline': rmses_baseline,
+                                              'MAE baseline': maes_baseline,
+                                              'RMSE ML': rmses_ml,
+                                              'MAE ML': maes_ml})
+
     # When comparison_scenario_done will be set to True,
     # the part with the graphs will be finally rendered
     state.comparison_scenario_done = True
-    
+
 
 # Performance page
 page_performance = """
@@ -100,8 +100,7 @@ page_performance = """
 </center>
 """
 
- 
-# Add the page_performance section to the menu   
+# Add the page_performance section to the menu
 multi_pages = """
 <|menu|label=Menu|lov={["Data Visualization", "Scenario Manager", "Performance"]}|on_action=menu_fct|>
 
