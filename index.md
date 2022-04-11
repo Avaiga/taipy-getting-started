@@ -29,8 +29,9 @@ $ pip install scikit-learn
 $ pip install statsmodels
 ```
 
-!!! info "This is the preferred method to install Taipy, as it will always install the most recent stable release."
-
+!!! info ""
+    `pip install taipy` is the preferred method to install the latest stable version of Taipy.
+    
     If you don't have [pip][] installed, this [Python installation guide][]
     can guide you through the process.
 
