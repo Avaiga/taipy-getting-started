@@ -85,7 +85,7 @@ def create_predictions_dataset(pipeline):
     return pd.concat([temp_df['Date'], historical_values, predicted_values], axis=1)
 ```
 
-It is now really simple to get  the predictions dataset and display it in the “Prediction chart” created above.
+It is now really simple to get  the predictions dataset and display it in the "Prediction chart" created above.
 
 
 When you press the 'Predict' button, this function below is called. It will update the predictions' dataset, and 
