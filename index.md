@@ -34,10 +34,12 @@ $ pip install scikit-learn
 $ pip install statsmodels
 ```
 
-!!! info ""
+!!! info 
+
     `pip install taipy` is the preferred method to install the latest stable version of Taipy.
     
-    If you don't have [pip][] installed, this [Python installation guide][]
+    If you don't have [pip](https://pip.pypa.io) installed, this 
+    [Python installation guide](http://docs.python-guide.org/en/latest/starting/installation/)
     can guide you through the process.
 
 It is recommended to use **Python scripts** (.py) to follow the Getting Started. If you want to use a **Notebook** (.
