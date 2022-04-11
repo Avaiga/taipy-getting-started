@@ -73,9 +73,9 @@ These are the input Data Nodes. They represent the variables in Taipy when a pip
 
 - *day* is the beginning of the predictions. The default value is the 26th of July. It means the training data will end before the 26th of July, and predictions will begin on this day.
 
-- *n_predictions* is the number of predictions you want to make while predicting. The default value is 40. A prediction represents the number of items bought in a given store in 15 minutes.
+- *n_predictions* is the number of predictions you want to make while predicting. The default value is 40. A prediction represents the number of items sold in a given store per 15-minute time slot.
 
-- *max_capacity* is the maximum value that can take a prediction; it is the ceiling of the projections. The default value is 200. It means that, in our example, the maximum number of items sold in 15 minutes is 200.
+- *max_capacity* is the maximum value that can take a prediction; it is the ceiling of the projections. The default value is 200. It means that, in our example, the maximum number of items sold per 15 minutes is 200.
 
 ```python
 import datetime as dt
@@ -103,7 +103,7 @@ max_capacity_cfg = Config.configure_data_node(id="max_capacity", default_data=20
 
 - *cleaned_dataset* is the dataset after cleaning (after the `clean_data()` function). `cacheable` is set to `True` with a `scope.GLOBAL`. It means if the initial dataset didn't change, Taipy will not re-execute the `clean_data()` task. In other words, after the creation of this data node through `clean_data()`, Taipy knows that it is not necessary to create it again.
 
-- *predictions* are the predictions of the model. In this pipeline, it will be the output of the `predict_baseline()` function. Each pipeline will create its own *prediction* Data Node hence `scope=Scope.PIPELINE`. 
+- *predictions* are the predictions of the model. In this pipeline, it will be the output of the `predict_baseline()` function. Each pipeline will create its own *prediction* Data Node hence `scope=Scope.PIPELINE`.
 
 ```python
 ## Remaining Data Nodes

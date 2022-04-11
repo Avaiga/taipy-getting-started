@@ -24,13 +24,13 @@ dataset = get_data(path_to_csv)
 ...
 ```
 
-__dataset__ is a *pd.DataFrame*, a basic *Pandas main* object representing, in this case, a realistic time series. It represents the number of articles sold for a given store on a 15-minute basis. Because of that, there will sometimes be no information for specific days. The columns are:
+__dataset__ is a *pd.DataFrame*, a basic *Pandas main* object representing, in this case, a realistic time series. It represents the historical number of articles sold for a given store on a 15-minute basis (we have the historical sales data for the year 2021). Being a real dataset, there will sometimes be missing information for specific days. The columns are:
 
 - Index: a unique identifier for each data point.
 
-- Date: the date of the data point. Each date are seperated by 15 minutes.
+- Date: the date of the data point. Each date are separated by 15 minutes.
 
-- Value: its value so the number of articles bought in this 15-minute timeframe.
+- Value: the number of articles sold per 15-minute timeframe.
 
 ![Table](table.png){ width=700 style="margin:auto;display:block" }
 
