@@ -65,9 +65,9 @@ For example, a [slider](https://docs.taipy.io/manuals/gui/viselements/slider/) i
 For each visual element you wish to add to your web page, you must include the syntax above inside your markdown 
 string (representing your page). For example, at the beginning of the page, let’s display:
 
-- a Python variable _n_week_;
+- a Python variable *n_week*;
 
-- a slider that will “visually” modify the value of _n_week_.
+- a slider that will “visually” modify the value of *n_week*.
 
 
 Here is the overall syntax:
