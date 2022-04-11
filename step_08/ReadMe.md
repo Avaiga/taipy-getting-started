@@ -42,8 +42,8 @@ Select the pipeline
 """
 ```
 
-`create_scenario()` function is almost the same as before except for the need to track the __scenario_id__ of the 
-newly created scenario (using the Global variable __selected_scenario__).
+`create_scenario()` function is almost the same as before except for the need to track the *scenario_id* of the 
+newly created scenario (using the Global variable *selected_scenario*).
 
 ```python
 def create_scenario():
@@ -62,7 +62,7 @@ The `submit_scenario()` function introduces two essential Taipy functions:
 - `tp.get(scenario_id)`: Taipy function used to get the scenario from its id.
 
 - `write(new_value)`: a Data Node function that changes the value stored in the Data Node. For example, 
-  __scenario.max_capacity__ is a Data Node whose value can be changed to 100 like this
+  *scenario.max_capacity* is a Data Node whose value can be changed to 100 like this
   `scenario.max_capacity.write(100)`.
 
 ```python
@@ -86,7 +86,7 @@ def submit_scenario(state):
     update_chart(state)
 ```
 
-`update_chart()` uses a previous function (`update_predictions_dataset()`) to update the __predictions_dataset__ 
+`update_chart()` uses a previous function (`update_predictions_dataset()`) to update the *predictions_dataset* 
 with the correct pipeline.
 
 ```python
@@ -104,4 +104,4 @@ create_scenario()
 Gui(page=page_scenario_manager).run(dark_mode=False)
 ```
 
-![Write data](result.gif){ width=700 style="margin:auto;display:block" }
+![Write data](result.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }

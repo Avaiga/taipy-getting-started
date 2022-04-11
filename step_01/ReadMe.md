@@ -26,7 +26,7 @@ dataset = get_data(path_to_csv)
 ...
 ```
 
-__dataset__ is a *pd.DataFrame*, a basic *Pandas main* object representing, in this case, a realistic time series. 
+_dataset_ is a *pd.DataFrame*, a basic *Pandas main* object representing, in this case, a realistic time series. 
 It represents the historical number of articles sold for a given store on a 15-minute basis (we have the historical 
 sales data for the year 2021). Being a real dataset, there will sometimes be missing information for specific days. 
 The columns are:
@@ -37,7 +37,7 @@ The columns are:
 
 - Value: the number of articles sold per 15-minute timeframe.
 
-![Table](table.png){ width=700 style="margin:auto;display:block" }
+![Table](table.png){ width=700 style="margin:auto;display:block;border: 2px solid rgb(210,210,210);border-radius:7px" }
 
 After creating your first web client with just one line of code and reading our dataset data with the code above, 
 let's add some  visual elements to our initial page.
@@ -65,9 +65,9 @@ For example, a [slider](https://docs.taipy.io/manuals/gui/viselements/slider/) i
 For each visual element you wish to add to your web page, you must include the syntax above inside your markdown 
 string (representing your page). For example, at the beginning of the page, let’s display:
 
-- a Python variable __n_week__;
+- a Python variable *n_week*;
 
-- a slider that will “visually” modify the value of __n_week__.
+- a slider that will “visually” modify the value of *n_week*.
 
 
 Here is the overall syntax:
@@ -117,4 +117,4 @@ Display the last three months of data:
 Gui(page=page).run(dark_mode=False)
 ```
 
-![Visual Elements](result.gif){ width=700 style="margin:auto;display:block" }
+![Visual Elements](result.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }

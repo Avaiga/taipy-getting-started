@@ -17,4 +17,4 @@ Note that you can style the text. Taipy uses the Markdown syntax to style your t
 a title, `##` makes a subtitle. Put your text in `*` for *italics* or in `**` to have it in **bold**.
 
 
-![First Web Page](result.png){ width=700 style="margin:auto;display:block" }
+![First Web Page](result.png){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }

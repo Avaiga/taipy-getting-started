@@ -30,7 +30,7 @@ def predict_ml(cleaned_dataset: pd.DataFrame, n_predictions: int, day: dt.dateti
     return predictions
 ```
 
-A **predict_ml** Task config will need to be created and associated with the newly created __predict_ml()__ function.
+A **predict_ml** Task config will need to be created and associated with the newly created `predict_ml()` function.
 The **predict_ml** Task configuration is created using the same format as before with a function, inputs, and outputs.
 
 ![Predict ML](predict_ml.svg){ width=300 style="margin:auto;display:block" }

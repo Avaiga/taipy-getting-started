@@ -83,4 +83,4 @@ scenario = create_scenario()
 Gui(page=scenario_page).run(dark_mode=False) 
 ```
 
-![GUI for a scenario](result.gif){ width=700 style="margin:auto;display:block" }
+![GUI for a scenario](result.gif){ width=700 style="margin:auto;display:block;border: 2px solid rgb(210,210,210);border-radius:7px" }
