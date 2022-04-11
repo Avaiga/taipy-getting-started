@@ -15,12 +15,18 @@ Each step of the **'Getting Started'** will focus on basic concepts of *Taipy*. 
 
 ## Before we begin:
 
-- Three packages have to be installed:
+Three packages have to be installed:
 
-  1. **Taipy** package:
+ 1. **Taipy** package;
+
+ 2. **scikit-learn**: A Machine-Learning package that will be used in the Getting Started user code;
+
+ 3. **statsmodels**: Another package for statitics used in the User Code of the Getting Started.
 
 ``` console
 $ pip install taipy
+$ pip install scikit-learn
+$ pip install statsmodels
 ```
 
 !!! info "This is the preferred method to install Taipy, as it will always install the most recent stable release."
@@ -28,21 +34,7 @@ $ pip install taipy
     If you don't have [pip][] installed, this [Python installation guide][]
     can guide you through the process.
 
- 2. **scikit-learn**: A Machine-Learning package that will be used in the Getting Started user code.
-
-``` console
-$ pip install scikit-learn
-```
-
- 3. **statsmodels**: Another package for statitics used in the User Code of the Getting Started.
-
-``` console
-$ pip install statsmodels
-```
-
-- Use Python scripts (.py) to run the code
-
-- Or use a Notebook (.ipynb) with the specific Gui functions for Notebooks. See the docs [here](https://docs.taipy.io/manuals/gui/notebooks/).
+It is recommended to use **Python scripts** (.py) to follow the Getting Started. If you want to use a **Notebook** (.ipynb), you need to take a look at the specific GUI functions for Notebooks. See the docs [here](https://docs.taipy.io/manuals/gui/notebooks/).
 
 So, without further delay, let's begin to code!
 
@@ -64,7 +56,7 @@ So, without further delay, let's begin to code!
 
 7. [GUI & Scenarios](step_07/ReadMe.md)
 
-8. [Update data of Data Nodes](step_08/ReadMe.md)
+8. [Edit Data Nodes content](step_08/ReadMe.md)
 
 9. [Manage Scenarios](step_09/ReadMe.md)
 
