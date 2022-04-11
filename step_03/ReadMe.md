@@ -34,7 +34,7 @@ In a ML context, it is common to have numerous training and testing pipelines fo
 
 - Data Cleaning,
 
-- Predictions (for *number of predictions*) from **day** onwards.
+- Predictions (for *number of predictions*) from **day** onwards. In our example, predictions represents the number of items sold in a given store on a 15 min basis.
 
 ![Baseline Pipeline](baseline_pipeline.svg){ width=500 style="margin:auto;display:block" }
 
@@ -73,9 +73,9 @@ These are the input Data Nodes. They represent the variables in Taipy when a pip
 
 - *day* is the beginning of the predictions. The default value is the 26th of July. It means the training data will end before the 26th of July, and predictions will begin on this day.
 
-- *n_predictions* is the number of predictions you want to make while predicting. The default value is 40.
+- *n_predictions* is the number of predictions you want to make while predicting. The default value is 40. A prediction represents the number of items bought in a given store in 15 minutes.
 
-- *max_capacity* is the maximum value that can take a prediction; it is the ceiling of the projections. The default value is 200.
+- *max_capacity* is the maximum value that can take a prediction; it is the ceiling of the projections. The default value is 200. It means that, in our example, the maximum number of items sold in 15 minutes is 200.
 
 ```python
 import datetime as dt

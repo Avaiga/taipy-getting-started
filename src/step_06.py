@@ -1,3 +1,6 @@
+# Even though an AutoRegressive is considered more of a Time Analysis model than a ML model
+# We will use it here to demonstrate the use of Scenarios. You could change it to be a different model:
+# (Random Forest, Linear Regression, etc) 
 from statsmodels.tsa.ar_model import AutoReg
 
 from taipy import Config

@@ -6,7 +6,10 @@ Now that you have seen how to create and run a single pipeline, let's configure 
 
 In this example, we will run two pipelines: our initial  pipeline (*baseline*) together with a new one (referred as '*ml*') that will implement a  different prediction function/model.
 
-```python      
+```python
+# Even though an AutoRegressive is considered more of a Time Analysis model than a ML model
+# We will use it here to demonstrate the use of Scenarios. You could change it to be a different model:
+# (Random Forest, Linear Regression, etc)   
 from statsmodels.tsa.ar_model import AutoReg
 
 # This is the function that will be used by the task
