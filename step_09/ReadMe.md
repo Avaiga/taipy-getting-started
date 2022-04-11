@@ -154,4 +154,4 @@ Run the Gui.
 Gui(page=scenario_manager_page).run(dark_mode=False)
 ```
 
-![Multi-scenarios](result.gif){ width=700 style="margin:auto;display:block" }
+![Multi-scenarios](result.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }

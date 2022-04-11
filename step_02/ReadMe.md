@@ -68,5 +68,5 @@ def on_change(state, var_name: str, var_value):
 Gui(page=page).run(dark_mode=False)
 ```
 
-![Interactive GUI](result.gif){ width=700 style="margin:auto;display:block" }
+![Interactive GUI](result.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 

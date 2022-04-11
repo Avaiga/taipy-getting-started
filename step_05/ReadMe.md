@@ -106,6 +106,6 @@ This is what the structure of the code looks like for the GUI:
 Gui(page=pipeline_page).run(dark_mode=False)
 ```
 
-![GUI for a pipeline](result.png){ width=700 style="margin:auto;display:block" }
+![GUI for a pipeline](result.png){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
 > **Important Remark**: A better option would have been to have the `create_predictions_dataset()` modeled as a last **Task** inside the pipeline graph.

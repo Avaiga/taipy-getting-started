@@ -104,4 +104,4 @@ create_scenario()
 Gui(page=page_scenario_manager).run(dark_mode=False)
 ```
 
-![Write data](result.gif){ width=700 style="margin:auto;display:block" }
+![Write data](result.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }

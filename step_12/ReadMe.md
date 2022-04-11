@@ -128,7 +128,7 @@ page_performance = """
 """
 ```
 
-![Page Performance](page_performance.gif){ width=700 style="margin:auto;display:block" }
+![Page Performance](page_performance.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
 ```python
 # Add the page_performance section to the menu   
@@ -144,5 +144,5 @@ multi_pages = """
 Gui(page=multi_pages).run(dark_mode=False) 
 ```
 
-![Compare Scenarios](result.png){ width=700 style="margin:auto;display:block" }
+![Compare Scenarios](result.png){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 

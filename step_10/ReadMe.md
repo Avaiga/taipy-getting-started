@@ -39,7 +39,7 @@ Third column
 |>
 ```
 
-![Layout](layout.png){ width=500 style="margin:auto;display:block" }
+![Layout](layout.png){ width=500 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
 
 One strategy to switch from one page to another is:
@@ -61,7 +61,7 @@ The first page contains the original chart and slider defined in Step 2. Let’s
 page_data_visualization = page
 ```
 
-![Data Visualization](data_visualization.png){ width=700 style="margin:auto;display:block" }
+![Data Visualization](data_visualization.png){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
 
 Then let’s create our second page which contains the page corresponding to the creation of scenarios seen in Step 9.
@@ -105,7 +105,7 @@ page_scenario_manager = """
 """
 ```
 
-![Scenario Manager](scenario_manager.gif){ width=700 style="margin:auto;display:block" }
+![Scenario Manager](scenario_manager.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
 
 The menu combines these two pages. When a page is selected in the menu control, `menu_fct` is called and updates the 
@@ -131,5 +131,5 @@ def menu_fct(state, var_name: str, fct: str, var_value: list):
 Gui(page=multi_pages).run(dark_mode=False)
 ```
 
-![Multi Pages](multi_pages.png){ width=700 style="margin:auto;display:block" }
+![Multi Pages](multi_pages.png){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 

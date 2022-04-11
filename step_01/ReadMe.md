@@ -37,7 +37,7 @@ The columns are:
 
 - Value: the number of articles sold per 15-minute timeframe.
 
-![Table](table.png){ width=700 style="margin:auto;display:block" }
+![Table](table.png){ width=700 style="margin:auto;display:block;border: 2px solid rgb(210,210,210);border-radius:7px" }
 
 After creating your first web client with just one line of code and reading our dataset data with the code above, 
 let's add some  visual elements to our initial page.
@@ -117,4 +117,4 @@ Display the last three months of data:
 Gui(page=page).run(dark_mode=False)
 ```
 
-![Visual Elements](result.gif){ width=700 style="margin:auto;display:block" }
+![Visual Elements](result.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }

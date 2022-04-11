@@ -222,4 +222,4 @@ def on_change(state, var_name: str, var_value):
 Gui(page=multi_pages).run(dark_mode=False)
 ```
 
-![Cycle page](result.gif){ style="margin:auto;display:block" }
+![Cycle page](result.gif){ style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
