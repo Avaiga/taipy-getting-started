@@ -63,12 +63,11 @@ For example, a [slider](https://docs.taipy.io/manuals/gui/viselements/slider/) i
 `<|{variable}|slider|min=min_value|max=max_value|>`.
 
 For each visual element you wish to add to your web page, you must include the syntax above inside your markdown 
-string (representing your page). For example, at the beginning of the page, let’s display:
+string (representing your page). For example, at the beginning of the page, let's display:
 
 - a Python variable *n_week*;
 
-- a slider that will “visually” modify the value of *n_week*.
-
+- a slider that will "visually" modify the value of __n_week__.
 
 Here is the overall syntax:
 
@@ -77,7 +76,7 @@ Here is the overall syntax:
 <|{n_week}|slider|min=1|max=52|>
 ```
 
-We will then create create a chart and a table:
+We will then create a chart and a table:
 
 ```
 <|{dataset}|chart|type=bar|x=Date|y=Value|height=100%|>

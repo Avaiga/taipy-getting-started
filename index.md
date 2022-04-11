@@ -1,17 +1,22 @@
 # Getting Started with Taipy
 
-Welcome to the **Getting Started** guide for Taipy. This tour shows you how to create an entire application using the two components of Taipy:
+Welcome to the **Getting Started** guide for Taipy. This tour shows you how to create an entire application using 
+the two components of Taipy:
 
 - **Graphical User Interface builder** (Taipy GUI): allows any Python developer to create a complex and interactive GUI.
 
- - **Scenario Management** (Taipy Core): implements a modern backend for any data-driven application based on your business case.
+ - **Scenario Management** (Taipy Core): implements a modern backend for any data-driven application based on your 
+   business case.
 
 ![Getting Started application](step_00/imd_end_interface.png){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
 
-You can use Taipy GUI without Taipy Core and vice-versa. However, as you will see, they are incredibly efficient when combined.
+You can use Taipy GUI without Taipy Core and vice-versa. However, as you will see, they are incredibly efficient 
+when combined.
 
-Each step of the **'Getting Started'** will focus on basic concepts of *Taipy*. Note that every step is dependent on the code of the previous one. After completing the last step, you will have the skills to develop your own Taipy application. 
+Each step of the **'Getting Started'** will focus on basic concepts of *Taipy*. Note that every step is dependent on 
+the code of the previous one. After completing the last step, you will have the skills to develop your own Taipy 
+application. 
 
 ## Before we begin:
 
@@ -21,7 +26,7 @@ Three packages have to be installed:
 
  2. **scikit-learn**: A Machine-Learning package that will be used in the Getting Started user code;
 
- 3. **statsmodels**: Another package for statitics used in the User Code of the Getting Started.
+ 3. **statsmodels**: Another package for statistics used in the User Code of the Getting Started.
 
 ``` console
 $ pip install taipy
@@ -35,7 +40,9 @@ $ pip install statsmodels
     If you don't have [pip][] installed, this [Python installation guide][]
     can guide you through the process.
 
-It is recommended to use **Python scripts** (.py) to follow the Getting Started. If you want to use a **Notebook** (.ipynb), you need to take a look at the specific GUI functions for Notebooks. See the docs [here](https://docs.taipy.io/manuals/gui/notebooks/).
+It is recommended to use **Python scripts** (.py) to follow the Getting Started. If you want to use a **Notebook** (.
+ipynb), you need to take a look at the specific GUI functions for Notebooks. See the docs 
+[here](https://docs.taipy.io/manuals/gui/notebooks/).
 
 So, without further delay, let's begin to code!
 
