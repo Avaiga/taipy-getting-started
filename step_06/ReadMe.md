@@ -1,6 +1,6 @@
 > You can download the code of this step [here](../src/step_06.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
-# Step 6: Creation and execution of Scenarios
+# Step 6: Creation of Scenarios
 
 Now that you have seen how to create and run a single pipeline, let's configure a scenario. Remember, scenarios are 
 required whenever the end-user wants to run variations of the pipelines and perform what-if analysis to simulate 
