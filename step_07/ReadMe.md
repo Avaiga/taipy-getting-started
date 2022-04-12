@@ -1,6 +1,6 @@
 > You can download the code of this step [here](../src/step_07.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
-# Step 7: GUI & Scenarios
+# Step 7: GUI and Scenario
 
 In Step 6, using Taipy Core, we implemented a scenario configuration and created our first scenario (based on that 
 config) . In this step, we will implement a graphical interface that makes use of scenarios. 
