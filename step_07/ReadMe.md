@@ -13,23 +13,23 @@ config) . In this step, we will implement a graphical interface that makes use o
 ![Selector](selector.gif){ width=250 style="margin:auto;display:block" }
 
 A [selector](https://docs.taipy.io/manuals/gui/viselements/selector/) only needs two parameters: a value that gets 
-dynamically updated through the selector and the list of values possible (aka 'lov'). Here is the syntax for a selector:
+dynamically updated through the selector and the list of values possible (aka "lov"). Here is the syntax for a selector:
 
 `<|{selected_value}|selector|lov={lov_selector}|>`.
 
-An 'Update chart' button will update the chart according to the selected pipeline.
+An "Update chart" button will update the chart according to the selected pipeline.
 
 These variables below are the parameters of the pipeline selector. The selected pipeline will be the first among 
-'baseline' and 'ml' when starting the client.
+"baseline" and "ml" when starting the client.
 
 ```python
 # Set the list of pipelines names
 # It will be used in a selector of pipelines
-pipeline_selector = ['baseline', 'ml']
+pipeline_selector = ["baseline", "ml"]
 selected_pipeline = pipeline_selector[0]
 ```
 
-This pipeline selector is added in the Markdown file just before the chart as well as the 'Update chart' button.
+This pipeline selector is added in the Markdown file just before the chart as well as the "Update chart" button.
 
 ```python
 scenario_page = page + """

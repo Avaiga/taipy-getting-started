@@ -38,7 +38,7 @@ Here, `on_change()` will be called whenever the slider's value (*state.n_week*) 
 
 ```python
 # Select the week based on the the slider value
-dataset_week = dataset[dataset['Date'].dt.isocalendar().week == n_week]
+dataset_week = dataset[dataset["Date"].dt.isocalendar().week == n_week]
 
 page = """
 # Getting started with Taipy
@@ -52,9 +52,9 @@ Select week: *<|{n_week}|>*
 
 # on_change is the function that is called when any variable is changed
 def on_change(state, var_name: str, var_value):
-    if var_name == 'n_week':
+    if var_name == "n_week":
         # Update the dataset when the slider is moved
-        state.dataset_week = dataset[dataset['Date'].dt.isocalendar().week == var_value]
+        state.dataset_week = dataset[dataset["Date"].dt.isocalendar().week == var_value]
 
 Gui(page=page).run(dark_mode=False)
 ```

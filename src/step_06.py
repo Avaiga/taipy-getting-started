@@ -12,10 +12,10 @@ from step_03 import cleaned_dataset_cfg, n_predictions_cfg, day_cfg, max_capacit
 def predict_ml(cleaned_dataset: pd.DataFrame, n_predictions: int, day: dt.datetime, max_capacity: int):
     print("     Predicting with ML")
     # Select the train data
-    train_dataset = cleaned_dataset[cleaned_dataset['Date'] < day]
+    train_dataset = cleaned_dataset[cleaned_dataset["Date"] < day]
 
     # Fit the AutoRegressive model
-    model = AutoReg(train_dataset['Value'], lags=7).fit()
+    model = AutoReg(train_dataset["Value"], lags=7).fit()
 
     # Get the n_predictions forecasts
     predictions = model.forecast(n_predictions).reset_index(drop=True)
@@ -38,7 +38,7 @@ scenario_cfg = Config.configure_scenario(id="scenario", pipeline_configs=[baseli
 
 # The configuration is now complete
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # Create the scenario
     scenario = tp.create_scenario(scenario_cfg)
     # Execute it

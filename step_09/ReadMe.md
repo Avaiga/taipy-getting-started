@@ -8,7 +8,7 @@ able to manage multiple scenarios (and pipelines).
 ## Dynamic selectors
 
 Let's manage multiple scenarios through a dynamic scenario selector. This selector will be updated whenever a new 
-scenario is created. It will store the 'id' of the scenarios and their names. For clarity, only their names do get 
+scenario is created. It will store the "id" of the scenarios and their names. For clarity, only their names do get 
 displayed (in the selector).
 
 This code initializes the scenario selector with previously created scenarios. If there are no scenarios yet, the 
@@ -30,9 +30,9 @@ scenario_selector = [(scenario.id, scenario.name) for scenario in tp.get_scenari
 selected_scenario = None
 ```
 
-Beside adding to the Markdown the new scenario selector, we also add a new 'Create new scenario' button. This button 
+Beside adding to the Markdown the new scenario selector, we also add a new "Create new scenario" button. This button 
 calls the `create_scenario()` function. So, now each time we modify the parameters (*day*, *max_capacity*, 
-*n_prediction*) we will create a new scenario upon clicking on this 'Create new scenario' button.
+*n_prediction*) we will create a new scenario upon clicking on this "Create new scenario" button.
 
 ```python
 scenario_manager_page = page + """
@@ -137,11 +137,11 @@ The `on_change` function can automatically change the graph when another pipelin
 
 ```python
 def on_change(state, var_name: str, var_value):
-    if var_name == 'n_week':
+    if var_name == "n_week":
         # Update the dataset when the slider is moved
-        state.dataset_week = dataset[dataset['Date'].dt.isocalendar().week == var_value]
+        state.dataset_week = dataset[dataset["Date"].dt.isocalendar().week == var_value]
         
-    elif var_name == 'selected_pipeline' or var_name == 'selected_scenario':
+    elif var_name == "selected_pipeline" or var_name == "selected_scenario":
         # Update the chart when the scenario or the pipeline is changed
         # Check if we can read the Data Node to update the chart
         if tp.get(state.selected_scenario[0]).predictions.read() is not None:

@@ -8,7 +8,7 @@ different business situations . Each scenario would represent a different soluti
 *max_capacity*, *day* and *number of predictions* can influence the scenario.
 
 In this example, we will run two pipelines: our initial  pipeline (*baseline*) together with a new one (referred as 
-'*ml*') that will implement a  different prediction function/model.
+"*ml*") that will implement a  different prediction function/model.
 
 ```python
 # For the sake of clarity, we have used an AutoRegressive model rather than a pure ML model such as:
@@ -19,10 +19,10 @@ from statsmodels.tsa.ar_model import AutoReg
 def predict_ml(cleaned_dataset: pd.DataFrame, n_predictions: int, day: dt.datetime, max_capacity: int):
     print("     Predicting with ML")
     # Select the train data
-    train_dataset = cleaned_dataset[cleaned_dataset['Date'] < day]
+    train_dataset = cleaned_dataset[cleaned_dataset["Date"] < day]
     
     # Fit the AutoRegressive model
-    model = AutoReg(train_dataset['Value'], lags=7).fit()
+    model = AutoReg(train_dataset["Value"], lags=7).fit()
     
     # Get the n_predictions forecasts
     predictions = model.forecast(n_predictions).reset_index(drop=True)
