@@ -157,7 +157,7 @@ respectively to clean the data and to predict the data.
 def clean_data(initial_dataset: pd.DataFrame):
     print("     Cleaning data")
     # Convert the date column to datetime
-    initial_dataset['Date'] = pd.to_datetime(initial_dataset['Date'])
+    initial_dataset["Date"] = pd.to_datetime(initial_dataset["Date"])
     cleaned_dataset = initial_dataset.copy()
     return cleaned_dataset
 
@@ -165,9 +165,9 @@ def clean_data(initial_dataset: pd.DataFrame):
 def predict_baseline(cleaned_dataset: pd.DataFrame, n_predictions: int, day: dt.datetime, max_capacity: int):
     print("     Predicting baseline")
     # Select the train data
-    train_dataset = cleaned_dataset[cleaned_dataset['Date'] < day]
+    train_dataset = cleaned_dataset[cleaned_dataset["Date"] < day]
     
-    predictions = train_dataset['Value'][-n_predictions:].reset_index(drop=True)
+    predictions = train_dataset["Value"][-n_predictions:].reset_index(drop=True)
     predictions = predictions.apply(lambda x: min(x, max_capacity))
     return predictions
 ```

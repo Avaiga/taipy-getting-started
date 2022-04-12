@@ -4,7 +4,7 @@ import pandas as pd
 from step_04 import tp, baseline_pipeline_cfg, dt
 from step_02 import *
 
-# Initialize the 'predictions' dataset
+# Initialize the "predictions" dataset
 predictions_dataset = pd.DataFrame(
     {"Date": [dt.datetime(2021, 6, 1)], "Historical values": [np.NaN], "Predicted values": [np.NaN]})
 
@@ -43,18 +43,18 @@ def create_predictions_dataset(pipeline):
     window = 5 * n_predictions
 
     # Create the historical dataset that will be displayed
-    new_length = len(cleaned_data[cleaned_data['Date'] < day]) + n_predictions
+    new_length = len(cleaned_data[cleaned_data["Date"] < day]) + n_predictions
     temp_df = cleaned_data[:new_length]
     temp_df = temp_df[-window:].reset_index(drop=True)
 
     # Create the series that will be used in the concat
-    historical_values = pd.Series(temp_df['Value'], name="Historical values")
+    historical_values = pd.Series(temp_df["Value"], name="Historical values")
     predicted_values = pd.Series([np.NaN] * len(temp_df), name="Predicted values")  # change ? Fred
     predicted_values[-len(predictions):] = predictions
 
     # Create the predictions dataset
     # Columns : [Date, Historical values, Predicted values]
-    return pd.concat([temp_df['Date'], historical_values, predicted_values], axis=1)
+    return pd.concat([temp_df["Date"], historical_values, predicted_values], axis=1)
 
 
 def update_predictions_dataset(state, pipeline):

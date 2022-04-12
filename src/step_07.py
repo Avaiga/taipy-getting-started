@@ -5,7 +5,7 @@ from taipy import Config
 
 # Set the list of pipelines names
 # It will be used in a selector of pipelines
-pipeline_selector = ['baseline', 'ml']
+pipeline_selector = ["baseline", "ml"]
 selected_pipeline = pipeline_selector[0]
 
 scenario_page = page + """

@@ -16,7 +16,7 @@ import pandas as pd
 def get_data(path_to_csv: str):
     # pandas.read_csv() returns a pd.DataFrame
     dataset = pd.read_csv(path_to_csv)
-    dataset['Date'] = pd.to_datetime(dataset['Date'])
+    dataset["Date"] = pd.to_datetime(dataset["Date"])
     return dataset
 
 # Read the dataframe
@@ -45,7 +45,7 @@ let's add some  visual elements to our initial page.
 ## Visual elements
 
 Taipy GUI can be considered as an **augmented** Markdown; it adds the concept of 
-**'[Visual elements](https://docs.taipy.io/manuals/gui/viselements/)'** on top of all the Markdown syntax. A visual 
+**[Visual elements](https://docs.taipy.io/manuals/gui/viselements/)** on top of all the Markdown syntax. A visual 
 element is a Taipy graphical object displayed on the client. It can be a 
 [slider](https://docs.taipy.io/manuals/gui/viselements/slider/), a 
 [chart](https://docs.taipy.io/manuals/gui/viselements/chart/), a 

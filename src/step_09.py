@@ -97,11 +97,11 @@ def update_chart(state):
 
 
 def on_change(state, var_name: str, var_value):
-    if var_name == 'n_week':
+    if var_name == "n_week":
         # Update the dataset when the slider is moved
-        state.dataset_week = dataset[dataset['Date'].dt.isocalendar().week == var_value]
+        state.dataset_week = dataset[dataset["Date"].dt.isocalendar().week == var_value]
 
-    elif var_name == 'selected_pipeline' or var_name == 'selected_scenario':
+    elif var_name == "selected_pipeline" or var_name == "selected_scenario":
         # Update the chart when the scenario or the pipeline is changed
         # Check if we can read the data node to update the chart
         if tp.get(state.selected_scenario[0]).predictions.read() is not None:

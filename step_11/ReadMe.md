@@ -51,7 +51,7 @@ is primary. This is why we update the following functions.
 # Change the inital scenario selector to see which scenarios are primary
 scenario_selector = [(scenario.id, ("*" if scenario.is_primary else "") + scenario.name) for scenario in all_scenarios]
 
-# Redefine update_scenario_selector to add '*' in the display name when the scnario is primary
+# Redefine update_scenario_selector to add "*" in the display name when the scnario is primary
 def update_scenario_selector(state, scenario):
     print("Updating scenario selector...")
     # Create the scenario name for the scenario selector
@@ -84,7 +84,7 @@ def create_scenario(state):
     submit_scenario(state)
 ```
 
-Two buttons are added to the GUI ('Make primary' and 'Delete scenario'). They call the `make_primary()` and 
+Two buttons are added to the GUI ("Make primary" and "Delete scenario"). They call the `make_primary()` and 
 `delete_scenario()` functions below.
 
 `make_primary()` changes the current primary scenario of the cycle thanks to `tp.set_primary(scenario)`. It is the 
@@ -96,7 +96,7 @@ Taipy function used to make a scenario primary.
 selected_scenario_is_primary = None
 
 def make_primary(state):
-    print('Making the current scenario primary...')
+    print("Making the current scenario primary...")
     scenario = tp.get(state.selected_scenario[0])
     # Take the current scenario primary
     tp.set_primary(scenario)
@@ -107,7 +107,7 @@ def make_primary(state):
     state.selected_scenario_is_primary = True
 ```
 
-This function is triggered by the 'Delete scenario' button.
+This function is triggered by the "Delete scenario" button.
 
 > Note that a primary scenario cannot be deleted.
 
@@ -123,7 +123,7 @@ def delete_scenario(state):
     
     if scenario.is_primary:
         # Notify the user that primary scenarios can not be deleted
-        notify(state, 'info', 'Cannot delete the primary scenario')
+        notify(state, "info", "Cannot delete the primary scenario")
     else:
         # Delete the scenario and the related objects (datanodes, tasks, jobs,...)
         tp.delete(scenario.id)
@@ -132,11 +132,11 @@ def delete_scenario(state):
         remove_scenario_from_selector(state,scenario)
 ```
 
-As previously said, just two visual elements ('Make primary' and 'Delete scenario' buttons) have been added to the 
+As previously said, just two visual elements ("Make primary" and "Delete scenario" buttons) have been added to the 
 page. This code is almost identical to the previous *page_scenario_manager*.
 
 ```python
-# Add a 'Delete scenario' and a 'Make primary' button s
+# Add a "Delete scenario" and a "Make primary" buttons
 page_scenario_manager = """
 # Create your scenario:
 
@@ -204,11 +204,11 @@ selected_scenario_is_primary` (set to `True` if the selected scenario is primary
 
 ```python
 def on_change(state, var_name: str, var_value):
-    if var_name == 'n_week':
+    if var_name == "n_week":
         # Update the dataset when the slider is moved
-        state.dataset_week = dataset[dataset['Date'].dt.isocalendar().week == var_value]
+        state.dataset_week = dataset[dataset["Date"].dt.isocalendar().week == var_value]
         
-    elif var_name == 'selected_pipeline' or var_name == 'selected_scenario':
+    elif var_name == "selected_pipeline" or var_name == "selected_scenario":
         # Update selected_scenario_is_primary indicating if the current scenario is primary or not
         state.selected_scenario_is_primary = tp.get(state.selected_scenario[0]).is_primary
 

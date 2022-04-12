@@ -55,7 +55,7 @@ page = "Data Visualization"
 
 def menu_fct(state, var_name: str, fct: str, var_value: list):
     # Change the value of the state.page variable in order to render the correct page
-    state.page = var_value['args'][0]
+    state.page = var_value["args"][0]
 
 
 if __name__ == "__main__":

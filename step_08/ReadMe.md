@@ -20,8 +20,8 @@ max_capacity = 200
 Second, we will add to the Markdown (before the chart), a visual element binding each of these variables. We will be 
 using them to "modify" the scenario. See the documentation for these newly introduced visual elements here: 
 [date](https://docs.taipy.io/manuals/gui/viselements/date/) and 
-[number](https://docs.taipy.io/manuals/gui/viselements/number/). A 'Save button' is also created to run the 
-'submit_scenario()' function when pressed.
+[number](https://docs.taipy.io/manuals/gui/viselements/number/). A "Save button" is also created to run the 
+"submit_scenario()" function when pressed.
 
 ```python
 page_scenario_manager = page + """

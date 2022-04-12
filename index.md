@@ -14,7 +14,7 @@ the two components of Taipy:
 You can use Taipy GUI without Taipy Core and vice-versa. However, as you will see, they are incredibly efficient 
 when combined.
 
-Each step of the **'Getting Started'** will focus on basic concepts of *Taipy*. Note that every step is dependent on 
+Each step of the **"Getting Started"** will focus on basic concepts of *Taipy*. Note that every step is dependent on 
 the code of the previous one. After completing the last step, you will have the skills to develop your own Taipy 
 application. 
 
