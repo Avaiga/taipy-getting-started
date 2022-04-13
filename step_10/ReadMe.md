@@ -25,7 +25,7 @@ Gui(page="<|menu|label=Menu|lov={['Data Visualization', 'Scenario Manager']}|on_
 
 
 
-- [part](https://docs.taipy.io/manuals/gui/viselements/part/): creates a group of text/visual elements. A useful property of *part* is `render`. If set to False, it will not display the part. This allows the developer to dynamically display a group of visual elements or not.
+- [part](https://docs.taipy.io/manuals/gui/viselements/part/): creates a group of text/visual elements. A useful property of `part` is _render_. If set to False, it will not display the part. This allows the developer to dynamically display a group of visual elements or not.
 
 ```
 <|part|render={bool_variable}|

@@ -132,13 +132,13 @@ max_capacity_cfg = Config.configure_data_node(id="max_capacity", default_data=20
 
 ### Remaining Data Nodes
 
-- *cleaned_dataset* is the dataset after cleaning (after the `clean_data()` function). _cacheable_ is set to _True_ 
-  with a _scope.GLOBAL_. It means if the initial dataset didn't change, Taipy will not re-execute the `clean_data()` 
+- *cleaned_dataset* is the dataset after cleaning (after the `clean_data()` function). _cacheable_ is set to True 
+  with a `scope.GLOBAL`. It means if the initial dataset didn't change, Taipy will not re-execute the `clean_data()` 
   task. In other words, after the creation of this data node through `clean_data()`, Taipy knows that it is not 
   necessary to create it again.
 
 - *predictions* are the predictions of the model. In this pipeline, it will be the output of the `predict_baseline()` 
-  function. Each pipeline will create its own *prediction* Data Node hence _scope=Scope.PIPELINE_.
+  function. Each pipeline will create its own *prediction* Data Node hence `scope=Scope.PIPELINE`.
 
 ```python
 ## Remaining Data Nodes
