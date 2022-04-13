@@ -87,11 +87,10 @@ def create_introduction(notebook, execution_count):
     with open('index.md', 'r') as f:
         text = f.read()
 
-    splitted_text = text.split('\n')
-    cell = "markdown"
+    split_text = text.split('\n')
     source = []
 
-    for line in splitted_text:
+    for line in split_text:
         if not line.startswith('``` console'):
             add_line(source, line, 'index')
         else:
@@ -143,11 +142,11 @@ def create_steps(notebook, execution_count):
         with open(step + '/ReadMe.md', 'r') as f:
             text = f.read()
 
-        splitted_text = text.split('\n')
+        split_text = text.split('\n')
         cell = "markdown"
         
 
-        for line in splitted_text:
+        for line in split_text:
             add_line(source, line, step)
             cell, source, notebook, execution_count = detect_new_cell(notebook, source, cell, line, execution_count)
             
