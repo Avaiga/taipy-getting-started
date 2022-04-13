@@ -1,5 +1,9 @@
 > You can download the code of this step [here](../src/step_11.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
+!!! warning "For Notebooks"
+
+    The "Getting Started" Notebook is available [here](https://docs.taipy.io/getting_started/getting_started.ipynb). The code of the steps doesn't deal with the [specific GUI functions](https://docs.taipy.io/manuals/gui/notebooks/) for Notebooks.
+
 # Step 11: Introducing Cycles
 
 So far, we have talked about how having different scenarios helps us to oversee our assumptions about the future. 
@@ -183,7 +187,7 @@ page_scenario_manager = """
 |>
 |>
 
-<|{predictions_dataset}|chart|type=bar|x=Date|y[1]=Historical values|y[2]=Predicted values|height=80%|width=100%|>
+<|{predictions_dataset}|chart|x=Date|y[1]=Historical values|type[1]=bar|y[2]=Predicted values|type[2]=scatter|height=80%|width=100%|>
 |>
 """
 ```
@@ -192,7 +196,7 @@ page_scenario_manager = """
 ```python
 # Redefine the multi_pages
 multi_pages = """
-<|menu|label=Menu|lov={["Data Visualization", "Scenario Manager"]}|on_action=menu_fct|>
+<|menu|label=Menu|lov={["Data Visualization", "Scenario Manager"]}|on_action=on_menu|>
 
 <|part|render={page=="Data Visualization"}|""" + page_data_visualization + """|>
 <|part|render={page=="Scenario Manager"}|""" + page_scenario_manager + """|>

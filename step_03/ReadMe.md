@@ -1,5 +1,9 @@
 > You can download the code of this step [here](../src/step_03.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
+!!! warning "For Notebooks"
+
+    The "Getting Started" Notebook is available [here](https://docs.taipy.io/getting_started/getting_started.ipynb). The code of the steps doesn't deal with the [specific GUI functions](https://docs.taipy.io/manuals/gui/notebooks/) for Notebooks.
+
 # Step 3: Introducing Taipy Core
 
 From Step 2, you now know the basics of Taipy GUI. Let's go for a moment over the Scenario Management aspect of Taipy.
@@ -68,8 +72,7 @@ variable is stored by default by a Pickle file.
 
 Some parameters for Data Node configuration:
 
-- **Storage type**: This is where the storage type is selected: CSV file, SQL database, Pickle file, etc.
-            Here, the initial dataset is a CSV file so `storage_type="csv"` for this Data Node. Taipy knows how to 
+- **Storage type**: This is where the storage type is selected: CSV file, SQL database, Pickle file, etc. Here, the initial dataset is a CSV file so *storage_type="csv"* for this Data Node. Taipy knows how to 
   access it, thanks to the path. By default, the storage type is *pickle*.
 
 - **[Scope](https://docs.taipy.io/manuals/core/concepts/scope/)**: You can find below three types of Scope in the 
@@ -129,7 +132,7 @@ max_capacity_cfg = Config.configure_data_node(id="max_capacity", default_data=20
 
 ### Remaining Data Nodes
 
-- *cleaned_dataset* is the dataset after cleaning (after the `clean_data()` function). `cacheable` is set to `True` 
+- *cleaned_dataset* is the dataset after cleaning (after the `clean_data()` function). _cacheable_ is set to True 
   with a `scope.GLOBAL`. It means if the initial dataset didn't change, Taipy will not re-execute the `clean_data()` 
   task. In other words, after the creation of this data node through `clean_data()`, Taipy knows that it is not 
   necessary to create it again.

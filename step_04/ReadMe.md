@@ -1,5 +1,9 @@
 > You can download this code final code of this step [here](../src/step_04.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
+!!! warning "For Notebooks"
+
+    The Getting Started Notebook is available [here](https://docs.taipy.io/getting_started/getting_started.ipynb). The code of the steps doesn't deal with the [specific GUI functions](https://docs.taipy.io/manuals/gui/notebooks/) for Notebooks.
+
 # Step 4: Pipeline Management
 
 In Step 3, you have described your graph; let's implement it with Taipy! 

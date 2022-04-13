@@ -1,5 +1,9 @@
 > You can download the code of this step [here](../src/step_08.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
+!!! warning "For Notebooks"
+
+    The "Getting Started" Notebook is available [here](https://docs.taipy.io/getting_started/getting_started.ipynb). The code of the steps doesn't deal with the [specific GUI functions](https://docs.taipy.io/manuals/gui/notebooks/) for Notebooks.
+
 # Step 8: Modify Data Nodes content
 
 Now that the GUI has been created to handle one scenario, it would be interesting to change the "initial" variables 
@@ -38,7 +42,7 @@ page_scenario_manager = page + """
 Select the pipeline
 <|{selected_pipeline}|selector|lov={pipeline_selector}|> <|Update chart|button|on_action={update_chart}|>
 
-<|{predictions_dataset}|chart|type=bar|x=Date|y[1]=Historical values|y[2]=Predicted values|height=80%|width=100%|>
+<|{predictions_dataset}|chart|x=Date|y[1]=Historical values|type[1]=bar|y[2]=Predicted values|type[2]=scatter|height=80%|width=100%|>
 """
 ```
 

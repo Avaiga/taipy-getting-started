@@ -34,6 +34,10 @@ A more in depth documentation of Taipy can be found [here](https://docs.taipy.io
 
 Want to install _Taipy Getting Started_? Check out our [`INSTALLATION.md`](INSTALLATION.md) file.
 
+## Notebooks
+
+To follow the **Getting Started** in a Notebook environment, you must generate the notebook document using the [`generate_notebook.py`](generate_notebook.py) script. Clone the repository and run the script (`python generate_notebook.py`). A Notebook called `getting_started.ipynb` will be created in your current folder.
+
 ## Contributing
 
 Want to help build _Taipy Getting Started_? Check out our [`CONTRIBUTING.md`](CONTRIBUTING.md) file.

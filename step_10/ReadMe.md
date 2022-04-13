@@ -1,24 +1,31 @@
 > You can download the code of this step [here](../src/step_10.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
+!!! warning "For Notebooks"
+
+    The "Getting Started" Notebook is available [here](https://docs.taipy.io/getting_started/getting_started.ipynb). The code of the steps doesn't deal with the [specific GUI functions](https://docs.taipy.io/manuals/gui/notebooks/) for Notebooks.
+
 # Step 10: Embellish your App
 
 With just a few steps, you have created a full forecasting application which predicts across multiple days with different parameters. However, the page's layout is not yet optimal and it could be greatly improved. This will be done during this step. To get a more aesthetically pleasing page, three new useful controls will be used. These are:
 
 - [menu](https://docs.taipy.io/manuals/gui/viselements/menu/): creates a menu on the left to navigate through the pages.
 
-`<|menu|label=Menu|lov={lov_pages}|on_action=menu_fct_called|>`. For example, this code creates a menu with two pages:
+`<|menu|label=Menu|lov={lov_pages}|on_action=on_menu|>`. For example, this code creates a menu with two pages:
 
 ```python
 from taipy import Gui
 
-Gui("<|menu|label=Menu|lov={['Data Visualization', 'Scenario Manager']}|>").run()
+def on_menu():
+    print('Menu function called')
+
+Gui(page="<|menu|label=Menu|lov={['Data Visualization', 'Scenario Manager']}|on_action=on_menu|>").run()
 ```
 
 ![Menu](menu.png){ width=50 style="margin:auto;display:block" }
 
 
 
-- [part](https://docs.taipy.io/manuals/gui/viselements/part/): creates a group of text/visual elements. A useful parameter of *part* is `render`. If set to `False`, it will not display the part. This allows the developer to dynamically display a group of visual elements or not.
+- [part](https://docs.taipy.io/manuals/gui/viselements/part/): creates a group of text/visual elements. A useful property of `part` is _render_. If set to False, it will not display the part. This allows the developer to dynamically display a group of visual elements or not.
 
 ```
 <|part|render={bool_variable}|
@@ -27,7 +34,7 @@ Or visual elements...
 |>
 ```
 
-- [layout](https://docs.taipy.io/manuals/gui/viselements/layout/): creates invisible columns where you can put your texts and visual elements. `columns` parameter indicates the width and number of columns. Here, we create three columns of the same width.
+- [layout](https://docs.taipy.io/manuals/gui/viselements/layout/): creates invisible columns where you can put your texts and visual elements. The _columns_ property indicates the width and number of columns. Here, we create three columns of the same width.
 
 ```
 <|layout|columns=1 1 1|
@@ -100,7 +107,7 @@ page_scenario_manager = """
 |>
 |>
 
-<|{predictions_dataset}|chart|type=bar|x=Date|y[1]=Historical values|y[2]=Predicted values|height=80%|width=100%|>
+<|{predictions_dataset}|chart|x=Date|y[1]=Historical values|type[1]=bar|y[2]=Predicted values|type[2]=scatter|height=80%|width=100%|>
 |>
 """
 ```
@@ -108,13 +115,13 @@ page_scenario_manager = """
 ![Scenario Manager](scenario_manager.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
 
-The menu combines these two pages. When a page is selected in the menu control, `menu_fct` is called and updates the 
+The menu combines these two pages. When a page is selected in the menu control, `on_menu()` is called and updates the 
 page.
 
 ```python
 # Create a menu with our pages
 multi_pages = """
-<|menu|label=Menu|lov={["Data Visualization", "Scenario Manager"]}|on_action=menu_fct|>
+<|menu|label=Menu|lov={["Data Visualization", "Scenario Manager"]}|on_action=on_menu|>
 
 <|part|render={page=="Data Visualization"}|""" + page_data_visualization + """|>
 <|part|render={page=="Scenario Manager"}|""" + page_scenario_manager + """|>
@@ -123,7 +130,7 @@ multi_pages = """
 
 # The initial page is the "Data Visualization" page
 page = "Data Visualization"
-def menu_fct(state, var_name: str, fct: str, var_value: list):
+def on_menu(state, var_name: str, fct: str, var_value: list):
     # Change the value of the state.page variable in order to render the correct page
     state.page = var_value["args"][0]
 

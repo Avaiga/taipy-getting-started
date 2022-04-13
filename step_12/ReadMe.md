@@ -1,5 +1,9 @@
 > You can download the code of this step [here](../src/step_12.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
+!!! warning "For Notebooks"
+
+    The "Getting Started" Notebook is available [here](https://docs.taipy.io/getting_started/getting_started.ipynb). The code of the steps doesn't deal with the [specific GUI functions](https://docs.taipy.io/manuals/gui/notebooks/) for Notebooks.
+
 # Step 12: Compare Scenarios
 
 Cycles are helpful to keep track of KPI over time. The goal of this step is to compare the primary scenario of every 
@@ -53,7 +57,7 @@ def compare(state):
     
     # Go through all the primary scenarios
     all_scenarios = tp.get_primary_scenarios()
-    all_scenarios_ordered = sorted(all_scenarios, key=lambda x: x.creation_date.timestamp()) # delete?
+    all_scenarios_ordered = sorted(all_scenarios, key=lambda x: x.creation_date.timestamp())
     
     for scenario in all_scenarios_ordered:
         print(f"Scenario {scenario.name}")
@@ -94,7 +98,7 @@ def compare(state):
 
 Let's create a page related to this comparison. As said before, this page will contain a graph to compare scenarios 
 and pipelines; and a selector to choose the metric on which to compare. When pressed the button at the bottom of the 
-page calls the `compare()` function. When finished, the `render` parameter of the *part* will render the rest of the 
+page calls the `compare()` function. When finished, the _render_ property of the *part* will render the rest of the 
 page. Also, a new Taipy's block is present in the Markdown: 
 [expandable](https://docs.taipy.io/manuals/gui/viselements/expandable/).
 
@@ -133,7 +137,7 @@ page_performance = """
 ```python
 # Add the page_performance section to the menu   
 multi_pages = """
-<|menu|label=Menu|lov={["Data Visualization", "Scenario Manager", "Performance"]}|on_action=menu_fct|>
+<|menu|label=Menu|lov={["Data Visualization", "Scenario Manager", "Performance"]}|on_action=on_menu|>
 
 <|part|render={page=="Data Visualization"}|""" + page_data_visualization + """|>
 <|part|render={page=="Scenario Manager"}|""" + page_scenario_manager + """|>
