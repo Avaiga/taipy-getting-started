@@ -98,7 +98,7 @@ def compare(state):
 
 Let's create a page related to this comparison. As said before, this page will contain a graph to compare scenarios 
 and pipelines; and a selector to choose the metric on which to compare. When pressed the button at the bottom of the 
-page calls the `compare()` function. When finished, the `render` property of the *part* will render the rest of the 
+page calls the `compare()` function. When finished, the _render_ property of the *part* will render the rest of the 
 page. Also, a new Taipy's block is present in the Markdown: 
 [expandable](https://docs.taipy.io/manuals/gui/viselements/expandable/).
 
@@ -137,7 +137,7 @@ page_performance = """
 ```python
 # Add the page_performance section to the menu   
 multi_pages = """
-<|menu|label=Menu|lov={["Data Visualization", "Scenario Manager", "Performance"]}|on_action=menu_fct|>
+<|menu|label=Menu|lov={["Data Visualization", "Scenario Manager", "Performance"]}|on_action=on_menu|>
 
 <|part|render={page=="Data Visualization"}|""" + page_data_visualization + """|>
 <|part|render={page=="Scenario Manager"}|""" + page_scenario_manager + """|>

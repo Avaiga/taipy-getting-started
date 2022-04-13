@@ -196,7 +196,7 @@ page_scenario_manager = """
 ```python
 # Redefine the multi_pages
 multi_pages = """
-<|menu|label=Menu|lov={["Data Visualization", "Scenario Manager"]}|on_action=menu_fct|>
+<|menu|label=Menu|lov={["Data Visualization", "Scenario Manager"]}|on_action=on_menu|>
 
 <|part|render={page=="Data Visualization"}|""" + page_data_visualization + """|>
 <|part|render={page=="Scenario Manager"}|""" + page_scenario_manager + """|>

@@ -10,7 +10,7 @@ In Step 4, we created a first pipeline using only Taipy Core. Let's update the G
 pipeline.
 
 A "Predict" [button](https://docs.taipy.io/manuals/gui/viselements/button/) is added to the page to create the 
-pipeline and run it. When you press a button, Taipy calls the function passed to the `on_action` property.
+pipeline and run it. When you press a button, Taipy calls the function passed to the *on_action* property.
 
 `<|Text displayed on button|button|on_action=fct_name_called_when_pressed|>`
    

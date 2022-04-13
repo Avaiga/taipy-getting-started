@@ -36,7 +36,7 @@ Want to install _Taipy Getting Started_? Check out our [`INSTALLATION.md`](INSTA
 
 ## Notebooks
 
-Want to execute the **Getting Started** in a Notebook. You can generate it using the [`generate_notebook.py`](generate_notebook.py) script. Clone the repository and run the script (`python generate_notebook.py`). A Notebook called `getting_started.ipynb` will be created in your current folder.
+To follow the **Getting Started** in a Notebook environment, you must generate the notebook document using the [`generate_notebook.py`](generate_notebook.py) script. Clone the repository and run the script (`python generate_notebook.py`). A Notebook called `getting_started.ipynb` will be created in your current folder.
 
 ## Contributing
 

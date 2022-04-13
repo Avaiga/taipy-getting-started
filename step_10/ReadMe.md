@@ -10,15 +10,15 @@ With just a few steps, you have created a full forecasting application which pre
 
 - [menu](https://docs.taipy.io/manuals/gui/viselements/menu/): creates a menu on the left to navigate through the pages.
 
-`<|menu|label=Menu|lov={lov_pages}|on_action=menu_fct_called|>`. For example, this code creates a menu with two pages:
+`<|menu|label=Menu|lov={lov_pages}|on_action=on_menu|>`. For example, this code creates a menu with two pages:
 
 ```python
 from taipy import Gui
 
-def menu_fct():
+def on_menu():
     print('Menu function called')
 
-Gui(page="<|menu|label=Menu|lov={['Data Visualization', 'Scenario Manager']}|on_action=menu_fct|>").run()
+Gui(page="<|menu|label=Menu|lov={['Data Visualization', 'Scenario Manager']}|on_action=on_menu|>").run()
 ```
 
 ![Menu](menu.png){ width=50 style="margin:auto;display:block" }
@@ -34,7 +34,7 @@ Or visual elements...
 |>
 ```
 
-- [layout](https://docs.taipy.io/manuals/gui/viselements/layout/): creates invisible columns where you can put your texts and visual elements. The `columns` property indicates the width and number of columns. Here, we create three columns of the same width.
+- [layout](https://docs.taipy.io/manuals/gui/viselements/layout/): creates invisible columns where you can put your texts and visual elements. The _columns_ property indicates the width and number of columns. Here, we create three columns of the same width.
 
 ```
 <|layout|columns=1 1 1|
@@ -115,13 +115,13 @@ page_scenario_manager = """
 ![Scenario Manager](scenario_manager.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
 
-The menu combines these two pages. When a page is selected in the menu control, `menu_fct` is called and updates the 
+The menu combines these two pages. When a page is selected in the menu control, `on_menu()` is called and updates the 
 page.
 
 ```python
 # Create a menu with our pages
 multi_pages = """
-<|menu|label=Menu|lov={["Data Visualization", "Scenario Manager"]}|on_action=menu_fct|>
+<|menu|label=Menu|lov={["Data Visualization", "Scenario Manager"]}|on_action=on_menu|>
 
 <|part|render={page=="Data Visualization"}|""" + page_data_visualization + """|>
 <|part|render={page=="Scenario Manager"}|""" + page_scenario_manager + """|>
@@ -130,7 +130,7 @@ multi_pages = """
 
 # The initial page is the "Data Visualization" page
 page = "Data Visualization"
-def menu_fct(state, var_name: str, fct: str, var_value: list):
+def on_menu(state, var_name: str, fct: str, var_value: list):
     # Change the value of the state.page variable in order to render the correct page
     state.page = var_value["args"][0]
 
