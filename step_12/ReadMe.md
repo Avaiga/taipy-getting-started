@@ -57,7 +57,7 @@ def compare(state):
     
     # Go through all the primary scenarios
     all_scenarios = tp.get_primary_scenarios()
-    all_scenarios_ordered = sorted(all_scenarios, key=lambda x: x.creation_date.timestamp()) # delete?
+    all_scenarios_ordered = sorted(all_scenarios, key=lambda x: x.creation_date.timestamp())
     
     for scenario in all_scenarios_ordered:
         print(f"Scenario {scenario.name}")
