@@ -1,5 +1,9 @@
 > You can download the code of this step [here](../src/step_07.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
+!!! warning "For Notebooks"
+
+    The "Getting Started" Notebook is available [here](https://docs.taipy.io/getting_started/getting_started.ipynb). The code of the steps doesn't deal with the [specific GUI functions](https://docs.taipy.io/manuals/gui/notebooks/) for Notebooks.
+
 # Step 7: GUI and Scenario
 
 In Step 6, using Taipy Core, we implemented a scenario configuration and created our first scenario (based on that 
@@ -12,7 +16,7 @@ config) . In this step, we will implement a graphical interface that makes use o
 
 ![Selector](selector.gif){ width=250 style="margin:auto;display:block" }
 
-A [selector](https://docs.taipy.io/manuals/gui/viselements/selector/) only needs two parameters: a value that gets 
+A [selector](https://docs.taipy.io/manuals/gui/viselements/selector/) only needs two properties: a value that gets 
 dynamically updated through the selector and the list of values possible (aka "lov"). Here is the syntax for a selector:
 
 `<|{selected_value}|selector|lov={lov_selector}|>`.

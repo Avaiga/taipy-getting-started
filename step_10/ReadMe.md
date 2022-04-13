@@ -1,5 +1,9 @@
 > You can download the code of this step [here](../src/step_10.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
+!!! warning "For Notebooks"
+
+    The "Getting Started" Notebook is available [here](https://docs.taipy.io/getting_started/getting_started.ipynb). The code of the steps doesn't deal with the [specific GUI functions](https://docs.taipy.io/manuals/gui/notebooks/) for Notebooks.
+
 # Step 10: Embellish your App
 
 With just a few steps, you have created a full forecasting application which predicts across multiple days with different parameters. However, the page's layout is not yet optimal and it could be greatly improved. This will be done during this step. To get a more aesthetically pleasing page, three new useful controls will be used. These are:
@@ -11,14 +15,17 @@ With just a few steps, you have created a full forecasting application which pre
 ```python
 from taipy import Gui
 
-Gui("<|menu|label=Menu|lov={['Data Visualization', 'Scenario Manager']}|>").run()
+def menu_fct():
+    print('Menu function called')
+
+Gui(page="<|menu|label=Menu|lov={['Data Visualization', 'Scenario Manager']}|on_action=menu_fct|>").run()
 ```
 
 ![Menu](menu.png){ width=50 style="margin:auto;display:block" }
 
 
 
-- [part](https://docs.taipy.io/manuals/gui/viselements/part/): creates a group of text/visual elements. A useful parameter of *part* is `render`. If set to `False`, it will not display the part. This allows the developer to dynamically display a group of visual elements or not.
+- [part](https://docs.taipy.io/manuals/gui/viselements/part/): creates a group of text/visual elements. A useful property of *part* is `render`. If set to `False`, it will not display the part. This allows the developer to dynamically display a group of visual elements or not.
 
 ```
 <|part|render={bool_variable}|
@@ -27,7 +34,7 @@ Or visual elements...
 |>
 ```
 
-- [layout](https://docs.taipy.io/manuals/gui/viselements/layout/): creates invisible columns where you can put your texts and visual elements. `columns` parameter indicates the width and number of columns. Here, we create three columns of the same width.
+- [layout](https://docs.taipy.io/manuals/gui/viselements/layout/): creates invisible columns where you can put your texts and visual elements. The `columns` property indicates the width and number of columns. Here, we create three columns of the same width.
 
 ```
 <|layout|columns=1 1 1|

@@ -1,12 +1,16 @@
 > You can download the code of this step [here](../src/step_05.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
+!!! warning "For Notebooks"
+
+    The "Getting Started" Notebook is available [here](https://docs.taipy.io/getting_started/getting_started.ipynb). The code of the steps doesn't deal with the [specific GUI functions](https://docs.taipy.io/manuals/gui/notebooks/) for Notebooks.
+
 # Step 5: GUI and Pipeline
 
 In Step 4, we created a first pipeline using only Taipy Core. Let's update the GUI to reflect the results of the 
 pipeline.
 
 A "Predict" [button](https://docs.taipy.io/manuals/gui/viselements/button/) is added to the page to create the 
-pipeline and run it. When you press a button, Taipy calls the function passed to the `on_action` parameter.
+pipeline and run it. When you press a button, Taipy calls the function passed to the `on_action` property.
 
 `<|Text displayed on button|button|on_action=fct_name_called_when_pressed|>`
    

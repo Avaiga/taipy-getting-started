@@ -5,8 +5,7 @@ the two components of Taipy:
 
 - **Graphical User Interface builder** (Taipy GUI): allows any Python developer to create a complex and interactive GUI.
 
- - **Scenario Management** (Taipy Core): implements a modern backend for any data-driven application based on your 
-   business case.
+- **Scenario Management** (Taipy Core): implements a modern backend for any data-driven application based on your business case.
 
 ![Getting Started application](step_00/imd_end_interface.png){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
@@ -18,7 +17,7 @@ Each step of the **"Getting Started"** will focus on basic concepts of *Taipy*. 
 the code of the previous one. After completing the last step, you will have the skills to develop your own Taipy 
 application. 
 
-## Before we begin:
+## Before we begin
 
 Three packages have to be installed:
 
@@ -42,13 +41,13 @@ $ pip install statsmodels
     [Python installation guide](http://docs.python-guide.org/en/latest/starting/installation/)
     can guide you through the process.
 
-It is recommended to use **Python scripts** (.py) to follow the Getting Started. If you want to use a **Notebook** (.
-ipynb), you need to take a look at the specific GUI functions for Notebooks. See the docs 
-[here](https://docs.taipy.io/manuals/gui/notebooks/).
+## Using Notebooks
+
+This **Getting Started** is for Python scripts (*.py*) only. If you want to use **Jupyter Notebooks**, download this [notebook](https://docs.taipy.io/getting_started/getting_started.ipynb) that deals with the [specific functions](https://docs.taipy.io/manuals/gui/notebooks/) for Notebooks.
 
 So, without further delay, let's begin to code!
 
-## Steps:
+## Steps
 
 0. [First web page](step_00/ReadMe.md)
 

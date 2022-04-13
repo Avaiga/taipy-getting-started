@@ -1,5 +1,9 @@
 > You can download the code of this step [here](../src/step_06.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
+!!! warning "For Notebooks"
+
+    The Getting Started Notebook is available [here](https://docs.taipy.io/getting_started/getting_started.ipynb). The code of the steps doesn't deal with the [specific GUI functions](https://docs.taipy.io/manuals/gui/notebooks/) for Notebooks.
+
 # Step 6: Creation of Scenarios
 
 Now that you have seen how to create and run a single pipeline, let's configure a scenario. Remember, scenarios are 
