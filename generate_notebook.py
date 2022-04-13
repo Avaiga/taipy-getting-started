@@ -119,7 +119,7 @@ def create_introduction(notebook, execution_count):
                 "source": ['## Using Notebooks\n',
                            'Some functions will be used in the Getting Started for Notebooks that are primarly used for Notebooks (`gui.stop()`, `gui.run()`, `gui.on_change`, `set_content()`)\n',
                            'To have more explanation on these different functions, you can find the documentation related [here](https://docs.taipy.io/manuals/gui/notebooks/)\n',
-                           '**Warning**: Do not forget to stop your server when you are finished. You can do so by stopping or restarting your kernel.\n']
+                           '**Warning**: Do not forget to stop your server when you are finished. You can do so by restarting your kernel.\n']
             })
     
     execution_count += 1
