@@ -1,4 +1,4 @@
-> You can download the final code of this step [here](../src/step_01.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
+> You can download the code of this step [here](../src/step_01.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
 !!! warning "For Notebooks"
 
