@@ -1,4 +1,4 @@
-name: Create Github Release and Push on Pypi
+name: Create Github Release
 
 on:
   workflow_dispatch:
