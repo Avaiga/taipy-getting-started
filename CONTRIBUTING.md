@@ -89,20 +89,7 @@ working on it.
 1. Make your [own fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) of the repository
    target by the issue. Clone it on our local machine, then go inside the directory.
 
-2. We are working with [Pipenv](https://github.com/pypa/pipenv) for our virtualenv.
-   Create a local env and install development package by running `pipenv install --dev`, then run tests with `pipenv
-   run pytest` to verify your setup.
-
-3. For convention help, we provide a [pre-commit](https://pre-commit.com/hooks.html) file.
-   This tool will run before each commit and will automatically reformat code or raise warnings and errors based on the
-   code format or Python typing.
-   You can install and setup it up by doing:
-   ```
-     pipenv install pre-commit
-     pipenv run python -m pre-commit install
-   ```
-
-4. Make the change and create a
+2. Make the change and create a
    [pull request from your fork](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork).
    Keep your pull request in __draft__ until your work is finished.
    Do not hesitate to add a comment for help or questions.
@@ -113,19 +100,10 @@ working on it.
     - pre-commit works - without mypy error.
     - GitHub's actions are passing.
 
-6. The taipy team will have a look at your Pull Request and will give feedback. If every requirement is valid, your
+3. The taipy team will have a look at your Pull Request and will give feedback. If every requirement is valid, your
    work will be added in the next release, congratulation!
 
 
 ## Dependency management
 
-Taipy comes with multiple optional packages. You can find the list directly in the product or Taipy's packages.
-The back-end Pipfile does not install by default optional packages due to `pyodbc` requiring a driver's manual
-installation. This is not the behaviour for the front-end that installs all optional packages through its Pipfile.
-
-If you are a contributor on Taipy, be careful with dependencies, do not forget to install or uninstall depending on
-your issue.
-
-If you need to add a new dependency to Taipy, do not forget to add it in the `Pipfile` and the `setup.py`.
-Keep in mind that dependency is a vector of attack. The Taipy team limits the usage of external dependencies at the
-minimum.
+If you need to add a new dependency to Taipy-getting-started, do not forget to add it in the INSTALLATION.md file.
