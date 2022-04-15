@@ -18,7 +18,7 @@ jobs:
 
       - name: Ensure package version is properly set
         run: |
-          echo ${{ github.event.inputs.version }} | grep -f - setup.py
+          echo 'version:v'${{ github.event.inputs.version }} | grep -f - README.md
 
       - name: Extract commit hash
         shell: bash
@@ -27,7 +27,7 @@ jobs:
 
       - name: Create/update release and tag
         run: |
-            git tag -f ${{ github.event.inputs.version }} &&
-            git push -f origin ${{ github.event.inputs.version }}
+            gh release create ${{ github.event.inputs.version }} --target ${{ steps.extract_hash.outputs.hash }} --notes "Release created using Github Workflows"
+
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
