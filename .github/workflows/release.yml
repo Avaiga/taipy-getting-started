@@ -18,7 +18,7 @@ jobs:
 
       - name: Ensure package version is properly set
         run: |
-          echo ${{ github.event.inputs.version }} | grep -f - README.md
+          echo ${{ github.event.inputs.version }} | grep -f - setup.py
 
       - name: Extract commit hash
         shell: bash
