@@ -21,7 +21,7 @@ application.
 
 Three packages have to be installed:
 
- 1. **Taipy** package;
+ 1. **Taipy** package, it requires a 3.8 Python version or above;
 
  2. **scikit-learn**: A Machine-Learning package that will be used in the Getting Started user code;
 
