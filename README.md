@@ -1,4 +1,4 @@
-# Taipy Getting Started
+# Taipy Getting Started version:v1.0.0.dev
 
 ## License
 Copyright 2022 Avaiga Private Limited

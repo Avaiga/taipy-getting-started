@@ -1,0 +1,33 @@
+name: Create Github Release and Push on Pypi
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "The release/package version to create (ex: 1.0.0)"
+        required: true
+
+jobs:
+  release:
+    timeout-minutes: 20
+    name: Release taipy-getting-started
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Ensure package version is properly set
+        run: |
+          echo 'version:v'${{ github.event.inputs.version }} | grep -f - README.md
+
+      - name: Extract commit hash
+        shell: bash
+        run: echo "##[set-output name=hash;]$(echo $(git rev-parse HEAD))"
+        id: extract_hash
+
+      - name: Create/update release and tag
+        run: |
+            gh release create ${{ github.event.inputs.version }} --target ${{ steps.extract_hash.outputs.hash }} --notes "Release created using Github Workflows"
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
