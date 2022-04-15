@@ -16,10 +16,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Ensure package version is properly set
-        run: |
-          echo 'version:v'${{ github.event.inputs.version }} | grep -f - README.md
-
       - name: Extract commit hash
         shell: bash
         run: echo "##[set-output name=hash;]$(echo $(git rev-parse HEAD))"
