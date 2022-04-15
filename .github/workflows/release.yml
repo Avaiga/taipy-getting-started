@@ -25,9 +25,8 @@ jobs:
         run: echo "##[set-output name=hash;]$(echo $(git rev-parse HEAD))"
         id: extract_hash
 
-      - name: Create/update release and tag
+      - name: Create release and tag
         run: |
             gh release create ${{ github.event.inputs.version }} --target ${{ steps.extract_hash.outputs.hash }} --notes "Release created using Github Workflows"
-
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

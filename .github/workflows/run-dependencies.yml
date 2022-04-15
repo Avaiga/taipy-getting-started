@@ -1,4 +1,4 @@
-name: Trigger Milestones
+name: Trigger doc generation
 on:
   push:
     branches: [ develop ]
