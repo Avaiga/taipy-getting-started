@@ -1,5 +1,9 @@
 # Getting Started with Taipy
 
+!!! important "Reminder"
+
+    Note that Taipy requires **Python 3.8** or latest.
+
 Welcome to the **Getting Started** guide for Taipy. This tour shows you how to create an entire application using 
 the two components of Taipy:
 
