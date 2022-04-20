@@ -53,7 +53,7 @@ is primary. This is why we update the following functions.
 
 ```python
 # Change the inital scenario selector to see which scenarios are primary
-scenario_selector = [(scenario.id, ("*" if scenario.is_primary else "") + scenario.name) for scenario in all_scenarios]
+scenario_selector = [(scenario.id, ("*" if scenario.is_primary else "") + scenario.name) for scenario in tp.get_scenarios()]
 
 # Redefine update_scenario_selector to add "*" in the display name when the scnario is primary
 def update_scenario_selector(state, scenario):
