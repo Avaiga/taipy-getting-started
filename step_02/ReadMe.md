@@ -42,7 +42,7 @@ In *Taipy*, the `on_change()` function is a "special" function. **Taipy** will c
 Here, `on_change()` will be called whenever the slider's value (*state.n_week*) changes. Each time this happens, *state.dataset_week* will be updated according to the new value of the selected week. Then, Taipy will propagate this change automatically to the associated chart.
 
 ```python
-# Select the week based on the the slider value
+# Select the week based on the slider value
 dataset_week = dataset[dataset["Date"].dt.isocalendar().week == n_week]
 
 page = """

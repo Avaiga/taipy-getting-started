@@ -1,6 +1,6 @@
 from step_01 import dataset, n_week, Gui
 
-# Select the week based on the the slider value
+# Select the week based on the slider value
 dataset_week = dataset[dataset["Date"].dt.isocalendar().week == n_week]
 
 page = """

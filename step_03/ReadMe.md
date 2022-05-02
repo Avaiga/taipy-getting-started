@@ -45,11 +45,9 @@ Let's create a Machine Learning (ML) example to clarify these concepts.
 
 In a ML context, it is common to have numerous training and testing pipelines for different algorithms. For 
 simplification, we will only configure a single baseline pipeline that will predict on a given **day** the values 
-for the following days. In Taipy, you will describe (i.e. configure) your pipeline with three tasks:
+for the following days. In Taipy, you will describe (i.e. configure) your pipeline with two tasks:
 
-- Retrieval of the initial dataset,
-
-- Data Cleaning,
+- Clean data which retrieves the initial dataset and perform data cleaning
 
 - Predictions (for *number of predictions*) from **day** onwards. In our example, predictions represents the number 
   of items sold in a given store on a 15-min basis.

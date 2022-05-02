@@ -12,8 +12,18 @@ like charts, sliders and tables and implement them in the GUI.
 
 ## Importing the Dataset
 
-Suppose that you have a [*dataset.csv*](dataset.csv) file, using the *Pandas* library, you can retrieve this dataset 
-with the following codes:
+We will be using a [CSV file](dataset.csv) as a dataset. This dataset contains the historical number of articles sold for a given store on a 15-minute basis (we have the historical sales data for the year 2021). Being a real dataset, there will sometimes be missing information for specific days. 
+The columns are:
+
+- Index: a unique identifier for each data point.
+
+- Date: the date of the data point. Each date are separated by 15 minutes.
+
+- Value: the number of articles sold per 15-minute timeframe.
+
+![Table](table.png){ width=700 style="margin:auto;display:block;border: 2px solid rgb(210,210,210);border-radius:7px" }
+
+Using the *Pandas* library, you can retrieve this dataset with the following codes:
 
 ```python
 import pandas as pd
@@ -31,18 +41,7 @@ dataset = get_data(path_to_csv)
 ...
 ```
 
-_dataset_ is a *pd.DataFrame*, a basic *Pandas main* object representing, in this case, a realistic time series. 
-It represents the historical number of articles sold for a given store on a 15-minute basis (we have the historical 
-sales data for the year 2021). Being a real dataset, there will sometimes be missing information for specific days. 
-The columns are:
-
-- Index: a unique identifier for each data point.
-
-- Date: the date of the data point. Each date are separated by 15 minutes.
-
-- Value: the number of articles sold per 15-minute timeframe.
-
-![Table](table.png){ width=700 style="margin:auto;display:block;border: 2px solid rgb(210,210,210);border-radius:7px" }
+_dataset_ is a *pd.DataFrame*, a basic *Pandas main* object representing, in this case, our realistic time series. 
 
 After creating your first web client with just one line of code and reading our dataset data with the code above, 
 let's add some  visual elements to our initial page.
