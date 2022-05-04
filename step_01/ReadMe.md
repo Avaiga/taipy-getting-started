@@ -15,15 +15,15 @@ like charts, sliders and tables and implement them in the GUI.
 We will be using a [CSV file](dataset.csv) as a dataset. This dataset contains the historical number of articles sold for a given store on a 15-minute basis (we have the historical sales data for the year 2021). Being a real dataset, there will sometimes be missing information for specific days. 
 The columns are:
 
-- Index: a unique identifier for each data point.
+- **Index**: a unique identifier for each data point.
 
-- Date: the date of the data point. Each date is separated by 15 minutes.
+- **Date**: the date of the data point. Each date is separated by 15 minutes.
 
-- Value: the number of articles sold per 15-minute timeframe.
+- **Value**: the number of articles sold per 15-minute timeframe.
 
 ![Table](table.png){ width=700 style="margin:auto;display:block;border: 2px solid rgb(210,210,210);border-radius:7px" }
 
-Using the *Pandas* library, you can retrieve this dataset with the following codes:
+Using the *Pandas* library, you can retrieve this dataset with the following code:
 
 ```python
 import pandas as pd
