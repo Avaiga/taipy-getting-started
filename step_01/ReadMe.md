@@ -17,7 +17,7 @@ The columns are:
 
 - Index: a unique identifier for each data point.
 
-- Date: the date of the data point. Each date are separated by 15 minutes.
+- Date: the date of the data point. Each date is separated by 15 minutes.
 
 - Value: the number of articles sold per 15-minute timeframe.
 
