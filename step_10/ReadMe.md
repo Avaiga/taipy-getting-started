@@ -2,13 +2,14 @@
 
 !!! warning "For Notebooks"
 
-    The "Getting Started" Notebook is available [here](https://docs.taipy.io/getting_started/getting_started.ipynb). The code of the steps doesn't deal with the [specific GUI functions](https://docs.taipy.io/manuals/gui/notebooks/) for Notebooks.
+    The "Getting Started" Notebook is available [here](https://docs.taipy.io/en/latest/getting_started/getting_started.ipynb). In Taipy GUI, the process to execute a Jupyter Notebook is different from executing a Python Script.
+    It is important to check the [Notebook](https://docs.taipy.io/en/latest/getting_started/getting_started.ipynb) content and see the [documentation](https://docs.taipy.io/en/latest/manuals/gui/notebooks/).
 
 # Step 10: Embellish your App
 
 With just a few steps, you have created a full forecasting application which predicts across multiple days with different parameters. However, the page's layout is not yet optimal and it could be greatly improved. This will be done during this step. To get a more aesthetically pleasing page, three new useful controls will be used. These are:
 
-- [menu](https://docs.taipy.io/manuals/gui/viselements/menu/): creates a menu on the left to navigate through the pages.
+- [menu](https://docs.taipy.io/en/latest/manuals/gui/viselements/menu/): creates a menu on the left to navigate through the pages.
 
 `<|menu|label=Menu|lov={lov_pages}|on_action=on_menu|>`. For example, this code creates a menu with two pages:
 
@@ -25,7 +26,7 @@ Gui(page="<|menu|label=Menu|lov={['Data Visualization', 'Scenario Manager']}|on_
 
 
 
-- [part](https://docs.taipy.io/manuals/gui/viselements/part/): creates a group of text/visual elements. A useful property of `part` is _render_. If set to False, it will not display the part. This allows the developer to dynamically display a group of visual elements or not.
+- [part](https://docs.taipy.io/en/latest/manuals/gui/viselements/part/): creates a group of text/visual elements. A useful property of `part` is _render_. If set to False, it will not display the part. This allows the developer to dynamically display a group of visual elements or not.
 
 ```
 <|part|render={bool_variable}|
@@ -34,7 +35,7 @@ Or visual elements...
 |>
 ```
 
-- [layout](https://docs.taipy.io/manuals/gui/viselements/layout/): creates invisible columns where you can put your texts and visual elements. The _columns_ property indicates the width and number of columns. Here, we create three columns of the same width.
+- [layout](https://docs.taipy.io/en/latest/manuals/gui/viselements/layout/): creates invisible columns where you can put your texts and visual elements. The _columns_ property indicates the width and number of columns. Here, we create three columns of the same width.
 
 ```
 <|layout|columns=1 1 1|

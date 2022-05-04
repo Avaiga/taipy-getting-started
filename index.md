@@ -1,5 +1,9 @@
 # Getting Started with Taipy
 
+!!! important "Reminder"
+
+    Note that Taipy requires **Python 3.8** or latest.
+
 Welcome to the **Getting Started** guide for Taipy. This tour shows you how to create an entire application using 
 the two components of Taipy:
 
@@ -43,7 +47,7 @@ $ pip install statsmodels
 
 ## Using Notebooks
 
-This **Getting Started** is for Python scripts (*.py*) only. If you want to use **Jupyter Notebooks**, download this [notebook](https://docs.taipy.io/getting_started/getting_started.ipynb) that deals with the [specific functions](https://docs.taipy.io/manuals/gui/notebooks/) for Notebooks.
+This **Getting Started** is for Python scripts (*.py*) only. If you want to use **Jupyter Notebooks**, download this [notebook](https://docs.taipy.io/en/latest/getting_started/getting_started.ipynb) that deals with the [specific functions](https://docs.taipy.io/en/latest/manuals/gui/notebooks/) for Notebooks.
 
 So, without further delay, let's begin to code!
 

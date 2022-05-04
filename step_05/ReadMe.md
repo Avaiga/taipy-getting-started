@@ -2,19 +2,20 @@
 
 !!! warning "For Notebooks"
 
-    The "Getting Started" Notebook is available [here](https://docs.taipy.io/getting_started/getting_started.ipynb). The code of the steps doesn't deal with the [specific GUI functions](https://docs.taipy.io/manuals/gui/notebooks/) for Notebooks.
+    The "Getting Started" Notebook is available [here](https://docs.taipy.io/en/latest/getting_started/getting_started.ipynb). In Taipy GUI, the process to execute a Jupyter Notebook is different from executing a Python Script.
+    It is important to check the [Notebook](https://docs.taipy.io/en/latest/getting_started/getting_started.ipynb) content and see the [documentation](https://docs.taipy.io/en/latest/manuals/gui/notebooks/).
 
 # Step 5: GUI and Pipeline
 
 In Step 4, we created a first pipeline using only Taipy Core. Let's update the GUI to reflect the results of the 
 pipeline.
 
-A "Predict" [button](https://docs.taipy.io/manuals/gui/viselements/button/) is added to the page to create the 
+A "Predict" [button](https://docs.taipy.io/en/latest/manuals/gui/viselements/button/) is added to the page to create the 
 pipeline and run it. When you press a button, Taipy calls the function passed to the *on_action* property.
 
 `<|Text displayed on button|button|on_action=fct_name_called_when_pressed|>`
    
-A [chart](https://docs.taipy.io/manuals/gui/viselements/chart/) control can be found at the end of the markdown to 
+A [chart](https://docs.taipy.io/en/latest/manuals/gui/viselements/chart/) control can be found at the end of the markdown to 
 visualize the predictions. The chart plots two traces: the historical values and the predicted values.
 
 ```python

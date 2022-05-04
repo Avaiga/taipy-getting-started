@@ -2,14 +2,15 @@
 
 !!! warning "For Notebooks"
 
-    The "Getting Started" Notebook is available [here](https://docs.taipy.io/getting_started/getting_started.ipynb). The code of the steps doesn't deal with the [specific GUI functions](https://docs.taipy.io/manuals/gui/notebooks/) for Notebooks.
+    The "Getting Started" Notebook is available [here](https://docs.taipy.io/en/latest/getting_started/getting_started.ipynb). In Taipy GUI, the process to execute a Jupyter Notebook is different from executing a Python Script.
+    It is important to check the [Notebook](https://docs.taipy.io/en/latest/getting_started/getting_started.ipynb) content and see the [documentation](https://docs.taipy.io/en/latest/manuals/gui/notebooks/).
 
 # Step 11: Introducing Cycles
 
 So far, we have talked about how having different scenarios helps us to oversee our assumptions about the future. 
 For example, in business, it is critical to weigh different options in order to come up with an optimal solution. 
 However, this decision making process isn’t just a one-time task, but rather a recurrent operation that happens over 
-a time period. This is why we want to introduce [Cycles](https://docs.taipy.io/manuals/core/concepts/cycle/).
+a time period. This is why we want to introduce [Cycles](https://docs.taipy.io/en/latest/manuals/core/concepts/cycle/).
 
 A cycle can be thought of as a place to store different and recurrent scenarios, within a time frame. In Taipy Core, 
 each cycle will have a unique primary scenario, which represents the reference scenario for a time period.
@@ -53,7 +54,7 @@ is primary. This is why we update the following functions.
 
 ```python
 # Change the inital scenario selector to see which scenarios are primary
-scenario_selector = [(scenario.id, ("*" if scenario.is_primary else "") + scenario.name) for scenario in all_scenarios]
+scenario_selector = [(scenario.id, ("*" if scenario.is_primary else "") + scenario.name) for scenario in tp.get_scenarios()]
 
 # Redefine update_scenario_selector to add "*" in the display name when the scnario is primary
 def update_scenario_selector(state, scenario):

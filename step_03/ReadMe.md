@@ -2,7 +2,8 @@
 
 !!! warning "For Notebooks"
 
-    The "Getting Started" Notebook is available [here](https://docs.taipy.io/getting_started/getting_started.ipynb). The code of the steps doesn't deal with the [specific GUI functions](https://docs.taipy.io/manuals/gui/notebooks/) for Notebooks.
+    The "Getting Started" Notebook is available [here](https://docs.taipy.io/en/latest/getting_started/getting_started.ipynb). In Taipy GUI, the process to execute a Jupyter Notebook is different from executing a Python Script.
+    It is important to check the [Notebook](https://docs.taipy.io/en/latest/getting_started/getting_started.ipynb) content and see the [documentation](https://docs.taipy.io/en/latest/manuals/gui/notebooks/).
 
 # Step 3: Introducing Taipy Core
 
@@ -20,22 +21,22 @@ Even if Taipy GUI can be used without Taipy Core (and vice-versa), there are a l
 To apprehend the Scenario Management aspect of Taipy, you need to understand four essential concepts.
 
 
-## Four fundamental [concepts](https://docs.taipy.io/manuals/core/concepts/) in Taipy Core:
+## Four fundamental [concepts](https://docs.taipy.io/en/latest/manuals/core/concepts/) in Taipy Core:
 
-- [**Data Nodes**](https://docs.taipy.io/manuals/core/concepts/data-node/): are the translation of variables in 
+- [**Data Nodes**](https://docs.taipy.io/en/latest/manuals/core/concepts/data-node/): are the translation of variables in 
   Taipy. Data Nodes don't contain the data itself but know how to retrieve it. They can refer to any kind of data: 
   any *Python* object (*string*, *int*, *list*, *dict*, *model*, *dataframe*, etc), a Pickle file, a CSV file, an 
   SQL database, etc. They know how to read and write data. You can even write your own custom Data Node if needed to 
   access a particular data format.
 
-- [**Tasks**](https://docs.taipy.io/manuals/core/concepts/task/): are the translation of functions in Taipy.
+- [**Tasks**](https://docs.taipy.io/en/latest/manuals/core/concepts/task/): are the translation of functions in Taipy.
 
-- [**Pipelines**](https://docs.taipy.io/manuals/core/concepts/pipeline/): are a list of tasks executed with 
+- [**Pipelines**](https://docs.taipy.io/en/latest/manuals/core/concepts/pipeline/): are a list of tasks executed with 
   intelligent scheduling created automatically by Taipy. They usually represent a sequence of Tasks/functions 
   corresponding to different algorithms like a simple baseline Algorithm or a more sophisticated Machine-Learning 
   pipeline.
 
-- [**Scenarios**](https://docs.taipy.io/manuals/core/concepts/scenario/): End-Users very often require modifying 
+- [**Scenarios**](https://docs.taipy.io/en/latest/manuals/core/concepts/scenario/): End-Users very often require modifying 
   various parameters to reflect different business situations. Taipy Scenarios will provide the framework to 
   "play"/"execute" pipelines under different conditions/variations (i.e. data/parameters modified by the end-user)
 
@@ -44,11 +45,9 @@ Let's create a Machine Learning (ML) example to clarify these concepts.
 
 In a ML context, it is common to have numerous training and testing pipelines for different algorithms. For 
 simplification, we will only configure a single baseline pipeline that will predict on a given **day** the values 
-for the following days. In Taipy, you will describe (i.e. configure) your pipeline with three tasks:
+for the following days. In Taipy, you will describe (i.e. configure) your pipeline with two tasks:
 
-- Retrieval of the initial dataset,
-
-- Data Cleaning,
+- Clean data which retrieves the initial dataset and perform data cleaning
 
 - Predictions (for *number of predictions*) from **day** onwards. In our example, predictions represents the number 
   of items sold in a given store on a 15-min basis.
@@ -75,7 +74,7 @@ Some parameters for Data Node configuration:
 - **Storage type**: This is where the storage type is selected: CSV file, SQL database, Pickle file, etc. Here, the initial dataset is a CSV file so *storage_type="csv"* for this Data Node. Taipy knows how to 
   access it, thanks to the path. By default, the storage type is *pickle*.
 
-- **[Scope](https://docs.taipy.io/manuals/core/concepts/scope/)**: You can find below three types of Scope in the 
+- **[Scope](https://docs.taipy.io/en/latest/manuals/core/concepts/scope/)**: You can find below three types of Scope in the 
   code: the Pipeline, the Scenario (by default) and the Global scope.
 
     - *Global scope*: all Data Nodes are shared between every pipelines, scenarios and cycles. For example, the 

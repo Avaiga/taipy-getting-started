@@ -2,7 +2,8 @@
 
 !!! warning "For Notebooks"
 
-    The "Getting Started" Notebook is available [here](https://docs.taipy.io/getting_started/getting_started.ipynb). The code of the steps doesn't deal with the [specific GUI functions](https://docs.taipy.io/manuals/gui/notebooks/) for Notebooks.
+    The "Getting Started" Notebook is available [here](https://docs.taipy.io/en/latest/getting_started/getting_started.ipynb). In Taipy GUI, the process to execute a Jupyter Notebook is different from executing a Python Script.
+    It is important to check the [Notebook](https://docs.taipy.io/en/latest/getting_started/getting_started.ipynb) content and see the [documentation](https://docs.taipy.io/en/latest/manuals/gui/notebooks/).
 
 # Step 12: Compare Scenarios
 
@@ -100,7 +101,7 @@ Let's create a page related to this comparison. As said before, this page will c
 and pipelines; and a selector to choose the metric on which to compare. When pressed the button at the bottom of the 
 page calls the `compare()` function. When finished, the _render_ property of the *part* will render the rest of the 
 page. Also, a new Taipy's block is present in the Markdown: 
-[expandable](https://docs.taipy.io/manuals/gui/viselements/expandable/).
+[expandable](https://docs.taipy.io/en/latest/manuals/gui/viselements/expandable/).
 
 ```python
 # Performance page

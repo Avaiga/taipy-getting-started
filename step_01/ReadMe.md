@@ -2,7 +2,8 @@
 
 !!! warning "For Notebooks"
 
-    The "Getting Started" Notebook is available [here](https://docs.taipy.io/getting_started/getting_started.ipynb). The code of the steps doesn't deal with the [specific GUI functions](https://docs.taipy.io/manuals/gui/notebooks/) for Notebooks.
+    The "Getting Started" Notebook is available [here](https://docs.taipy.io/en/latest/getting_started/getting_started.ipynb). In Taipy GUI, the process to execute a Jupyter Notebook is different from executing a Python Script.
+    It is important to check the [Notebook](https://docs.taipy.io/en/latest/getting_started/getting_started.ipynb) content and see the [documentation](https://docs.taipy.io/en/latest/manuals/gui/notebooks/).
 
 # Step 1: Visual elements
 
@@ -11,8 +12,18 @@ like charts, sliders and tables and implement them in the GUI.
 
 ## Importing the Dataset
 
-Suppose that you have a [*dataset.csv*](dataset.csv) file, using the *Pandas* library, you can retrieve this dataset 
-with the following codes:
+We will be using a [CSV file](dataset.csv) as a dataset. This dataset contains the historical number of articles sold for a given store on a 15-minute basis (we have the historical sales data for the year 2021). Being a real dataset, there will sometimes be missing information for specific days. 
+The columns are:
+
+- **Index**: a unique identifier for each data point.
+
+- **Date**: the date of the data point. Each date is separated by 15 minutes.
+
+- **Value**: the number of articles sold per 15-minute timeframe.
+
+![Table](table.png){ width=700 style="margin:auto;display:block;border: 2px solid rgb(210,210,210);border-radius:7px" }
+
+Using the *Pandas* library, you can retrieve this dataset with the following code:
 
 ```python
 import pandas as pd
@@ -30,18 +41,7 @@ dataset = get_data(path_to_csv)
 ...
 ```
 
-_dataset_ is a *pd.DataFrame*, a basic *Pandas main* object representing, in this case, a realistic time series. 
-It represents the historical number of articles sold for a given store on a 15-minute basis (we have the historical 
-sales data for the year 2021). Being a real dataset, there will sometimes be missing information for specific days. 
-The columns are:
-
-- Index: a unique identifier for each data point.
-
-- Date: the date of the data point. Each date are separated by 15 minutes.
-
-- Value: the number of articles sold per 15-minute timeframe.
-
-![Table](table.png){ width=700 style="margin:auto;display:block;border: 2px solid rgb(210,210,210);border-radius:7px" }
+_dataset_ is a *pd.DataFrame*, a basic *Pandas main* object representing, in this case, our realistic time series. 
 
 After creating your first web client with just one line of code and reading our dataset data with the code above, 
 let's add some  visual elements to our initial page.
@@ -49,20 +49,20 @@ let's add some  visual elements to our initial page.
 ## Visual elements
 
 Taipy GUI can be considered as an **augmented** Markdown; it adds the concept of 
-**[Visual elements](https://docs.taipy.io/manuals/gui/viselements/)** on top of all the Markdown syntax. A visual 
+**[Visual elements](https://docs.taipy.io/en/latest/manuals/gui/viselements/)** on top of all the Markdown syntax. A visual 
 element is a Taipy graphical object displayed on the client. It can be a 
-[slider](https://docs.taipy.io/manuals/gui/viselements/slider/), a 
-[chart](https://docs.taipy.io/manuals/gui/viselements/chart/), a 
-[table](https://docs.taipy.io/manuals/gui/viselements/table/), an 
-[input](https://docs.taipy.io/manuals/gui/viselements/input/), a 
-[menu](https://docs.taipy.io/manuals/gui/viselements/menu/), etc. Check the list 
-[here](https://docs.taipy.io/manuals/gui/controls/).
+[slider](https://docs.taipy.io/en/latest/manuals/gui/viselements/slider/), a 
+[chart](https://docs.taipy.io/en/latest/manuals/gui/viselements/chart/), a 
+[table](https://docs.taipy.io/en/latest/manuals/gui/viselements/table/), an 
+[input](https://docs.taipy.io/en/latest/manuals/gui/viselements/input/), a 
+[menu](https://docs.taipy.io/en/latest/manuals/gui/viselements/menu/), etc. Check the list 
+[here](https://docs.taipy.io/en/latest/manuals/gui/controls/).
 
 Every visual element follows a similar syntax:
 
 `<|{variable}|visual_element_name|param_1=param_1|param_2=param_2| ... |>`.
 
-For example, a [slider](https://docs.taipy.io/manuals/gui/viselements/slider/) is written this way :
+For example, a [slider](https://docs.taipy.io/en/latest/manuals/gui/viselements/slider/) is written this way :
 
 `<|{variable}|slider|min=min_value|max=max_value|>`.
 
