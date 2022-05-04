@@ -2,8 +2,8 @@
 
 !!! warning "For Notebooks"
 
-    The "Getting Started" Notebook is available [here](https://docs.taipy.io/getting_started/getting_started.ipynb). In Taipy GUI, the process to execute a Jupyter Notebook is different from executing a Python Script.
-    It is important to check the [Notebook](https://docs.taipy.io/getting_started/getting_started.ipynb) content and see the [documentation](https://docs.taipy.io/manuals/gui/notebooks/).
+    The "Getting Started" Notebook is available [here](https://docs.taipy.io/en/latest/getting_started/getting_started.ipynb). In Taipy GUI, the process to execute a Jupyter Notebook is different from executing a Python Script.
+    It is important to check the [Notebook](https://docs.taipy.io/en/latest/getting_started/getting_started.ipynb) content and see the [documentation](https://docs.taipy.io/en/latest/manuals/gui/notebooks/).
 
 # Step 7: GUI and Scenario
 
@@ -17,7 +17,7 @@ config) . In this step, we will implement a graphical interface that makes use o
 
 ![Selector](selector.gif){ width=250 style="margin:auto;display:block" }
 
-A [selector](https://docs.taipy.io/manuals/gui/viselements/selector/) only needs two properties: a value that gets 
+A [selector](https://docs.taipy.io/en/latest/manuals/gui/viselements/selector/) only needs two properties: a value that gets 
 dynamically updated through the selector and the list of values possible (aka "lov"). Here is the syntax for a selector:
 
 `<|{selected_value}|selector|lov={lov_selector}|>`.
