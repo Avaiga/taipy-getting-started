@@ -2,8 +2,8 @@
 
 !!! warning "For Notebooks"
 
-    The "Getting Started" Notebook is available [here](https://docs.taipy.io/getting_started/getting_started.ipynb). In Taipy GUI, the process to execute a Jupyter Notebook is different from executing a Python Script.
-    It is important to check the [Notebook](https://docs.taipy.io/getting_started/getting_started.ipynb) content and see the [documentation](https://docs.taipy.io/manuals/gui/notebooks/).
+    The "Getting Started" Notebook is available [here](https://docs.taipy.io/en/latest/getting_started/getting_started.ipynb). In Taipy GUI, the process to execute a Jupyter Notebook is different from executing a Python Script.
+    It is important to check the [Notebook](https://docs.taipy.io/en/latest/getting_started/getting_started.ipynb) content and see the [documentation](https://docs.taipy.io/en/latest/manuals/gui/notebooks/).
 
 # Step 8: Modify Data Nodes content
 
@@ -24,8 +24,8 @@ max_capacity = 200
 
 Second, we will add to the Markdown (before the chart), a visual element binding each of these variables. We will be 
 using them to "modify" the scenario. See the documentation for these newly introduced visual elements here: 
-[date](https://docs.taipy.io/manuals/gui/viselements/date/) and 
-[number](https://docs.taipy.io/manuals/gui/viselements/number/). A "Save button" is also created to run the 
+[date](https://docs.taipy.io/en/latest/manuals/gui/viselements/date/) and 
+[number](https://docs.taipy.io/en/latest/manuals/gui/viselements/number/). A "Save button" is also created to run the 
 "submit_scenario()" function when pressed.
 
 ```python

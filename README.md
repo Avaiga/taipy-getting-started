@@ -25,10 +25,10 @@ specific language governing permissions and limitations under the License.
 
 Taipy is a Python library for creating Business Applications. More information on our [website](https://www.taipy.io).
 
-[Taipy Getting Started](https://docs.taipy.io/getting_started/) provides a step-by-step opening to Taipy. 
+[Taipy Getting Started](https://docs.taipy.io/en/latest/getting_started/) provides a step-by-step opening to Taipy. 
 Taipy features are leveraged as the application becomes more and more complex.
 
-A more in depth documentation of Taipy can be found [here](https://docs.taipy.io).
+A more in depth documentation of Taipy can be found [here](https://docs.taipy.io/en/latest/).
 
 ## Installation
 

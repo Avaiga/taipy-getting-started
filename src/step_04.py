@@ -2,7 +2,7 @@ import taipy as tp
 
 from step_03 import Config, clean_data_task_cfg, predict_baseline_task_cfg, dt
 
-# Create the first scenario configuration
+# Create the first pipeline configuration
 baseline_pipeline_cfg = Config.configure_pipeline(id="baseline",
                                                   task_configs=[clean_data_task_cfg, predict_baseline_task_cfg])
 
