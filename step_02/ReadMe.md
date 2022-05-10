@@ -2,8 +2,8 @@
 
 !!! warning "For Notebooks"
 
-    The "Getting Started" Notebook is available [here](https://docs.taipy.io/getting_started/getting_started.ipynb). In Taipy GUI, the process to execute a Jupyter Notebook is different from executing a Python Script.
-    It is important to check the [Notebook](https://docs.taipy.io/getting_started/getting_started.ipynb) content and see the [documentation](https://docs.taipy.io/manuals/gui/notebooks/).
+    The "Getting Started" Notebook is available [here](https://docs.taipy.io/en/latest/getting_started/getting_started.ipynb). In Taipy GUI, the process to execute a Jupyter Notebook is different from executing a Python Script.
+    It is important to check the [Notebook](https://docs.taipy.io/en/latest/getting_started/getting_started.ipynb) content and see the [documentation](https://docs.taipy.io/en/latest/manuals/gui/notebooks/).
 
 # Step 2: Interactive GUI
 
@@ -29,7 +29,7 @@ In the code below, this concept will be used to connect a variable (*n_week*) to
 
 - A connection has to be made between the slider's value  (*state.n_week*) and the chart data (*state.dataset_week*).
 
-## How to connect two variables - the *[on_change](https://docs.taipy.io/manuals/gui/callbacks/)* function
+## How to connect two variables - the *[on_change](https://docs.taipy.io/en/latest/manuals/gui/callbacks/)* function
 
 In *Taipy*, the `on_change()` function is a "special" function. **Taipy** will check if you created a function with this name and will use it. Whenever the state of a variable is modified, the *callback* function is called with three parameters:
 
@@ -42,7 +42,7 @@ In *Taipy*, the `on_change()` function is a "special" function. **Taipy** will c
 Here, `on_change()` will be called whenever the slider's value (*state.n_week*) changes. Each time this happens, *state.dataset_week* will be updated according to the new value of the selected week. Then, Taipy will propagate this change automatically to the associated chart.
 
 ```python
-# Select the week based on the the slider value
+# Select the week based on the slider value
 dataset_week = dataset[dataset["Date"].dt.isocalendar().week == n_week]
 
 page = """

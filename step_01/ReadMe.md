@@ -2,8 +2,8 @@
 
 !!! warning "For Notebooks"
 
-    The "Getting Started" Notebook is available [here](https://docs.taipy.io/getting_started/getting_started.ipynb). In Taipy GUI, the process to execute a Jupyter Notebook is different from executing a Python Script.
-    It is important to check the [Notebook](https://docs.taipy.io/getting_started/getting_started.ipynb) content and see the [documentation](https://docs.taipy.io/manuals/gui/notebooks/).
+    The "Getting Started" Notebook is available [here](https://docs.taipy.io/en/latest/getting_started/getting_started.ipynb). In Taipy GUI, the process to execute a Jupyter Notebook is different from executing a Python Script.
+    It is important to check the [Notebook](https://docs.taipy.io/en/latest/getting_started/getting_started.ipynb) content and see the [documentation](https://docs.taipy.io/en/latest/manuals/gui/notebooks/).
 
 # Step 1: Visual elements
 
@@ -13,7 +13,7 @@ like charts, sliders and tables and implement them in the GUI.
 ## Importing the Dataset
 
 Suppose that you have a [*dataset.csv*](dataset.csv) file, using the *Pandas* library, you can retrieve this dataset 
-with the following codes:
+with the following code:
 
 ```python
 import pandas as pd
@@ -50,20 +50,20 @@ let's add some  visual elements to our initial page.
 ## Visual elements
 
 Taipy GUI can be considered as an **augmented** Markdown; it adds the concept of 
-**[Visual elements](https://docs.taipy.io/manuals/gui/viselements/)** on top of all the Markdown syntax. A visual 
+**[Visual elements](https://docs.taipy.io/en/latest/manuals/gui/viselements/)** on top of all the Markdown syntax. A visual 
 element is a Taipy graphical object displayed on the client. It can be a 
-[slider](https://docs.taipy.io/manuals/gui/viselements/slider/), a 
-[chart](https://docs.taipy.io/manuals/gui/viselements/chart/), a 
-[table](https://docs.taipy.io/manuals/gui/viselements/table/), an 
-[input](https://docs.taipy.io/manuals/gui/viselements/input/), a 
-[menu](https://docs.taipy.io/manuals/gui/viselements/menu/), etc. Check the list 
-[here](https://docs.taipy.io/manuals/gui/controls/).
+[slider](https://docs.taipy.io/en/latest/manuals/gui/viselements/slider/), a 
+[chart](https://docs.taipy.io/en/latest/manuals/gui/viselements/chart/), a 
+[table](https://docs.taipy.io/en/latest/manuals/gui/viselements/table/), an 
+[input](https://docs.taipy.io/en/latest/manuals/gui/viselements/input/), a 
+[menu](https://docs.taipy.io/en/latest/manuals/gui/viselements/menu/), etc. Check the list 
+[here](https://docs.taipy.io/en/latest/manuals/gui/controls/).
 
 Every visual element follows a similar syntax:
 
 `<|{variable}|visual_element_name|param_1=param_1|param_2=param_2| ... |>`.
 
-For example, a [slider](https://docs.taipy.io/manuals/gui/viselements/slider/) is written this way :
+For example, a [slider](https://docs.taipy.io/en/latest/manuals/gui/viselements/slider/) is written this way :
 
 `<|{variable}|slider|min=min_value|max=max_value|>`.
 
