@@ -49,7 +49,7 @@ def create_predictions_dataset(pipeline):
 
     # Create the series that will be used in the concat
     historical_values = pd.Series(temp_df["Value"], name="Historical values")
-    predicted_values = pd.Series([np.NaN] * len(temp_df), name="Predicted values")  # change ? Fred
+    predicted_values = pd.Series([np.NaN] * len(temp_df), name="Predicted values")
     predicted_values[-len(predictions):] = predictions
 
     # Create the predictions dataset
