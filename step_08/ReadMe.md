@@ -104,6 +104,10 @@ def update_chart(state):
 
 
 global selected_scenario
+
+# Run of the Taipy Core service
+tp.Core().run()
+
 # Creation of a single scenario
 create_scenario()
 Gui(page=page_scenario_manager).run(dark_mode=False)

@@ -108,6 +108,9 @@ This is what the structure of the code looks like for the GUI:
 ![Organisation](organisation.svg){ width=500 style="margin:auto;display:block" }
 
 ```python
+# Run of the Taipy Core service
+tp.Core().run()
+
 Gui(page=pipeline_page).run(dark_mode=False)
 ```
 

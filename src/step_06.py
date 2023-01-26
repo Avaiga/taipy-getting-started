@@ -39,6 +39,7 @@ scenario_cfg = Config.configure_scenario(id="scenario", pipeline_configs=[baseli
 # The configuration is now complete
 
 if __name__ == "__main__":
+    tp.Core().run()
     # Create the scenario
     scenario = tp.create_scenario(scenario_cfg)
     # Execute it

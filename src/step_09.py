@@ -109,4 +109,5 @@ def on_change(state, var_name: str, var_value):
 
 
 if __name__ == "__main__":
+    tp.Core().run()
     Gui(page=scenario_manager_page).run(dark_mode=False)

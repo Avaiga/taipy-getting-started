@@ -22,7 +22,6 @@ max_capacity_cfg = Config.configure_data_node(id="max_capacity", default_data=20
 
 ## Remaining Data Nodes
 cleaned_dataset_cfg = Config.configure_data_node(id="cleaned_dataset",
-                                                 cacheable=True,
                                                  validity_period=dt.timedelta(days=1),
                                                  scope=Scope.GLOBAL)
 
@@ -52,7 +51,8 @@ def predict_baseline(cleaned_dataset: pd.DataFrame, n_predictions: int, day: dt.
 clean_data_task_cfg = Config.configure_task(id="clean_data",
                                             function=clean_data,
                                             input=initial_dataset_cfg,
-                                            output=cleaned_dataset_cfg)
+                                            output=cleaned_dataset_cfg,
+                                            skippable=True)
 
 predict_baseline_task_cfg = Config.configure_task(id="predict_baseline",
                                                   function=predict_baseline,

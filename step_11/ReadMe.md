@@ -197,12 +197,9 @@ page_scenario_manager = """
 
 ```python
 # Redefine the multi_pages
-multi_pages = """
-<|menu|label=Menu|lov={["Data Visualization", "Scenario Manager"]}|on_action=on_menu|>
-
-<|part|render={page=="Data Visualization"}|""" + page_data_visualization + """|>
-<|part|render={page=="Scenario Manager"}|""" + page_scenario_manager + """|>
-"""
+pages = {"/":root_md,
+         "Data-Visualization":page_data_visualization,
+         "Scenario-Manager":page_scenario_manager}
 ```
 
 When the selected scenario is changed, Taipy calls the `on_change` and will update `state.
@@ -225,7 +222,10 @@ def on_change(state, var_name: str, var_value):
 
 
 ```python
-Gui(page=multi_pages).run(dark_mode=False)
+# Run of the Taipy Core service
+tp.Core().run()
+
+Gui(pages=pages).run(dark_mode=False)
 ```
 
 ![Cycle page](result.gif){ style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }

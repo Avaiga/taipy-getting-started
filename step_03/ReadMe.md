@@ -88,9 +88,8 @@ Some parameters for Data Node configuration:
       Node is created for each pipeline in the current example. So, adding pipelines/algorithms will store 
       predictions in different "predictions" Data Nodes.
 
-- **Cacheable**: This is a parameter used to increase the efficiency of the program. If the Data Node has already 
-  been created and if its input/upstream data nodes haven’t changed since the last run (of the pipeline), then it is 
-  not necessary to rerun the task that creates it.
+Important property for Tasks:
+**Skippable**: This is a parameter used to increase the efficiency of the program. If the output Data Node has already been created and if its input/upstream data nodes haven’t changed since the last run (of the pipeline), then it is not necessary to rerun the task.
 
 
 ### Input Data Nodes configuration
@@ -133,7 +132,7 @@ max_capacity_cfg = Config.configure_data_node(id="max_capacity", default_data=20
 
 ### Remaining Data Nodes
 
-- *cleaned_dataset* is the dataset after cleaning (after the `clean_data()` function). _cacheable_ is set to True 
+- *cleaned_dataset* is the dataset after cleaning (after the `clean_data()` function).
   with a `scope.GLOBAL`. It means if the initial dataset didn't change, Taipy will not re-execute the `clean_data()` 
   task. In other words, after the creation of this data node through `clean_data()`, Taipy knows that it is not 
   necessary to create it again.
@@ -144,7 +143,6 @@ max_capacity_cfg = Config.configure_data_node(id="max_capacity", default_data=20
 ```python
 ## Remaining Data Nodes
 cleaned_dataset_cfg = Config.configure_data_node(id="cleaned_dataset",
-                                             cacheable=True,
                                              validity_period=dt.timedelta(days=1),
                                              scope=Scope.GLOBAL) 
 
@@ -200,7 +198,8 @@ Node), clean it (calling the `clean_data()` function) and generate the cleaned d
 clean_data_task_cfg = Config.configure_task(id="clean_data",
                                             function=clean_data,
                                             input=initial_dataset_cfg,
-                                            output=cleaned_dataset_cfg)
+                                            output=cleaned_dataset_cfg,
+                                            skippable=True)
 ```
 
 ### predict_baseline_task

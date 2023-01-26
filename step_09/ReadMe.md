@@ -153,9 +153,12 @@ def on_change(state, var_name: str, var_value):
             update_chart(state)
 ```
 
-Run the Gui.
+Run the Core and GUI.
 
 ```python
+# Run of the Taipy Core service
+tp.Core().run()
+
 Gui(page=scenario_manager_page).run(dark_mode=False)
 ```
 

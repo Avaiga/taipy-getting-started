@@ -162,13 +162,20 @@ page_scenario_manager = """
 |>
 """
 
-# Redefine the multi_pages
-multi_pages = """
-<|menu|label=Menu|lov={["Data Visualization", "Scenario Manager"]}|on_action=menu_fct|>
+lov_menu = [("Data-Visualization", "Data Visualization"),
+            ("Scenario-Manager", "Scenario Manager")]
 
-<|part|render={page=="Data Visualization"}|""" + page_data_visualization + """|>
-<|part|render={page=="Scenario Manager"}|""" + page_scenario_manager + """|>
-"""
+# Create a menu with our pages
+root_md = "<|menu|label=Menu|lov={lov_menu}|on_action=menu_fct|>"
+
+pages = {"/":root_md,
+         "Data-Visualization":page_data_visualization,
+         "Scenario-Manager":page_scenario_manager}
+
+
+def menu_fct(state, var_name: str, fct: str, var_value: list):
+    # Change the value of the state.page variable in order to render the correct page
+    navigate(state, var_value["args"][0])
 
 
 def on_change(state, var_name: str, var_value):
@@ -186,4 +193,5 @@ def on_change(state, var_name: str, var_value):
 
 
 if __name__ == "__main__":
-    Gui(page=multi_pages).run(dark_mode=False)
+    tp.Core().run()
+    Gui(pages=pages).run(dark_mode=False)

@@ -137,16 +137,22 @@ page_performance = """
 
 ```python
 # Add the page_performance section to the menu   
-multi_pages = """
-<|menu|label=Menu|lov={["Data Visualization", "Scenario Manager", "Performance"]}|on_action=on_menu|>
+lov_menu = [("Data-Visualization", "Data Visualization"),
+            ("Scenario-Manager", "Scenario Manager"),
+            ("Performance", "Performance")]
 
-<|part|render={page=="Data Visualization"}|""" + page_data_visualization + """|>
-<|part|render={page=="Scenario Manager"}|""" + page_scenario_manager + """|>
-<|part|render={page=="Performance"}|""" + page_performance + """|>
+# Create a menu with our pages
+root_md = "<|menu|label=Menu|lov={lov_menu}|on_action=menu_fct|>"
 
-"""
+pages = {"/":root_md,
+         "Data-Visualization":page_data_visualization,
+         "Scenario-Manager":page_scenario_manager,
+         "Performance":page_performance}
 
-Gui(page=multi_pages).run(dark_mode=False) 
+# Run of the Taipy Core service
+tp.Core().run()
+
+Gui(pages=pages).run(dark_mode=False) 
 ```
 
 ![Compare Scenarios](result.png){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
