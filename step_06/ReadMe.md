@@ -69,6 +69,9 @@ create your pipelines (and its associated Tasks), and when you submit the scenar
 Taipy’s built-in intelligent scheduling. Taipy knows in which sequence the Tasks need to be performed.
 
 ```python
+# Run of the Taipy Core service
+tp.Core().run()
+
 # Create the scenario
 scenario = tp.create_scenario(scenario_cfg)
 # Execute it

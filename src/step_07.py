@@ -43,7 +43,7 @@ if __name__ == "__main__":
     # Delete all entities
     Config.configure_global_app(clean_entities_enabled=True)
     tp.clean_all_entities()
-
+    tp.Core().run()
     # Creation of our first scenario
     scenario = create_scenario()
     Gui(page=scenario_page).run(dark_mode=False)

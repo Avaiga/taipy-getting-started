@@ -14,12 +14,23 @@ With just a few steps, you have created a full forecasting application which pre
 `<|menu|label=Menu|lov={lov_pages}|on_action=on_menu|>`. For example, this code creates a menu with two pages:
 
 ```python
-from taipy import Gui
+from taipy.gui import Gui, navigate
 
-def on_menu():
-    print('Menu function called')
+def on_menu(state, var_name: str, fct: str, var_value: list):
+    # the selected page is retrieved
+    page = var_value["args"][0]
+    navigate(state, page)
 
-Gui(page="<|menu|label=Menu|lov={['Data Visualization', 'Scenario Manager']}|on_action=on_menu|>").run()
+# The first element is the real name of the page
+# The second one is the one displayed
+lov_menu = [("Data-Visualization", "Data Visualization"),
+            ("Scenario-Manager", "Scenario Manager")]
+
+pages = {"/":"<|menu|label=Menu|lov={lov_menu}|on_action=on_menu|>",
+         "Data-Visualization":"# Data Visualization page",
+         "Scenario-Manager":"# Scenario Manager page"}
+
+Gui(pages=pages).run()
 ```
 
 ![Menu](menu.png){ width=50 style="margin:auto;display:block" }
@@ -54,7 +65,7 @@ One strategy to switch from one page to another is:
 
 1. To create a specific Markdown string for each page;
 
-2. Use the Menu control to switch from one page to another by controlling the page variable.
+2. Use the Menu control to switch from one page to another with the `navigate()` function.
 
 This is how you can easily create multiple pages; there are many other ways to do so.
  
@@ -116,27 +127,29 @@ page_scenario_manager = """
 ![Scenario Manager](scenario_manager.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
 
-The menu combines these two pages. When a page is selected in the menu control, `on_menu()` is called and updates the 
-page.
+The menu combines these two pages. When a page is selected in the menu control, `menu_fct()` is called and updates the page.
 
 ```python
+lov_menu = [("Data-Visualization", "Data Visualization"),
+            ("Scenario-Manager", "Scenario Manager")]
+
 # Create a menu with our pages
-multi_pages = """
-<|menu|label=Menu|lov={["Data Visualization", "Scenario Manager"]}|on_action=on_menu|>
+root_md = "<|menu|label=Menu|lov={lov_menu}|on_action=menu_fct|>"
 
-<|part|render={page=="Data Visualization"}|""" + page_data_visualization + """|>
-<|part|render={page=="Scenario Manager"}|""" + page_scenario_manager + """|>
-"""
-
-
-# The initial page is the "Data Visualization" page
-page = "Data Visualization"
-def on_menu(state, var_name: str, fct: str, var_value: list):
-    # Change the value of the state.page variable in order to render the correct page
-    state.page = var_value["args"][0]
+pages = {"/":root_md,
+         "Data-Visualization":page_data_visualization,
+         "Scenario-Manager":page_scenario_manager}
 
 
-Gui(page=multi_pages).run(dark_mode=False)
+def menu_fct(state, var_name: str, fct: str, var_value: list):
+    # The 'navigate' function is the one changing the page
+    # It is a function present in taipy.gui
+    navigate(state, var_value["args"][0])
+
+# Run of the Taipy Core service
+tp.Core().run()
+
+Gui(pages=pages).run(dark_mode=False)
 ```
 
 ![Multi Pages](multi_pages.png){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }

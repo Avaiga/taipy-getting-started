@@ -83,6 +83,9 @@ tp.clean_all_entities()
 ```
 
 ```python
+# Run of the Taipy Core service
+tp.Core().run()
+
 # Creation of our first scenario
 scenario = create_scenario()
 Gui(page=scenario_page).run(dark_mode=False) 

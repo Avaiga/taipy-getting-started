@@ -21,10 +21,13 @@ baseline_pipeline_cfg = Config.configure_pipeline(id="baseline",
 
 ## Pipeline creation and execution
 
-Then, create your pipeline from its configuration, submit it, and print the "predictions" Data Node results.
+First of all, Taipy has to be run (tp.Core().run()). It will create a service that will act as a job scheduler. Then, create your pipeline from its configuration, submit it, and print the "predictions" Data Node results.
 
 ```python
 import taipy as tp
+
+# Run of the Taipy Core service
+tp.Core().run()
 
 # Create the pipeline
 baseline_pipeline = tp.create_pipeline(baseline_pipeline_cfg)

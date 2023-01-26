@@ -8,6 +8,7 @@ baseline_pipeline_cfg = Config.configure_pipeline(id="baseline",
 
 ## Execute the "baseline" pipeline
 if __name__ == "__main__":
+    tp.Core().run()
     # Create the pipeline
     baseline_pipeline = tp.create_pipeline(baseline_pipeline_cfg)
     # Submit the pipeline (Execution)

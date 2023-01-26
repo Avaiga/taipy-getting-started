@@ -63,4 +63,5 @@ def update_predictions_dataset(state, pipeline):
 
 
 if __name__ == "__main__":
+    tp.Core().run()
     Gui(page=pipeline_page).run(dark_mode=False)

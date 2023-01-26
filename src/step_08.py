@@ -65,6 +65,7 @@ def update_chart(state):
 
 if __name__ == "__main__":
     global selected_scenario
+    tp.Core().run()
     # Creation of a single scenario
     create_scenario()
     Gui(page=page_scenario_manager).run(dark_mode=False)
