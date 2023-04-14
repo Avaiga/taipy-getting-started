@@ -142,8 +142,7 @@ max_capacity_cfg = Config.configure_data_node(id="max_capacity", default_data=20
 ```python
 ## Remaining Data Nodes
 cleaned_dataset_cfg = Config.configure_data_node(id="cleaned_dataset",
-                                             validity_period=dt.timedelta(days=1),
-                                             scope=Scope.GLOBAL) 
+                                                 scope=Scope.GLOBAL) 
 
 predictions_cfg = Config.configure_data_node(id="predictions", scope=Scope.PIPELINE)
 ```

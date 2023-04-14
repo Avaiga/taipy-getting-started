@@ -27,14 +27,18 @@ def predict_ml(cleaned_dataset: pd.DataFrame, n_predictions: int, day: dt.dateti
 ## We use the same input and ouput as the previous predict_baseline task but we change the funtion
 predict_ml_task_cfg = Config.configure_task(id="predict_ml",
                                             function=predict_ml,
-                                            input=[cleaned_dataset_cfg, n_predictions_cfg, day_cfg, max_capacity_cfg],
+                                            input=[cleaned_dataset_cfg,
+                                                   n_predictions_cfg, day_cfg,
+                                                   max_capacity_cfg],
                                             output=predictions_cfg)
 
 # Create the new pipeline that will clean and predict with the ml model
-ml_pipeline_cfg = Config.configure_pipeline(id="ml", task_configs=[clean_data_task_cfg, predict_ml_task_cfg])
+ml_pipeline_cfg = Config.configure_pipeline(id="ml", task_configs=[clean_data_task_cfg,
+                                                                   predict_ml_task_cfg])
 
 # Configure our scenario which is our business problem.
-scenario_cfg = Config.configure_scenario(id="scenario", pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg])
+scenario_cfg = Config.configure_scenario(id="scenario", pipeline_configs=[baseline_pipeline_cfg,
+                                                                          ml_pipeline_cfg])
 
 # The configuration is now complete
 

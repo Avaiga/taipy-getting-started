@@ -4,7 +4,8 @@ from step_03 import Config, clean_data_task_cfg, predict_baseline_task_cfg, dt
 
 # Create the first pipeline configuration
 baseline_pipeline_cfg = Config.configure_pipeline(id="baseline",
-                                                  task_configs=[clean_data_task_cfg, predict_baseline_task_cfg])
+                                                  task_configs=[clean_data_task_cfg,
+                                                                predict_baseline_task_cfg])
 
 ## Execute the "baseline" pipeline
 if __name__ == "__main__":
