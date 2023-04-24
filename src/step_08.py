@@ -40,12 +40,12 @@ def submit_scenario(state):
     state_day = dt.datetime(state.day.year, state.day.month, state.day.day)
 
     # Change the default parameters by writing in the datanodes
-    selected_scenario.day.write(state_day)
-    selected_scenario.n_predictions.write(int(state.n_predictions))
-    selected_scenario.max_capacity.write(int(state.max_capacity))
+    state.selected_scenario.day.write(state_day)
+    state.selected_scenario.n_predictions.write(int(state.n_predictions))
+    state.selected_scenario.max_capacity.write(int(state.max_capacity))
 
     # Execute the pipelines/code
-    tp.submit(selected_scenario)
+    tp.submit(state.selected_scenario)
 
     # Update the chart when we change the scenario
     update_chart(state)
@@ -53,13 +53,12 @@ def submit_scenario(state):
 
 def update_chart(state):
     # Select the right scenario and pipeline
-    pipeline = selected_scenario.pipelines[state.selected_pipeline]
+    pipeline = state.selected_scenario.pipelines[state.selected_pipeline]
     # Update the chart based on this pipeline
     update_predictions_dataset(state, pipeline)
 
 
 if __name__ == "__main__":
-    global selected_scenario
     tp.Core().run()
     # Creation of a single scenario
     selected_scenario = create_scenario()
