@@ -4,14 +4,14 @@ import json
 def add_line(source, line, step):
 
     line = line.replace('Getting Started with Taipy', 'Getting Started with Taipy on Notebooks')
-    line = line.replace('(../src/', '(https://docs.taipy.io/en/latest/getting_started/src/')
-    line = line.replace('(dataset.csv)', '(https://docs.taipy.io/en/latest/getting_started/step_01/dataset.csv)')
+    line = line.replace('(../src/', '(https://docs.taipy.io/en/latest/getting_started/getting-started/src/')
+    line = line.replace('(dataset.csv)', '(https://docs.taipy.io/en/latest/getting_started/getting-started/step_01/dataset.csv)')
 
     if line.startswith('!['):
         if step != 'index':
-            line = line.replace('(', '(https://docs.taipy.io/en/latest/getting_started/' + step + '/')
+            line = line.replace('(', '(https://docs.taipy.io/en/latest/getting_started/getting-started/' + step + '/')
         else:
-            line = line.replace('(', '(https://docs.taipy.io/en/latest/getting_started/')
+            line = line.replace('(', '(https://docs.taipy.io/en/latest/getting_started/getting-started/')
 
         # conversion of Markdown image to HTML
         img_src = line.split('](')[1].split(')')[0]
@@ -20,11 +20,14 @@ def add_line(source, line, step):
         source.append('<div align="center">\n')
         source.append(f' <img src={img_src} {width}>\n')
         source.append('</div>\n')
-
+    elif 'Core()' in line:
+        source.append('# Comment tp.Core().run() to do the next step then restart and run the cells\n')
+        source.append('tp.Core().run()\n')
     elif step == 'step_00' and line.startswith('Gui(page='):
 
         source.append('\n')
         source.append('Gui("# Getting Started with Taipy").run(dark_mode=False)\n')
+    
 
     elif line.startswith('Gui(page=') and step != 'step_00':
         search_for_md = line.split(')')

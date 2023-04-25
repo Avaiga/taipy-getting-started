@@ -90,35 +90,26 @@ page_scenario_manager = """
 # Create your scenario
 
 <|layout|columns=1 1 1 1|
-<|
-**Prediction date**\n\n <|{day}|date|not with_time|>
-|>
+**Prediction date**
+<|{day}|date|not with_time|>
 
-<|
-**Max capacity**\n\n <|{max_capacity}|number|>
-|>
+**Max capacity** <br/>
+<|{max_capacity}|number|>
 
-<|
-**Number of predictions**\n\n<|{n_predictions}|number|>
-|>
+**Number of predictions**
+<|{n_predictions}|number|>
 
-<|
-<br/>\n <|Create new scenario|button|on_action=create_scenario|>
-|>
+<br/> <|Create new scenario|button|on_action=create_scenario|>
 |>
 
 <|part|render={len(scenario_selector) > 0}|
 <|layout|columns=1 1|
-<|
-## Scenario \n <|{selected_scenario}|selector|lov={scenario_selector}|dropdown|>
+## Scenario <|{selected_scenario}|selector|lov={scenario_selector}|dropdown|adapter={lambda s: s.name}|>
+
+## Display the pipeline <|{selected_pipeline}|selector|lov={pipeline_selector}|dropdown|>
 |>
 
-<|
-## Display the pipeline \n <|{selected_pipeline}|selector|lov={pipeline_selector}|dropdown|>
-|>
-|>
-
-<|{predictions_dataset}|chart|x=Date|y[1]=Historical values|type[1]=bar|y[2]=Predicted values|type[2]=scatter|height=80%|width=100%|>
+<|{predictions_dataset}|chart|x=Date|y[1]=Historical values|type[1]=bar|y[2]=Predicted values|type[2]=scatter|>
 |>
 """
 ```
@@ -147,7 +138,8 @@ def menu_fct(state, var_name: str, fct: str, var_value: list):
 
 # Run of the Taipy Core service
 tp.Core().run()
-
+scenario_selector = tp.get_scenarios()
+selected_scenario = None
 Gui(pages=pages).run(dark_mode=False)
 ```
 

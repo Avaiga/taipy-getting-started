@@ -10,7 +10,7 @@ Select week: *<|{n_week}|>*
 
 <|{n_week}|slider|min=1|max=52|>
 
-<|{dataset_week}|chart|type=bar|x=Date|y=Value|height=100%|width=100%|>
+<|{dataset_week}|chart|type=bar|x=Date|y=Value|>
 """
 
 

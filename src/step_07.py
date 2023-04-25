@@ -1,7 +1,6 @@
 from step_05 import *
 from step_06 import scenario_cfg
 
-from taipy import Config
 
 # Set the list of pipelines names
 # It will be used in a selector of pipelines
@@ -12,7 +11,7 @@ scenario_page = page + """
 Select the pipeline
 <|{selected_pipeline}|selector|lov={pipeline_selector}|> <|Update chart|button|on_action=update_chart|>
 
-<|{predictions_dataset}|chart|x=Date|y[1]=Historical values|type[1]=bar|y[2]=Predicted values|type[2]=scatter|height=80%|width=100%|>
+<|{predictions_dataset}|chart|x=Date|y[1]=Historical values|type[1]=bar|y[2]=Predicted values|type[2]=scatter|>
 """
 
 
@@ -40,9 +39,6 @@ def update_chart(state):
 
 
 if __name__ == "__main__":
-    # Delete all entities
-    Config.configure_global_app(clean_entities_enabled=True)
-    tp.clean_all_entities()
     tp.Core().run()
     # Creation of our first scenario
     scenario = create_scenario()

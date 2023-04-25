@@ -40,7 +40,7 @@ scenario_page = page + """
 Select the pipeline
 <|{selected_pipeline}|selector|lov={pipeline_selector}|> <|Update chart|button|on_action=update_chart|>
 
-<|{predictions_dataset}|chart|x=Date|y[1]=Historical values|type[1]=bar|y[2]=Predicted values|type[2]=scatter|height=80%|width=100%|>
+<|{predictions_dataset}|chart|x=Date|y[1]=Historical values|type[1]=bar|y[2]=Predicted values|type[2]=scatter|>
 """
 ```
 
@@ -57,10 +57,12 @@ def create_scenario():
     scenario = submit_scenario(scenario)
     return scenario
 
+
 def submit_scenario(scenario):
     print("Submitting scenario...")
     tp.submit(scenario)
     return scenario
+
 
 def update_chart(state):
     print("'Update chart' button clicked")
@@ -72,22 +74,13 @@ def update_chart(state):
     update_predictions_dataset(state, pipeline)
 ```
 
-Before running the GUI, these two lines of code will erase the previous scenarios, pipelines, data nodes that you 
-created in the previous steps to avoid any problem of compatibility.
-
-```python
-# Delete all entities
-Config.configure_global_app(clean_entities_enabled=True)
-tp.clean_all_entities()
-```
 
 ```python
 # Run of the Taipy Core service
 tp.Core().run()
-
 # Creation of our first scenario
 scenario = create_scenario()
-Gui(page=scenario_page).run(dark_mode=False) 
+Gui(page=scenario_page).run(dark_mode=False)
 ```
 
 ![GUI for a scenario](result.gif){ width=700 style="margin:auto;display:block;border: 2px solid rgb(210,210,210);border-radius:7px" }

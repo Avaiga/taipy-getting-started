@@ -1,7 +1,7 @@
-# Taipy Getting Started version: 2.1.0.dev0
+# Taipy Getting Started version: 2.2.0
 
 ## License
-Copyright 2022 Avaiga Private Limited
+Copyright 2023 Avaiga Private Limited
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
 the License. You may obtain a copy of the License at
