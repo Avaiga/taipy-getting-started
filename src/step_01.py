@@ -31,6 +31,8 @@ Interact with this slider to change the week number:
 Display the last three months of data:
 <|{dataset[9000:]}|chart|type=bar|x=Date|y=Value|>
 
+<br/>
+
 <|{dataset}|table|width=100%|>
 """
 
