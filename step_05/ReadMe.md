@@ -14,21 +14,22 @@ pipeline and run it. When you press a button, Taipy calls the function passed to
 
 `<|Text displayed on button|button|on_action=fct_name_called_when_pressed|>`
    
-A [chart](https://docs.taipy.io/en/latest/manuals/gui/viselements/chart/) control can be found at the end of the markdown to 
-visualize the predictions. The chart plots two traces: the historical values and the predicted values.
+A [chart](https://docs.taipy.io/en/latest/manuals/gui/viselements/chart/) control can be found at the end of the markdown to visualize the predictions. The chart plots two traces: the historical values and the predicted values.
 
 ```python
 import numpy as np
 import pandas as pd
 
 # Initialize the "predictions" dataset
-predictions_dataset = pd.DataFrame({"Date":[dt.datetime(2021, 6, 1)], "Historical values":[np.NaN], "Predicted values":[np.NaN]})
+predictions_dataset = pd.DataFrame({"Date":[dt.datetime(2021, 6, 1)],
+                                    "Historical values":[np.NaN],
+                                    "Predicted values":[np.NaN]})
 
 # Add a button and a chart for our predictions
 pipeline_page = page + """
 Press <|predict|button|on_action=predict|> to predict with default parameters (30 predictions) and June 1st as day.
 
-<|{predictions_dataset}|chart|x=Date|y[1]=Historical values|type[1]=bar|y[2]=Predicted values|type[2]=scatter|height=80%|width=100%|>
+<|{predictions_dataset}|chart|x=Date|y[1]=Historical values|type[1]=bar|y[2]=Predicted values|type[2]=scatter|>
 """
 ```
 

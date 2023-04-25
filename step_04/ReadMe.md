@@ -15,7 +15,8 @@ To configure your first pipeline, you need to list all the tasks you want to be 
 ```python
 # Create the first pipeline configuration
 baseline_pipeline_cfg = Config.configure_pipeline(id="baseline",
-                                                  task_configs=[clean_data_task_cfg, predict_baseline_task_cfg])
+                                                  task_configs=[clean_data_task_cfg,
+                                                                predict_baseline_task_cfg])   
 ```
 
 ## Pipeline creation and execution

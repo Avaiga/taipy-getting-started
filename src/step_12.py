@@ -3,12 +3,12 @@ from step_11 import *
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 
 # Initial dataset for comparison
-comparison_scenario = pd.DataFrame({"Scenario Name": [],
-                                    "RMSE baseline": [], "MAE baseline": [],
-                                    "RMSE ML": [], "MAE ML": []})
+comparison_scenario = pd.DataFrame(columns=["Scenario Name",
+                                            "RMSE baseline",
+                                            "MAE baseline",
+                                            "RMSE ML",
+                                            "MAE ML"])
 
-# Indicates if the comparison is done
-comparison_scenario_done = False
 
 # Selector for metrics
 metric_selector = ["RMSE", "MAE"]
@@ -66,17 +66,11 @@ def compare(state):
                                               "RMSE ML": rmses_ml,
                                               "MAE ML": maes_ml})
 
-    # When comparison_scenario_done will be set to True,
-    # the part with the graphs will be finally rendered
-    state.comparison_scenario_done = True
 
 
 # Performance page
 page_performance = """
-
-<br/>
-
-<|part|render={comparison_scenario_done}|
+<|part|render={len(comparison_scenario)>0}|
 
 <|Table|expanded=False|expandable|
 <|{comparison_scenario}|table|width=100%|>
@@ -85,19 +79,16 @@ page_performance = """
 <|{selected_metric}|selector|lov={metric_selector}|dropdown|>
 
 <|part|render={selected_metric=="RMSE"}|
-<|{comparison_scenario}|chart|type=bar|x=Scenario Name|y[1]=RMSE baseline|y[2]=RMSE ML|height=100%|width=100%|>
+<|{comparison_scenario}|chart|type=bar|x=Scenario Name|y[1]=RMSE baseline|y[2]=RMSE ML|>
 |>
 
 <|part|render={selected_metric=="MAE"}|
-<|{comparison_scenario}|chart|type=bar|x=Scenario Name|y[1]=MAE baseline|y[2]=MAE ML|height=100%|width=100%|>
+<|{comparison_scenario}|chart|type=bar|x=Scenario Name|y[1]=MAE baseline|y[2]=MAE ML|>
+|>
 |>
 
-|>
 
-
-<center>
-<|Compare primarys|button|on_action=compare|>
-</center>
+<center><|Compare primarys|button|on_action=compare|></center>
 """
 
 
@@ -120,4 +111,6 @@ def menu_fct(state, var_name: str, fct: str, var_value: list):
     
 if __name__ == "__main__":
     tp.Core().run()
-    Gui(pages=pages).run(dark_mode=False)
+    scenario_selector = tp.get_scenarios()
+    selected_scenario = None
+    Gui(pages=pages).run(dark_mode=False, port=5001)

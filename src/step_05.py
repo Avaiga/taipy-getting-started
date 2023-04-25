@@ -5,14 +5,17 @@ from step_04 import tp, baseline_pipeline_cfg, dt
 from step_02 import *
 
 # Initialize the "predictions" dataset
-predictions_dataset = pd.DataFrame(
-    {"Date": [dt.datetime(2021, 6, 1)], "Historical values": [np.NaN], "Predicted values": [np.NaN]})
+predictions_dataset = pd.DataFrame({"Date": [dt.datetime(2021, 6, 1)],
+                                    "Historical values": [np.NaN],
+                                    "Predicted values": [np.NaN]})
 
 # Add a button and a chart for our predictions
 pipeline_page = page + """
+<br/>
 Press <|predict|button|on_action=predict|> to predict with default parameters (30 predictions) and June 1st as day.
+<br/>
 
-<|{predictions_dataset}|chart|x=Date|y[1]=Historical values|type[1]=bar|y[2]=Predicted values|type[2]=scatter|height=80%|width=100%|>
+<|{predictions_dataset}|chart|x=Date|y[1]=Historical values|type[1]=bar|y[2]=Predicted values|type[2]=scatter|>
 """
 
 

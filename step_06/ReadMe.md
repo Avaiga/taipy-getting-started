@@ -44,7 +44,10 @@ The **predict_ml** Task configuration is created using the same format as before
 ## We use the same input and ouput as the previous predict_baseline task but we change the funtion
 predict_ml_task_cfg = Config.configure_task(id="predict_ml",
                                             function=predict_ml,
-                                            input=[cleaned_dataset_cfg, n_predictions_cfg, day_cfg, max_capacity_cfg],
+                                            input=[cleaned_dataset_cfg,
+                                                   n_predictions_cfg,
+                                                   day_cfg,
+                                                   max_capacity_cfg],
                                             output=predictions_cfg)
 ```
 
@@ -52,7 +55,8 @@ With this new task, the Machine Learning pipeline can finally be configured.
 
 ```python   
 # Create the new ml pipeline that will clean and predict with the ml model
-ml_pipeline_cfg = Config.configure_pipeline(id="ml", task_configs=[clean_data_task_cfg, predict_ml_task_cfg])
+ml_pipeline_cfg = Config.configure_pipeline(id="ml", task_configs=[clean_data_task_cfg,
+                                                                   predict_ml_task_cfg])
 ```
 
 To configure a scenario, you need to use `tp.configure_scenario` and the list of the related pipelines. You can 
@@ -60,7 +64,8 @@ easily add more pipelines/algorithms if you wished to.
 
 ```python   
 # Configure our scenario which is our business problem.
-scenario_cfg = Config.configure_scenario(id="scenario", pipeline_configs=[baseline_pipeline_cfg, ml_pipeline_cfg])
+scenario_cfg = Config.configure_scenario(id="scenario", pipeline_configs=[baseline_pipeline_cfg,
+                                                                          ml_pipeline_cfg])
 ```
 
 The configuration is now complete. Now, you can create your scenario and execute it. When creating it, Taipy will 

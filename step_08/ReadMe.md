@@ -6,9 +6,7 @@
 
 # Step 8: Modify Data Nodes content
 
-Now that the GUI has been created to handle one scenario, it would be interesting to change the "initial" variables 
-to see their impact on the predictions. These variables are: the *number of predictions*, the *max capacity* and the 
-*day*. How can we interact with them in real-time?
+Now that the GUI has been created to handle one scenario, it would be interesting to change the "initial" variables to see their impact on the predictions. These variables are: the *number of predictions*, the *max capacity* and the *day*. How can we interact with them in real-time?
 
 It can easily be done using the `write()` function of Data Nodes.
 
@@ -31,18 +29,21 @@ using them to "modify" the scenario. See the documentation for these newly intro
 page_scenario_manager = page + """
 # Change your scenario
 
-**Prediction date**\n\n <|{day}|date|not with_time|>
+**Prediction date** <br/>
+<|{day}|date|not with_time|>
 
-**Max capacity**\n\n <|{max_capacity}|number|>
+**Max capacity** <br/>
+<|{max_capacity}|number|>
 
-**Number of predictions**\n\n<|{n_predictions}|number|>
+**Number of predictions** <br/>
+<|{n_predictions}|number|>
 
-<|Save changes|button|on_action={submit_scenario}|>
+<|Save changes|button|on_action=submit_scenario|>
 
 Select the pipeline
-<|{selected_pipeline}|selector|lov={pipeline_selector}|> <|Update chart|button|on_action={update_chart}|>
+<|{selected_pipeline}|selector|lov={pipeline_selector}|> <|Update chart|button|on_action=update_chart|>
 
-<|{predictions_dataset}|chart|x=Date|y[1]=Historical values|type[1]=bar|y[2]=Predicted values|type[2]=scatter|height=80%|width=100%|>
+<|{predictions_dataset}|chart|x=Date|y[1]=Historical values|type[1]=bar|y[2]=Predicted values|type[2]=scatter|>
 """
 ```
 
@@ -51,14 +52,10 @@ newly created scenario (using the Global variable *selected_scenario*).
 
 ```python
 def create_scenario():
-    global selected_scenario
-
     print("Creating scenario...")
     scenario = tp.create_scenario(scenario_cfg)
-  
-    selected_scenario = scenario.id
-  
     tp.submit(scenario)
+    return scenario
 ```
 
 The `submit_scenario()` function introduces two essential Taipy functions:
@@ -72,22 +69,20 @@ The `submit_scenario()` function introduces two essential Taipy functions:
 ```python
 def submit_scenario(state):
     print("Submitting scenario...")
-    # Get the selected scenario: in this current step a single scenario is created then modified here.
-    scenario = tp.get(selected_scenario)
-    
     # Conversion to the right format
     state_day = dt.datetime(state.day.year, state.day.month, state.day.day)
 
     # Change the default parameters by writing in the datanodes
-    scenario.day.write(state_day)
-    scenario.n_predictions.write(int(state.n_predictions))
-    scenario.max_capacity.write(int(state.max_capacity))
+    state.selected_scenario.day.write(state_day)
+    state.selected_scenario.n_predictions.write(int(state.n_predictions))
+    state.selected_scenario.max_capacity.write(int(state.max_capacity))
 
     # Execute the pipelines/code
-    tp.submit(scenario)
-    
+    tp.submit(state.selected_scenario)
+
     # Update the chart when we change the scenario
     update_chart(state)
+
 ```
 
 `update_chart()` uses a previous function (`update_predictions_dataset()`) to update the *predictions_dataset* 
@@ -96,19 +91,14 @@ with the correct pipeline.
 ```python
 def update_chart(state):
     # Select the right scenario and pipeline
-    scenario = tp.get(selected_scenario)
-    pipeline = scenario.pipelines[state.selected_pipeline]
+    pipeline = state.selected_scenario.pipelines[state.selected_pipeline]
     # Update the chart based on this pipeline
     update_predictions_dataset(state, pipeline)
 
 
-global selected_scenario
-
-# Run of the Taipy Core service
 tp.Core().run()
-
 # Creation of a single scenario
-create_scenario()
+selected_scenario = create_scenario()
 Gui(page=page_scenario_manager).run(dark_mode=False)
 ```
 
