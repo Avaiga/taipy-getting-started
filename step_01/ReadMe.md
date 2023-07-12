@@ -56,7 +56,7 @@ element is a Taipy graphical object displayed on the client. It can be a
 [table](https://docs.taipy.io/en/latest/manuals/gui/viselements/table/), an 
 [input](https://docs.taipy.io/en/latest/manuals/gui/viselements/input/), a 
 [menu](https://docs.taipy.io/en/latest/manuals/gui/viselements/menu/), etc. Check the list 
-[here](https://docs.taipy.io/en/latest/manuals/gui/controls/).
+[here](https://docs.taipy.io/en/latest/manuals/gui/viselements/controls/).
 
 Every visual element follows a similar syntax:
 
