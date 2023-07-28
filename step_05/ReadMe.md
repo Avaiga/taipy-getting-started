@@ -26,7 +26,7 @@ The Performance Page is a part of the Python application that allows users to co
 
 The Markdown section defines the layout and components of the Performance Page. It includes the following elements:
 
-**Conditional Rendering**: The `<|part|render={len(comparison_scenario)>0}|` component ensures that certain elements are only rendered when there is data available in the comparison_scenario.
+**Conditional Rendering**: The `<|part|render={len(comparison_scenario)>0}|...|>` component ensures that certain elements are only rendered when there is data available in the comparison_scenario.
 
 **Table**: A table that displays the comparison data from the comparison_scenario DataFrame. The table is expandable if the number of rows exceeds the available space.
 
@@ -34,7 +34,7 @@ The Markdown section defines the layout and components of the Performance Page. 
 
 **Bar Charts**: Two bar charts that compare the selected metric (RMSE or MAE) between baseline and machine learning predictions. The charts display the performance metrics for each scenario.
 
-**Compare Button**: A button (<center><|Compare primarys|button|on_action=compare|></center>) that triggers the "compare" action when clicked. It is used to initiate the comparison process.
+**Compare Button**: A button (`<center><|Compare primarys|button|on_action=compare|></center>`) that triggers the "compare" action when clicked. It is used to initiate the comparison process.
 
 ## Python Code
 

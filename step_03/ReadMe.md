@@ -1,10 +1,6 @@
 > You can download the full code [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
-# Step 3: Configuration
-
-From Step 2, you now know the basics of Taipy GUI. Let's go for a moment over the Scenario Management aspect of Taipy.
-
-Even if Taipy GUI can be used without Taipy Core (and vice-versa), there are a lot of reasons for using Taipy Core:
+# Configuration of scenario
 
 - Taipy Core efficiently manages the execution of your functions/pipelines.
 
@@ -16,26 +12,36 @@ Even if Taipy GUI can be used without Taipy Core (and vice-versa), there are a l
 To apprehend the Scenario Management aspect of Taipy, you need to understand four essential concepts.
 
 
-## Four fundamental [concepts](https://docs.taipy.io/en/latest/manuals/core/concepts/) in Taipy Core:
+## Configuration [Basics](https://docs.taipy.io/en/latest/manuals/core/concepts/)
+
+The configuration consists of defining Data Nodes and Tasks.
 
 - [**Data Nodes**](https://docs.taipy.io/en/latest/manuals/core/concepts/data-node/): are the translation of variables in 
-  Taipy. Data Nodes don't contain the data itself but know how to retrieve it. They can refer to any kind of data: 
-  any *Python* object (*string*, *int*, *list*, *dict*, *model*, *dataframe*, etc), a Pickle file, a CSV file, an 
-  SQL database, etc. They know how to read and write data. You can even write your own custom Data Node if needed to 
-  access a particular data format.
+  Taipy. Data Nodes don't contain the data itself but know how to retrieve it. They can refer to any kind of data.
 
 - [**Tasks**](https://docs.taipy.io/en/latest/manuals/core/concepts/task/): are the translation of functions in Taipy.
 
-
-- [**Scenarios**](https://docs.taipy.io/en/latest/manuals/core/concepts/scenario/): End-Users very often require modifying 
+- [**Scenarios**](https://docs.taipy.io/en/latest/manuals/core/concepts/scenario/): Together, they create a graph that maps the execution flow which is called scenario. End-Users very often require modifying 
   various parameters to reflect different business situations. Taipy Scenarios will provide the framework to 
   "play"/"execute" pipelines under different conditions/variations (i.e. data/parameters modified by the end-user)
 
+## Data Nodes Configuration
+Data Nodes can point to various data sources, such as Python variables, CSV files, Pickle files, SQL databases, etc. During Data Node configuration, the developer specifies the type or format of each Data Node, along with its scope.
 
-Let's create a Machine Learning (ML) example to clarify these concepts.
+Parameters for Data Node configuration:
 
-In a ML context, it is common to have numerous training and testing pipelines for different algorithms. For 
-simplification, we will only configure two pipelines that will predict on a given **day** the values for the following days. In Taipy, you will describe (i.e. configure) your pipeline with three tasks:
+- Storage Type: Specifies the storage type for the Data Node, e.g., CSV file, Pickle file, etc. The initial dataset, for example, is a CSV file with storage_type="csv".
+
+- Scope: Defines the scope of the Data Node. There are three types of scope in the code: Global, Scenario, and Pipeline scope.
+
+1- `Scope.SCENARIO` (default): Having one data node for each scenario.
+
+2- `Scope.CYCLE`: Extend the scope by sharing data nodes across all scenarios of a given cycle.
+
+3- `Scope.GLOBAL`: Finally, extend the scope globally (across all scenarios of all cycles). For example, the initial/historical dataset is usually shared by all the scenarios/pipelines/cycles. It is unique in the entire application.
+
+
+In a ML context, it is common to have numerous training and testing pipelines for different algorithms. Here, we configure two pipelines that predict on a given **day** the values for the following days either with ML or Baseline model:
 
 - Retrieval of the initial dataset,
 
@@ -44,43 +50,9 @@ simplification, we will only configure two pipelines that will predict on a give
 - Predictions (for *number of predictions*) from **day** onwards. In our example, predictions represents the number 
   of items sold in a given store on a 15-min basis.
 
-![Baseline Pipeline](baseline_pipeline.svg){ width=500 style="margin:auto;display:block" }
+- Creation of metrics and of a dataset for visualization.
 
-This graph is created by configuring Data Nodes (variables) and tasks (functions). This configuration doesn't 
-execute anything; it is just a configuration that enables Taipy to map the Tasks and Data Nodes as a Directed 
-Acyclic Graph (DAG).
-
-## Data Nodes configuration
-
-Data Nodes can point to:
-
-- any kind of *Python variables* by default: *int*, *string*, *dict*, *list*, *np.array*, *pd.DataFrame*, *models*, etc. 
-
-- a CSV file, Pickle file or SQL database.
-
-During the configuration of the Data Nodes, the developer specifies the type or format of each Data Node. A *Python* 
-variable is stored by default by a Pickle file.
-
-Some parameters for Data Node configuration:
-
-- **Storage type**: This is where the storage type is selected: CSV file, SQL database, Pickle file, etc. Here, the initial dataset is a CSV file so *storage_type="csv"* for this Data Node. Taipy knows how to 
-  access it, thanks to the path. By default, the storage type is *pickle*.
-
-- **[Scope](https://docs.taipy.io/en/latest/manuals/core/concepts/scope/)**: You can find below three types of Scope in the 
-  code: the Pipeline, the Scenario (by default) and the Global scope.
-
-    - *Global scope*: all Data Nodes are shared between every pipelines, scenarios and cycles. For example, the 
-      initial dataset is shared between every pipelines and scenarios.
-
-    - *Scenario scope*: they are shared between all the pipelines of the scenario.
-
-    - *Pipeline scope*: Data Nodes don't have access to other Data Nodes from other pipelines. A 'predictions' Data 
-      Node is created for each pipeline in the current example. So, adding pipelines/algorithms will store 
-      predictions in different "predictions" Data Nodes.
-
-Important property for Tasks:
-**Skippable**: This is a parameter used to increase the efficiency of the program. If the output Data Node has already been created and if its input/upstream data nodes haven’t changed since the last run (of the pipeline), then it is not necessary to rerun the task.
-
+-------------
 
 ### Input Data Nodes configuration
 These are the input Data Nodes. They represent the variables in Taipy when a pipeline is executed. Still, first, we 
@@ -95,8 +67,7 @@ have to configure them to create the DAG.
 - *n_predictions* is the number of predictions you want to make while predicting. The default value is 40. A 
   prediction represents the number of items sold in a given store per 15-minute time slot.
 
-- *max_capacity* is the maximum value that can take a prediction; it is the ceiling of the projections. The default 
-  value is 200. It means that, in our example, the maximum number of items sold per 15 minutes is 200.
+- *max_capacity* is the maximum value that can take a prediction; it is the ceiling of the projections. The default  value is 200. It means that, in our example, the maximum number of items sold per 15 minutes is 200.
 
 ```python
 import datetime as dt
@@ -135,46 +106,12 @@ max_capacity_cfg = Config.configure_data_node(id="max_capacity", default_data=20
 cleaned_dataset_cfg = Config.configure_data_node(id="cleaned_dataset",
                                                  scope=Scope.GLOBAL) 
 
-predictions_cfg = Config.configure_data_node(id="predictions", scope=Scope.PIPELINE)
+predictions_cfg = Config.configure_data_node(id="predictions")
 ```
 
+## Task Configuration
+Tasks are the translation of functions in Taipy. Each task has an ID, a function, inputs, and outputs.
 
-## Functions
-
-Here’s the code of each of the two *Python* functions: `clean_data()` and `predict_baseline()`. Their goal is 
-respectively to clean the data and to predict the data.
-
-```python
-def clean_data(initial_dataset: pd.DataFrame):
-    print("     Cleaning data")
-    # Convert the date column to datetime
-    initial_dataset["Date"] = pd.to_datetime(initial_dataset["Date"])
-    cleaned_dataset = initial_dataset.copy()
-    return cleaned_dataset
-
-
-def predict_baseline(cleaned_dataset: pd.DataFrame, n_predictions: int, day: dt.datetime, max_capacity: int):
-    print("     Predicting baseline")
-    # Select the train data
-    train_dataset = cleaned_dataset[cleaned_dataset["Date"] < day]
-    
-    predictions = train_dataset["Value"][-n_predictions:].reset_index(drop=True)
-    predictions = predictions.apply(lambda x: min(x, max_capacity))
-    return predictions
-```
-
-## Tasks
-
-Tasks are the translation of functions in Taipy. These tasks combined with Data Nodes create your graph (DAG). 
-Creating a task is simple; you need:
-
-- An id
-
-- A function
-
-- Inputs
-
-- Outputs
 
 ### clean_data_task
 
@@ -203,4 +140,114 @@ predict_baseline_task_cfg = Config.configure_task(id="predict_baseline",
                                                   function=predict_baseline,
                                                   input=[cleaned_dataset_cfg, n_predictions_cfg, day_cfg, max_capacity_cfg],
                                                   output=predictions_cfg)
+```
+
+...
+
+## Scenario configuration
+
+
+
+
+## Entire code
+
+```python
+import datetime as dt
+import pandas as pd
+
+from taipy import Config, Scope, Frequency
+
+from algos.algos import *
+
+path_to_csv = "data/dataset.csv"
+
+# Datanodes (3.1)
+## Input Data Nodes
+initial_dataset_cfg = Config.configure_data_node(id="initial_dataset",
+                                                 storage_type="csv",
+                                                 path=path_to_csv,
+                                                 scope=Scope.GLOBAL)
+
+# We assume the current day is the 26th of July 2021.
+# This day can be changed to simulate multiple executions of scenarios on different days
+day_cfg = Config.configure_data_node(id="day", default_data=dt.datetime(2021, 7, 26))
+
+n_predictions_cfg = Config.configure_data_node(id="n_predictions", default_data=40)
+
+max_capacity_cfg = Config.configure_data_node(id="max_capacity", default_data=200)
+
+## Remaining Data Nodes
+cleaned_dataset_cfg = Config.configure_data_node(id="cleaned_dataset",
+                                                 scope=Scope.GLOBAL)
+
+predictions_baseline_cfg = Config.configure_data_node(id="predictions_baseline")
+predictions_ml_cfg = Config.configure_data_node(id="predictions_ml")
+
+full_predictions_cfg = Config.configure_data_node(id="full_predictions")
+
+metrics_baseline_cfg = Config.configure_data_node(id="metrics_baseline")
+metrics_ml_cfg = Config.configure_data_node(id="metrics_ml")
+
+# Functions (3.2)
+
+# Tasks (3.3)
+clean_data_task_cfg = Config.configure_task(id="task_clean_data",
+                                            function=clean_data,
+                                            input=initial_dataset_cfg,
+                                            output=cleaned_dataset_cfg,
+                                            skippable=True)
+
+predict_baseline_task_cfg = Config.configure_task(id="predict_baseline",
+                                                  function=predict_baseline,
+                                                  input=[cleaned_dataset_cfg, n_predictions_cfg, day_cfg,
+                                                         max_capacity_cfg],
+                                                  output=predictions_baseline_cfg)
+
+
+# Create the task configuration of the predict_ml function.
+## We use the same input and ouput as the previous predict_baseline task but we change the funtion
+predict_ml_task_cfg = Config.configure_task(id="task_predict_ml",
+                                            function=predict_ml,
+                                            input=[cleaned_dataset_cfg,
+                                                   n_predictions_cfg, day_cfg,
+                                                   max_capacity_cfg],
+                                            output=predictions_ml_cfg)
+
+
+metrics_baseline_task_cfg = Config.configure_task(id="task_metrics_baseline",
+                                            function=compute_metrics,
+                                            input=[cleaned_dataset_cfg,
+                                                   predictions_baseline_cfg],
+                                            output=metrics_baseline_cfg)
+
+metrics_ml_task_cfg = Config.configure_task(id="task_metrics_ml",
+                                            function=compute_metrics,
+                                            input=[cleaned_dataset_cfg,
+                                                   predictions_ml_cfg],
+                                            output=metrics_ml_cfg)
+
+full_predictions_task_cfg = Config.configure_task(id="task_full_predictions",
+                                            function=create_predictions_dataset,
+                                            input=[predictions_baseline_cfg,
+                                                   predictions_ml_cfg,
+                                                  day_cfg,
+                                                  n_predictions_cfg,
+                                                  cleaned_dataset_cfg],
+                                            output=full_predictions_cfg)
+
+
+
+
+# Configure our scenario which is our business problem.
+scenario_cfg = Config.configure_scenario_from_tasks(id="scenario",
+                                                    task_configs=[clean_data_task_cfg,
+                                                                  predict_baseline_task_cfg,
+                                                                  predict_ml_task_cfg,
+                                                                  metrics_baseline_task_cfg,
+                                                                  metrics_ml_task_cfg,
+                                                                  full_predictions_task_cfg],
+                                                    frequency=Frequency.WEEKLY)
+
+Config.export('config/config.toml')
+
 ```
