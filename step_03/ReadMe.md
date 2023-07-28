@@ -4,7 +4,7 @@
 
     The "Getting Started" Notebook is available [here](https://docs.taipy.io/en/latest/getting_started/getting-started/getting_started.ipynb).
 
-# Step 3: Introducing Taipy Core
+# Step 3: Configuration
 
 From Step 2, you now know the basics of Taipy GUI. Let's go for a moment over the Scenario Management aspect of Taipy.
 

@@ -4,7 +4,11 @@
 
     The "Getting Started" Notebook is available [here](https://docs.taipy.io/en/latest/getting_started/getting-started/getting_started.ipynb).
 
-# Step 5: GUI and Pipeline
+# Performance
+
+Markdown
+
+Code
 
 In Step 4, we created a first pipeline using only Taipy Core. Let's update the GUI to reflect the results of the 
 pipeline.

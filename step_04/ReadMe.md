@@ -4,7 +4,12 @@
 
     The "Getting Started" Notebook is available [here](https://docs.taipy.io/en/latest/getting_started/getting-started/getting_started.ipynb).
 
-# Step 4: Pipeline Management
+# Step 4: Scenario Page
+
+Markdown
+
+
+Code
 
 In Step 3, you have described your graph; let's implement it with Taipy! 
 
