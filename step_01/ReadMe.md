@@ -2,7 +2,9 @@
 
 # Data Visualization Page
 
-This is a guide to create the Data Visualization page using Taipy. The page contains interactive visual elements to display data from a CSV file.
+This is a guide to create a Data Visualization page for our example. The page contains interactive visual elements to display data from a CSV file.
+
+![Interactive GUI](result.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }"
 
 ## Importing the Dataset
 
