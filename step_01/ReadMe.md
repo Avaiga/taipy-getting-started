@@ -24,13 +24,18 @@ dataset = get_data(path_to_csv)
 
 ## Visual Elements
 
-Taipy GUI introduces the concept of *Visual elements*, which are graphical objects displayed on the client. You can use various visual elements such as sliders, charts, tables, inputs, and menus. The syntax for adding a visual element is as follows:
+Taipy GUI introduces the concept of *Visual elements*, which are graphical objects displayed on the client. You can use various visual elements such as [slider](https://docs.taipy.io/en/latest/manuals/gui/viselements/slider/), a 
+[chart](https://docs.taipy.io/en/latest/manuals/gui/viselements/chart/), a 
+[table](https://docs.taipy.io/en/latest/manuals/gui/viselements/table/), an 
+[input](https://docs.taipy.io/en/latest/manuals/gui/viselements/input/), a 
+[menu](https://docs.taipy.io/en/latest/manuals/gui/viselements/menu/), etc. Check the list 
+[here](https://docs.taipy.io/en/latest/manuals/gui/controls/). The syntax for adding a visual element is as follows:
 
 ```markdown
 <|{variable}|visual_element_name|param_1=param_1|param_2=param_2| ... |>
 ```
 
-For example, to add a slider that modifies the value of the variable *n_week*, use the following syntax:
+For example, to add a [slider](https://docs.taipy.io/en/latest/manuals/gui/viselements/slider/) that modifies the value of the variable *n_week*, use the following syntax:
 
 ```markdown
 <|{n_week}|slider|min=1|max=52|>
@@ -53,7 +58,7 @@ The Data Visualization page contains the following visual elements:
 
 Taipy maintains a separate state for each client connection. The state holds the values of all variables used in the user interface. For example, modifying *n_week* through a slider will update *state.n_week*, not the global Python variable *n_week*. Each client has its own state, ensuring that changes made by one client don't affect others.
 
-## How to connect two variables - the *on_change* function
+## How to connect two variables - the *[on_change](https://docs.taipy.io/en/latest/manuals/gui/callbacks/)* function
 
 In each visual elements, callbacks can be placed. This will only you to update variables depending on user action. (See local callback and global callback)
 
