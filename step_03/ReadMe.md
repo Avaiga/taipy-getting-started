@@ -35,8 +35,7 @@ To apprehend the Scenario Management aspect of Taipy, you need to understand fou
 Let's create a Machine Learning (ML) example to clarify these concepts.
 
 In a ML context, it is common to have numerous training and testing pipelines for different algorithms. For 
-simplification, we will only configure a single baseline pipeline that will predict on a given **day** the values 
-for the following days. In Taipy, you will describe (i.e. configure) your pipeline with three tasks:
+simplification, we will only configure two pipelines that will predict on a given **day** the values for the following days. In Taipy, you will describe (i.e. configure) your pipeline with three tasks:
 
 - Retrieval of the initial dataset,
 

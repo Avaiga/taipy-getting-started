@@ -2,6 +2,11 @@
 
 # Step 4: Scenario Page
 
+The Scenario Page is a part of the Python application designed to create and customize scenarios for predictions based on time series data. Users can set different parameters for the prediction process, such as the prediction date, maximum capacity, and the number of predictions. The page also includes a chart that displays historical values and predictions made using machine learning and baseline methods.
+
+
+The Scenario Page is constructed using a combination of Markdown and Python code. Below is a detailed explanation of each component:
+
 Markdown
 
 ```
@@ -27,8 +32,34 @@ Markdown
 <|{predictions_dataset}|chart|x=Date|y[1]=Historical values|type[1]=bar|y[2]=Predicted values ML|y[3]=Predicted values Baseline|>
 ```
 
+The Markdown section defines the layout and components of the Scenario Page. It contains the following elements:
 
-Code
+**Scenario Selector**: A component (a dropdown) that allows users to select different scenarios. The selected scenario will affect the values of other components on the page.
+
+**Prediction Date**: A date picker where users can select the date for which they want to make predictions. The selected date will be used for both machine learning and baseline predictions.
+
+**Max Capacity**: A number input field where users can set the maximum capacity value. This value is used to cap the predictions if they exceed the specified maximum.
+
+**Number of Predictions**: A number input field where users can set the desired number of predictions to be made.
+
+**Save Button**: A button that triggers the "save" action when clicked. It is used to save the selected scenario and parameter values.
+
+**Scenario Section**: A section that displays information about the currently selected scenario. It may include details about the scenario, the chosen algorithm, or other relevant information.
+
+**Predictions Chart**: A chart that displays historical values and the predicted values obtained from machine learning and baseline methods. It shows how well the predictions align with the historical data.
+
+
+## Python Code
+
+The Python code initializes and manages the state of the Scenario Page. It includes the following components:
+
+**Global Variables**: The global variables scenario, day, n_predictions, max_capacity, and predictions_dataset are defined. These variables store the initial state of the application.
+
+**Save Function**: The save function is responsible for saving the current scenario state. When the user clicks the "Save" button, this function is called. It takes the state of the page as input, converts the date format to the appropriate format, and updates the scenario parameters accordingly. It then notifies the user with a success message.
+
+**On Change Function**: The on_change function is called when any variable on the page changes its value. It monitors the changes in the scenario variable and updates the other variables accordingly. It also checks if the `full_predictions` are ready for reading and updates the `predictions_dataset` accordingly.
+
+**Scenario Page Initialization**: The scenario_page variable is initialized as a Markdown object, representing the content of the Scenario Page.
 
 ```python
 from taipy.gui import Markdown, notify
@@ -76,3 +107,6 @@ def on_change(state, var_name, var_value):
 
 scenario_page = Markdown("pages/scenario/scenario.md")
 ```
+
+
+The Scenario Page of the Python application provides an interactive interface for users to create and customize different scenarios for time series predictions. It allows users to select prediction dates, set maximum capacity, and choose the number of predictions to make. The page also presents a chart to visualize the historical data and the predicted values from both machine learning and baseline methods. Users can save their selected scenarios to use them for further analysis and comparison. 
