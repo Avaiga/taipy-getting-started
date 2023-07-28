@@ -6,7 +6,7 @@ The Performance Page is a part of the Python application that allows users to co
 
 ## Markdown
 
-```
+```markdown
 <|part|render={len(comparison_scenario)>0}|
 
 <|Table|expanded=False|expandable|

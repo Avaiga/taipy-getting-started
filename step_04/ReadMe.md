@@ -9,7 +9,7 @@ The Scenario Page is constructed using a combination of Markdown and Python code
 
 Markdown
 
-```
+```markdown
 # Create your scenario:
 
 <|layout|columns=3 1 1 1 1|
