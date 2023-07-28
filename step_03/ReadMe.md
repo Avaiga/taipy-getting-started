@@ -1,8 +1,4 @@
-> You can download the code of this step [here](../src/step_03.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
-
-!!! warning "For Notebooks"
-
-    The "Getting Started" Notebook is available [here](https://docs.taipy.io/en/latest/getting_started/getting-started/getting_started.ipynb).
+> You can download the full code [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
 # Step 3: Configuration
 
@@ -30,10 +26,6 @@ To apprehend the Scenario Management aspect of Taipy, you need to understand fou
 
 - [**Tasks**](https://docs.taipy.io/en/latest/manuals/core/concepts/task/): are the translation of functions in Taipy.
 
-- [**Pipelines**](https://docs.taipy.io/en/latest/manuals/core/concepts/pipeline/): are a list of tasks executed with 
-  intelligent scheduling created automatically by Taipy. They usually represent a sequence of Tasks/functions 
-  corresponding to different algorithms like a simple baseline Algorithm or a more sophisticated Machine-Learning 
-  pipeline.
 
 - [**Scenarios**](https://docs.taipy.io/en/latest/manuals/core/concepts/scenario/): End-Users very often require modifying 
   various parameters to reflect different business situations. Taipy Scenarios will provide the framework to 

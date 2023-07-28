@@ -1,8 +1,4 @@
-> You can download the code of this step [here](../src/step_01.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
-
-!!! warning "For Notebooks"
-
-    The "Getting Started" Notebook is available [here](https://docs.taipy.io/en/latest/getting_started/getting-started/getting_started.ipynb).
+> You can download the full code [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
 # Step 1: Visual elements
 

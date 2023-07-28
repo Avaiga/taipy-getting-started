@@ -1,47 +1,78 @@
-> You can download the code of this step [here](../src/step_04.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
-
-!!! warning "For Notebooks"
-
-    The "Getting Started" Notebook is available [here](https://docs.taipy.io/en/latest/getting_started/getting-started/getting_started.ipynb).
+> You can download the full code [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
 # Step 4: Scenario Page
 
 Markdown
 
+```
+# Create your scenario:
+
+<|layout|columns=3 1 1 1 1|
+<|{scenario}|scenario_selector|>
+
+**Prediction date** <br/>
+<|{day}|date|active={scenario}|not with_time|>
+
+**Max capacity** <br/>
+<|{max_capacity}|number|active={scenario}|>
+
+**Number of predictions** <br/>
+<|{n_predictions}|number|active={scenario}|>
+
+<br/> <|Save|button|on_action=save|active={scenario}|>
+|>
+ 
+<|{scenario}|scenario|>
+
+<|{predictions_dataset}|chart|x=Date|y[1]=Historical values|type[1]=bar|y[2]=Predicted values ML|y[3]=Predicted values Baseline|>
+```
+
 
 Code
 
-In Step 3, you have described your graph; let's implement it with Taipy! 
-
-## Pipeline configuration
-
-To configure your first pipeline, you need to list all the tasks you want to be done by the pipeline. This pipeline executes the cleaning (*clean_data_task*) and the predicting (*predict_baseline_task*). Note that the **task_configs** is a list, so you don't have to worry about the order of the tasks. Taipy does that for you and optimizes its execution.
-
 ```python
-# Create the first pipeline configuration
-baseline_pipeline_cfg = Config.configure_pipeline(id="baseline",
-                                                  task_configs=[clean_data_task_cfg,
-                                                                predict_baseline_task_cfg])   
-```
+from taipy.gui import Markdown, notify
+import datetime as dt
+import pandas as pd
 
-## Pipeline creation and execution
 
-First of all, Taipy has to be run (tp.Core().run()). It will create a service that will act as a job scheduler. Then, create your pipeline from its configuration, submit it, and print the "predictions" Data Node results.
+scenario = None
+day = dt.datetime(2021, 7, 26)
+n_predictions = 40
+max_capacity = 200
+predictions_dataset = {"Date":[0], 
+                       "Predicted values ML":[0],
+                       "Predicted values Baseline":[0],
+                       "Historical values":[0]}
 
-```python
-import taipy as tp
 
-# Run of the Taipy Core service
-tp.Core().run()
 
-# Create the pipeline
-baseline_pipeline = tp.create_pipeline(baseline_pipeline_cfg)
-# Submit the pipeline (Execution)
-tp.submit(baseline_pipeline)
+def save(state):
+    print("Saving scenario...")
+    # Get the currently selected scenario
+
+    # Conversion to the right format
+    state_day = dt.datetime(state.day.year, state.day.month, state.day.day)
+
+    # Change the default parameters by writing in the Data Nodes
+    state.scenario.day.write(state_day)
+    state.scenario.n_predictions.write(int(state.n_predictions))
+    state.scenario.max_capacity.write(int(state.max_capacity))
+    notify(state, "success", "Saved!")
     
-# Read output data from the pipeline
-baseline_predictions = baseline_pipeline.predictions.read()
-print("Predictions of baseline algorithm\n", baseline_predictions)
-```
 
-> Note that when creating the pipeline (`tp.create_pipeline()`), all associated Taipy objects of the pipeline (Data nodes, Tasks, etc) get automatically created (unless already present).
+def on_change(state, var_name, var_value):
+    if var_name == "scenario" and var_value:
+        state.day = state.scenario.day.read()
+        state.n_predictions = state.scenario.n_predictions.read()
+        state.max_capacity = state.scenario.max_capacity.read()
+        
+        if state.scenario.full_predictions.is_ready_for_reading:
+            state.predictions_dataset = state.scenario.full_predictions.read()
+        else:
+            state.predictions_dataset = predictions_dataset
+
+
+
+scenario_page = Markdown("pages/scenario/scenario.md")
+```
