@@ -7,7 +7,7 @@ The Scenario Page is a part of the Python application designed to create and cus
 
 The Scenario Page is constructed using a combination of Markdown and Python code. Below is a detailed explanation of each component:
 
-Markdown
+## Markdown (pages/scenario/scenario.md)
 
 ```markdown
 # Create your scenario:
@@ -49,7 +49,7 @@ The Markdown section defines the layout and components of the Scenario Page. It 
 **Predictions Chart**: A chart that displays historical values and the predicted values obtained from machine learning and baseline methods. It shows how well the predictions align with the historical data.
 
 
-## Python Code
+## Python Code (pages/scenario/scenario.py)
 
 The Python code initializes and manages the state of the Scenario Page. It includes the following components:
 
@@ -110,3 +110,22 @@ scenario_page = Markdown("pages/scenario/scenario.md")
 
 
 The Scenario Page of the Python application provides an interactive interface for users to create and customize different scenarios for time series predictions. It allows users to select prediction dates, set maximum capacity, and choose the number of predictions to make. The page also presents a chart to visualize the historical data and the predicted values from both machine learning and baseline methods. Users can save their selected scenarios to use them for further analysis and comparison. 
+
+Don't forget to add the page to the application in the *main.py*:
+
+Import `scenario_page` to the main file.
+
+```python
+...
+
+def on_change(state, var_name: str, var_value):
+    state['scenario'].on_change(state, var_name, var_value)
+
+pages = {
+    "/": root_page,
+    "data_viz": data_viz,
+    "scenario": scenario_page # add scenario
+}
+
+...
+```

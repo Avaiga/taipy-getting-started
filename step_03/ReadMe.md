@@ -11,6 +11,7 @@
 
 To apprehend the Scenario Management aspect of Taipy, you need to understand four essential concepts.
 
+![Configuration](config_toml.png){ width=300 style="margin:auto;display:block" }
 
 ## Configuration [Basics](https://docs.taipy.io/en/latest/manuals/core/concepts/)
 
@@ -94,9 +95,6 @@ max_capacity_cfg = Config.configure_data_node(id="max_capacity", default_data=20
 ### Remaining Data Nodes
 
 - *cleaned_dataset* is the dataset after cleaning (after the `clean_data()` function).
-  with a `scope.GLOBAL`. It means if the initial dataset didn't change, Taipy will not re-execute the `clean_data()` 
-  task. In other words, after the creation of this data node through `clean_data()`, Taipy knows that it is not 
-  necessary to create it again.
 
 - *predictions* are the predictions of the model. In this pipeline, it will be the output of the `predict_baseline()` 
   function. Each pipeline will create its own *prediction* Data Node hence `scope=Scope.PIPELINE`.
@@ -110,13 +108,13 @@ predictions_cfg = Config.configure_data_node(id="predictions")
 ```
 
 ## Task Configuration
+
 Tasks are the translation of functions in Taipy. Each task has an ID, a function, inputs, and outputs.
 
 
 ### clean_data_task
 
-The first task that you want to create is your `clean_data()` task. It will take your initial dataset (input Data 
-Node), clean it (calling the `clean_data()` function) and generate the cleaned dataset Data Node.
+The first task that you want to create is your `clean_data()` task. It will take your initial dataset (input Data Node), clean it (calling the `clean_data()` function) and generate the cleaned dataset Data Node. This task will only execute once thanks to the skippability feature of Taipy.
 
 ![Clean Data](clean_data.svg){ width=300 style="margin:auto;display:block" }
 
@@ -130,7 +128,8 @@ clean_data_task_cfg = Config.configure_task(id="clean_data",
 
 ### predict_baseline_task
 
-This task will take the cleaned dataset and predict it according to your parameters i.e. the three input Data Nodes: 
+This task will take the cleaned dataset and predict it according to your parameters i.e. the three input Data Nodes:
+
 *Day*, *Number of predictions* and *Max Capacity*.
 
 ![Predict Baseline](predict_baseline.svg){ width=300 style="margin:auto;display:block" }
@@ -146,10 +145,19 @@ predict_baseline_task_cfg = Config.configure_task(id="predict_baseline",
 
 ## Scenario configuration
 
+```python
+scenario_cfg = Config.configure_scenario_from_tasks(id="scenario",
+                                                    task_configs=[clean_data_task_cfg,
+                                                                  predict_baseline_task_cfg,
+                                                                  predict_ml_task_cfg,
+                                                                  metrics_baseline_task_cfg,
+                                                                  metrics_ml_task_cfg,
+                                                                  full_predictions_task_cfg],
+                                                    frequency=Frequency.WEEKLY)
 
+```
 
-
-## Entire code
+## Entire code (config/config.py)
 
 ```python
 import datetime as dt
@@ -249,5 +257,4 @@ scenario_cfg = Config.configure_scenario_from_tasks(id="scenario",
                                                     frequency=Frequency.WEEKLY)
 
 Config.export('config/config.toml')
-
 ```

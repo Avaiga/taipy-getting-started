@@ -119,3 +119,19 @@ data_viz = Markdown("pages/data_viz/data_viz.md")
 ```
 
 With this configuration, you can create an interactive Data Visualization page using Taipy. The page will display the dataset based on the selected week from the slider.
+
+
+Don't forget to add the page to the application in the *main.py*:
+
+Import `data_viz` to the main file.
+
+```python
+...
+
+pages = {
+    "/": root_page,
+    "data_viz": data_viz # add Data Visualization page
+}
+
+...
+```

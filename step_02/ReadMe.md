@@ -17,7 +17,7 @@ def clean_data(initial_dataset: pd.DataFrame):
 
 These functions predict values based on the `cleaned dataset`. It takes the cleaned DataFrame, the number of predictions to make (`n_predictions`), a specific date (`day`), and a maximum capacity value (`max_capacity`).
 
-They first select the training dataset up to the specified date. Then, it performs some computation or manipulatio to give predictions. Predictions cannot exceed the maximum capacity.
+They first select the training dataset up to the specified date. Then, it performs some computation or manipulation to give predictions. Predictions cannot exceed the maximum capacity.
 
 ```python
 def predict_baseline(cleaned_dataset: pd.DataFrame, n_predictions: int, day: dt.datetime, max_capacity: int):
@@ -59,7 +59,8 @@ def create_predictions_dataset(predictions_baseline, predictions_ml, day, n_pred
     return predictions_dataset
 ```
 
-## Entire code
+## Entire code (algos/algos.py)
+
 ```python
 # For the sake of clarity, we have used an AutoRegressive model rather than a pure ML model such as:
 # Random Forest, Linear Regression, LSTM, etc   
