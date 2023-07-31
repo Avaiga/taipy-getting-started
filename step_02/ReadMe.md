@@ -4,7 +4,7 @@
 
 The application includes functions for data cleaning, baseline prediction, machine learning (ML) prediction, computing metrics, and creating a dataset for displaying predictions.
 
-This function is responsible for cleaning the initial dataset by converting the 'Date' column to datetime format. It takes an initial DataFrame as input and returns a cleaned copy of the DataFrame.
+`clean_data` is responsible for cleaning the initial dataset by converting the 'Date' column to datetime format. It takes an initial DataFrame as input and returns a cleaned copy of the DataFrame.
 
 ```python
 def clean_data(initial_dataset: pd.DataFrame):
@@ -15,7 +15,7 @@ def clean_data(initial_dataset: pd.DataFrame):
 ```
 
 
-These functions predict values based on the `cleaned dataset`. It takes the cleaned DataFrame, the number of predictions to make (`n_predictions`), a specific date (`day`), and a maximum capacity value (`max_capacity`).
+`predict_baseline()` and `predict_ml()` predict values based on the `cleaned dataset`. It takes the cleaned DataFrame, the number of predictions to make (`n_predictions`), a specific date (`day`), and a maximum capacity value (`max_capacity`).
 
 They first select the training dataset up to the specified date. Then, it performs some computation or manipulation to give predictions. Predictions cannot exceed the maximum capacity.
 
@@ -44,7 +44,8 @@ def predict_ml(cleaned_dataset: pd.DataFrame, n_predictions: int, day: dt.dateti
 ```
 
 
-This function creates a predictions dataset for visualization purposes. It takes the predicted baseline values (`predictions_baseline`), ML predicted values (`predictions_ml`), a specific date (`day`), the number of predictions to make (`n_predictions`), and the cleaned dataset (`cleaned_data`).The function returns a DataFrame containing the date, historical values, ML predicted values, and baseline predicted values.
+`create_predictions_dataset()` creates a predictions dataset for visualization purposes. It takes the predicted baseline values (`predictions_baseline`), ML predicted values (`predictions_ml`), a specific date (`day`), the number of predictions to make (`n_predictions`), and the cleaned dataset (`cleaned_data`).The function returns a DataFrame containing the date, historical values, ML predicted values, and baseline predicted values.
+
 
 ```python
 def create_predictions_dataset(predictions_baseline, predictions_ml, day, n_predictions, cleaned_data):

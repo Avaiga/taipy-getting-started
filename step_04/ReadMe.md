@@ -65,23 +65,7 @@ A chart that displays historical values and the predicted values obtained from m
 
 ## Python Code (pages/scenario/scenario.py)
 
-The Python code initializes and manages the state of the Scenario Page. It includes the following components:
-
-- **Global Variables**:
-
-The global variables scenario, day, n_predictions, max_capacity, and predictions_dataset are defined. These variables store the initial state of the application.
-
-- **Save Function**:
-
-The save function is responsible for saving the current scenario state. When the user clicks the "Save" button, this function is called. It takes the state of the page as input, converts the date format to the appropriate format, and updates the scenario parameters accordingly. It then notifies the user with a success message.
-
-- **On Change Function**:
-
-The on_change function is called when any variable on the page changes its value. It monitors the changes in the scenario variable and updates the other variables accordingly. It also checks if the `full_predictions` are ready for reading and updates the `predictions_dataset` accordingly.
-
-- **Scenario Page Initialization**:
-
-The scenario_page variable is initialized as a Markdown object, representing the content of the Scenario Page.
+The Python code initializes and manages the state of the Scenario Page.
 
 ```python
 from taipy.gui import Markdown, notify
@@ -131,7 +115,25 @@ scenario_page = Markdown("pages/scenario/scenario.md")
 ```
 
 
-The Scenario Page of the application provides an interactive interface for users to create and customize different scenarios for time series predictions. It allows users to select prediction dates, set maximum capacity, and choose the number of predictions to make. The page also presents a chart to visualize the historical data and the predicted values from both machine learning and baseline methods. Users can save their selected scenarios to use them for further analysis and comparison. 
+It includes the following components:
+
+- **Global Variables**:
+
+The global variables scenario, day, n_predictions, max_capacity, and predictions_dataset are defined. These variables store the initial state of the application.
+
+- **Save Function**:
+
+The save function is responsible for saving the current scenario state. When the user clicks the "Save" button, this function is called. It takes the state of the page as input, converts the date format to the appropriate format, and updates the scenario parameters accordingly. It then notifies the user with a success message.
+
+- **On Change Function**:
+
+The on_change function is called when any variable on the page changes its value. It monitors the changes in the scenario variable and updates the other variables accordingly. It also checks if the `full_predictions` are ready for reading and updates the `predictions_dataset` accordingly.
+
+- **Scenario Page Initialization**:
+
+The scenario_page variable is initialized as a Markdown object, representing the content of the Scenario Page.
+
+It provides an interactive interface for users to create and customize different scenarios for time series predictions. It allows users to select prediction dates, set maximum capacity, and choose the number of predictions to make. The page also presents a chart to visualize the historical data and the predicted values from both machine learning and baseline methods. Users can save their selected scenarios to use them for further analysis and comparison. 
 
 ## Connection to the entire application
 

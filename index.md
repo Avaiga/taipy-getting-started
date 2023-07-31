@@ -11,7 +11,7 @@ the two components of Taipy:
 
 - **Scenario Management** (Taipy Core): implements a modern backend for any data-driven application based on your business case.
 
-![Getting Started application](step_00/imd_end_interface.png){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
+![Getting Started application](step_01/imd_end_interface.png){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
 
 You can use Taipy GUI without Taipy Core and vice-versa. However, as you will see, they are incredibly efficient when combined.
