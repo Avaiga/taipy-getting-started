@@ -106,6 +106,8 @@ performance = Markdown("pages/performance/performance.md")
 
 The Performance Page of the Python application provides users with the ability to compare the performance metrics of different scenarios for time series predictions. It allows users to choose between RMSE and MAE metrics and visualizes the comparison results using bar charts. The page is a valuable tool for analyzing the effectiveness of different prediction scenarios and can aid in making informed decisions based on performance evaluations.
 
+## Connection to the entire application
+
 Don't forget to add the page to the application in the *main.py*:
 
 Import `performance` to the main file.

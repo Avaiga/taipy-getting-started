@@ -14,12 +14,9 @@ the two components of Taipy:
 ![Getting Started application](step_00/imd_end_interface.png){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
 
-You can use Taipy GUI without Taipy Core and vice-versa. However, as you will see, they are incredibly efficient 
-when combined.
+You can use Taipy GUI without Taipy Core and vice-versa. However, as you will see, they are incredibly efficient when combined.
 
-Each step of the **"Getting Started"** will focus on basic concepts of *Taipy*. Note that every step is dependent on 
-the code of the previous one. After completing the last step, you will have the skills to develop your own Taipy 
-application. 
+Each step of the **"Getting Started"** focus on basic concepts of *Taipy*. Each file needed are created by steps. Note that every step creates a . After completing the last step, you will have a complete multi-page application.
 
 ## Before we begin
 
@@ -45,36 +42,24 @@ $ pip install statsmodels
     [Python installation guide](http://docs.python-guide.org/en/latest/starting/installation/)
     can guide you through the process.
 
-## Using Notebooks
 
-This **Getting Started** is for Python scripts (*.py*) only. If you want to use **Jupyter Notebooks**, download this [notebook](https://docs.taipy.io/en/latest/getting_started/getting-started/getting_started.ipynb).
+Once Taipy is installed, you can use the CLI to create the scaffolding. This template will be used throughout the creation of the application.
+
+``` console
+$ taipy create ...
+$ pages name...
+```
 
 So, without further delay, let's begin to code!
 
 ## Steps
 
-0. [First web page](step_00/ReadMe.md)
+1. [Data Visualization page](step_01/ReadMe.md)
 
-1. [Visual elements](step_01/ReadMe.md)
+2. [Algorithms used](step_02/ReadMe.md)
 
-2. [Interactive GUI](step_02/ReadMe.md)
+3. [Backend Configuration](step_03/ReadMe.md)
 
-3. [Introducing Taipy Core](step_03/ReadMe.md)
+4. [Scenario Page page](step_04/ReadMe.md)
 
-4. [Pipeline Management](step_04/ReadMe.md)
-
-5. [GUI & Pipeline](step_05/ReadMe.md)
-
-6. [Creation of Scenarios](step_06/ReadMe.md)
-
-7. [GUI & Scenarios](step_07/ReadMe.md)
-
-8. [Modify Data Nodes content](step_08/ReadMe.md)
-
-9. [Manage Scenarios](step_09/ReadMe.md)
-
-10. [Embellish your APP](step_10/ReadMe.md)
-
-11. [Introducing Cycles](step_11/ReadMe.md)
-
-12. [Compare Scenarios](step_12/ReadMe.md)
+5. [Performance page](step_05/ReadMe.md)

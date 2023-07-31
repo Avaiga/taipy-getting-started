@@ -133,6 +133,8 @@ scenario_page = Markdown("pages/scenario/scenario.md")
 
 The Scenario Page of the application provides an interactive interface for users to create and customize different scenarios for time series predictions. It allows users to select prediction dates, set maximum capacity, and choose the number of predictions to make. The page also presents a chart to visualize the historical data and the predicted values from both machine learning and baseline methods. Users can save their selected scenarios to use them for further analysis and comparison. 
 
+## Connection to the entire application
+
 Don't forget to add the page to the application in the *main.py*:
 
 Import `scenario_page` to the main file.

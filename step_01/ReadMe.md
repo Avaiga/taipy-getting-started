@@ -58,7 +58,7 @@ The Data Visualization page contains the following visual elements:
 
 Taipy maintains a separate state for each client connection. The state holds the values of all variables used in the user interface. For example, modifying *n_week* through a slider will update *state.n_week*, not the global Python variable *n_week*. Each client has its own state, ensuring that changes made by one client don't affect others.
 
-## How to connect two variables - the *[on_change](https://docs.taipy.io/en/latest/manuals/gui/callbacks/)* function
+## [Callbacks](https://docs.taipy.io/en/latest/manuals/gui/callbacks/)
 
 In each visual elements, callbacks can be placed. This will only you to update variables depending on user action. (See local callback and global callback)
 
@@ -77,7 +77,9 @@ def on_slider(state):
     state.dataset_week = dataset[dataset["Date"].dt.isocalendar().week == state.n_week]
 ```
 
-## Markdown
+## Markdown (pages/data_viz/data_viz.md)
+
+Here is the entire Markdown of the first page.
 
 ```markdown
 # Data Visualization page
@@ -89,7 +91,9 @@ Select week: *<|{n_week}|>*
 <|{dataset_week}|chart|type=bar|x=Date|y=Value|>
 ```
 
-## Python code
+## Python code (pages/data_viz/data_viz.py)
+
+You can find below the associated code with the Markdown that wil populate the objects of the page and create the interaction between the slider and the chart.
 
 ```python
 from taipy.gui import Markdown
@@ -120,6 +124,7 @@ data_viz = Markdown("pages/data_viz/data_viz.md")
 
 With this configuration, you can create an interactive Data Visualization page using Taipy. The page will display the dataset based on the selected week from the slider.
 
+## Connection to the entire application
 
 Don't forget to add the page to the application in the *main.py*:
 
