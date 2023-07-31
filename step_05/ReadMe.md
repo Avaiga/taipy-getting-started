@@ -2,7 +2,7 @@
 
 # Performance
 
-The Performance Page is a part of the Python application that allows users to compare the performance metrics (Root Mean Squared Error and Mean Absolute Error) of different scenarios. The page displays a table and two bar charts for comparing the metrics between baseline and machine learning predictions.
+The Performance Page is a part of the application. It allows users to compare the performance metrics (Root Mean Squared Error and Mean Absolute Error) of different scenarios. The page displays a table and two bar charts for comparing the metrics between baseline and machine learning predictions.
 
 ## Markdown
 
@@ -26,15 +26,25 @@ The Performance Page is a part of the Python application that allows users to co
 
 The Markdown section defines the layout and components of the Performance Page. It includes the following elements:
 
-- **Conditional Rendering**: The `<|part|render={len(comparison_scenario)>0}|...|>` component ensures that certain elements are only rendered when there is data available in the comparison_scenario.
+- **Conditional Rendering**: `<|part|render={len(comparison_scenario)>0}|...|>`
 
-- **Table**: A table that displays the comparison data from the comparison_scenario DataFrame. The table is expandable if the number of rows exceeds the available space.
+The part component ensures that certain elements are only rendered when there is data available in the comparison_scenario.
 
-- **Metric Selector**: A dropdown selector (`<|{selected_metric}|selector|lov={metric_selector}|dropdown|>`) that allows users to choose between two metrics: Root Mean Squared Error (RMSE) and Mean Absolute Error (MAE).
+- **Table**: `<|{comparison_scenario}|table|>`
 
-- **Bar Charts**: Two bar charts that compare the selected metric (RMSE or MAE) between baseline and machine learning predictions. The charts display the performance metrics for each scenario.
+A table that displays the comparison data from the comparison_scenario DataFrame. The table is expandable if the number of rows exceeds the available space.
 
-- **Compare Button**: A button (`<center><|Compare primarys|button|on_action=compare|></center>`) that triggers the "compare" action when clicked. It is used to initiate the comparison process.
+- **Metric Selector**: `<|{selected_metric}|selector|lov={metric_selector}|dropdown|>`
+
+A dropdown selector that allows users to choose between two metrics: Root Mean Squared Error (RMSE) and Mean Absolute Error (MAE).
+
+- **Bar Charts**: `<|{comparison_scenario}|chart|type=bar|x=Scenario Name|y[1]=RMSE baseline|y[2]=RMSE ML|...|>`
+
+Two bar charts that compare the selected metric (RMSE or MAE) between baseline and machine learning predictions. The charts display the performance metrics for each scenario.
+
+- **Compare Button**: `<|Compare primarys|button|on_action=compare|>`
+
+ A button that triggers the "compare" action when clicked. It is used to initiate the comparison process.
 
 ## Python Code
 
