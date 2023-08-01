@@ -4,6 +4,8 @@
 
 The Performance Page is a part of the application. It allows users to compare the performance metrics (Root Mean Squared Error and Mean Absolute Error) of different scenarios. The page displays a table and two bar charts for comparing the metrics between baseline and machine learning predictions.
 
+![Performance Page](result.png){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }"
+
 ## Markdown
 
 ```markdown
