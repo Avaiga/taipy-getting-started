@@ -1,4 +1,4 @@
-# Taipy Getting Started version: 2.2.0
+# Taipy Getting Started version: 3.0
 
 ## License
 Copyright 2023 Avaiga Private Limited
@@ -34,10 +34,6 @@ A more in depth documentation of Taipy can be found [here](https://docs.taipy.io
 
 Want to install _Taipy Getting Started_? Check out our [`INSTALLATION.md`](INSTALLATION.md) file.
 
-## Notebooks
-
-To follow the **Getting Started** in a Notebook environment, you must generate the notebook document using the [`generate_notebook.py`](generate_notebook.py) script. Clone the repository and run the script (`python generate_notebook.py`). A Notebook called `getting_started.ipynb` will be created in your current folder.
-
 ## Contributing
 
 Want to help build _Taipy Getting Started_? Check out our [`CONTRIBUTING.md`](CONTRIBUTING.md) file.
@@ -50,27 +46,11 @@ Want to be part of the _Taipy Getting Started_ community? Check out our [`CODE_O
 
 - `src`: Common code shared by all the steps. For more information, on each step a README.md file is available in their
   respective folder (`step_xx/ReadMe.md`).
-- `step_00`: The presentation of Taipy and the minimum code to run the gui.
-- `step_01`: Presentation of the interactiveness of Taipy as well as different controls (slider and chart).
-- `step_02`: Introduction to the on_change function with the choice of the week. The week displayed on the graph is 
-  the week of the slider.
-- `step_03`: Introduction to Taipy Core. Creation of the configuration for a baseline model.
-- `step_04`: Add to the previous config, a pipeline config to create and execute the pipeline without the GUI.
-- `step_05`: Add the execution of the pipeline thanks to a "Predict" button on the Gui (first button). The default 
-  parameters are used to run the pipeline. The results are shown in a chart.
-- `step_06`: Creation of a second pipeline (the machine learning pipeline : Auto-Regressive model). Creation and 
-  execution of the scenario with the default parameters without the GUI.
-- `step_07`: Scenario is being run at the beginning, and we can change the selected pipeline through a selector 
-  (first selector) and a button.
-- `step_08`: A first scenario is created. We can change the default parameters of this scenario with controls (date, 
-  number, selector); the default parameters are the date, the number of predictions and max capacity. A 
-  'change_scenario' button is pressed to apply these changes and re-submit the scenario.
-- `step_09`: Now, we want to show how to create scenarios directly through the gui and keep track of them.
-- `step_10`: Organize the page with a menu, layouts and parts that can be not rendered.
-- `step_11`: Introduce the concepts of Cycles and primary scenarios. Deletion of a scenario and setting a scenario, 
-  primary.
-- `step_12`: Create a 'Performance' page that will compare all the primary scenarios and display metrics of these 
-  scenarios.
+- `step_01`: Introduction to Taipy GUI and creation of the Data Vizualisation page.
+- `step_02`: Explanation of backend functions that will be used in the application.
+- `step_03`: Creation of the configuration for the scenario.
+- `step_04`: Creation of the Scenario Page.
+- `step_05`: Creation of the Performance Page.
 - `CODE_OF_CONDUCT.md`: Code of conduct for members and contributors of _taipy-getting-started_.
 - `CONTRIBUTING.md`: Instructions to contribute to _taipy-getting-started_.
 - `index.md`: Landing page of the generated documentation. 
