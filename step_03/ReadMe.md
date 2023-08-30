@@ -157,7 +157,7 @@ scenario_cfg = Config.configure_scenario_from_tasks(id="scenario",
 
 ```
 
-## Entire code (config/config.py)
+## Entire code (configuration/config.py)
 
 ```python
 import datetime as dt

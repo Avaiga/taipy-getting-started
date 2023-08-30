@@ -1,6 +1,6 @@
 > You can download the full code [here](https://github.com/Avaiga/taipy-getting-started/tree/develop/src).
 
-# Step 2: Algos
+# Algorithms used
 
 The application includes functions for data cleaning, baseline prediction, machine learning (ML) prediction, computing metrics, and creating a dataset for displaying predictions.
 
@@ -60,7 +60,7 @@ def create_predictions_dataset(predictions_baseline, predictions_ml, day, n_pred
     return predictions_dataset
 ```
 
-## Entire code (algos/algos.py)
+## Entire code (algorithms/algorithms.py)
 
 ```python
 # For the sake of clarity, we have used an AutoRegressive model rather than a pure ML model such as:
