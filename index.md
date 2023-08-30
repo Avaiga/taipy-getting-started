@@ -43,12 +43,18 @@ $ pip install statsmodels
     can guide you through the process.
 
 
-Once Taipy is installed, you can use the CLI to create the scaffolding. This template will be used throughout the creation of the application.
+Once Taipy is installed, you can use the CLI to create the scaffolding. The default template will be used throughout the creation of the application.
 
 ``` console
-$ taipy create ...
-$ pages name...
+> taipy create --template default
+Application root folder name [taipy_application]:
+Application main Python file [main.py]:
+Application title [Taipy Application]:
+Page names in multi-page application? []: data_viz scenario performance
+Does the application use scenario management or version management? [No]: yes
+Does the application use Rest API? [No]: no
 ```
+
 
 So, without further delay, let's begin to code!
 
@@ -60,6 +66,6 @@ So, without further delay, let's begin to code!
 
 3. [Backend Configuration](step_03/ReadMe.md)
 
-4. [Scenario Page page](step_04/ReadMe.md)
+4. [Scenario page](step_04/ReadMe.md)
 
 5. [Performance page](step_05/ReadMe.md)
