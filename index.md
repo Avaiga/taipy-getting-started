@@ -5,7 +5,7 @@
     Taipy requires **Python 3.8** or newer.
 
 Welcome to the **Getting Started** guide for Taipy. This tour shows you how to create an entire application using 
-the two components of Taipy:
+both the frontend and backend of Taipy:
 
 - **Graphical User Interface builder** (Taipy GUI): allows any Python developer to create a complex and interactive GUI.
 
@@ -13,10 +13,7 @@ the two components of Taipy:
 
 ![Getting Started application](step_01/overview.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
-
-You can use Taipy GUI without Taipy Core and vice-versa. However, as you will see, they are incredibly efficient when combined.
-
-Each step of the **"Getting Started"** focus on basic concepts of *Taipy*. Each file needed are created by steps. Note that every step creates a . After completing the last step, you will have a complete multi-page application.
+Each step of the **"Getting Started"** focus on basic concepts of *Taipy*. One step aims to create and complete only one file. After completing the last step, you will have a complete multi-page application.
 
 ## Before we begin
 
