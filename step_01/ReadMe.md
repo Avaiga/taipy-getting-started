@@ -93,7 +93,7 @@ Select week: *<|{n_week}|>*
 
 ## Python code (pages/data_viz/data_viz.py)
 
-You can find below the associated code with the Markdown that wil populate the objects of the page and create the interaction between the slider and the chart.
+You can find below the associated code with the Markdown that will populate the objects of the page and create the interaction between the slider and the chart.
 
 ```python
 from taipy.gui import Markdown
